@@ -35,6 +35,9 @@
 		25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */; };
 		25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */; };
 		25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */; };
+		25A24EAD2237DF1100AE5559 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EAC2237DF1100AE5559 /* Coordinator.swift */; };
+		25A24EB02237E05A00AE5559 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EAF2237E05A00AE5559 /* Storyboarded.swift */; };
+		25A24EB22237E12600AE5559 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EB12237E12600AE5559 /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +108,9 @@
 		25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionClient.swift; sourceTree = "<group>"; };
 		25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionManager.swift; sourceTree = "<group>"; };
 		25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionServer.swift; sourceTree = "<group>"; };
+		25A24EAC2237DF1100AE5559 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		25A24EAF2237E05A00AE5559 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		25A24EB12237E12600AE5559 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 		25678793223154350072C094 /* Kuggen */ = {
 			isa = PBXGroup;
 			children = (
+				25A24EAE2237E04800AE5559 /* Protocols */,
 				25A24EA52237D57C00AE5559 /* Game */,
 				25A24E842237B5FE00AE5559 /* Controller */,
 				25A24E832237B5E600AE5559 /* View */,
@@ -195,6 +202,7 @@
 				25A24E8F2237D47600AE5559 /* PairingViewController.swift */,
 				25A24E912237D48F00AE5559 /* RobotSelectorViewController.swift */,
 				25A24E932237D4A200AE5559 /* MenuViewController.swift */,
+				25A24EB12237E12600AE5559 /* MainCoordinator.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -209,6 +217,15 @@
 				25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		25A24EAE2237E04800AE5559 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				25A24EAC2237DF1100AE5559 /* Coordinator.swift */,
+				25A24EAF2237E05A00AE5559 /* Storyboarded.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,11 +327,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A24E9E2237D53B00AE5559 /* PairingView.swift in Sources */,
+				25A24EB22237E12600AE5559 /* MainCoordinator.swift in Sources */,
 				25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */,
 				25A24E882237CB9500AE5559 /* Robot.swift in Sources */,
 				25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */,
 				25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */,
 				25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */,
+				25A24EAD2237DF1100AE5559 /* Coordinator.swift in Sources */,
 				25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */,
 				2567879B223154350072C094 /* GameScene.swift in Sources */,
 				25A24E982237D50F00AE5559 /* RobotSelectorView.swift in Sources */,
@@ -322,6 +341,7 @@
 				25A24E9C2237D52D00AE5559 /* GameView.swift in Sources */,
 				25A24E8E2237D46B00AE5559 /* OptionsViewController.swift in Sources */,
 				25A24EA22237D55500AE5559 /* Lock.swift in Sources */,
+				25A24EB02237E05A00AE5559 /* Storyboarded.swift in Sources */,
 				25A24EA02237D54700AE5559 /* DemoView.swift in Sources */,
 				25A24EA42237D56F00AE5559 /* Handle.swift in Sources */,
 				25678795223154350072C094 /* AppDelegate.swift in Sources */,

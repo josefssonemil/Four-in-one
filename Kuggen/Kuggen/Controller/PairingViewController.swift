@@ -6,8 +6,9 @@
 import UIKit
 import FourInOneCore
 
-class PairingViewController : FourInOneConnectingViewController {
+class PairingViewController : FourInOneConnectingViewController, Storyboarded {
 
+    weak var coordinator: MainCoordinator?
 
 
 }

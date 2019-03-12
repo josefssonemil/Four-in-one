@@ -32,6 +32,9 @@
 		25A24EA02237D54700AE5559 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E9F2237D54700AE5559 /* DemoView.swift */; };
 		25A24EA22237D55500AE5559 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA12237D55500AE5559 /* Lock.swift */; };
 		25A24EA42237D56F00AE5559 /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA32237D56F00AE5559 /* Handle.swift */; };
+		25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */; };
+		25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */; };
+		25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +102,9 @@
 		25A24E9F2237D54700AE5559 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		25A24EA12237D55500AE5559 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
 		25A24EA32237D56F00AE5559 /* Handle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
+		25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionClient.swift; sourceTree = "<group>"; };
+		25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionManager.swift; sourceTree = "<group>"; };
+		25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +138,7 @@
 		25678793223154350072C094 /* Kuggen */ = {
 			isa = PBXGroup;
 			children = (
-				25A24EA52237D57C00AE5559 /* Scene */,
+				25A24EA52237D57C00AE5559 /* Game */,
 				25A24E842237B5FE00AE5559 /* Controller */,
 				25A24E832237B5E600AE5559 /* View */,
 				256787AC223155630072C094 /* FourInOneCore.xcodeproj */,
@@ -193,13 +199,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		25A24EA52237D57C00AE5559 /* Scene */ = {
+		25A24EA52237D57C00AE5559 /* Game */ = {
 			isa = PBXGroup;
 			children = (
 				25678796223154350072C094 /* GameScene.sks */,
 				2567879A223154350072C094 /* GameScene.swift */,
+				25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */,
+				25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */,
+				25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */,
 			);
-			path = Scene;
+			path = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,9 +310,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A24E9E2237D53B00AE5559 /* PairingView.swift in Sources */,
+				25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */,
 				25A24E882237CB9500AE5559 /* Robot.swift in Sources */,
 				25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */,
+				25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */,
 				25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */,
+				25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */,
 				2567879B223154350072C094 /* GameScene.swift in Sources */,
 				25A24E982237D50F00AE5559 /* RobotSelectorView.swift in Sources */,
 				2567879D223154350072C094 /* GameViewController.swift in Sources */,

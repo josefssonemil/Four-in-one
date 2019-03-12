@@ -17,6 +17,21 @@
 		256787A5223154360072C094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256787A3223154360072C094 /* LaunchScreen.storyboard */; };
 		256787B6223155860072C094 /* FourInOneCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256787B3223155630072C094 /* FourInOneCore.framework */; };
 		256787B7223155860072C094 /* FourInOneCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 256787B3223155630072C094 /* FourInOneCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E852237CB8000AE5559 /* Cogwheel.swift */; };
+		25A24E882237CB9500AE5559 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E872237CB9500AE5559 /* Robot.swift */; };
+		25A24E8A2237CBAA00AE5559 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E892237CBAA00AE5559 /* Key.swift */; };
+		25A24E8E2237D46B00AE5559 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */; };
+		25A24E902237D47600AE5559 /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8F2237D47600AE5559 /* PairingViewController.swift */; };
+		25A24E922237D48F00AE5559 /* RobotSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E912237D48F00AE5559 /* RobotSelectorViewController.swift */; };
+		25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E932237D4A200AE5559 /* MenuViewController.swift */; };
+		25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E952237D50200AE5559 /* MainMenuView.swift */; };
+		25A24E982237D50F00AE5559 /* RobotSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E972237D50F00AE5559 /* RobotSelectorView.swift */; };
+		25A24E9A2237D51800AE5559 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E992237D51800AE5559 /* OptionsView.swift */; };
+		25A24E9C2237D52D00AE5559 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E9B2237D52D00AE5559 /* GameView.swift */; };
+		25A24E9E2237D53B00AE5559 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E9D2237D53B00AE5559 /* PairingView.swift */; };
+		25A24EA02237D54700AE5559 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E9F2237D54700AE5559 /* DemoView.swift */; };
+		25A24EA22237D55500AE5559 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA12237D55500AE5559 /* Lock.swift */; };
+		25A24EA42237D56F00AE5559 /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA32237D56F00AE5559 /* Handle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +84,21 @@
 		256787A4223154360072C094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		256787A6223154360072C094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256787AC223155630072C094 /* FourInOneCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FourInOneCore.xcodeproj; path = ../../FourInOneCore/FourInOneCore.xcodeproj; sourceTree = "<group>"; };
+		25A24E852237CB8000AE5559 /* Cogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cogwheel.swift; sourceTree = "<group>"; };
+		25A24E872237CB9500AE5559 /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		25A24E892237CBAA00AE5559 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		25A24E8F2237D47600AE5559 /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
+		25A24E912237D48F00AE5559 /* RobotSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotSelectorViewController.swift; sourceTree = "<group>"; };
+		25A24E932237D4A200AE5559 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		25A24E952237D50200AE5559 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		25A24E972237D50F00AE5559 /* RobotSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotSelectorView.swift; sourceTree = "<group>"; };
+		25A24E992237D51800AE5559 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		25A24E9B2237D52D00AE5559 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		25A24E9D2237D53B00AE5559 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
+		25A24E9F2237D54700AE5559 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		25A24EA12237D55500AE5559 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
+		25A24EA32237D56F00AE5559 /* Handle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,13 +132,12 @@
 		25678793223154350072C094 /* Kuggen */ = {
 			isa = PBXGroup;
 			children = (
+				25A24EA52237D57C00AE5559 /* Scene */,
 				25A24E842237B5FE00AE5559 /* Controller */,
 				25A24E832237B5E600AE5559 /* View */,
 				256787AC223155630072C094 /* FourInOneCore.xcodeproj */,
 				25678794223154350072C094 /* AppDelegate.swift */,
-				25678796223154350072C094 /* GameScene.sks */,
 				25678798223154350072C094 /* Actions.sks */,
-				2567879A223154350072C094 /* GameScene.swift */,
 				25A24E812237B55400AE5559 /* Model */,
 				2567879E223154350072C094 /* Main.storyboard */,
 				256787A1223154360072C094 /* Assets.xcassets */,
@@ -130,6 +159,11 @@
 		25A24E812237B55400AE5559 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				25A24E872237CB9500AE5559 /* Robot.swift */,
+				25A24E852237CB8000AE5559 /* Cogwheel.swift */,
+				25A24E892237CBAA00AE5559 /* Key.swift */,
+				25A24EA12237D55500AE5559 /* Lock.swift */,
+				25A24EA32237D56F00AE5559 /* Handle.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -137,6 +171,12 @@
 		25A24E832237B5E600AE5559 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				25A24E952237D50200AE5559 /* MainMenuView.swift */,
+				25A24E972237D50F00AE5559 /* RobotSelectorView.swift */,
+				25A24E992237D51800AE5559 /* OptionsView.swift */,
+				25A24E9B2237D52D00AE5559 /* GameView.swift */,
+				25A24E9D2237D53B00AE5559 /* PairingView.swift */,
+				25A24E9F2237D54700AE5559 /* DemoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,8 +185,21 @@
 			isa = PBXGroup;
 			children = (
 				2567879C223154350072C094 /* GameViewController.swift */,
+				25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */,
+				25A24E8F2237D47600AE5559 /* PairingViewController.swift */,
+				25A24E912237D48F00AE5559 /* RobotSelectorViewController.swift */,
+				25A24E932237D4A200AE5559 /* MenuViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		25A24EA52237D57C00AE5559 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				25678796223154350072C094 /* GameScene.sks */,
+				2567879A223154350072C094 /* GameScene.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,9 +300,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A24E9E2237D53B00AE5559 /* PairingView.swift in Sources */,
+				25A24E882237CB9500AE5559 /* Robot.swift in Sources */,
+				25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */,
+				25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */,
 				2567879B223154350072C094 /* GameScene.swift in Sources */,
+				25A24E982237D50F00AE5559 /* RobotSelectorView.swift in Sources */,
 				2567879D223154350072C094 /* GameViewController.swift in Sources */,
+				25A24E9C2237D52D00AE5559 /* GameView.swift in Sources */,
+				25A24E8E2237D46B00AE5559 /* OptionsViewController.swift in Sources */,
+				25A24EA22237D55500AE5559 /* Lock.swift in Sources */,
+				25A24EA02237D54700AE5559 /* DemoView.swift in Sources */,
+				25A24EA42237D56F00AE5559 /* Handle.swift in Sources */,
 				25678795223154350072C094 /* AppDelegate.swift in Sources */,
+				25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */,
+				25A24E8A2237CBAA00AE5559 /* Key.swift in Sources */,
+				25A24E902237D47600AE5559 /* PairingViewController.swift in Sources */,
+				25A24E9A2237D51800AE5559 /* OptionsView.swift in Sources */,
+				25A24E922237D48F00AE5559 /* RobotSelectorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

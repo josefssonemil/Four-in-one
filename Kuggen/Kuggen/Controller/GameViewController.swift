@@ -10,7 +10,11 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, Storyboarded {
+    
+    weak var coordinator: MainCoordinator?
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

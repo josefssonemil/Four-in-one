@@ -13,5 +13,7 @@ class MenuViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     
     
-    
+    @IBAction func nextTapped(_ sender: Any) {
+        coordinator?.goToRobotSelection()
+    }
 }

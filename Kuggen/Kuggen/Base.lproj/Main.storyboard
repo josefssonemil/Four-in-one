@@ -28,7 +28,7 @@
         <!--PairingViewController-->
         <scene sceneID="9xT-cG-IXN">
             <objects>
-                <viewController storyboardIdentifier="PairingViewController" title="PairingViewController" id="ics-QM-IEP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingViewController" title="PairingViewController" id="ics-QM-IEP" customClass="PairingViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qJG-vC-iWQ">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +43,7 @@
         <!--MenuViewController-->
         <scene sceneID="jk0-KJ-OzI">
             <objects>
-                <viewController storyboardIdentifier="MenuViewController" title="MenuViewController" id="mRv-dA-OjR" customClass="MenuViewController" customModule="Kuggen" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" title="MenuViewController" id="mRv-dA-OjR" customClass="MenuViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NtC-jy-Y1K">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,6 +55,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHT-1f-SHH">
+                                <rect key="frame" x="567" y="697" width="198" height="132"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextTapped:" destination="mRv-dA-OjR" eventType="touchUpInside" id="6Nf-OF-Nv5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="802-Gg-tOq"/>
@@ -67,7 +79,7 @@
         <!--OptionsViewController-->
         <scene sceneID="lc7-oh-CmD">
             <objects>
-                <viewController storyboardIdentifier="OptionsViewController" title="OptionsViewController" id="X2b-E8-jlR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OptionsViewController" title="OptionsViewController" id="X2b-E8-jlR" customClass="OptionsViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="79k-ub-44s">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,17 +94,26 @@
         <!--RobotSelectorViewController-->
         <scene sceneID="Imm-7z-aWj">
             <objects>
-                <viewController storyboardIdentifier="RobotSelectorViewController" title="RobotSelectorViewController" id="dON-Yu-Geo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RobotSelectorViewController" title="RobotSelectorViewController" id="dON-Yu-Geo" customClass="RobotSelectorViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="62U-R0-K8j">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Robot Selector" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oa-7A-wMv">
+                                <rect key="frame" x="466" y="145" width="434" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3sH-KY-5VM"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klO-XA-GdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="-546"/>
+            <point key="canvasLocation" x="-38.213762811127374" y="-546.09375"/>
         </scene>
     </scenes>
 </document>

@@ -5,6 +5,8 @@
 
 import UIKit
 import FourInOneCore
+// TODO: Add actual views to the controller and make a suitable method for making the devices
+// aligned correctly
 
 class PairingViewController : FourInOneConnectingViewController, Storyboarded {
 
@@ -34,9 +36,10 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
             gameManager = KuggenSessionClient()
         }
         
-    
         setupManager.initSessionManager(gameManager)
         setupManager.finishSetup()
+        
+        coordinator?.goToGameScreen()
     }
     
 }

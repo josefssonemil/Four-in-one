@@ -23,11 +23,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1289" y="-546"/>
         </scene>
-        <!--View Controller-->
+        <!--PairingViewController-->
         <scene sceneID="9xT-cG-IXN">
             <objects>
-                <viewController storyboardIdentifier="PairingViewController" id="ics-QM-IEP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PairingViewController" title="PairingViewController" id="ics-QM-IEP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qJG-vC-iWQ">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,26 +38,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="650" y="-711"/>
+            <point key="canvasLocation" x="621" y="-546"/>
         </scene>
-        <!--View Controller-->
+        <!--MenuViewController-->
         <scene sceneID="jk0-KJ-OzI">
             <objects>
-                <viewController storyboardIdentifier="MenuViewController" id="mRv-dA-OjR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MenuViewController" title="MenuViewController" id="mRv-dA-OjR" customClass="MenuViewController" customModule="Kuggen" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NtC-jy-Y1K">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kof-ho-deZ">
+                                <rect key="frame" x="614" y="232" width="105" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="802-Gg-tOq"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2Z-X0-Hrr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-680.38067349926791" y="-546.09375"/>
         </scene>
-        <!--View Controller-->
+        <!--OptionsViewController-->
         <scene sceneID="lc7-oh-CmD">
             <objects>
-                <viewController storyboardIdentifier="OptionsViewController" id="X2b-E8-jlR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OptionsViewController" title="OptionsViewController" id="X2b-E8-jlR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="79k-ub-44s">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,11 +77,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v41-7r-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-680" y="138"/>
         </scene>
-        <!--View Controller-->
+        <!--RobotSelectorViewController-->
         <scene sceneID="Imm-7z-aWj">
             <objects>
-                <viewController storyboardIdentifier="RobotSelectorViewController" id="dON-Yu-Geo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RobotSelectorViewController" title="RobotSelectorViewController" id="dON-Yu-Geo" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="62U-R0-K8j">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klO-XA-GdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="650" y="662"/>
+            <point key="canvasLocation" x="-38" y="-546"/>
         </scene>
     </scenes>
 </document>

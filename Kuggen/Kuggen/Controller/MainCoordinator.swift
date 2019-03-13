@@ -9,6 +9,8 @@
 import UIKit
 
 class MainCoordinator: Coordinator {
+    
+    // Child coordinators are only used if scaling issues occur
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
@@ -16,11 +18,13 @@ class MainCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
+    // Starting the application
     func start() {
         let vc = MenuViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
+    
     
     func goToRobotSelection(){
         let vc = RobotSelectorViewController.instantiate()

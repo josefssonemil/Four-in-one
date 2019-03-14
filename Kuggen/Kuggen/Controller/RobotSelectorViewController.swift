@@ -18,34 +18,34 @@ class RobotSelectorViewController: UIViewController, Storyboarded {
     @IBOutlet weak var robot4Button: UIButton!
     
     @IBAction func robot1Selected(_ sender: Any) {
-        robot1Button.isHighlighted = true
-        robot2Button.isHighlighted = false
-        robot3Button.isHighlighted = false
-        robot4Button.isHighlighted = false
+        robot1Button.isSelected = true
+        robot2Button.isSelected = false
+        robot3Button.isSelected = false
+        robot4Button.isSelected = false
 
     }
     
     @IBAction func robot2Selected(_ sender: Any) {
-        robot2Button.isHighlighted = true
-        robot1Button.isHighlighted = false
-        robot3Button.isHighlighted = false
-        robot4Button.isHighlighted = false
+        robot2Button.isSelected = true
+        robot1Button.isSelected = false
+        robot3Button.isSelected = false
+        robot4Button.isSelected = false
 
     }
     
     
     @IBAction func robot3Selected(_ sender: Any) {
-        robot3Button.isHighlighted = true
-        robot2Button.isHighlighted = false
-        robot3Button.isHighlighted = false
-        robot4Button.isHighlighted = false
+        robot3Button.isSelected = true
+        robot2Button.isSelected = false
+        robot1Button.isSelected = false
+        robot4Button.isSelected = false
     }
     
     @IBAction func robot4Selected(_ sender: Any) {
-        robot4Button.isHighlighted = true
-        robot1Button.isHighlighted = false
-        robot3Button.isHighlighted = false
-        robot2Button.isHighlighted = false
+        robot4Button.isSelected = true
+        robot2Button.isSelected = false
+        robot3Button.isSelected = false
+        robot1Button.isSelected = false
 
     }
     

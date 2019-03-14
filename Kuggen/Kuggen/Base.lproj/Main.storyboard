@@ -111,29 +111,57 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <state key="normal" title="Robot1"/>
+                                <connections>
+                                    <action selector="robot1Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="SAJ-b5-bdX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGV-Cy-YSD">
                                 <rect key="frame" x="327" y="351" width="141" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <state key="normal" title="Robot2"/>
+                                <connections>
+                                    <action selector="robot2Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="6f4-4w-46n"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bo-gi-8uF">
                                 <rect key="frame" x="494" y="351" width="142" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <state key="normal" title="Robot3"/>
+                                <connections>
+                                    <action selector="robot3Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="URW-Mb-eOR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCh-E3-n4l">
                                 <rect key="frame" x="666" y="351" width="142" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="45"/>
                                 <state key="normal" title="Robot4"/>
+                                <connections>
+                                    <action selector="robot4Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="Ds7-bA-axw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-6s-7Mh">
+                                <rect key="frame" x="59" y="592" width="907" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
+                                <state key="normal" title="Causes crash when tapped"/>
+                                <connections>
+                                    <action selector="nextTapped:" destination="dON-Yu-Geo" eventType="touchUpInside" id="USq-Wn-9Xd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="3sH-KY-5VM"/>
                     </view>
+                    <connections>
+                        <outlet property="robot1Button" destination="uJa-zJ-akO" id="KsT-r6-QJp"/>
+                        <outlet property="robot2Button" destination="uGV-Cy-YSD" id="7z4-LD-i2n"/>
+                        <outlet property="robot3Button" destination="9Bo-gi-8uF" id="6Le-dG-eg8"/>
+                        <outlet property="robot4Button" destination="pCh-E3-n4l" id="7eo-5z-ZHi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klO-XA-GdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

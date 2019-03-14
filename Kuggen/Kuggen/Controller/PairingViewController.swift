@@ -37,7 +37,11 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
         }
         
         setupManager.initSessionManager(gameManager)
+        gameManager.team = self.team
+        gameManager.platform = .spritekit
         setupManager.finishSetup()
+        
+        let gvc = GameViewController()
         
         coordinator?.goToGameScreen()
     }

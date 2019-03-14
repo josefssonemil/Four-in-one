@@ -11,6 +11,9 @@ import SpriteKit
 
 class RobotSelectorViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
+    
+    //Robot
+    var team = 0
 
     @IBOutlet weak var robot1Button: UIButton!
     @IBOutlet weak var robot2Button: UIButton!
@@ -22,6 +25,7 @@ class RobotSelectorViewController: UIViewController, Storyboarded {
         robot2Button.isSelected = false
         robot3Button.isSelected = false
         robot4Button.isSelected = false
+        team = 1
 
     }
     
@@ -30,7 +34,7 @@ class RobotSelectorViewController: UIViewController, Storyboarded {
         robot1Button.isSelected = false
         robot3Button.isSelected = false
         robot4Button.isSelected = false
-
+        team = 2
     }
     
     
@@ -39,6 +43,7 @@ class RobotSelectorViewController: UIViewController, Storyboarded {
         robot2Button.isSelected = false
         robot1Button.isSelected = false
         robot4Button.isSelected = false
+        team = 3
     }
     
     @IBAction func robot4Selected(_ sender: Any) {
@@ -46,11 +51,12 @@ class RobotSelectorViewController: UIViewController, Storyboarded {
         robot2Button.isSelected = false
         robot3Button.isSelected = false
         robot1Button.isSelected = false
+        team = 4
 
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        coordinator?.goToPairingScreen()
+        coordinator?.goToPairingScreen(team: team)
         // TODO: send robot selected to next screens
         // Also causes a crash due to the pairing phase not being implemented completely yet
     }

@@ -32,8 +32,9 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToPairingScreen(){
+    func goToPairingScreen(team: Int){
         let vc  = PairingViewController.instantiate()
+        vc.team = team
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

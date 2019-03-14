@@ -20,6 +20,11 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
         setupManager.startSetup()
     }
     
+    override func updateView(position: DevicePosition, mode: GameMode, inProgress: Bool) {
+        
+    }
+
+    
     // Makes connection by informing the setupManager that this device is ready to start the session
     // The setupManager will let the delegate know when all devices are ready
     func makeConnection(){
@@ -40,8 +45,6 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
         gameManager.team = self.team
         gameManager.platform = .spritekit
         setupManager.finishSetup()
-        
-        let gvc = GameViewController()
         
         coordinator?.goToGameScreen()
     }

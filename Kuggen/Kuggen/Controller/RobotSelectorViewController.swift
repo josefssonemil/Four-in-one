@@ -52,6 +52,7 @@ class RobotSelectorViewController: UIViewController, Storyboarded {
     @IBAction func nextTapped(_ sender: Any) {
         coordinator?.goToPairingScreen()
         // TODO: send robot selected to next screens
+        // Also causes a crash due to the pairing phase not being implemented completely yet
     }
     
 }

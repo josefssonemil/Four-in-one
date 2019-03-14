@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 
-class RobotSelectorViewController: UIViewController, Storyboarded {
+class RobotConfigurationViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     
     //Robot

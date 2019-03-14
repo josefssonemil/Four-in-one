@@ -27,7 +27,7 @@ class MainCoordinator: Coordinator {
     
     
     func goToRobotSelection(){
-        let vc = RobotSelectorViewController.instantiate()
+        let vc = RobotConfigurationViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

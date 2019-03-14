@@ -10,6 +10,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--AlignmentViewController-->
+        <scene sceneID="lZt-SJ-A6h">
+            <objects>
+                <viewController storyboardIdentifier="AlignmentViewController" title="AlignmentViewController" id="agg-1Y-jiQ" customClass="AlignmentViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HPk-tc-7IP">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sCO-ig-iXY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6K-Ik-Wcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="715" y="-548"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -23,7 +38,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="-546"/>
+            <point key="canvasLocation" x="1388" y="-548"/>
         </scene>
         <!--PairingViewController-->
         <scene sceneID="9xT-cG-IXN">
@@ -38,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="621" y="-546"/>
+            <point key="canvasLocation" x="28" y="-546"/>
         </scene>
         <!--MenuViewController-->
         <scene sceneID="jk0-KJ-OzI">
@@ -91,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="-680" y="138"/>
         </scene>
-        <!--RobotSelectorViewController-->
+        <!--RobotConfigurationViewController-->
         <scene sceneID="Imm-7z-aWj">
             <objects>
-                <viewController storyboardIdentifier="RobotSelectorViewController" title="RobotSelectorViewController" id="dON-Yu-Geo" customClass="RobotSelectorViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RobotConfigurationViewController" title="RobotConfigurationViewController" id="dON-Yu-Geo" customClass="RobotConfigurationViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="62U-R0-K8j">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,7 +184,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klO-XA-GdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38.213762811127374" y="-546.09375"/>
+            <point key="canvasLocation" x="-681" y="-1263"/>
         </scene>
     </scenes>
 </document>

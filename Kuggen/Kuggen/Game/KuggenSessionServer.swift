@@ -11,6 +11,8 @@ import FourInOneCore
 import MultipeerConnectivity
 
 
+// Subclassing the SessionManager with server-specific behavior
+
 class KuggenSessionServer: KuggenSessionManager {
     
     

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FourInOneCore
 
 class MainCoordinator: Coordinator {
     
@@ -40,17 +41,19 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager){
+    func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager, setupManager: FourInOneSetupManager){
         let vc = AlignmentViewController.instantiate()
         vc.coordinator = self
         vc.gameManager = gameManager
         vc.team = team
+        vc.setupManager = setupManager
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func goToGameScreen(){
+    func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
+        vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     

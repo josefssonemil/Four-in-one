@@ -13,10 +13,22 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
 
     weak var coordinator: MainCoordinator?
 
-    var gameManager : KuggenSessionManager!
-    
-    var team: Int!
+    var gameManager : KuggenSessionManager?
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.setupManager.readyAndWaitingForPeers()
+        
+    }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.setupManager.cancelReadyAndWaiting()
+    }
+    
+    
+    func finished(){
+        coordinator?.goToGameScreen(gameManager: gameManager!)
+    }
 }

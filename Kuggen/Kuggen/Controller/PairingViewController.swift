@@ -48,7 +48,7 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
         setupManager.finishSetup()
         
         // relay: team, game manager, setup manager should not be needed after this!
-        coordinator?.goToAlignmentScreen(team: self.team, gameManager: gameManager)
+        coordinator?.goToAlignmentScreen(team: self.team, gameManager: gameManager, setupManager: setupManager)
     }
     @IBAction func teamOneTapped(_ sender: Any) {
         self.team = 1

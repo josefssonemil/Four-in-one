@@ -9,7 +9,29 @@ import FourInOneCore
 // aligned correctly
 
 class PairingViewController : FourInOneConnectingViewController, Storyboarded {
-
+    
+    
+    @IBAction func teamOneTapped(_ sender: Any) {
+    }
+    @IBAction func teamTwotapped(_ sender: Any) {
+    }
+    @IBAction func teamThreeTapped(_ sender: Any) {
+    }
+    
+    @IBAction func teamFourTapped(_ sender: Any) {
+    }
+    
+    @IBAction func teamFiveTapped(_ sender: Any) {
+    }
+    
+    @IBAction func teamSixTapped(_ sender: Any) {
+    }
+    
+    @IBAction func teamSevenTapped(_ sender: Any) {
+    }
+    @IBAction func teamEightTapped(_ sender: Any) {
+    }
+    
     // Coordinator which handles navigation between views
     weak var coordinator: MainCoordinator?
     

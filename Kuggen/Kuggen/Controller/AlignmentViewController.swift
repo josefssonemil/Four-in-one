@@ -6,4 +6,13 @@
 //  Copyright © 2019 Four-in-one. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import FourInOneCore
+
+class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
+
+    
+    
+    
+    
+}

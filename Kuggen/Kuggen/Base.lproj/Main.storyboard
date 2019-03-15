@@ -61,6 +61,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 1"/>
+                                <connections>
+                                    <action selector="teamOneTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="LLg-eR-8Hx"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Välj lag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1J-HL-3qX">
                                 <rect key="frame" x="452" y="308" width="121" height="48"/>
@@ -75,6 +78,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 2"/>
+                                <connections>
+                                    <action selector="teamTwotapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="087-Yp-eqv"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qy-Iu-rzH">
                                 <rect key="frame" x="525" y="433" width="110" height="54"/>
@@ -82,6 +88,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 3"/>
+                                <connections>
+                                    <action selector="teamThreeTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KCs-bp-gqe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xp4-hi-Ldz">
                                 <rect key="frame" x="214" y="563" width="110" height="54"/>
@@ -89,6 +98,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 5"/>
+                                <connections>
+                                    <action selector="teamFiveTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="X7f-3H-qDc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O11-WV-Ez7">
                                 <rect key="frame" x="369" y="563" width="110" height="54"/>
@@ -96,6 +108,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 6"/>
+                                <connections>
+                                    <action selector="teamSixTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KC1-gZ-7Se"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkD-59-jjR">
                                 <rect key="frame" x="526" y="563" width="108" height="54"/>
@@ -103,6 +118,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 7"/>
+                                <connections>
+                                    <action selector="teamSevenTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="pSQ-2S-mcD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Tu-cUb">
                                 <rect key="frame" x="681" y="433" width="110" height="54"/>
@@ -110,6 +128,9 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 4"/>
+                                <connections>
+                                    <action selector="teamFourTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="xET-Z4-GeG"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nE3-Tm-Tfi">
                                 <rect key="frame" x="681" y="563" width="110" height="54"/>
@@ -117,11 +138,17 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <state key="normal" title="Team 8"/>
+                                <connections>
+                                    <action selector="teamEightTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KL4-sn-fHB"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jhp-ae-lh8"/>
                     </view>
+                    <connections>
+                        <outlet property="d" destination="NEW-Tu-cUb" id="Jxt-SK-pni"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

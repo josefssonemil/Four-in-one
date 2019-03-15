@@ -11,7 +11,11 @@ import FourInOneCore
 
 class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
 
+    weak var coordinator: MainCoordinator?
+
+    var gameManager : KuggenSessionManager!
     
+    var team: Int!
     
     
     

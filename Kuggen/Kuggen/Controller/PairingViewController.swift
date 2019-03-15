@@ -5,32 +5,9 @@
 
 import UIKit
 import FourInOneCore
-// TODO: Add actual views to the controller and make a suitable method for making the devices
-// aligned correctly
 
 class PairingViewController : FourInOneConnectingViewController, Storyboarded {
     
-    
-    @IBAction func teamOneTapped(_ sender: Any) {
-    }
-    @IBAction func teamTwotapped(_ sender: Any) {
-    }
-    @IBAction func teamThreeTapped(_ sender: Any) {
-    }
-    
-    @IBAction func teamFourTapped(_ sender: Any) {
-    }
-    
-    @IBAction func teamFiveTapped(_ sender: Any) {
-    }
-    
-    @IBAction func teamSixTapped(_ sender: Any) {
-    }
-    
-    @IBAction func teamSevenTapped(_ sender: Any) {
-    }
-    @IBAction func teamEightTapped(_ sender: Any) {
-    }
     
     // Coordinator which handles navigation between views
     weak var coordinator: MainCoordinator?
@@ -41,6 +18,8 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
         setupManager.delegate = self
         setupManager.startSetup()
     }
+    
+    
     
     override func updateView(position: DevicePosition, mode: GameMode, inProgress: Bool) {
         
@@ -68,8 +47,44 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
         gameManager.platform = .spritekit
         setupManager.finishSetup()
         
-        coordinator?.goToGameScreen()
+        // relay: team, game manager, setup manager should not be needed after this!
+        coordinator?.goToAlignmentScreen(team: self.team, gameManager: gameManager)
+    }
+    @IBAction func teamOneTapped(_ sender: Any) {
+        self.team = 1
+        makeConnection()
+    }
+    @IBAction func teamTwotapped(_ sender: Any) {
+        self.team = 2
+        makeConnection()
+    }
+    @IBAction func teamThreeTapped(_ sender: Any) {
+        self.team = 3
+        makeConnection()
     }
     
+    @IBAction func teamFourTapped(_ sender: Any) {
+        self.team = 4
+        makeConnection()
+    }
+    
+    @IBAction func teamFiveTapped(_ sender: Any) {
+        self.team = 5
+        makeConnection()
+    }
+    
+    @IBAction func teamSixTapped(_ sender: Any) {
+        self.team = 6
+        makeConnection()
+    }
+    
+    @IBAction func teamSevenTapped(_ sender: Any) {
+        self.team = 7
+        makeConnection()
+    }
+    @IBAction func teamEightTapped(_ sender: Any) {
+        self.team = 8
+        makeConnection()
+    }
 }
 

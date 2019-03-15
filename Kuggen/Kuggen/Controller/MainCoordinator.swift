@@ -34,9 +34,18 @@ class MainCoordinator: Coordinator {
     
     func goToPairingScreen(team: Int){
         let vc  = PairingViewController.instantiate()
-        vc.team = team
         vc.coordinator = self
+        vc.setupPhase()
+        
         navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager){
+        let vc = AlignmentViewController.instantiate()
+        vc.coordinator = self
+        vc.gameManager = gameManager
+        vc.team = team
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func goToGameScreen(){

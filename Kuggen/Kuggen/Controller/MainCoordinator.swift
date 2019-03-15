@@ -21,7 +21,7 @@ class MainCoordinator: Coordinator {
     
     // Starting the application
     func start() {
-        let vc = MenuViewController.instantiate()
+        let vc = PairingViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
@@ -53,7 +53,7 @@ class MainCoordinator: Coordinator {
     func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
-        vc.gameManager = gameManager
+      //  vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     

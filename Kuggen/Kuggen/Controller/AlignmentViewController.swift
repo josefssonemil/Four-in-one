@@ -16,19 +16,14 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     var gameManager : KuggenSessionManager?
     
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        self.setupManager.readyAndWaitingForPeers()
-        
-    }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        self.setupManager.cancelReadyAndWaiting()
-    }
-    
-    
-    func finished(){
+    override func didStartMainActivity(_ manager: FourInOneSetupManager) {
         coordinator?.goToGameScreen(gameManager: gameManager!)
     }
+    
+    func ready(){
+        didStartMainActivity(self.setupManager)
+    }
+    
+    
 }

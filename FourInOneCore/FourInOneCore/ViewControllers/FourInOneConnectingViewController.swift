@@ -38,7 +38,7 @@ open class FourInOneConnectingViewController: FourInOneViewController, FourInOne
     public var setupManager : FourInOneSetupManager!
     
     /// Whether the view controller shows debug information or not.
-    public var debugMode = true
+    public var debugMode = false
     
     /// The story board segue to use to load the view to show aftre the set up process.
     public var showMainViewSegue : String = "showMainViewSegue"

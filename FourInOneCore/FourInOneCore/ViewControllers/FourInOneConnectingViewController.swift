@@ -123,6 +123,7 @@ open class FourInOneConnectingViewController: FourInOneViewController, FourInOne
             case .didstart:
                 
                 self.idLabel.text = "Id: \(self.setupManager.myPeerId.displayName)"
+            
                 
             case .serverchanged:
                 

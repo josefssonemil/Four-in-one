@@ -6,6 +6,7 @@
 //  Copyright © 2019 Four-in-one. All rights reserved.
 //
 
+//TODO: Clean up code and make the selections save somewhere. Also update the view to be more usable.
 import UIKit
 import SpriteKit
 
@@ -14,13 +15,27 @@ class RobotConfigurationViewController: UIViewController, UICollectionViewDelega
     @IBOutlet weak var collectionViewTop: UICollectionView!
     @IBOutlet weak var collectionViewMid: UICollectionView!
     @IBOutlet weak var collectionViewBot: UICollectionView!
+
     
+    // array of path to the selected robot configuration, might not be needed
+    var selected = [IndexPath(item: 1, section: 0),IndexPath(item: 0, section: 0),IndexPath(item: 0, section: 0)]
+    // arrays of images that will be used to select different configurations.
     var imageArrayTop = [UIImage (named: "Top1"),UIImage (named: "Top2")]
     var imageArrayMid = [UIImage (named: "Mid1"),UIImage (named: "Mid2")]
     var imageArrayBot = [UIImage (named: "Bot1"),UIImage (named: "Bot2")]
+   
+    //TODO: Save the configuration.
+    //save button pressed. returns to main menu and saves the configuration.
+    @IBAction func saveTapped(_ sender: UIButton) {
+        selected[0] = collectionViewTop.indexPathsForVisibleItems.first as! IndexPath
+        selected[1] = collectionViewMid.indexPathsForVisibleItems.first as! IndexPath
+        selected[2] = collectionViewBot.indexPathsForVisibleItems.first as! IndexPath
+        print(selected)
+        coordinator?.start()
+    }
+    // Sets the layout for the collectionsViews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         if let layout = collectionViewTop.collectionViewLayout as? UICollectionViewFlowLayout {
             let itemWidth = view.bounds.width
             let itemHeight = collectionViewTop.bounds.height
@@ -41,7 +56,7 @@ class RobotConfigurationViewController: UIViewController, UICollectionViewDelega
         }
     }
 
-    
+    //number of items in eaxh collectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.collectionViewTop {
             return imageArrayTop.count // Replace with count of your data for collectionViewA
@@ -51,6 +66,7 @@ class RobotConfigurationViewController: UIViewController, UICollectionViewDelega
         return imageArrayBot.count
     }
     
+    //sets the images to each collectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionViewTop {
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
@@ -66,9 +82,15 @@ class RobotConfigurationViewController: UIViewController, UICollectionViewDelega
             cell3.img.image = imageArrayBot[indexPath.row]
             return cell3
     }
-    
-    
-    
+    //TODO : should set the showing images to correspond to the current robot configuration.
+    override func viewDidLoad() {
+        print(selected)
+    collectionViewTop.scrollToItem(at: selected[0] as IndexPath, at: .right, animated: true)
+    collectionViewMid.scrollToItem(at: selected[1] as IndexPath, at: .right, animated: true)
+    collectionViewBot.scrollToItem(at: selected[2] as IndexPath, at: .right, animated: true)
+    }
+ 
+    // Old code
     weak var coordinator: MainCoordinator?
     
     //Robot

@@ -42,6 +42,8 @@
 		848410F9223C1D8C007B55E1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848410F8223C1D8C007B55E1 /* UIColor.swift */; };
 		84EF3239223BE4FE009A3C4A /* PreMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */; };
 		84EF323E223BE996009A3C4A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF323D223BE996009A3C4A /* MenuButton.swift */; };
+		3EBEC784223BB5B200BE0C14 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEC783223BB5B200BE0C14 /* ImageCell.swift */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,9 +118,13 @@
 		25A24EAF2237E05A00AE5559 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		25A24EB12237E12600AE5559 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentViewController.swift; sourceTree = "<group>"; };
+
 		848410F8223C1D8C007B55E1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreMainMenuViewController.swift; sourceTree = "<group>"; };
 		84EF323D223BE996009A3C4A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+
+		3EBEC783223BB5B200BE0C14 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +159,13 @@
 			isa = PBXGroup;
 			children = (
 				25678798223154350072C094 /* Actions.sks */,
+
 				25678794223154350072C094 /* AppDelegate.swift */,
+
+				25A24E812237B55400AE5559 /* Model */,
+				2567879E223154350072C094 /* Main.storyboard */,
+				3EBEC783223BB5B200BE0C14 /* ImageCell.swift */,
+
 				256787A1223154360072C094 /* Assets.xcassets */,
 				25A24E842237B5FE00AE5559 /* Controller */,
 				84EF323F223BEAAD009A3C4A /* Extensions */,
@@ -374,6 +386,7 @@
 				25A24E902237D47600AE5559 /* PairingViewController.swift in Sources */,
 				25A24E9A2237D51800AE5559 /* OptionsView.swift in Sources */,
 				25A24E922237D48F00AE5559 /* RobotConfigurationViewController.swift in Sources */,
+				3EBEC784223BB5B200BE0C14 /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

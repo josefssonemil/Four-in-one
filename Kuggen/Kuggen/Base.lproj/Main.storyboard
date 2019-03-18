@@ -298,6 +298,9 @@
                                 <rect key="frame" x="330" y="723" width="364" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Spara"/>
+                                <connections>
+                                    <action selector="saveTapped:" destination="dON-Yu-Geo" eventType="touchUpInside" id="RuE-5h-aFQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

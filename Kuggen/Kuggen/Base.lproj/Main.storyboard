@@ -72,11 +72,17 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="W9D-Sf-RBr"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="lUH-HQ-jkS"/>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="Qff-vR-Nvg" id="xlh-nQ-5N5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocv-Cv-MKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

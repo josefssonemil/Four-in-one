@@ -13,13 +13,16 @@ class PreMainMenuViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     
     @IBOutlet weak var playButton: MenuButton!
+    @IBOutlet weak var selectRobotMenuButton: MenuButton!
+    @IBOutlet weak var optionMenuButton: MenuButton!
 
-    
-    @IBAction func nextTapped(_ sender: Any) {
-        coordinator?.goToMainMenu()
-    }
     
     @IBAction func playTapped(_ sender: Any) {
         coordinator?.goToMainMenu()
     }
+    
+    @IBAction func optionMenuTapped(_ sender: Any) {
+        coordinator?.goToOptionsView()
+    }
+    
 }

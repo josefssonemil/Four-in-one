@@ -21,6 +21,10 @@ class PreMainMenuViewController: UIViewController, Storyboarded {
         coordinator?.goToMainMenu()
     }
     
+    @IBAction func selectRobotMenuTapped(_ sender: Any) {
+        coordinator?.goToRobotSelection()
+    }
+    
     @IBAction func optionMenuTapped(_ sender: Any) {
         coordinator?.goToOptionsView()
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FourInOneCore
 
 class MainCoordinator: Coordinator {
     
@@ -39,14 +40,25 @@ class MainCoordinator: Coordinator {
     
     func goToPairingScreen(team: Int){
         let vc  = PairingViewController.instantiate()
-        vc.team = team
         vc.coordinator = self
+        vc.setupPhase()
+        
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToGameScreen(){
+    func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager, setupManager: FourInOneSetupManager){
+        let vc = AlignmentViewController.instantiate()
+        vc.coordinator = self
+        vc.gameManager = gameManager
+        vc.team = team
+        vc.setupManager = setupManager
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
+      //  vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     func goToOptionsView(){

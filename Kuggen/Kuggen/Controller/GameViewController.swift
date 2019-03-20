@@ -9,13 +9,14 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import FourInOneCore
 
-class GameViewController: UIViewController, Storyboarded {
+class GameViewController: FourInOneSessionViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
 
     
-
+/*
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,5 +61,5 @@ class GameViewController: UIViewController, Storyboarded {
 
     override var prefersStatusBarHidden: Bool {
         return true
-    }
+    }*/
 }

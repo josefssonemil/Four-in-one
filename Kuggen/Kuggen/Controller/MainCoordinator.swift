@@ -21,7 +21,7 @@ class MainCoordinator: Coordinator {
     
     // Starting the application
     func start() {
-        let vc = PairingViewController.instantiate()
+        let vc = MenuViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }

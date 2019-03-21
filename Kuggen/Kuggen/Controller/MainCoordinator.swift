@@ -41,9 +41,9 @@ class MainCoordinator: Coordinator {
     func goToPairingScreen(){
         let vc  = PairingViewController.instantiate()
         vc.coordinator = self
-        vc.setupPhase()
-        
+       // vc.setupPhase()
         navigationController.pushViewController(vc, animated: false)
+
     }
     
     func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager, setupManager: FourInOneSetupManager){

@@ -18,8 +18,8 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
     func setupPhase(){
         print("setup phase")
 
-        setupManager.delegate = self
-        setupManager.startSetup()
+        setupManager?.delegate = self
+        setupManager?.startSetup()
     }
     
     
@@ -32,6 +32,8 @@ class PairingViewController : FourInOneConnectingViewController, Storyboarded {
     // Makes connection by informing the setupManager that this device is ready to start the session
     // The setupManager will let the delegate know when all devices are ready
     func makeConnection(){
+        
+        setupPhase()
         //Wait for all devices to be ready
         print("waiting for peers")
 

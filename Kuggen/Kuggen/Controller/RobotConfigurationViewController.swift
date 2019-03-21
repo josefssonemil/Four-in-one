@@ -93,9 +93,9 @@ class RobotConfigurationViewController: UIViewController, UICollectionViewDelega
     // Old code
     weak var coordinator: MainCoordinator?
     
-    //Robot
-    var team = 0
-
+    //Robot (not needed)
+    //var team = 0
+/*
     @IBOutlet weak var robot1Button: UIButton!
     @IBOutlet weak var robot2Button: UIButton!
     @IBOutlet weak var robot3Button: UIButton!
@@ -137,9 +137,9 @@ class RobotConfigurationViewController: UIViewController, UICollectionViewDelega
     }
     
     @IBAction func nextTapped(_ sender: Any) {
-        coordinator?.goToPairingScreen(team: team)
+        coordinator?.goToPairingScreen()
         // TODO: send robot selected to next screens
         // Also causes a crash due to the pairing phase not being implemented completely yet
-    }
+    }*/
     
 }

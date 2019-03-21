@@ -14,6 +14,6 @@ class MenuViewController: UIViewController, Storyboarded {
     
     
     @IBAction func nextTapped(_ sender: Any) {
-        coordinator?.goToRobotSelection()
+        coordinator?.goToPairingScreen()
     }
 }

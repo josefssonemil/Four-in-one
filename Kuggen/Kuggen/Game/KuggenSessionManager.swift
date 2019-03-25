@@ -62,14 +62,21 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         //Robot creation
         
-        // TODO - add colors
-        /*
-        robotOne = Robot(matchingHandle: matchingHandleOne)
-        robotTwo = Robot(matchingHandle: matchingHandleTwo)
-        robotThree = Robot(matchingHandle: matchingHandleThree)
-        robotFour = Robot(matchingHandle: matchingHandleFour)
+        // testing colors
+        // Maybe colors shouldn't be created here, or be stored in the Robot object at all. Should
+        // possibly be handled in GameScene
+        let robotOneColor =  UIColor.blue
+        let robotTwoColor = UIColor.cyan
+        let robotThreeColor = UIColor.red
+        let robotFourColor = UIColor.purple
+        
+        
+        robotOne = Robot(matchingHandle: matchingHandleOne, color: robotOneColor)
+        robotTwo = Robot(matchingHandle: matchingHandleTwo, color: robotTwoColor)
+        robotThree = Robot(matchingHandle: matchingHandleThree, color: robotThreeColor)
+        robotFour = Robot(matchingHandle: matchingHandleFour, color: robotFourColor)
 
-    */
+    
         
         // Starting points for each robot
         
@@ -99,6 +106,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     }*/
     
     
+    // TODO - robot objects need to contain devicepositions
     /*
     func getRobot(atPos: DevicePosition){
         switch atPos {

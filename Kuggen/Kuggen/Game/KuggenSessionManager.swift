@@ -33,11 +33,20 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     var kuggenDelegate: KuggenSessionManagerDelegate?
 
-    /*var cogWheel: Cogwheel!
+    var cogWheel: Cogwheel!
     var robotOne: Robot!
     var robotTwo: Robot!
     var robotThree: Robot!
-    var robotFour: Robot!*/
+    var robotFour: Robot!
+    
+
+    
+    var matchingHandleOne: Handle!
+    var matchingHandleTwo: Handle!
+    var matchingHandleThree: Handle!
+    var matchingHandleFour: Handle!
+
+
     
     var globalSize: CGSize!
     
@@ -51,6 +60,17 @@ class KuggenSessionManager: FourInOneSessionManager {
         // The entire board including all devices
         globalSize = makeBoardSize()
         
+        //Robot creation
+        
+        // TODO - add colors
+        /*
+        robotOne = Robot(matchingHandle: matchingHandleOne)
+        robotTwo = Robot(matchingHandle: matchingHandleTwo)
+        robotThree = Robot(matchingHandle: matchingHandleThree)
+        robotFour = Robot(matchingHandle: matchingHandleFour)
+
+    */
+        
         // Starting points for each robot
         
         let robotOnePos = makeLocal(CGPoint(x:0, y:0))
@@ -61,7 +81,16 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         let robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
         
-        // TODO - when robot class are finished, add these points to their positions
+        // Set starting positions
+        
+        // TODO - decide whether positions should be int or floats
+        /*
+        robotOne.setPosition(newX: robotOnePos.x, newY: robotOnePos.y)
+        robotTwo.setPosition(newX: robotTwoPos.x, newY: robotTwoPos.y)
+        robotThree.setPosition(newX: robotThreePos.x, newY: robotThreePos.y)
+        robotFour.setPosition(newX: robotFourPos.x, newY: robotFourPos.y)
+
+        */
     }
 
     // Handle touch input when the robot arm is moved

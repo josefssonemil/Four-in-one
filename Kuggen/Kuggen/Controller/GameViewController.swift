@@ -14,9 +14,36 @@ class GameViewController: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
 
-    
+    var gameScene : GameScene!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isHidden = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        layoutGameScene()
+    }
+
+    private func layoutGameScene() {
+        
+        if let boardView = self.boardView as! SKView? {
+            gameScene = GameScene(size: UIScreen.main.bounds.size)
+            gameScene.gameManager = sessionManager as! KuggenSessionManager
+            gameScene.scaleMode = .aspectFill
+            
+            boardView.ignoreSiblingsOrder = false
+            boardView.presentScene(gameScene)
+            sessionManager.startSession()
+        }
+    }
+
+    
+
+   /* override func viewDidLoad() {
         super.viewDidLoad()
         
         // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
@@ -60,5 +87,5 @@ class GameViewController: UIViewController, Storyboarded {
 
     override var prefersStatusBarHidden: Bool {
         return true
-    }
+    }*/
 }

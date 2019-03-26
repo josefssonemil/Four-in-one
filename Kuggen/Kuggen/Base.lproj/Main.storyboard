@@ -10,6 +10,62 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--AlignmentViewController-->
+        <scene sceneID="lZt-SJ-A6h">
+            <objects>
+                <viewController storyboardIdentifier="AlignmentViewController" title="AlignmentViewController" id="agg-1Y-jiQ" customClass="AlignmentViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HPk-tc-7IP">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="State: Connecting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ub-0P-OvU">
+                                <rect key="frame" x="346" y="193" width="277" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Id: 123456789abcdefg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-Z7-d6F">
+                                <rect key="frame" x="303" y="360" width="362" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server: 123456789abcdefg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nm-61-rg5">
+                                <rect key="frame" x="240" y="422" width="433" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Peers: 123456789abcdefg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMU-r6-rfm">
+                                <rect key="frame" x="253" y="486" width="723" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1:A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0o-L8-ek8">
+                                <rect key="frame" x="454" y="278" width="60" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sCO-ig-iXY"/>
+                    </view>
+                    <connections>
+                        <outlet property="stateLabel" destination="7ub-0P-OvU" id="oKE-Sa-vTp"/>
+                        <outlet property="teamLabel" destination="C0o-L8-ek8" id="91t-hN-V5k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w6K-Ik-Wcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="715" y="-548"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -23,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="-546"/>
+            <point key="canvasLocation" x="1388" y="-548"/>
         </scene>
         <!--PairingViewController-->
         <scene sceneID="9xT-cG-IXN">
@@ -32,13 +88,171 @@
                     <view key="view" contentMode="scaleToFill" id="qJG-vC-iWQ">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="KUGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPt-ku-Ubi">
+                                <rect key="frame" x="331" y="62" width="363" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="90"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6W-ce-gn8">
+                                <rect key="frame" x="216" y="433" width="105" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 1"/>
+                                <connections>
+                                    <action selector="teamOneTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="LLg-eR-8Hx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Välj lag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1J-HL-3qX">
+                                <rect key="frame" x="452" y="308" width="121" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh6-Sb-K1D">
+                                <rect key="frame" x="369" y="433" width="109" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 2"/>
+                                <connections>
+                                    <action selector="teamTwotapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="087-Yp-eqv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qy-Iu-rzH">
+                                <rect key="frame" x="525" y="433" width="110" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 3"/>
+                                <connections>
+                                    <action selector="teamThreeTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KCs-bp-gqe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xp4-hi-Ldz">
+                                <rect key="frame" x="214" y="563" width="110" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 5"/>
+                                <connections>
+                                    <action selector="teamFiveTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="X7f-3H-qDc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O11-WV-Ez7">
+                                <rect key="frame" x="369" y="563" width="110" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 6"/>
+                                <connections>
+                                    <action selector="teamSixTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KC1-gZ-7Se"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LkD-59-jjR">
+                                <rect key="frame" x="526" y="563" width="108" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 7"/>
+                                <connections>
+                                    <action selector="teamSevenTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="pSQ-2S-mcD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Tu-cUb">
+                                <rect key="frame" x="681" y="433" width="110" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 4"/>
+                                <connections>
+                                    <action selector="teamFourTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="xET-Z4-GeG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nE3-Tm-Tfi">
+                                <rect key="frame" x="681" y="563" width="110" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Team 8"/>
+                                <connections>
+                                    <action selector="teamEightTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KL4-sn-fHB"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jhp-ae-lh8"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="621" y="-546"/>
+            <point key="canvasLocation" x="28" y="-546"/>
+        </scene>
+        <!--PreMainMenuViewController-->
+        <scene sceneID="BdM-OZ-x6m">
+            <objects>
+                <viewController storyboardIdentifier="PreMainMenuViewController" title="PreMainMenuViewController" id="V7D-5h-zZy" customClass="PreMainMenuViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="afZ-0N-Ry1">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="J3i-CA-d9K">
+                                <rect key="frame" x="420" y="291" width="184" height="186"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qff-vR-Nvg" customClass="MenuButton" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="184" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Spela"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="playTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="W9D-Sf-RBr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVq-4s-ouw" customClass="MenuButton" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="184" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Byt robot"/>
+                                        <connections>
+                                            <action selector="selectRobotMenuTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="LML-Lv-0nJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9a8-fA-eRN" customClass="MenuButton" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="144" width="184" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Inställningar"/>
+                                        <connections>
+                                            <action selector="optionMenuTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="nJt-oW-De5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J3i-CA-d9K" firstAttribute="leading" secondItem="lUH-HQ-jkS" secondAttribute="leading" constant="420" id="DcT-hI-Drw"/>
+                            <constraint firstItem="lUH-HQ-jkS" firstAttribute="trailing" secondItem="J3i-CA-d9K" secondAttribute="trailing" constant="420" id="XSQ-7f-AoU"/>
+                            <constraint firstItem="J3i-CA-d9K" firstAttribute="centerY" secondItem="afZ-0N-Ry1" secondAttribute="centerY" id="cVC-XT-eXr"/>
+                            <constraint firstItem="J3i-CA-d9K" firstAttribute="centerX" secondItem="afZ-0N-Ry1" secondAttribute="centerX" id="v9O-ZN-YgR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lUH-HQ-jkS"/>
+                    </view>
+                    <connections>
+                        <outlet property="optionMenuButton" destination="9a8-fA-eRN" id="JVP-PP-6Cs"/>
+                        <outlet property="playButton" destination="Qff-vR-Nvg" id="xlh-nQ-5N5"/>
+                        <outlet property="selectRobotMenuButton" destination="uVq-4s-ouw" id="Yxv-cz-u9A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ocv-Cv-MKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.5859375" y="137.5"/>
         </scene>
         <!--MenuViewController-->
         <scene sceneID="jk0-KJ-OzI">
@@ -91,69 +305,138 @@
             </objects>
             <point key="canvasLocation" x="-680" y="138"/>
         </scene>
-        <!--RobotSelectorViewController-->
+        <!--RobotConfigurationViewController-->
         <scene sceneID="Imm-7z-aWj">
             <objects>
-                <viewController storyboardIdentifier="RobotSelectorViewController" title="RobotSelectorViewController" id="dON-Yu-Geo" customClass="RobotSelectorViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="62U-R0-K8j">
+                <viewController storyboardIdentifier="RobotConfigurationViewController" title="RobotConfigurationViewController" id="dON-Yu-Geo" customClass="RobotConfigurationViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="62U-R0-K8j">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Robot Selector" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oa-7A-wMv">
-                                <rect key="frame" x="295" y="113" width="434" height="84"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oko-kz-Vp6">
+                                <rect key="frame" x="0.0" y="272" width="1024" height="225"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJa-zJ-akO">
-                                <rect key="frame" x="141" y="351" width="136" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="Robot1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Oq9-G1-R0i">
+                                    <size key="itemSize" width="1005" height="130"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="rXT-hX-b25" customClass="ImageCell" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="47.5" width="1005" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="1005" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="goK-QI-hlh">
+                                                    <rect key="frame" x="200" y="0.0" width="605" height="130"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="goK-QI-hlh" secondAttribute="trailing" constant="200" id="MK4-gP-0Ko"/>
+                                            <constraint firstAttribute="bottom" secondItem="goK-QI-hlh" secondAttribute="bottom" id="Vam-8h-i1X"/>
+                                            <constraint firstItem="goK-QI-hlh" firstAttribute="top" secondItem="rXT-hX-b25" secondAttribute="top" id="kYa-GP-55x"/>
+                                            <constraint firstItem="goK-QI-hlh" firstAttribute="leading" secondItem="rXT-hX-b25" secondAttribute="leading" constant="200" id="szl-EB-7zd"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="img" destination="goK-QI-hlh" id="TTm-tS-hPy"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <action selector="robot1Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="SAJ-b5-bdX"/>
+                                    <outlet property="dataSource" destination="dON-Yu-Geo" id="NjG-lg-hwA"/>
+                                    <outlet property="delegate" destination="dON-Yu-Geo" id="sME-6J-NUk"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGV-Cy-YSD">
-                                <rect key="frame" x="327" y="351" width="141" height="66"/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iIi-qL-OMb">
+                                <rect key="frame" x="0.0" y="497" width="1024" height="223.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="Robot2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="MYF-Nv-sQ2">
+                                    <size key="itemSize" width="1005" height="130"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="MEu-Kv-GWm" customClass="ImageCell" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="47" width="1005" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="1005" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wkb-kk-HhK">
+                                                    <rect key="frame" x="200" y="0.0" width="605" height="130"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Wkb-kk-HhK" firstAttribute="leading" secondItem="MEu-Kv-GWm" secondAttribute="leading" constant="200" id="2bL-uG-OSY"/>
+                                            <constraint firstAttribute="trailing" secondItem="Wkb-kk-HhK" secondAttribute="trailing" constant="200" id="LHd-bc-qjv"/>
+                                            <constraint firstAttribute="bottom" secondItem="Wkb-kk-HhK" secondAttribute="bottom" id="RWy-eZ-8WP"/>
+                                            <constraint firstItem="Wkb-kk-HhK" firstAttribute="top" secondItem="MEu-Kv-GWm" secondAttribute="top" id="VgD-5a-cTO"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="img" destination="Wkb-kk-HhK" id="0rL-f4-8zC"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <action selector="robot2Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="6f4-4w-46n"/>
+                                    <outlet property="dataSource" destination="dON-Yu-Geo" id="hoL-ib-2Nh"/>
+                                    <outlet property="delegate" destination="dON-Yu-Geo" id="Sz9-Uf-XnJ"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bo-gi-8uF">
-                                <rect key="frame" x="494" y="351" width="142" height="66"/>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kDl-3k-CTm">
+                                <rect key="frame" x="0.0" y="46" width="1024" height="229"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="Robot3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="iNs-xg-rWz">
+                                    <size key="itemSize" width="1005" height="136"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="vxW-jr-S2O" customClass="ImageCell" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="46.5" width="1005" height="136"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="1005" height="136"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pYb-9g-eg4">
+                                                    <rect key="frame" x="200" y="0.0" width="605" height="136"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="pYb-9g-eg4" secondAttribute="trailing" constant="200" id="Mek-7D-CFR"/>
+                                            <constraint firstItem="pYb-9g-eg4" firstAttribute="top" secondItem="vxW-jr-S2O" secondAttribute="top" id="SAL-5o-Y4b"/>
+                                            <constraint firstItem="pYb-9g-eg4" firstAttribute="leading" secondItem="vxW-jr-S2O" secondAttribute="leading" constant="200" id="ik7-rc-o4x"/>
+                                            <constraint firstAttribute="bottom" secondItem="pYb-9g-eg4" secondAttribute="bottom" id="zhG-Jo-MDy"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="img" destination="pYb-9g-eg4" id="CkX-06-H01"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
                                 <connections>
-                                    <action selector="robot3Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="URW-Mb-eOR"/>
+                                    <outlet property="dataSource" destination="dON-Yu-Geo" id="NGg-wk-Wj0"/>
+                                    <outlet property="delegate" destination="dON-Yu-Geo" id="qpN-HD-xBB"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCh-E3-n4l">
-                                <rect key="frame" x="666" y="351" width="142" height="66"/>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KLE-g5-ENm">
+                                <rect key="frame" x="330" y="723" width="364" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
-                                <state key="normal" title="Robot4"/>
+                                <state key="normal" title="Spara"/>
                                 <connections>
-                                    <action selector="robot4Selected:" destination="dON-Yu-Geo" eventType="touchUpInside" id="Ds7-bA-axw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-6s-7Mh">
-                                <rect key="frame" x="59" y="592" width="907" height="108"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="80"/>
-                                <state key="normal" title="Causes crash when tapped"/>
-                                <connections>
-                                    <action selector="nextTapped:" destination="dON-Yu-Geo" eventType="touchUpInside" id="USq-Wn-9Xd"/>
+                                    <action selector="saveTapped:" destination="dON-Yu-Geo" eventType="touchUpInside" id="RuE-5h-aFQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -161,15 +444,14 @@
                         <viewLayoutGuide key="safeArea" id="3sH-KY-5VM"/>
                     </view>
                     <connections>
-                        <outlet property="robot1Button" destination="uJa-zJ-akO" id="KsT-r6-QJp"/>
-                        <outlet property="robot2Button" destination="uGV-Cy-YSD" id="7z4-LD-i2n"/>
-                        <outlet property="robot3Button" destination="9Bo-gi-8uF" id="6Le-dG-eg8"/>
-                        <outlet property="robot4Button" destination="pCh-E3-n4l" id="7eo-5z-ZHi"/>
+                        <outlet property="collectionViewBot" destination="iIi-qL-OMb" id="FPf-n1-GZj"/>
+                        <outlet property="collectionViewMid" destination="oko-kz-Vp6" id="ZIa-0c-JgT"/>
+                        <outlet property="collectionViewTop" destination="kDl-3k-CTm" id="Fmg-p3-hkH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klO-XA-GdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38.213762811127374" y="-546.09375"/>
+            <point key="canvasLocation" x="-681.4453125" y="-1263.28125"/>
         </scene>
     </scenes>
 </document>

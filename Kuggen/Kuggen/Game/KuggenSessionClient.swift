@@ -7,19 +7,9 @@ import UIKit
 import FourInOneCore
 import MultipeerConnectivity
 
+// Subclassing the SessionManager with client-specific behavior
 
-
-protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
-    
-    func gameManager(_ manager: KuggenSessionManager, moveMid newCenter: CGPoint, deviceAt position:DevicePosition)
-    
-    func gameManagerGameOver(_ manager: KuggenSessionManager)
-    
-
-    func gameManagerNextLevel(_ manager:KuggenSessionManager)
+class KuggenSessionClient : KuggenSessionManager {
     
 }
 
-class KuggenSessionClient: KuggenSessionManager {
-    
-}

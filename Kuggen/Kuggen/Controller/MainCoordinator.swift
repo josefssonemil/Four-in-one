@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FourInOneCore
 
 class MainCoordinator: Coordinator {
     
@@ -20,30 +21,50 @@ class MainCoordinator: Coordinator {
     
     // Starting the application
     func start() {
+        let vc = PreMainMenuViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func goToMainMenu() {
         let vc = MenuViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
-    
     func goToRobotSelection(){
-        let vc = RobotSelectorViewController.instantiate()
+        let vc = RobotConfigurationViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToPairingScreen(team: Int){
+    func goToPairingScreen(){
         let vc  = PairingViewController.instantiate()
-        vc.team = team
         vc.coordinator = self
+       // vc.setupPhase()
         navigationController.pushViewController(vc, animated: false)
+
     }
     
-    func goToGameScreen(){
+    func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager, setupManager: FourInOneSetupManager){
+        let vc = AlignmentViewController.instantiate()
+        vc.coordinator = self
+        vc.gameManager = gameManager
+        vc.team = team
+        vc.setupManager = setupManager
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
+      //  vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
-    
+    func goToOptionsView(){
+        let vc = OptionsViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
     
 }

@@ -9,10 +9,12 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import FourInOneCore
 
-class GameViewController: UIViewController, Storyboarded {
+class GameViewController: FourInOneSessionViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
+
 
     var gameScene : GameScene!
 

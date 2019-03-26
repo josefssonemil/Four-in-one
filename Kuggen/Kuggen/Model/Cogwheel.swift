@@ -6,7 +6,7 @@ class Cogwheel{
     private var handle: Handle
     private var outerAlignmentAngle: Double
     private var innerAlignmentAngle: Double
-    private var blocker: CGPoint? //Change to double
+    private var blocker: Double?
     private var lock: Lock?
     private var currentAngle: Double
     private var size: Double

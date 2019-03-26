@@ -37,7 +37,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded {
             gameScene.gameManager = sessionManager as! KuggenSessionManager
             gameScene.scaleMode = .aspectFill
             
-            boardView.ignoreSiblingsOrder = false
+            boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
             sessionManager.startSession()
         }

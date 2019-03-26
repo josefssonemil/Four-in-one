@@ -2,6 +2,7 @@
 
 import Foundation
 import SpriteKit
+import FourInOneCore
 
 class Robot {
     public var matchingHandle: Handle
@@ -9,11 +10,14 @@ class Robot {
     private var color: UIColor
     private let STARTING_POSITION: CGPoint = CGPoint.init()
     
+    var devicePosition : DevicePosition
+    
     //Creates a robot with a specified handle and color
-    init(matchingHandle: Handle, color: UIColor){
+    init(matchingHandle: Handle, color: UIColor, devicePosition: DevicePosition){
         self.matchingHandle = matchingHandle
         self.position = STARTING_POSITION
         self.color = color
+        self.devicePosition = devicePosition
     }
     
     //Changes the position of the robot's hand

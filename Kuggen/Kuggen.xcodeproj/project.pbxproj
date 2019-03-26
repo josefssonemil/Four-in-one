@@ -41,6 +41,7 @@
 		3E2E9FA8223A888B00AE4F15 /* AlignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */; };
 		3EBEC784223BB5B200BE0C14 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEC783223BB5B200BE0C14 /* ImageCell.swift */; };
 		841EC74F2245080500ECF52F /* LevelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EC74E2245080500ECF52F /* LevelReader.swift */; };
+		841EC758224A32BC00ECF52F /* test.JSON in Resources */ = {isa = PBXBuildFile; fileRef = 841EC757224A32BC00ECF52F /* test.JSON */; };
 		848410F9223C1D8C007B55E1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848410F8223C1D8C007B55E1 /* UIColor.swift */; };
 		84EF3239223BE4FE009A3C4A /* PreMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */; };
 		84EF323E223BE996009A3C4A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF323D223BE996009A3C4A /* MenuButton.swift */; };
@@ -120,6 +121,7 @@
 		3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentViewController.swift; sourceTree = "<group>"; };
 		3EBEC783223BB5B200BE0C14 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		841EC74E2245080500ECF52F /* LevelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelReader.swift; sourceTree = "<group>"; };
+		841EC757224A32BC00ECF52F /* test.JSON */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = test.JSON; path = Assets.xcassets/test.JSON; sourceTree = "<group>"; };
 		848410F8223C1D8C007B55E1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreMainMenuViewController.swift; sourceTree = "<group>"; };
 		84EF323D223BE996009A3C4A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
@@ -140,7 +142,6 @@
 		25678788223154350072C094 = {
 			isa = PBXGroup;
 			children = (
-				841EC74C224507EC00ECF52F /* Utils */,
 				25678793223154350072C094 /* Kuggen */,
 				25678792223154350072C094 /* Products */,
 			);
@@ -157,10 +158,12 @@
 		25678793223154350072C094 /* Kuggen */ = {
 			isa = PBXGroup;
 			children = (
+				841EC74C224507EC00ECF52F /* Utils */,
 				25678798223154350072C094 /* Actions.sks */,
 				25678794223154350072C094 /* AppDelegate.swift */,
 				3EBEC783223BB5B200BE0C14 /* ImageCell.swift */,
 				256787A1223154360072C094 /* Assets.xcassets */,
+				841EC757224A32BC00ECF52F /* test.JSON */,
 				25A24E842237B5FE00AE5559 /* Controller */,
 				84EF323F223BEAAD009A3C4A /* Extensions */,
 				256787AC223155630072C094 /* FourInOneCore.xcodeproj */,
@@ -350,6 +353,7 @@
 				256787A2223154360072C094 /* Assets.xcassets in Resources */,
 				256787A5223154360072C094 /* LaunchScreen.storyboard in Resources */,
 				25678799223154350072C094 /* Actions.sks in Resources */,
+				841EC758224A32BC00ECF52F /* test.JSON in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

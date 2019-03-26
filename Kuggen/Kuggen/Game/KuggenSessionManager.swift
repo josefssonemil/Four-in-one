@@ -89,20 +89,20 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     
     // TODO - robot objects need to contain devicepositions
-    /*
-    func getRobot(atPos: DevicePosition){
+    
+    func getRobot(atPos: DevicePosition) -> Robot {
         switch atPos {
         case .one:
             return robotOne
-        case .two
+        case .two:
             return robotTwo
-        case .three
+        case .three:
             return robotThree
-        case .four
+        case .four:
             return robotFour
         }
     }
-    */
+    
     
     
     
@@ -138,7 +138,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     // Defines whether an input should be handled or not depending on device position
 
-    /*
+    
     func shouldHandleInput(_ robot: Robot) -> Bool {
         
         if mode == .twoplayer {
@@ -158,12 +158,11 @@ class KuggenSessionManager: FourInOneSessionManager {
             }
         }
         else {
-            
             return robot.devicePosition == self.position
             
         }
         
-    }*/
+    }
     
     // TODO : make events
     

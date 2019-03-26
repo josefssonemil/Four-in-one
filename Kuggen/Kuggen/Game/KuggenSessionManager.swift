@@ -73,13 +73,13 @@ class KuggenSessionManager: FourInOneSessionManager {
         // Set starting positions
         
         // TODO - decide whether positions should be int or floats
-        /*
+        
         robotOne.setPosition(newX: robotOnePos.x, newY: robotOnePos.y)
         robotTwo.setPosition(newX: robotTwoPos.x, newY: robotTwoPos.y)
         robotThree.setPosition(newX: robotThreePos.x, newY: robotThreePos.y)
         robotFour.setPosition(newX: robotFourPos.x, newY: robotFourPos.y)
 
-        */
+        
     }
 
     // Handle touch input when the robot arm is moved

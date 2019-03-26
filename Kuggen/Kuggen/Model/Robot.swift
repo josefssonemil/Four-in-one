@@ -21,7 +21,7 @@ class Robot {
     }
     
     //Changes the position of the robot's hand
-    public func setPosition(newX: Int, newY: Int) -> Void{
+    public func setPosition(newX: CGFloat, newY: CGFloat) -> Void{
         position.x = CGFloat(newX);
         position.y = CGFloat(newY);
     }

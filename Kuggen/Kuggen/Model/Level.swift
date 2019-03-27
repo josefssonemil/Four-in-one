@@ -20,4 +20,8 @@ class Level{
         self.cogwheels=cogwheels
         self.key=key
     }
+    
+    func getNumberOfCogwheels() -> Int {
+        return cogwheels.count
+    }
 }

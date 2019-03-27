@@ -14,20 +14,33 @@ class LevelReader {
     
     private static func readJSONObject(object: [String: AnyObject]) {
         let cogwheels = object["cogwheels"] as? [[String: AnyObject]]
-        
+        var objects: [Cogwheel] = []
         for cogwheel in cogwheels! {
             guard let handle = cogwheel["handle"] as? String,
                 let outer = cogwheel["outer"] as? Double,
                 let inner = cogwheel["inner"] as? Double,
                 let current = cogwheel["current"] as? Double,
                 let size = cogwheel["size"] as? Double else { break }
-            print(handle)
-            print(outer)
-            print(inner)
-            print(current)
-            print(size)
+            var handle1: Handle
+            switch handle{
+            case "edgeSquare":
+                handle1 = Handle.edgeSquare
+            case "edgeTrapezoid":
+                handle1 = Handle.edgeTrapezoid
+            case "edgeCircle":
+                handle1 = Handle.edgeCircle
+            case "edgeTriangle":
+                handle1 = Handle.edgeTriangle
+            default:
+                handle1 = Handle.edgeSquare
+            }
+            objects.append(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size))
+            //Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size)
+            print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size))
             
         }
+        print(Level.init(cogwheels: objects).getNumberOfCogwheels())
+        
     }
     
     static func createLevel() {

@@ -1,16 +1,25 @@
 {
-    "person":[
+    "cogwheels": [
         {
-            "name": "Bob",
-            "age": "16",
-            "employed": "No"
-        }]
-    ,
-        "mjau":[
+            "handle": "edgeSquare",
+            "outer": 45,
+            "inner": 90,
+            "current": 0,
+            "size": 100
+        },
         {
-            "name": "Vinny",
-            "age": "56",
-            "employed": "Yes"
+            "handle": "edgeTrapezoid",
+            "outer": 60,
+            "inner": 180,
+            "current": 0,
+            "size": 70
+        },
+        {
+            "handle": "edgeCircle",
+            "outer": 30,
+            "inner": 500,
+            "current": 0,
+            "size": 150
         }
     ]
 }

@@ -18,7 +18,8 @@ class PreMainMenuViewController: UIViewController, Storyboarded {
 
     
     @IBAction func playTapped(_ sender: Any) {
-        coordinator?.goToMainMenu()
+        LevelReader.createLevel()
+        //coordinator?.goToMainMenu()
     }
     
     @IBAction func selectRobotMenuTapped(_ sender: Any) {

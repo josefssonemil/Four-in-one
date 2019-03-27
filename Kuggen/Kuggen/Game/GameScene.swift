@@ -35,8 +35,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, color: UIColor.yellow)
     private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: 3.0)
     
-    private var robotController : GameViewController!
-    private var cogwheelController : GameViewController!
+    //private var robotController : GameViewController!
+    //private var cogwheelController : GameViewController!
     
     //var entities = [GKEntity]()
     //var graphs = [String : GKGraph]()

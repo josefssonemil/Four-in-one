@@ -33,6 +33,9 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         // Update view to match the state.
         stateLabel.text = stateString + (inProgress ? connectingString : connectedString)
       
+        if (stateLabel.text == connectedString){
+            ready()
+        }
 
         
     }

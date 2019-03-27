@@ -8,11 +8,20 @@ class Robot: SKSpriteNode {
     public var matchingHandle: Handle
     var devicePosition: DevicePosition
     
+    var currentArmStretch: Int
+    
+    //Depends on device pos
+    var basePoint = CGPoint()
+    private var anchorPosition = CGPoint(x: 0.5, y:0.5)
+    private var rotation: CGFloat
+
+    
     init(matchingHandle: Handle, devicePosition: DevicePosition, color: UIColor) {
         //let texture = SKTexture(imageNamed: "ball")
        //super.init(texture: texture, color: nil, size: texture.size())
         self.matchingHandle = matchingHandle
         self.devicePosition = devicePosition
+        self.stretch = 0
         super.init(texture: nil, color: color, size: CGSize(width: 50, height: 50))
     }
     
@@ -36,6 +45,37 @@ class Robot: SKSpriteNode {
     
     public func getX() -> Int {
         return Int(self.position.x)
+    }
+    
+    private func setup(_ devicepos: DevicePosition){
+        devicePosition = devicepos
+        
+        switch devicepos {
+            //Lower left corner
+            case .one:
+                basePoint = CGPoint(x: 0, y: 0)
+                anchorPosition.y = 0
+                rotation = 45
+            
+            // Upper left corner
+            case .two:
+                basePoint = CGPoint(x: 0, y: totalScreenSize.height)
+                anchorPosition.y = 1
+                rotation = -45
+            // Upper right corner
+        case .three:
+             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
+             anchorPosition.y = 1
+            rotation = 225
+            // Lower right corner
+        case .four:
+             basePoint = CGPoint(x: totalScreenSize.width, y: 0)
+            anchorPosition.y = 0
+            rotation = 315
+        }
+        
+        self.position = basePoint
+        self.anchorPoint = anchorPosition
     }
     
     

@@ -23,7 +23,8 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     @IBOutlet weak var stateLabel: UILabel!
 
     @IBAction func next(_ sender: Any) {
-        didStartMainActivity(self.setupManager)
+        //didStartMainActivity(self.setupManager)
+        
         coordinator?.goToGameScreen(gameManager: gameManager!)
     }
     

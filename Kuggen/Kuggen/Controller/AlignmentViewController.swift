@@ -15,43 +15,71 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
 
     var gameManager : KuggenSessionManager?
     
+ 
     private let stateString = "State: "
     private let connectedString = "Connected"
     private let connectingString = "Connecting"
     
     @IBOutlet weak var stateLabel: UILabel!
-    
+
+    @IBAction func next(_ sender: Any) {
+        didStartMainActivity(self.setupManager)
+        coordinator?.goToGameScreen(gameManager: gameManager!)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        self.debugMode = false
+        setupStartView()
+        startConnection()
+    }
+    
+    private func startConnection(){
+        setupManager.readyAndWaitingForPeers()
+        
+        var gameManager: KuggenSessionManager
+        
+        if setupManager.isServer{
+            gameManager = KuggenSessionServer()
+        }
+        else {
+            gameManager = KuggenSessionClient()
+        }
+        
+        setupManager.initSessionManager(gameManager)
+        gameManager.team = self.team
+        gameManager.platform = .spritekit
         
     }
+    
+    private func cancelConnection(){
+        setupManager.cancelReadyAndWaiting()
+    }
+    
     override func updateView(position: DevicePosition, mode: GameMode, inProgress: Bool) {
         
         // Called when something in the setup procedure changes.
         // Update view to match the state.
+        // All the visible stuff should be here
         stateLabel.text = stateString + (inProgress ? connectingString : connectedString)
-      
-        if (stateLabel.text == connectedString){
-            ready()
-        }
 
         
     }
     
-    private func setupView() {        
-
+    private func setupStartView() {
         
+        showDebugInfo(type: .starting)
+        
+        /*if !debugMode {
+            
+            teamLabel.isHidden = true
+            idLabel.isHidden = true
+            serverLabel.isHidden = true
+            peersLabel.isHidden = true
+            
+        }*/
     }
     
-    override func didStartMainActivity(_ manager: FourInOneSetupManager) {
-        coordinator?.goToGameScreen(gameManager: gameManager!)
-    }
-    
-    func ready(){
-        didStartMainActivity(self.setupManager)
-    }
     
     
 }

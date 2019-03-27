@@ -20,16 +20,16 @@ open class FourInOneConnectingViewController: FourInOneViewController, FourInOne
     // MARK: - Properties
 
     /// Used for showing the current team and position.
-    @IBOutlet weak public var teamLabel: UILabel!
+    @IBOutlet weak open var teamLabel: UILabel!
     
     /// The display name of the peer id of this device.
-    @IBOutlet weak public var idLabel: UILabel!
+    @IBOutlet weak open var idLabel: UILabel!
     
     /// Used to show the name of the current server
-    @IBOutlet weak public var serverLabel: UILabel!
+    @IBOutlet weak open var serverLabel: UILabel!
     
     /// Used to show the display name of all connected peers.
-    @IBOutlet weak public var peersLabel: UILabel!
+    @IBOutlet weak open var peersLabel: UILabel!
     
     /// Identifies the current team.
     public var team = 0
@@ -160,7 +160,7 @@ open class FourInOneConnectingViewController: FourInOneViewController, FourInOne
         }
     }
     
-    private func positionString(team: Int, position: DevicePosition) -> String {
+    public func positionString(team: Int, position: DevicePosition) -> String {
         
         switch position {
         case .one:

@@ -11,11 +11,18 @@ import SpriteKit
 import GameplayKit
 import FourInOneCore
 
-class GameViewController: FourInOneSessionViewController, Storyboarded {
+class GameViewController: FourInOneSessionViewController, Storyboarded, GameSceneDelegate {
+    
+    
+    func gameScene(_ gameScene: GameScene, didEndLevelWithSuccess result: Bool) {
+        fatalError("init(coder:) has not been implemented")
+
+    }
+    
     
     weak var coordinator: MainCoordinator?
 
-
+    var gameManager: KuggenSessionManager!
     var gameScene : GameScene!
 
     override func viewDidLoad() {
@@ -34,9 +41,10 @@ class GameViewController: FourInOneSessionViewController, Storyboarded {
         
         if let boardView = self.boardView as! SKView? {
             gameScene = GameScene(size: UIScreen.main.bounds.size)
-            gameScene.gameManager = sessionManager as! KuggenSessionManager
+            gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
-            
+            //gameScene.gameSceneDelegate = self
+
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
             sessionManager.startSession()

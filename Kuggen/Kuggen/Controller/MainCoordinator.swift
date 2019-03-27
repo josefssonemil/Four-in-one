@@ -46,19 +46,17 @@ class MainCoordinator: Coordinator {
 
     }
     
-    func goToAlignmentScreen(team: Int, gameManager: KuggenSessionManager, setupManager: FourInOneSetupManager){
+    func goToAlignmentScreen(team: Int){
         let vc = AlignmentViewController.instantiate()
         vc.coordinator = self
-        vc.gameManager = gameManager
         vc.team = team
-        vc.setupManager = setupManager
         navigationController.pushViewController(vc, animated: true)
     }
     
     func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
-      //  vc.gameManager = gameManager
+        //vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     func goToOptionsView(){

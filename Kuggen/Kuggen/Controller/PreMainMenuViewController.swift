@@ -18,7 +18,7 @@ class PreMainMenuViewController: UIViewController, Storyboarded {
 
     
     @IBAction func playTapped(_ sender: Any) {
-        LevelReader.createLevel()
+        LevelReader.createLevel(nameOfLevel: "level2")
         //coordinator?.goToMainMenu()
     }
     

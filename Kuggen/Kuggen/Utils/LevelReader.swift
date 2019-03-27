@@ -43,8 +43,8 @@ class LevelReader {
         
     }
     
-    static func createLevel() {
-        if let path = Bundle.main.path(forResource: "test", ofType: "JSON") {
+    static func createLevel(nameOfLevel : String) {
+        if let path = Bundle.main.path(forResource: nameOfLevel, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))

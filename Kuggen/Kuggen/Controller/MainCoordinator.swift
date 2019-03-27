@@ -38,8 +38,8 @@ class MainCoordinator: Coordinator {
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToPairingScreen(){
-        let vc  = PairingViewController.instantiate()
+    func goToTeamSelection(){
+        let vc  = TeamSelectionViewController.instantiate()
         vc.coordinator = self
        // vc.setupPhase()
         navigationController.pushViewController(vc, animated: false)

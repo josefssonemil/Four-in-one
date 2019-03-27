@@ -7,7 +7,7 @@ import UIKit
 import FourInOneCore
 import MultipeerConnectivity
 
-class PairingViewController: UIViewController, Storyboarded {
+class TeamSelectionViewController: UIViewController, Storyboarded {
     
     
     // Coordinator which handles navigation between views

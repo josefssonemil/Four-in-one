@@ -74,10 +74,10 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         // TODO - decide whether positions should be int or floats
         
-        robotOne.setPosition(newX: robotOnePos.x, newY: robotOnePos.y)
-        robotTwo.setPosition(newX: robotTwoPos.x, newY: robotTwoPos.y)
-        robotThree.setPosition(newX: robotThreePos.x, newY: robotThreePos.y)
-        robotFour.setPosition(newX: robotFourPos.x, newY: robotFourPos.y)
+        robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
+        robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
+        robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
+        robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
 
         
     }

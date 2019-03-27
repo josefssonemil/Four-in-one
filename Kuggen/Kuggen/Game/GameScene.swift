@@ -29,12 +29,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameScenDelegate : GameSceneDelegate?
     
     // Create robots and cogwheel properties
-    private let robotOne = Robot(matchingHandle: handleOne, color: UIColor.purple, devicePosition: .one)
-    private let robotTwo = Robot(matchingHandle: handleTwo, color: UIColor.blue, devicePosition: .two)
-    private let robotThree = Robot(matchingHandle: handleThree, color: UIColor.green, devicePosition: .three)
-    private let robotFour = Robot(matchingHandle: handleFour, color: UIColor.yellow, devicePosition: .four)
+    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, color: UIColor.purple)
+    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, color: UIColor.blue)
+    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, color: UIColor.green)
+    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, color: UIColor.yellow)
     private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: 3.0)
-    
     
     private var robotController : GameViewController!
     private var cogwheelController : GameViewController!

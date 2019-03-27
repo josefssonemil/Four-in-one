@@ -11,22 +11,44 @@ import SpriteKit
 
 
 class LevelReader {
-    static func createLevel() {
-        if let path = Bundle.main.path(forResource: "test", ofType: "JSON") {
+    
+    private static func readJSONObject(object: [String: AnyObject]) {
+        let cogwheels = object["cogwheels"] as? [[String: AnyObject]]
+        var objects: [Cogwheel] = []
+        for cogwheel in cogwheels! {
+            guard let handle = cogwheel["handle"] as? String,
+                let outer = cogwheel["outer"] as? Double,
+                let inner = cogwheel["inner"] as? Double,
+                let current = cogwheel["current"] as? Double,
+                let size = cogwheel["size"] as? Double else { break }
+            var handle1: Handle
+            switch handle{
+            case "edgeSquare":
+                handle1 = Handle.edgeSquare
+            case "edgeTrapezoid":
+                handle1 = Handle.edgeTrapezoid
+            case "edgeCircle":
+                handle1 = Handle.edgeCircle
+            case "edgeTriangle":
+                handle1 = Handle.edgeTriangle
+            default:
+                handle1 = Handle.edgeSquare
+            }
+            objects.append(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size))
+            //Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size)
+            print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size))
+            
+        }
+        print(Level.init(cogwheels: objects).getNumberOfCogwheels())
+        
+    }
+    
+    static func createLevel(nameOfLevel : String) {
+        if let path = Bundle.main.path(forResource: nameOfLevel, ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-                if let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? NSDictionary {
-                    if let personArray = jsonResult.value(forKey: "mjau") as? NSArray {
-                        for (_, element) in personArray.enumerated() {
-                            if let element = element as? NSDictionary {
-                                let name = element.value(forKey: "name") as! String
-                                let age = element.value(forKey: "age") as! String
-                                let employed = element.value(forKey: "employed") as! String
-                                print("Name: \(name),  age: \(age), employed: \(employed)")
-                            }
-                        }
-                    }
-                }
+                let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
+                    readJSONObject(object: jsonResult as! [String : AnyObject])
             } catch {
                 // handle error
             }

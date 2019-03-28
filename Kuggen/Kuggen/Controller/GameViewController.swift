@@ -22,7 +22,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
     
     weak var coordinator: MainCoordinator?
 
-    var gameManager: KuggenSessionManager!
+    //var gameManager: KuggenSessionManager!
     var gameScene : GameScene!
 
     override func viewDidLoad() {
@@ -41,12 +41,14 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
         
         if let boardView = self.boardView as! SKView? {
             gameScene = GameScene(size: UIScreen.main.bounds.size)
-            gameScene.gameManager = gameManager as? KuggenSessionManager
+            gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
             //gameScene.gameSceneDelegate = self
 
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
+            
+            
             sessionManager.startSession()
         }
     }

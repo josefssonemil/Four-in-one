@@ -97,6 +97,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // set the background color
         self.backgroundColor = SKColor.white
         
+        let test = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
+        test.position = CGPoint(x: 20, y: 20)
+        self.addChild(test)
+        
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self

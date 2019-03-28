@@ -55,7 +55,7 @@ class MainCoordinator: Coordinator {
     func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
-        vc.gameManager = gameManager
+        vc.sessionManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     func goToOptionsView(){

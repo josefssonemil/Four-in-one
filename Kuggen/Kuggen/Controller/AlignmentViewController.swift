@@ -61,8 +61,10 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         
         print("initsessionManager method")
         setupManager.initSessionManager(self.gameManager)
-        gameManager.team = self.team
-        gameManager.platform = .spritekit
+        self.gameManager.team = self.team
+        self.gameManager.position = setupManager.position
+        self.gameManager.platform = .spritekit
+        
         setupManager.finishSetup()
     
         

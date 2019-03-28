@@ -21,7 +21,8 @@ class Robot: SKSpriteNode {
        //super.init(texture: texture, color: nil, size: texture.size())
         self.matchingHandle = matchingHandle
         self.devicePosition = devicePosition
-        self.stretch = 0
+        self.currentArmStretch = 0
+        self.rotation = 0
         super.init(texture: nil, color: color, size: CGSize(width: 50, height: 50))
     }
     

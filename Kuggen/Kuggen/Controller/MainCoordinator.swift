@@ -41,7 +41,6 @@ class MainCoordinator: Coordinator {
     func goToTeamSelection(){
         let vc  = TeamSelectionViewController.instantiate()
         vc.coordinator = self
-       // vc.setupPhase()
         navigationController.pushViewController(vc, animated: false)
 
     }
@@ -56,7 +55,7 @@ class MainCoordinator: Coordinator {
     func goToGameScreen(gameManager: KuggenSessionManager){
         let vc = GameViewController.instantiate()
         vc.coordinator = self
-        //vc.gameManager = gameManager
+        vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     func goToOptionsView(){

@@ -25,22 +25,32 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     @IBAction func next(_ sender: Any) {
         //didStartMainActivity(self.setupManager)
         
-        coordinator?.goToGameScreen(gameManager: gameManager!)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        setupManager.readyAndWaitingForPeers()
+        
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+        setupManager.cancelReadyAndWaiting()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.debugMode = false
+        self.debugMode = true
         setupStartView()
-        startConnection()
     }
     
-    private func startConnection(){
-        setupManager.readyAndWaitingForPeers()
+    private func setupGame(){
+        //setupManager?.delegate = self
         
         var gameManager: KuggenSessionManager
         
-        if setupManager.isServer{
+        if setupManager.isServer {
             gameManager = KuggenSessionServer()
         }
         else {
@@ -50,12 +60,11 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         setupManager.initSessionManager(gameManager)
         gameManager.team = self.team
         gameManager.platform = .spritekit
+        setupManager.finishSetup()
+    
         
     }
     
-    private func cancelConnection(){
-        setupManager.cancelReadyAndWaiting()
-    }
     
     override func updateView(position: DevicePosition, mode: GameMode, inProgress: Bool) {
         
@@ -79,6 +88,12 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             peersLabel.isHidden = true
             
         }*/
+    }
+    
+    override func didStartMainActivity(_ manager: FourInOneSetupManager) {
+        setupGame()
+        coordinator?.goToGameScreen(gameManager: gameManager!)
+
     }
     
     

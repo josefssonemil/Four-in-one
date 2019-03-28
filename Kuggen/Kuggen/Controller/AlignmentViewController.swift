@@ -13,7 +13,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
 
     weak var coordinator: MainCoordinator?
 
-    var gameManager : KuggenSessionManager?
+    var gameManager : KuggenSessionManager!
     
  
     private let stateString = "State: "
@@ -46,18 +46,21 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     
     private func setupGame(){
-        //setupManager?.delegate = self
+        setupManager.delegate = self
         
-        var gameManager: KuggenSessionManager
+        //var gameManager: KuggenSessionManager!
         
         if setupManager.isServer {
-            gameManager = KuggenSessionServer()
+            self.gameManager = KuggenSessionServer()
+            print("gamemanger is server")
         }
         else {
-            gameManager = KuggenSessionClient()
+           self.gameManager = KuggenSessionClient()
+            print("game manager is client")
         }
         
-        setupManager.initSessionManager(gameManager)
+        print("initsessionManager method")
+        setupManager.initSessionManager(self.gameManager)
         gameManager.team = self.team
         gameManager.platform = .spritekit
         setupManager.finishSetup()
@@ -92,7 +95,12 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     
     override func didStartMainActivity(_ manager: FourInOneSetupManager) {
         setupGame()
-        coordinator?.goToGameScreen(gameManager: gameManager!)
+        if (gameManager !== nil){
+            coordinator?.goToGameScreen(gameManager: gameManager!)
+        }
+        else{
+            print("gamemanager:", gameManager?.description as Any)
+        }
 
     }
     

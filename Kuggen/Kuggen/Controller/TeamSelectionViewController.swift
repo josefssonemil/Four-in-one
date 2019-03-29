@@ -14,6 +14,25 @@ class TeamSelectionViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     var team = 0
     
+    @IBOutlet weak var teamButton1: UIButton!
+    @IBOutlet weak var teamButton2: UIButton!
+    @IBOutlet weak var teamButton3: UIButton!
+    @IBOutlet weak var teamButton4: UIButton!
+    
+    override func viewDidLoad() {
+        let border = CGFloat(1.0)
+        let color = UIColor.black.cgColor
+        teamButton1.layer.borderWidth = border
+        teamButton1.layer.borderColor = color
+        teamButton2.layer.borderWidth = border
+        teamButton2.layer.borderColor = color
+
+        teamButton3.layer.borderWidth = border
+        teamButton3.layer.borderColor = color
+
+        teamButton4.layer.borderWidth = border
+        teamButton4.layer.borderColor = color
+    }
     // Assigns delegate and starts the setup of the 4-in-1 session
     /*func setupPhase(){
         print("setup phase")
@@ -88,27 +107,5 @@ class TeamSelectionViewController: UIViewController, Storyboarded {
 
     }
     
-    @IBAction func teamFiveTapped(_ sender: Any) {
-        self.team = 5
-        print("team tapped")
-
-    }
-    
-    @IBAction func teamSixTapped(_ sender: Any) {
-        self.team = 6
-        print("team tapped")
-
-    }
-    
-    @IBAction func teamSevenTapped(_ sender: Any) {
-        self.team = 7
-        print("team tapped")
-
-    }
-    @IBAction func teamEightTapped(_ sender: Any) {
-        self.team = 8
-        print("team tapped")
-
-    }
 }
 

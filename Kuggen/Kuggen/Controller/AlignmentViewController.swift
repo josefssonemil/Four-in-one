@@ -21,7 +21,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     private let connectingString = "Connecting"
     
     @IBOutlet weak var stateLabel: UILabel!
-<<<<<<< HEAD
+
 
     @IBAction func next(_ sender: Any) {
         //didStartMainActivity(self.setupManager)
@@ -37,15 +37,15 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
     
         setupManager.cancelReadyAndWaiting()
-        
-=======
+    
+    }
+
     @IBOutlet weak var rotateImage: UIImageView!
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 2.0, delay: 0.4, options: [.repeat, .autoreverse], animations: {
             self.rotateImage.transform = CGAffineTransform(rotationAngle: (45.0 * .pi) / 45.0)
         })
->>>>>>> adding a cogwheel to show which way to align the ipad
     }
     
     override func viewDidLoad() {
@@ -86,12 +86,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         // Update view to match the state.
         // All the visible stuff should be here
         stateLabel.text = stateString + (inProgress ? connectingString : connectedString)
-<<<<<<< HEAD
-
-=======
->>>>>>> adding a cogwheel to show which way to align the ipad
-        
-    }
+            }
     
     private func setupStartView() {
         

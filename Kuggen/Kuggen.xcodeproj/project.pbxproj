@@ -17,11 +17,12 @@
 		256787A5223154360072C094 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256787A3223154360072C094 /* LaunchScreen.storyboard */; };
 		256787B6223155860072C094 /* FourInOneCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256787B3223155630072C094 /* FourInOneCore.framework */; };
 		256787B7223155860072C094 /* FourInOneCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 256787B3223155630072C094 /* FourInOneCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		259734F2224BC19900378676 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259734F1224BC19900378676 /* Constants.swift */; };
 		25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E852237CB8000AE5559 /* Cogwheel.swift */; };
 		25A24E882237CB9500AE5559 /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E872237CB9500AE5559 /* Robot.swift */; };
 		25A24E8A2237CBAA00AE5559 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E892237CBAA00AE5559 /* Key.swift */; };
 		25A24E8E2237D46B00AE5559 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */; };
-		25A24E902237D47600AE5559 /* PairingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8F2237D47600AE5559 /* PairingViewController.swift */; };
+		25A24E902237D47600AE5559 /* TeamSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */; };
 		25A24E922237D48F00AE5559 /* RobotConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */; };
 		25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E932237D4A200AE5559 /* MenuViewController.swift */; };
 		25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E952237D50200AE5559 /* MainMenuView.swift */; };
@@ -99,11 +100,12 @@
 		256787A4223154360072C094 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		256787A6223154360072C094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		256787AC223155630072C094 /* FourInOneCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FourInOneCore.xcodeproj; path = ../../FourInOneCore/FourInOneCore.xcodeproj; sourceTree = "<group>"; };
+		259734F1224BC19900378676 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		25A24E852237CB8000AE5559 /* Cogwheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cogwheel.swift; sourceTree = "<group>"; };
 		25A24E872237CB9500AE5559 /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		25A24E892237CBAA00AE5559 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
 		25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
-		25A24E8F2237D47600AE5559 /* PairingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingViewController.swift; sourceTree = "<group>"; };
+		25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectionViewController.swift; sourceTree = "<group>"; };
 		25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotConfigurationViewController.swift; sourceTree = "<group>"; };
 		25A24E932237D4A200AE5559 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		25A24E952237D50200AE5559 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		25678793223154350072C094 /* Kuggen */ = {
 			isa = PBXGroup;
 			children = (
+				259734F0224BC18800378676 /* Utilities */,
 				3E0D78E3224B9F4500B50A17 /* Levels */,
 				841EC74C224507EC00ECF52F /* Utils */,
 				25678798223154350072C094 /* Actions.sks */,
@@ -189,6 +192,14 @@
 				256787B5223155630072C094 /* FourInOneCoreTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		259734F0224BC18800378676 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				259734F1224BC19900378676 /* Constants.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		25A24E812237B55400AE5559 /* Model */ = {
@@ -226,7 +237,7 @@
 				25A24EB12237E12600AE5559 /* MainCoordinator.swift */,
 				25A24E932237D4A200AE5559 /* MenuViewController.swift */,
 				25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */,
-				25A24E8F2237D47600AE5559 /* PairingViewController.swift */,
+				25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */,
 				84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */,
 				25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */,
 			);
@@ -384,6 +395,7 @@
 				25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */,
 				25A24E882237CB9500AE5559 /* Robot.swift in Sources */,
 				848410F9223C1D8C007B55E1 /* UIColor.swift in Sources */,
+				259734F2224BC19900378676 /* Constants.swift in Sources */,
 				25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */,
 				25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */,
 				25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */,
@@ -405,6 +417,7 @@
 				25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */,
 				25A24E8A2237CBAA00AE5559 /* Key.swift in Sources */,
 				84EF3239223BE4FE009A3C4A /* PreMainMenuViewController.swift in Sources */,
+				25A24E902237D47600AE5559 /* TeamSelectionViewController.swift in Sources */,
 				3E0D78E1224B998700B50A17 /* Level.swift in Sources */,
 				25A24E902237D47600AE5559 /* PairingViewController.swift in Sources */,
 				25A24E9A2237D51800AE5559 /* OptionsView.swift in Sources */,

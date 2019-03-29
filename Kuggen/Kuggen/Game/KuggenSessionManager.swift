@@ -33,11 +33,20 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     var kuggenDelegate: KuggenSessionManagerDelegate?
 
-    /*var cogWheel: Cogwheel!
+    var cogWheel: Cogwheel!
     var robotOne: Robot!
     var robotTwo: Robot!
     var robotThree: Robot!
-    var robotFour: Robot!*/
+    var robotFour: Robot!
+    
+
+    
+    var matchingHandleOne: Handle!
+    var matchingHandleTwo: Handle!
+    var matchingHandleThree: Handle!
+    var matchingHandleFour: Handle!
+
+
     
     var globalSize: CGSize!
     
@@ -50,7 +59,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     func initialSetUp(){
         // The entire board including all devices
         globalSize = makeBoardSize()
-        
+    
         // Starting points for each robot
         
         let robotOnePos = makeLocal(CGPoint(x:0, y:0))
@@ -61,7 +70,16 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         let robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
         
-        // TODO - when robot class are finished, add these points to their positions
+        // Set starting positions
+        
+        // TODO - decide whether positions should be int or floats
+        
+        robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
+        robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
+        robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
+        robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
+
+        
     }
 
     // Handle touch input when the robot arm is moved
@@ -70,20 +88,21 @@ class KuggenSessionManager: FourInOneSessionManager {
     }*/
     
     
-    /*
-    func getRobot(atPos: DevicePosition){
+    // TODO - robot objects need to contain devicepositions
+    
+    func getRobot(atPos: DevicePosition) -> Robot {
         switch atPos {
         case .one:
             return robotOne
-        case .two
+        case .two:
             return robotTwo
-        case .three
+        case .three:
             return robotThree
-        case .four
+        case .four:
             return robotFour
         }
     }
-    */
+    
     
     
     
@@ -119,7 +138,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     // Defines whether an input should be handled or not depending on device position
 
-    /*
+    
     func shouldHandleInput(_ robot: Robot) -> Bool {
         
         if mode == .twoplayer {
@@ -139,12 +158,11 @@ class KuggenSessionManager: FourInOneSessionManager {
             }
         }
         else {
-            
             return robot.devicePosition == self.position
             
         }
         
-    }*/
+    }
     
     // TODO : make events
     

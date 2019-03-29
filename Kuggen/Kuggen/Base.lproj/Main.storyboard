@@ -109,13 +109,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="KUGGEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPt-ku-Ubi">
-                                <rect key="frame" x="331" y="62" width="363" height="108"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="90"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6W-ce-gn8">
                                 <rect key="frame" x="79" y="392" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -171,6 +164,10 @@
                                     <action selector="teamTwotapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="087-Yp-eqv"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Kuggen" translatesAutoresizingMaskIntoConstraints="NO" id="UPl-Ia-ww2">
+                                <rect key="frame" x="392" y="114" width="240" height="132"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jhp-ae-lh8"/>
@@ -184,7 +181,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28" y="-546"/>
+            <point key="canvasLocation" x="27.5390625" y="-546.09375"/>
         </scene>
         <!--PreMainMenuViewController-->
         <scene sceneID="BdM-OZ-x6m">
@@ -449,6 +446,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Kuggen" width="272.72726440429688" height="81.818183898925781"/>
         <image name="cog1" width="272.72726440429688" height="272.72726440429688"/>
         <image name="cog2" width="272.72726440429688" height="272.72726440429688"/>
         <image name="cog3" width="272.72726440429688" height="272.72726440429688"/>

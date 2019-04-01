@@ -2,23 +2,25 @@
 import Foundation
 import SpriteKit
 
-class Cogwheel{
+class Cogwheel: SKSpriteNode{
     private var handle: Handle
     private var outerAlignmentAngle: Double
     private var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?
     private var currentAngle: Double
-    private var size: Double
     
-    init(handle: Handle, outer: Double, inner: Double, current: Double, size: Double){
+    init(handle: Handle, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
         self.handle = handle
         self.outerAlignmentAngle = outer
         self.innerAlignmentAngle = inner
         self.currentAngle = current
-        self.size = size
+        super.init(texture: nil, color: color, size: size)
     }
-    //TODO: Add inits
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //Rotates the cogwheel a specified angle
     public func rotate(rotation: Double){
@@ -29,7 +31,6 @@ class Cogwheel{
     
     //Chacks if the rotation is possible
     private func canRotate(rotation: Double) -> Bool{
-        //TODO
-        return true
+        return !(lock?.isLocked ?? false)
     }
 }

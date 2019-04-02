@@ -24,7 +24,6 @@
 		25A24E8E2237D46B00AE5559 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */; };
 		25A24E902237D47600AE5559 /* TeamSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */; };
 		25A24E922237D48F00AE5559 /* RobotConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */; };
-		25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E932237D4A200AE5559 /* MenuViewController.swift */; };
 		25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E952237D50200AE5559 /* MainMenuView.swift */; };
 		25A24E982237D50F00AE5559 /* RobotSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E972237D50F00AE5559 /* RobotSelectorView.swift */; };
 		25A24E9A2237D51800AE5559 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E992237D51800AE5559 /* OptionsView.swift */; };
@@ -46,7 +45,7 @@
 		3EBEC784223BB5B200BE0C14 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEC783223BB5B200BE0C14 /* ImageCell.swift */; };
 		841EC74F2245080500ECF52F /* LevelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EC74E2245080500ECF52F /* LevelReader.swift */; };
 		848410F9223C1D8C007B55E1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848410F8223C1D8C007B55E1 /* UIColor.swift */; };
-		84EF3239223BE4FE009A3C4A /* PreMainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */; };
+		84EF3239223BE4FE009A3C4A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */; };
 		84EF323E223BE996009A3C4A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF323D223BE996009A3C4A /* MenuButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,7 +106,6 @@
 		25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSelectionViewController.swift; sourceTree = "<group>"; };
 		25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotConfigurationViewController.swift; sourceTree = "<group>"; };
-		25A24E932237D4A200AE5559 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		25A24E952237D50200AE5559 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		25A24E972237D50F00AE5559 /* RobotSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotSelectorView.swift; sourceTree = "<group>"; };
 		25A24E992237D51800AE5559 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
@@ -129,7 +127,7 @@
 		3EBEC783223BB5B200BE0C14 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		841EC74E2245080500ECF52F /* LevelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelReader.swift; sourceTree = "<group>"; };
 		848410F8223C1D8C007B55E1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreMainMenuViewController.swift; sourceTree = "<group>"; };
+		84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		84EF323D223BE996009A3C4A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,10 +233,9 @@
 				3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */,
 				2567879C223154350072C094 /* GameViewController.swift */,
 				25A24EB12237E12600AE5559 /* MainCoordinator.swift */,
-				25A24E932237D4A200AE5559 /* MenuViewController.swift */,
 				25A24E8D2237D46B00AE5559 /* OptionsViewController.swift */,
 				25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */,
-				84EF3238223BE4FE009A3C4A /* PreMainMenuViewController.swift */,
+				84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */,
 				25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */,
 			);
 			path = Controller;
@@ -398,7 +395,6 @@
 				259734F2224BC19900378676 /* Constants.swift in Sources */,
 				25A24E962237D50200AE5559 /* MainMenuView.swift in Sources */,
 				25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */,
-				25A24E942237D4A200AE5559 /* MenuViewController.swift in Sources */,
 				25A24EAD2237DF1100AE5559 /* Coordinator.swift in Sources */,
 				841EC74F2245080500ECF52F /* LevelReader.swift in Sources */,
 				25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */,
@@ -416,10 +412,10 @@
 				25678795223154350072C094 /* AppDelegate.swift in Sources */,
 				25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */,
 				25A24E8A2237CBAA00AE5559 /* Key.swift in Sources */,
-				84EF3239223BE4FE009A3C4A /* PreMainMenuViewController.swift in Sources */,
+				84EF3239223BE4FE009A3C4A /* MainMenuViewController.swift in Sources */,
 				25A24E902237D47600AE5559 /* TeamSelectionViewController.swift in Sources */,
 				3E0D78E1224B998700B50A17 /* Level.swift in Sources */,
-				25A24E902237D47600AE5559 /* PairingViewController.swift in Sources */,
+				25A24E902237D47600AE5559 /* TeamSelectionViewController.swift in Sources */,
 				25A24E9A2237D51800AE5559 /* OptionsView.swift in Sources */,
 				25A24E922237D48F00AE5559 /* RobotConfigurationViewController.swift in Sources */,
 				3EBEC784223BB5B200BE0C14 /* ImageCell.swift in Sources */,

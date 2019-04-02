@@ -207,6 +207,11 @@
                                     <action selector="teamEightTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="KL4-sn-fHB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-PP-BjT">
+                                <rect key="frame" x="11" y="38" width="103" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="back2"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="jhp-ae-lh8"/>
@@ -214,12 +219,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28" y="-546"/>
+            <point key="canvasLocation" x="27.5390625" y="-546.09375"/>
         </scene>
-        <!--PreMainMenuViewController-->
+        <!--MainMenuViewController-->
         <scene sceneID="BdM-OZ-x6m">
             <objects>
-                <viewController storyboardIdentifier="PreMainMenuViewController" title="PreMainMenuViewController" id="V7D-5h-zZy" customClass="PreMainMenuViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainMenuViewController" title="MainMenuViewController" id="V7D-5h-zZy" customClass="MainMenuViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afZ-0N-Ry1">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,42 +282,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocv-Cv-MKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.5859375" y="137.5"/>
-        </scene>
-        <!--MenuViewController-->
-        <scene sceneID="jk0-KJ-OzI">
-            <objects>
-                <viewController storyboardIdentifier="MenuViewController" title="MenuViewController" id="mRv-dA-OjR" customClass="MenuViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NtC-jy-Y1K">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kof-ho-deZ">
-                                <rect key="frame" x="460" y="248" width="105" height="72"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lHT-1f-SHH">
-                                <rect key="frame" x="413" y="588" width="198" height="132"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="100"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextTapped:" destination="mRv-dA-OjR" eventType="touchUpInside" id="6Nf-OF-Nv5"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="802-Gg-tOq"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="M2Z-X0-Hrr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-680.38067349926791" y="-546.09375"/>
         </scene>
         <!--OptionsViewController-->
         <scene sceneID="lc7-oh-CmD">
@@ -478,4 +447,7 @@
             <point key="canvasLocation" x="-681.4453125" y="-1263.28125"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back2" width="100" height="100"/>
+    </resources>
 </document>

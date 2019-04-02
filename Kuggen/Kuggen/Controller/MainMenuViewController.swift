@@ -20,6 +20,7 @@ class MainMenuViewController: UIViewController, Storyboarded {
     @IBAction func playTapped(_ sender: Any) {
         LevelReader.createLevel(nameOfLevel: "level2")
         coordinator?.goToTeamSelection()
+
     }
     
     @IBAction func selectRobotMenuTapped(_ sender: Any) {

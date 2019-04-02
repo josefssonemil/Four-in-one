@@ -112,6 +112,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotFour = robotFour
         self.gameManager.cogWheel = cogWheel
         
+        // add nodes to scene
+        if gameManager.mode == .twoplayer
+        {
+            self.addChild(robotOne)
+            self.addChild(robotTwo)
+            //self.addChild(cogWheel)
+
+        }
+        
+        else if gameManager.mode == .fourplayer{
+            self.addChild(robotOne)
+            self.addChild(robotTwo)
+            self.addChild(robotThree)
+            self.addChild(robotFour)
+            //self.addChild(cogWheel)
+
+        }
+        
+        else {
+            self.addChild(robotOne)
+            //self.addChild(cogWheel)
+        }
+    
         self.gameManager.initialSetUp()
         
     }

@@ -183,6 +183,9 @@
                                 <rect key="frame" x="11" y="38" width="103" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="back2"/>
+                                <connections>
+                                    <action selector="goBack:" destination="d06-O5-nQB" eventType="touchUpInside" id="CqQ-jf-aZo"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Kuggen" translatesAutoresizingMaskIntoConstraints="NO" id="UPl-Ia-ww2">
                                 <rect key="frame" x="392" y="114" width="240" height="132"/>
@@ -200,6 +203,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="d06-O5-nQB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="27.5390625" y="-546.09375"/>
         </scene>
@@ -430,8 +434,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="back2" width="100" height="100"/>
         <image name="Kuggen" width="1000" height="300"/>
+        <image name="back2" width="100" height="100"/>
         <image name="cog1" width="1000" height="1000"/>
         <image name="cog2" width="1000" height="1000"/>
         <image name="cog3" width="1000" height="1000"/>

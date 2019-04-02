@@ -65,7 +65,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     
     @IBAction func goBack(_ sender: Any) {
-        coordinator?.start()
+        coordinator?.goToTeamSelection()
     }
     private func setupGame(){
         setupManager.delegate = self

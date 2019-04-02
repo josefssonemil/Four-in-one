@@ -69,6 +69,14 @@
                                 <rect key="frame" x="524" y="218" width="339" height="332"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-PP-BjT">
+                                <rect key="frame" x="20" y="27" width="103" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="back2"/>
+                                <connections>
+                                    <action selector="goBack:" destination="agg-1Y-jiQ" eventType="touchUpInside" id="R6d-C9-dTD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431372549016" green="0.84705882352941175" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="sCO-ig-iXY"/>
@@ -180,14 +188,6 @@
                                     <action selector="teamTwotapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="087-Yp-eqv"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-PP-BjT">
-                                <rect key="frame" x="11" y="38" width="103" height="94"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="back2"/>
-                                <connections>
-                                    <action selector="goBack:" destination="d06-O5-nQB" eventType="touchUpInside" id="CqQ-jf-aZo"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Kuggen" translatesAutoresizingMaskIntoConstraints="NO" id="UPl-Ia-ww2">
                                 <rect key="frame" x="392" y="114" width="240" height="132"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -204,7 +204,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Oq-MS-ijy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="d06-O5-nQB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="27.5390625" y="-546.09375"/>
         </scene>

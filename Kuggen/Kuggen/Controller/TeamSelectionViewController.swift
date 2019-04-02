@@ -14,6 +14,7 @@ class TeamSelectionViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
     var team = 0
     
+    
     // Assigns delegate and starts the setup of the 4-in-1 session
     /*func setupPhase(){
         print("setup phase")

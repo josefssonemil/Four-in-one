@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,14 +54,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0j-NY-tfW">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="50"/>
+                                <rect key="frame" x="1024" y="0.0" width="0.0" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="DarkPrimaryColor"/>
+                                <color key="backgroundColor" red="0.76078431372549016" green="0.84705882352941175" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.76078431369999999" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Drf-Ms-2tH">
                                 <rect key="frame" x="974" y="0.0" width="50" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" name="DarkTextColor"/>
+                                <color key="backgroundColor" red="0.76078431369999999" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.76078431369999999" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cogg" translatesAutoresizingMaskIntoConstraints="NO" id="4jj-e1-ZFP">
                                 <rect key="frame" x="524" y="218" width="339" height="332"/>
@@ -441,11 +442,5 @@
         <image name="cog3" width="1000" height="1000"/>
         <image name="cog4" width="1000" height="1000"/>
         <image name="cogg" width="1000" height="1000"/>
-        <namedColor name="DarkPrimaryColor">
-            <color red="0.34099999070167542" green="0.31799998879432678" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="DarkTextColor">
-            <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

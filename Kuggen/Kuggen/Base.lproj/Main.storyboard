@@ -100,6 +100,74 @@
             </objects>
             <point key="canvasLocation" x="714.84375" y="-548.4375"/>
         </scene>
+        <!--About View Controller-->
+        <scene sceneID="SnO-wX-tgo">
+            <objects>
+                <viewController storyboardIdentifier="AboutViewController" id="Eni-AZ-yDa" customClass="AboutViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DFs-hh-T2a">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dkS-Qv-1uE">
+                                <rect key="frame" x="51" y="49" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="back-1"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="Eni-AZ-yDa" eventType="touchUpInside" id="D6e-Ms-QVj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vi som gjort Kuggen:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xY-Gv-cj2">
+                                <rect key="frame" x="432" y="138" width="160" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="55" translatesAutoresizingMaskIntoConstraints="NO" id="uYz-zb-xoJ">
+                                <rect key="frame" x="437" y="232" width="154.5" height="322.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tove Ekman" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBc-At-QK8">
+                                        <rect key="frame" x="0.0" y="0.0" width="154.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emil Josefsson" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hAa-aS-BAh">
+                                        <rect key="frame" x="0.0" y="75.5" width="154.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sanna Kjellqvist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9fx-Tb-2uV">
+                                        <rect key="frame" x="0.0" y="151" width="154.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jonatan Magnusson" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thb-NB-Ylb">
+                                        <rect key="frame" x="0.0" y="226.5" width="154.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alexander Nordgren" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCk-k9-qYx">
+                                        <rect key="frame" x="0.0" y="302" width="154.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="LightBackgroundColor"/>
+                        <viewLayoutGuide key="safeArea" id="nyX-Up-4H3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dou-qi-NEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="710.7421875" y="140.625"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -300,6 +368,14 @@
                                 <color key="textColor" name="DarkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0m5-Nv-HNt">
+                                <rect key="frame" x="782" y="482" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Om oss"/>
+                                <connections>
+                                    <action selector="aboutTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="kXl-hp-9Mq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="LightBackgroundColor"/>
                         <constraints>
@@ -311,6 +387,7 @@
                         <viewLayoutGuide key="safeArea" id="lUH-HQ-jkS"/>
                     </view>
                     <connections>
+                        <outlet property="aboutButton" destination="0m5-Nv-HNt" id="0AG-LN-wqJ"/>
                         <outlet property="optionMenuButton" destination="9a8-fA-eRN" id="JVP-PP-6Cs"/>
                         <outlet property="playButton" destination="Qff-vR-Nvg" id="xlh-nQ-5N5"/>
                         <outlet property="robotButton" destination="D80-eF-ZRY" id="CQL-2z-UOM"/>

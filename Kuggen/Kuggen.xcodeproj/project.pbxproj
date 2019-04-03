@@ -42,6 +42,7 @@
 		3E0D78E5224B9F7700B50A17 /* level1.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E0D78E4224B9F7700B50A17 /* level1.json */; };
 		3E0D78E7224BA07200B50A17 /* level2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E0D78E6224BA07200B50A17 /* level2.json */; };
 		3E2E9FA8223A888B00AE4F15 /* AlignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */; };
+		3E6C420B2254D0CA001BA303 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C420A2254D0CA001BA303 /* AboutViewController.swift */; };
 		3EBEC784223BB5B200BE0C14 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBEC783223BB5B200BE0C14 /* ImageCell.swift */; };
 		841EC74F2245080500ECF52F /* LevelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EC74E2245080500ECF52F /* LevelReader.swift */; };
 		848410F9223C1D8C007B55E1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848410F8223C1D8C007B55E1 /* UIColor.swift */; };
@@ -124,6 +125,7 @@
 		3E0D78E4224B9F7700B50A17 /* level1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level1.json; sourceTree = "<group>"; };
 		3E0D78E6224BA07200B50A17 /* level2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level2.json; sourceTree = "<group>"; };
 		3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentViewController.swift; sourceTree = "<group>"; };
+		3E6C420A2254D0CA001BA303 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		3EBEC783223BB5B200BE0C14 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		841EC74E2245080500ECF52F /* LevelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelReader.swift; sourceTree = "<group>"; };
 		848410F8223C1D8C007B55E1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				25A24E8F2237D47600AE5559 /* TeamSelectionViewController.swift */,
 				84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */,
 				25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */,
+				3E6C420A2254D0CA001BA303 /* AboutViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				25A24EA42237D56F00AE5559 /* Handle.swift in Sources */,
 				25678795223154350072C094 /* AppDelegate.swift in Sources */,
 				25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */,
+				3E6C420B2254D0CA001BA303 /* AboutViewController.swift in Sources */,
 				25A24E8A2237CBAA00AE5559 /* Key.swift in Sources */,
 				84EF3239223BE4FE009A3C4A /* MainMenuViewController.swift in Sources */,
 				25A24E902237D47600AE5559 /* TeamSelectionViewController.swift in Sources */,

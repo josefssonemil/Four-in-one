@@ -12,7 +12,7 @@ class MainMenuViewController: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
     
-    private let help = ["För att starta ett spel, peka på spel" , "För att välja hur din robot ska se ut, peka på Byt robot", "För att ändra inställningar, peka på Inställningar"]
+    private let help = ["För att starta ett spel, peka på spel" , "För att välja hur din robot ska se ut, peka på Byt robot", "För att ändra inställningar, peka på Inställningar", "Vill du veta mer om oss? Klicka här!"]
     private var helpCount = 0
     
     @IBOutlet weak var playButton: MenuButton!
@@ -21,6 +21,7 @@ class MainMenuViewController: UIViewController, Storyboarded {
     @IBOutlet weak var robotButton: UIButton!
     @IBOutlet weak var speechBubble: UIImageView!
     @IBOutlet weak var speechLabel: UILabel!
+    @IBOutlet weak var aboutButton: UIButton!
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,6 +38,7 @@ class MainMenuViewController: UIViewController, Storyboarded {
         })
     }
     override func viewDidLoad() {
+        aboutButton.isHidden=true
         speechLabel.alpha = 0
         speechBubble.alpha = 0
         super.viewDidLoad()
@@ -49,6 +51,9 @@ class MainMenuViewController: UIViewController, Storyboarded {
             helpCount=0
         }
         self.speechLabel.text = help[helpCount]
+        if (helpCount == 3) {
+            aboutButton.isHidden=false
+        }
         helpCount+=1
         UIView.animate(withDuration: 0.5, animations: {
             self.speechLabel.alpha=1.0
@@ -61,6 +66,9 @@ class MainMenuViewController: UIViewController, Storyboarded {
             })
         })
       
+    }
+    @IBAction func aboutTapped(_ sender: Any) {
+        coordinator?.goToAbout()
     }
     
     @IBAction func playTapped(_ sender: Any) {

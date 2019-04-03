@@ -15,5 +15,13 @@ import MultipeerConnectivity
 
 class KuggenSessionServer: KuggenSessionManager {
     
-    
+    override public func handleLocal(event: FourInOneEvent, from sender: AnyObject? = nil) {
+        
+        sendEventToClients(event)
+        
+    }
+    override public func serverHandleRemote(event: FourInOneEvent, from client:MCPeerID) {
+        
+        
+    }
 }

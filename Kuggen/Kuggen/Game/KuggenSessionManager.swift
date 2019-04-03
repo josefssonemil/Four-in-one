@@ -61,24 +61,42 @@ class KuggenSessionManager: FourInOneSessionManager {
         globalSize = makeBoardSize()
     
         // Starting points for each robot
+        var robotOnePos: CGPoint
+         var robotTwoPos: CGPoint
+         var robotThreePos: CGPoint
+         var robotFourPos: CGPoint
         
-        let robotOnePos = makeLocal(CGPoint(x:0, y:0))
+        if mode == .twoplayer
+        {
+            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y:globalSize.width))
+            
+            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 50))
+            
+            robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
+            robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
+            
+            robotOne.zRotation = 0
+            robotTwo.zRotation = 0
+        }
         
-        let robotTwoPos = makeLocal(CGPoint(x:0, y:globalSize.height))
+            // TODO
+        else if mode == .fourplayer
+        {
+            robotOnePos = makeLocal(CGPoint(x:0, y:0))
+            
+            robotTwoPos = makeLocal(CGPoint(x:0, y:globalSize.height))
+            
+            robotThreePos = makeLocal(CGPoint(x:globalSize.width, y:globalSize.height))
+            
+            robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
+            
+            robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
+            robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
+            robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
+            robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
+        }
         
-        let robotThreePos = makeLocal(CGPoint(x:globalSize.width, y:globalSize.height))
-        
-        let robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
-        
-        // Set starting positions
-        
-        // TODO - decide whether positions should be int or floats
-        
-        robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
-        robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
-        robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
-        robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
-
+    
         
     }
 
@@ -120,6 +138,20 @@ class KuggenSessionManager: FourInOneSessionManager {
             return movement > 0
             
         }
+    }
+    
+    func armMoved(robot: Robot, angle: CGFloat){
+        robot.handleMovement(angle: angle)
+        /*
+        if shouldHandleInput(robot){
+            if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){
+                //extend requested function here
+            }
+            
+            else if (isWithdrawArm(movement: diff.y, pos: robot.devicePosition)){
+                //withdraw requested function here
+            }
+        }*/
     }
     
     // Decides whether a player is withdrawing the arm  or not, depending on movement direction

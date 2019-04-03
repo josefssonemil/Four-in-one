@@ -21,16 +21,11 @@ class MainCoordinator: Coordinator {
     
     // Starting the application
     func start() {
-        let vc = PreMainMenuViewController.instantiate()
+        let vc = MainMenuViewController.instantiate()
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
     
-    func goToMainMenu() {
-        let vc = MenuViewController.instantiate()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
-    }
     
     func goToRobotSelection(){
         let vc = RobotConfigurationViewController.instantiate()

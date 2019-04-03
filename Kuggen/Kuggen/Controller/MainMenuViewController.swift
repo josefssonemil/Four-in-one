@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreMainMenuViewController: UIViewController, Storyboarded {
+class MainMenuViewController: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
     
@@ -19,7 +19,8 @@ class PreMainMenuViewController: UIViewController, Storyboarded {
     
     @IBAction func playTapped(_ sender: Any) {
         LevelReader.createLevel(nameOfLevel: "level2")
-        //coordinator?.goToMainMenu()
+        coordinator?.goToTeamSelection()
+
     }
     
     @IBAction func selectRobotMenuTapped(_ sender: Any) {

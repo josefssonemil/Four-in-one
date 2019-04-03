@@ -23,6 +23,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     private let connectingString = "Letar andra spelare"
     
     private var inProgress = true
+    private var mode = GameMode.twoplayer
     
     private let oneTwo = UIColor.init(red: 0xe5/255, green: 0x99/255, blue: 0xde/255, alpha: 100)
     private let oneFour = UIColor.init(red: 0xd8/255, green: 0xc2/255, blue: 0xff/255, alpha: 100)
@@ -37,6 +38,8 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     @IBOutlet weak var helpLabel: UILabel!
     @IBOutlet weak var twoPlayerTopImage: UIImageView!
     @IBOutlet weak var twoPlayerBotImage: UIImageView!
+    @IBOutlet weak var fourPlayerTopImage: UIImageView!
+    @IBOutlet weak var fourPlayerBotImage: UIImageView!
     @IBOutlet weak var biggerHelpBubble: UIImageView!
     
 
@@ -46,27 +49,66 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     @IBAction func helpButtonTapped(_ sender: Any) {
         if (!inProgress) {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.biggerHelpBubble.alpha=1.0
-                self.twoPlayerTopImage.alpha=1.0
-                self.twoPlayerBotImage.alpha=1.0
-            }, completion: {
-                (finished) in
-                UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
-                    self.twoPlayerTopImage.center.y = self.twoPlayerTopImage.center.y+20
-                    self.twoPlayerBotImage.center.y = self.twoPlayerBotImage.center.y-20
+            if(mode==GameMode.fourplayer){
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.biggerHelpBubble.alpha=1.0
+                    self.twoPlayerTopImage.alpha=1.0
+                    self.twoPlayerBotImage.alpha=1.0
+                    self.fourPlayerTopImage.alpha=1.0
+                    self.fourPlayerBotImage.alpha=1.0
                 }, completion: {
                     (finished) in
-                    UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
-                        self.twoPlayerTopImage.alpha=0.0
-                        self.twoPlayerBotImage.alpha=0.0
-                        self.biggerHelpBubble.alpha=0.0
-                        self.twoPlayerTopImage.center.y-=20
-                        self.twoPlayerBotImage.center.y+=20
-                    })})
-            })
+                    UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
+                        self.twoPlayerTopImage.center.y += 20
+                        self.twoPlayerBotImage.center.y -= 20
+                        self.fourPlayerTopImage.center.y += 20
+                        self.fourPlayerBotImage.center.y -= 20
+                        self.twoPlayerTopImage.center.x += 20
+                        self.twoPlayerBotImage.center.x += 20
+                        self.fourPlayerTopImage.center.x -= 20
+                        self.fourPlayerBotImage.center.x -= 20
+                    }, completion: {
+                        (finished) in
+                        UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
+                            self.twoPlayerTopImage.alpha=0.0
+                            self.twoPlayerBotImage.alpha=0.0
+                            self.biggerHelpBubble.alpha=0.0
+                            self.twoPlayerTopImage.center.y-=20
+                            self.twoPlayerBotImage.center.y+=20
+                            self.twoPlayerTopImage.center.x-=20
+                            self.twoPlayerBotImage.center.x-=20
+                            self.fourPlayerTopImage.center.y-=20
+                            self.fourPlayerBotImage.center.y+=20
+                            self.fourPlayerTopImage.center.x+=20
+                            self.fourPlayerBotImage.center.x+=20
+                        })})
+                })
+                
+            }
+            else if(mode==GameMode.twoplayer){
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.biggerHelpBubble.alpha=1.0
+                    self.twoPlayerTopImage.alpha=1.0
+                    self.twoPlayerBotImage.alpha=1.0
+                }, completion: {
+                    (finished) in
+                    UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
+                        self.twoPlayerTopImage.center.y += 20
+                        self.twoPlayerBotImage.center.y -= 20
+                    }, completion: {
+                        (finished) in
+                        UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
+                            self.twoPlayerTopImage.alpha=0.0
+                            self.twoPlayerBotImage.alpha=0.0
+                            self.biggerHelpBubble.alpha=0.0
+                            self.twoPlayerTopImage.center.y-=20
+                            self.twoPlayerBotImage.center.y+=20
+                        })})
+                })
+            }
+        }
 
-        }else{
+        else{
             if(!(helpCount < help.count)){
                 helpCount=0
             }
@@ -160,6 +202,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         // Update view to match the state.
         // All the visible stuff should be here
         self.inProgress=inProgress
+        self.mode=mode
         setView(position: position, mode: mode, inProgress: inProgress)
         shortBorder.isHidden=false
         longBorder.isHidden=false
@@ -178,6 +221,8 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         biggerHelpBubble.alpha=0
         twoPlayerBotImage.alpha=0
         twoPlayerTopImage.alpha=0
+        fourPlayerTopImage.alpha=0
+        fourPlayerBotImage.alpha=0
         twoPlayerBotImage.transform = CGAffineTransform(rotationAngle: .pi)
         helpButton.center.y=view.bounds.height-125
         helpButton.center.x=view.bounds.width-125
@@ -234,60 +279,35 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                oddPositionSetup()
             }
         case DevicePosition.two:
-            stateLabel.transform = CGAffineTransform(rotationAngle: .pi)
-            helpButton.transform = CGAffineTransform(rotationAngle: .pi)
-            biggerHelpBubble.transform = CGAffineTransform(rotationAngle: .pi)
-            biggerHelpBubble.center.x = biggerHelpBubble.bounds.width/2 + 175
-            biggerHelpBubble.center.y = biggerHelpBubble.bounds.height/2 + 50
-            twoPlayerTopImage.center.x=biggerHelpBubble.center.x
-            twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-10
-            twoPlayerBotImage.center.x=biggerHelpBubble.center.x
-            twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+10
-            helpButton.isHidden=true
-            helpButton.center.y=125
-            helpButton.center.x=125
             if(mode == GameMode.twoplayer){
-                UIView.animate(withDuration: 2.0, animations: {
-                    self.loadingCog.center.y=self.view.bounds.height
-                    self.loadingCog.center.x=self.view.bounds.width/2
-                    self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
-                    self.stateLabel.isHidden=true
-                    self.backButton.isHidden=true
-                }, completion: { (finished) in
-                    self.backButton.center.y = 75
-                    self.backButton.center.x = self.view.bounds.width/2
-                    self.stateLabel.center.x = self.view.bounds.width/2
-                    self.stateLabel.center.y = self.view.bounds.height/2 - 100
-                    self.backButton.isHidden=false
-                    self.stateLabel.isHidden=false
-                    self.helpButton.isHidden=false
-                })
+                evenPositionSetup(positionOfCogX: view.bounds.width/2, positionOfCogY: view.bounds.height)
+                twoPlayerTopImage.center.x=biggerHelpBubble.center.x
+                twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-10
+                twoPlayerBotImage.center.x=biggerHelpBubble.center.x
+                twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+10
             }
             else{
                 self.longBorder.backgroundColor = self.oneTwo
                 self.shortBorder.backgroundColor = self.twoThree
-               evenPositionSetup()
+                evenPositionSetup(positionOfCogX: view.bounds.width, positionOfCogY: view.bounds.height)
             }
+            
         case DevicePosition.three:
             self.longBorder.backgroundColor = self.threeFour
             self.shortBorder.backgroundColor = self.twoThree
            oddPositionSetup()
         case DevicePosition.four:
-            stateLabel.transform = CGAffineTransform(rotationAngle: .pi)
-            helpButton.transform = CGAffineTransform(rotationAngle: .pi)
-            biggerHelpBubble.transform = CGAffineTransform(rotationAngle: .pi)
-            biggerHelpBubble.center.x = biggerHelpBubble.bounds.width/2 + 175
-            biggerHelpBubble.center.y = biggerHelpBubble.bounds.height/2 + 50
-            twoPlayerTopImage.center.x=biggerHelpBubble.center.x
+            evenPositionSetup(positionOfCogX: view.bounds.width, positionOfCogY: view.bounds.height)
+            twoPlayerTopImage.center.x=biggerHelpBubble.center.x - twoPlayerTopImage.bounds.width/2 - 10
             twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-10
-            twoPlayerBotImage.center.x=biggerHelpBubble.center.x
+            twoPlayerBotImage.center.x=biggerHelpBubble.center.x - twoPlayerBotImage.bounds.width/2 - 10
             twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+10
-            helpButton.isHidden=true
-            helpButton.center.y=125
-            helpButton.center.x=125
+            fourPlayerTopImage.center.x=biggerHelpBubble.center.x - fourPlayerTopImage.bounds.width/2 + 10
+            fourPlayerTopImage.center.y=(biggerHelpBubble.center.y-(fourPlayerTopImage.bounds.height/2))-10
+            fourPlayerBotImage.center.x=biggerHelpBubble.center.x - fourPlayerBotImage.bounds.width/2 + 10
+            fourPlayerBotImage.center.y=(biggerHelpBubble.center.y+(fourPlayerBotImage.bounds.height/2))+10
             self.longBorder.backgroundColor = self.threeFour
             self.shortBorder.backgroundColor = self.oneFour
-            evenPositionSetup()
         default:
             break
         }
@@ -318,12 +338,20 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         })
     }
     
-    private func evenPositionSetup(){
+    private func evenPositionSetup(positionOfCogX: CGFloat, positionOfCogY: CGFloat){
+        stateLabel.transform = CGAffineTransform(rotationAngle: .pi)
+        helpButton.transform = CGAffineTransform(rotationAngle: .pi)
+        biggerHelpBubble.transform = CGAffineTransform(rotationAngle: .pi)
+        biggerHelpBubble.center.x = biggerHelpBubble.bounds.width/2 + 175
+        biggerHelpBubble.center.y = biggerHelpBubble.bounds.height/2 + 50
+        helpButton.isHidden=true
+        helpButton.center.y=125
+        helpButton.center.x=125
         self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: 0, height: 50)
         self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: 0)
         UIView.animate(withDuration: 2.0, animations: {
-            self.loadingCog.center.y=self.view.bounds.height
-            self.loadingCog.center.x=self.view.bounds.width
+            self.loadingCog.center.y=positionOfCogY
+            self.loadingCog.center.x=positionOfCogX
             self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
             //self.longBorder.center.y = self.view.bounds.height-25
             self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: -self.view.bounds.width, height: 50)

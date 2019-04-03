@@ -203,7 +203,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // TODO - add functionality
         
      
         if let aTouch = touches.first {
@@ -229,7 +228,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         
                         if let touchedRobot = touchedNode as? Robot  {
                             let prevLoc = aTouch.previousLocation(in: self)
-                            
+                            // TODO, make arm stretch
                             
                             let dx = location.x - prevLoc.x
                             let dy = location.y - prevLoc.y

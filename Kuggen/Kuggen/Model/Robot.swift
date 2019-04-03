@@ -16,14 +16,16 @@ class Robot: SKSpriteNode {
     private var rotation: CGFloat
 
     
-    init(matchingHandle: Handle, devicePosition: DevicePosition, color: UIColor) {
-        //let texture = SKTexture(imageNamed: "ball")
+    init(matchingHandle: Handle, devicePosition: DevicePosition, textureName: String) {
+        let texture = SKTexture(imageNamed: textureName)
        //super.init(texture: texture, color: nil, size: texture.size())
         self.matchingHandle = matchingHandle
         self.devicePosition = devicePosition
         self.currentArmStretch = 0
         self.rotation = 0
-        super.init(texture: nil, color: color, size: CGSize(width: 50, height: 50))
+        super.init(texture: texture, color: SKColor.white, size: texture.size())
+        setup(devicePosition)
+
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -50,33 +52,39 @@ class Robot: SKSpriteNode {
     
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
-        
-        switch devicepos {
+        self.setScale(0.4)
+
+       /*switch devicepos {
             //Lower left corner
             case .one:
                 basePoint = CGPoint(x: 0, y: 0)
                 anchorPosition.y = 0
-                rotation = 45
-            
+                self.rotation = 45
+                self.zRotation = rotation
             // Upper left corner
             case .two:
                 basePoint = CGPoint(x: 0, y: totalScreenSize.height)
                 anchorPosition.y = 1
-                rotation = -45
+                self.rotation = -45
+                self.zRotation = rotation
             // Upper right corner
         case .three:
              basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
              anchorPosition.y = 1
-            rotation = 225
+           self.rotation = 225
+             self.zRotation = rotation
+
             // Lower right corner
         case .four:
              basePoint = CGPoint(x: totalScreenSize.width, y: 0)
             anchorPosition.y = 0
-            rotation = 315
+            self.rotation = 315
+             self.zRotation = rotation
+
         }
         
         self.position = basePoint
-        self.anchorPoint = anchorPosition
+        self.anchorPoint = anchorPosition*/
     }
     
     

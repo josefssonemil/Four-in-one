@@ -29,10 +29,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameScenDelegate : GameSceneDelegate?
     
     // Create robots and cogwheel properties
-    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, color: UIColor.purple)
-    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, color: UIColor.blue)
-    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, color: UIColor.green)
-    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, color: UIColor.yellow)
+    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "robot_1")
+    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "robot_2")
+    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "robot_3")
+    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "robot_4")
     private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: 3.0)
     
     //private var robotController : GameViewController!
@@ -97,9 +97,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // set the background color
         self.backgroundColor = SKColor.white
         
-        let test = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
-        test.position = CGPoint(x: 20, y: 20)
-        self.addChild(test)
+       // let test = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
+       // test.position = CGPoint(x: 20, y: 20)
+      //  self.addChild(test)
         
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)

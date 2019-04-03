@@ -20,7 +20,8 @@ class LevelReader {
                 let outer = cogwheel["outer"] as? Double,
                 let inner = cogwheel["inner"] as? Double,
                 let current = cogwheel["current"] as? Double,
-                let size = cogwheel["size"] as? Double else { break }
+                let size = cogwheel["size"] as? CGSize,
+                let color = cogwheel["color"] as? UIColor else { break }
             var handle1: Handle
             switch handle{
             case "edgeSquare":
@@ -34,9 +35,9 @@ class LevelReader {
             default:
                 handle1 = Handle.edgeSquare
             }
-            objects.append(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size))
+            objects.append(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size, color: color))
             //Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size)
-            print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size))
+            print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size, color: color))
             
         }
         print(Level.init(cogwheels: objects).getNumberOfCogwheels())

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -253,8 +254,31 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Kuggen" translatesAutoresizingMaskIntoConstraints="NO" id="Rjg-vF-WwX">
+                                <rect key="frame" x="392" y="96" width="240" height="132"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D80-eF-ZRY">
+                                <rect key="frame" x="624" y="368" width="400" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="robotTest"/>
+                                <connections>
+                                    <action selector="robotTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="UwX-um-GkB"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="talk" translatesAutoresizingMaskIntoConstraints="NO" id="k4n-qE-iiB">
+                                <rect key="frame" x="557" y="223" width="501" height="322"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Det här är ett test med väldigt mycket text för att se vad som händer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRz-mT-KPE">
+                                <rect key="frame" x="663" y="326" width="289" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="DarkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="LightBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="J3i-CA-d9K" firstAttribute="leading" secondItem="lUH-HQ-jkS" secondAttribute="leading" constant="420" id="DcT-hI-Drw"/>
                             <constraint firstItem="lUH-HQ-jkS" firstAttribute="trailing" secondItem="J3i-CA-d9K" secondAttribute="trailing" constant="420" id="XSQ-7f-AoU"/>
@@ -266,7 +290,10 @@
                     <connections>
                         <outlet property="optionMenuButton" destination="9a8-fA-eRN" id="JVP-PP-6Cs"/>
                         <outlet property="playButton" destination="Qff-vR-Nvg" id="xlh-nQ-5N5"/>
+                        <outlet property="robotButton" destination="D80-eF-ZRY" id="CQL-2z-UOM"/>
                         <outlet property="selectRobotMenuButton" destination="uVq-4s-ouw" id="Yxv-cz-u9A"/>
+                        <outlet property="speechBubble" destination="k4n-qE-iiB" id="Ful-zQ-1nY"/>
+                        <outlet property="speechLabel" destination="VRz-mT-KPE" id="nGE-c6-DmI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocv-Cv-MKM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -446,5 +473,13 @@
         <image name="cogTeam3" width="1000" height="1000"/>
         <image name="cogTeam4" width="1000" height="1000"/>
         <image name="cogg" width="1000" height="1000"/>
+        <image name="robotTest" width="1000" height="1000"/>
+        <image name="talk" width="1000" height="1000"/>
+        <namedColor name="DarkTextColor">
+            <color red="0.33300000429153442" green="0.33300000429153442" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBackgroundColor">
+            <color red="0.76099997758865356" green="0.84700000286102295" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

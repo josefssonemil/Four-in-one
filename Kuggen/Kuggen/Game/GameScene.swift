@@ -22,17 +22,20 @@ private let handleTwo = Handle.edgeSquare
 private let handleThree = Handle.edgeTrapezoid
 private let handleFour = Handle.edgeTriangle
 
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game manager, create and manage request objects
     var gameManager : KuggenSessionManager!
     var gameScenDelegate : GameSceneDelegate?
-    
+    private var latestPoint = CGPoint()
+    var limit : CGFloat = 6.0
+
     // Create robots and cogwheel properties
-    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, color: UIColor.purple)
-    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, color: UIColor.blue)
-    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, color: UIColor.green)
-    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, color: UIColor.yellow)
+    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "robot_1")
+    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "robot_2")
+    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "robot_3")
+    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "robot_4")
     private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 3.0, height: 3.0), color: UIColor.blue)
     
     //private var robotController : GameViewController!
@@ -97,9 +100,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // set the background color
         self.backgroundColor = SKColor.white
         
-        let test = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
-        test.position = CGPoint(x: 20, y: 20)
-        self.addChild(test)
+       // let test = SKSpriteNode(color: UIColor.red, size: CGSize(width: 50, height: 50))
+       // test.position = CGPoint(x: 20, y: 20)
+      //  self.addChild(test)
         
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -112,6 +115,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotFour = robotFour
         self.gameManager.cogWheel = cogWheel
         
+        // add nodes to scene
+        if gameManager.mode == .twoplayer
+        {
+            self.addChild(robotOne)
+            self.addChild(robotTwo)
+            robotOne.name = "robot_1"
+            robotTwo.name = "robot_2"
+            //self.addChild(cogWheel)
+
+        }
+        
+        else if gameManager.mode == .fourplayer{
+            self.addChild(robotOne)
+            self.addChild(robotTwo)
+            self.addChild(robotThree)
+            self.addChild(robotFour)
+            robotOne.name = "robot_1"
+            robotTwo.name = "robot_2"
+            robotThree.name = "robot_3"
+            robotFour.name = "robot_4"
+            //self.addChild(cogWheel)
+
+        }
+        
+        else {
+            self.addChild(robotOne)
+            robotOne.name = "robot_1"
+            //self.addChild(cogWheel)
+        }
+    
         self.gameManager.initialSetUp()
         
     }
@@ -162,21 +195,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
      }*/
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*if let label = self.label {
-         label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-         }
-         
-         for t in touches { self.touchDown(atPoint: t.location(in: self)) }*/
+      
+        
     }
     
+
+    
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // TODO - add functionality
         
-        // capture first touch
+     
         if let aTouch = touches.first {
             
-            // Store the location of the touch
             let location = aTouch.location(in: self)
+            
+            // Check that there's som significant move
+            // or else do not care about touch at all
+            let diffX = abs(location.x-latestPoint.x)
+            let diffY = abs(location.y-latestPoint.y)
+          
+            
+            if diffX+diffY > limit {
+                
+                // Remember this location
+                latestPoint = location
+                
+                let touchedNode = atPoint(location)
+                
+                if let nodeName = touchedNode.name {
+                    
+                    if nodeName.contains("robot") {
+                        
+                        if let touchedRobot = touchedNode as? Robot  {
+                            let prevLoc = aTouch.previousLocation(in: self)
+                            // TODO, make arm stretch
+                            
+                            let dx = location.x - prevLoc.x
+                            let dy = location.y - prevLoc.y
+                            
+                            let deltaX = location.x - touchedRobot.position.x
+                            let deltaY = location.y - touchedRobot.position.y
+                            
+                            // When arm is rotated, there should be an angle limit in both directions
+                            let angle = atan2(deltaY, deltaX) - (.pi / 2)
+
+                            
+                            gameManager.armMoved(robot: touchedRobot, angle: angle)
+                            
+                        }
+                        
+                    }
+                }
+                
+                
+            }
+            else {
+                
+               // if kDebug {
+                  //  print("skipped, small limit value")
+             //   }
+                
+            }
+            
         }
         
         /*for t in touches { self.touchMoved(toPoint: t.location(in: self)) }*/
@@ -199,7 +279,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didEnd(_ contact: SKPhysicsContact) {
         
     }
+    
+    
+    func degToRad(degree: Double) -> CGFloat {
+        return CGFloat(Double(degree) / 180.0 * .pi)
+    }
 }
+
+
 
 extension GameScene : KuggenSessionManagerDelegate {
     

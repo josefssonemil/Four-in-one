@@ -273,12 +273,12 @@
                                     <action selector="robotTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="DvC-vh-Dhm"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="talk" translatesAutoresizingMaskIntoConstraints="NO" id="SOq-o7-RmH">
-                                <rect key="frame" x="553" y="364" width="501" height="322"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="talk2" translatesAutoresizingMaskIntoConstraints="NO" id="SOq-o7-RmH">
+                                <rect key="frame" x="243" y="600" width="577" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Det här är ett test med väldigt mycket text för att se vad som händer" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="By9-TK-rqd">
-                                <rect key="frame" x="659" y="467" width="289" height="64"/>
+                                <rect key="frame" x="387" y="637" width="289" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" name="DarkTextColor"/>
@@ -575,6 +575,7 @@
         <image name="cogg" width="1000" height="1000"/>
         <image name="robotTest" width="1000" height="1000"/>
         <image name="talk" width="1000" height="1000"/>
+        <image name="talk2" width="1000" height="300"/>
         <namedColor name="DarkTextColor">
             <color red="0.33300000429153442" green="0.33300000429153442" blue="0.33300000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

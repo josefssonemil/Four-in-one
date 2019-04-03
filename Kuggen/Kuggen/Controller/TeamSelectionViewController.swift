@@ -19,10 +19,16 @@ class TeamSelectionViewController: UIViewController, Storyboarded {
     @IBOutlet weak var teamButton2: UIButton!
     @IBOutlet weak var teamButton3: UIButton!
     @IBOutlet weak var teamButton4: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     override func viewDidLoad() {
+        self.navigationController?.isNavigationBarHidden = true
+        
+        backButton.center.y = 75
+        backButton.center.x = 75
         let border = CGFloat(1.0)
         let color = UIColor.black.cgColor
+        
         teamButton1.layer.borderWidth = border
         teamButton1.layer.borderColor = color
         teamButton2.layer.borderWidth = border
@@ -36,6 +42,9 @@ class TeamSelectionViewController: UIViewController, Storyboarded {
     }
 
     
+    @IBAction func backButtonTapped(_ sender: Any) {
+        coordinator?.start()
+    }
     
 
     @IBAction func teamOneTapped(_ sender: Any) {

@@ -18,13 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="State: Connecting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ub-0P-OvU">
-                                <rect key="frame" x="-15" y="340" width="782" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Id: 123456789abcdefg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJL-Z7-d6F">
                                 <rect key="frame" x="305" y="579" width="362" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,17 +59,24 @@
                                 <color key="tintColor" red="0.76078431369999999" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cogg" translatesAutoresizingMaskIntoConstraints="NO" id="4jj-e1-ZFP">
-                                <rect key="frame" x="524" y="218" width="339" height="332"/>
+                                <rect key="frame" x="900" y="218" width="339" height="332"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7g-PP-BjT">
-                                <rect key="frame" x="20" y="27" width="103" height="94"/>
+                                <rect key="frame" x="475" y="746" width="75" height="74"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="back2"/>
+                                <state key="normal" title="Button" image="cancel"/>
                                 <connections>
                                     <action selector="goBack:" destination="agg-1Y-jiQ" eventType="touchUpInside" id="R6d-C9-dTD"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="State: Connecting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ub-0P-OvU">
+                                <rect key="frame" x="-549" y="340" width="782" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431372549016" green="0.84705882352941175" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="sCO-ig-iXY"/>
@@ -84,6 +84,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backButton" destination="R7g-PP-BjT" id="WyS-dw-aVg"/>
                         <outlet property="idLabel" destination="zJL-Z7-d6F" id="ven-nH-YdV"/>
                         <outlet property="loadingCog" destination="4jj-e1-ZFP" id="AmN-94-07D"/>
                         <outlet property="longBorder" destination="t0j-NY-tfW" id="Z65-Xu-USe"/>
@@ -136,11 +137,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6W-ce-gn8">
                                 <rect key="frame" x="79" y="392" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <size key="titleShadowOffset" width="0.0" height="2"/>
-                                <state key="normal" image="cog1">
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" image="cogTeam1"/>
                                 <connections>
                                     <action selector="teamOneTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="LLg-eR-8Hx"/>
                                 </connections>
@@ -155,9 +153,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qy-Iu-rzH">
                                 <rect key="frame" x="521" y="392" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <size key="titleShadowOffset" width="0.0" height="2"/>
-                                <state key="normal" image="cog3">
+                                <state key="normal" image="cogTeam3">
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -167,9 +164,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Tu-cUb">
                                 <rect key="frame" x="746" y="392" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <size key="titleShadowOffset" width="0.0" height="2"/>
-                                <state key="normal" image="cog4">
+                                <state key="normal" image="cogTeam4">
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -179,9 +175,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yh6-Sb-K1D">
                                 <rect key="frame" x="302" y="392" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <size key="titleShadowOffset" width="0.0" height="2"/>
-                                <state key="normal" image="cog2">
+                                <state key="normal" image="cogTeam2">
                                     <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -435,11 +430,11 @@
     </scenes>
     <resources>
         <image name="Kuggen" width="1000" height="300"/>
-        <image name="back2" width="100" height="100"/>
-        <image name="cog1" width="1000" height="1000"/>
-        <image name="cog2" width="1000" height="1000"/>
-        <image name="cog3" width="1000" height="1000"/>
-        <image name="cog4" width="1000" height="1000"/>
+        <image name="cancel" width="500" height="500"/>
+        <image name="cogTeam1" width="1000" height="1000"/>
+        <image name="cogTeam2" width="1000" height="1000"/>
+        <image name="cogTeam3" width="1000" height="1000"/>
+        <image name="cogTeam4" width="1000" height="1000"/>
         <image name="cogg" width="1000" height="1000"/>
     </resources>
 </document>

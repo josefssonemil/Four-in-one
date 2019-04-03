@@ -33,7 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, color: UIColor.blue)
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, color: UIColor.green)
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, color: UIColor.yellow)
-    private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: 3.0)
+    private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 3.0, height: 3.0), color: UIColor.blue)
     
     //private var robotController : GameViewController!
     //private var cogwheelController : GameViewController!

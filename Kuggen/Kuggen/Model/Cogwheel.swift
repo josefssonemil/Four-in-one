@@ -10,6 +10,7 @@ class Cogwheel: SKSpriteNode{
     private var lock: Lock?
     private var currentAngle: Double
     
+    //Creates a cogwheel
     init(handle: Handle, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
         self.handle = handle
         self.outerAlignmentAngle = outer

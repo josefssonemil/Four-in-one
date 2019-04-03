@@ -65,7 +65,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     
     @IBAction func goBack(_ sender: Any) {
-        coordinator?.start()
+        coordinator?.goToTeamSelection()
     }
     private func setupGame(){
         setupManager.delegate = self
@@ -101,40 +101,57 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         loadingCog.transform = CGAffineTransform.identity
         switch position {
         case DevicePosition.one:
-            longBorder.backgroundColor = oneTwo
-            shortBorder.backgroundColor = oneFour
+            self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 50)
+            self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: 0)
             UIView.animate(withDuration: 2.0, animations: {
                 self.loadingCog.center.y=0
                 self.loadingCog.center.x=self.view.bounds.width
                 self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
+                self.longBorder.backgroundColor = self.oneTwo
+                self.shortBorder.backgroundColor = self.oneFour
+                self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: -self.view.bounds.width, height: 50)
+                self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: self.view.bounds.height)
+                //self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: self.view.bounds.width, height: 50)
             })
         case DevicePosition.two:
-            longBorder.backgroundColor = oneTwo
-            shortBorder.backgroundColor = twoThree
-            self.longBorder.center.y = self.view.bounds.height-25
+            self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: 0, height: 50)
+            self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: 0)
             UIView.animate(withDuration: 2.0, animations: {
                 self.loadingCog.center.y=self.view.bounds.height
                 self.loadingCog.center.x=self.view.bounds.width
                 self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
+                self.longBorder.backgroundColor = self.oneTwo
+                self.shortBorder.backgroundColor = self.twoThree
+                //self.longBorder.center.y = self.view.bounds.height-25
+                self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: -self.view.bounds.width, height: 50)
+                self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: -self.view.bounds.height)
             })
         case DevicePosition.three:
-            longBorder.backgroundColor = threeFour
-            shortBorder.backgroundColor = twoThree
-            longBorder.center.y = self.view.bounds.height-25
-            shortBorder.center.x = 25
+            self.longBorder.frame = CGRect(x: 0, y: self.view.bounds.height-50, width: 0, height: 50)
+            self.shortBorder.frame = CGRect(x: 0, y: self.view.bounds.height, width: 50, height: 0)
             UIView.animate(withDuration: 2.0, animations: {
                 self.loadingCog.center.y=self.view.bounds.height
                 self.loadingCog.center.x=0
                 self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
+                self.longBorder.backgroundColor = self.threeFour
+                self.shortBorder.backgroundColor = self.twoThree
+                //self.longBorder.center.y = self.view.bounds.height-25
+                //self.shortBorder.center.x = 25
+                self.longBorder.frame = CGRect(x: 0, y: self.view.bounds.height-50, width: self.view.bounds.width, height: 50)
+                self.shortBorder.frame = CGRect(x: 0, y: self.view.bounds.height, width: 50, height: -self.view.bounds.height)
             })
         case DevicePosition.four:
-            longBorder.backgroundColor = threeFour
-            shortBorder.backgroundColor = oneFour
-            shortBorder.center.x=25
+            self.longBorder.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
+            self.shortBorder.frame = CGRect(x: 0, y: 0, width: 50, height: 0)
             UIView.animate(withDuration: 2.0, animations: {
                 self.loadingCog.center.y=0
                 self.loadingCog.center.x=0
                 self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
+                self.longBorder.backgroundColor = self.threeFour
+                self.shortBorder.backgroundColor = self.oneFour
+                //self.shortBorder.center.x=25
+                self.longBorder.frame = CGRect(x: 0, y: 50, width: self.view.bounds.width, height: 50)
+                self.shortBorder.frame = CGRect(x: 0, y: 0, width: 50, height: self.view.bounds.height)
             })
         default:
             break
@@ -142,8 +159,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         shortBorder.isHidden=false
         longBorder.isHidden=false
 
-
-        stateLabel.text = (inProgress ? connectingString : connectedString)
+        stateLabel.text = (inProgress ? connectingString : connectedString + position.rawValue.description)
             }
     
     private func setupStartView() {

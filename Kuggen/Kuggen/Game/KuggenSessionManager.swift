@@ -198,6 +198,70 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     // TODO : make events
     
+    // Event Factory
+    let moveEvent = "m"
+    let moveOnlyEvent = "t"
+    let levelEvent = "1"
+    let endLevelEvent = "e"
+    let nextLevelEvent = "n"
     
+    let positionKey = "p"
+    let levelKey = "v"
+    let scoreKey = "s"
+    let oneKey = "1"
+    let twoKey = "2"
+    let threeKey = "3"
+    let fourKey = "4"
+    
+    func makeMoveEvent(center:CGPoint) -> FourInOneEvent {
+        var event = FourInOneEvent()
+        
+        event.type = moveOnlyEvent
+        event.info = [positionKey:NSCoder.string(for: center)]
+        
+        return event
+    }
+    
+    func makeMoveEvent(center:CGPoint, one:Int, two:Int, three:Int, four:Int) -> FourInOneEvent {
+        
+        var event = FourInOneEvent()
+        
+        event.type = moveEvent
+        event.info = [positionKey:NSCoder.string(for: center),
+                      oneKey:String(one), twoKey:String(two), threeKey:String(three), fourKey:String(four)]
+        
+        return event
+        
+    }
+    
+    func makeLevelEvent(level:Level, count:Int) -> FourInOneEvent {
+        
+        var event = FourInOneEvent()
+        event.type = levelEvent
+        
+        /*if let json = level.JSONString() {
+            event.info = [levelKey:json, intKey:String(count)]
+        }*/
+        
+        return event
+    }
+    
+    func makeEndLevelEvent(score:Int) -> FourInOneEvent {
+        
+        var event = FourInOneEvent()
+        event.type = endLevelEvent
+        event.info = [scoreKey:String(score)]
+        
+        return event
+        
+    }
+    
+    func makeNextLevelEvent() -> FourInOneEvent {
+        
+        var event = FourInOneEvent()
+        event.type = nextLevelEvent
+        
+        return event
 
+    }
 }

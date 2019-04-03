@@ -132,6 +132,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         shortBorder.isHidden=true
         longBorder.isHidden=true
         self.navigationController?.isNavigationBarHidden = true
+        stateLabel.transform = CGAffineTransform.identity
         UIView.animate(withDuration: 2.0, animations: {
             self.stateLabel.center.y = self.view.bounds.height/2
             self.stateLabel.center.x = self.view.bounds.width/2 - 160
@@ -150,6 +151,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     private func setView(position : DevicePosition, mode : GameMode, inProgress: Bool) {
         if(!inProgress){
             loadingCog.transform = CGAffineTransform.identity
+            stateLabel.transform = CGAffineTransform.identity
         switch position {
         case DevicePosition.one:
             if(mode == GameMode.twoplayer){
@@ -162,18 +164,9 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                 })
             }
             else{
-                self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 50)
-                self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: 0)
-                UIView.animate(withDuration: 2.0, animations: {
-                    self.loadingCog.center.y=0
-                    self.loadingCog.center.x=self.view.bounds.width
-                    self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
-                    self.longBorder.backgroundColor = self.oneTwo
-                    self.shortBorder.backgroundColor = self.oneFour
-                    self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: -self.view.bounds.width, height: 50)
-                    self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: self.view.bounds.height)
-                    //self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: self.view.bounds.width, height: 50)
-                })
+                self.longBorder.backgroundColor = self.oneTwo
+                self.shortBorder.backgroundColor = self.oneFour
+               oddPositionSetup()
             }
         case DevicePosition.two:
             stateLabel.transform = CGAffineTransform(rotationAngle: .pi)
@@ -194,54 +187,18 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                 })
             }
             else{
-                self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: 0, height: 50)
-                self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: 0)
-                UIView.animate(withDuration: 2.0, animations: {
-                    self.loadingCog.center.y=self.view.bounds.height
-                    self.loadingCog.center.x=self.view.bounds.width
-                    self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
-                    self.longBorder.backgroundColor = self.oneTwo
-                    self.shortBorder.backgroundColor = self.twoThree
-                    //self.longBorder.center.y = self.view.bounds.height-25
-                    self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: -self.view.bounds.width, height: 50)
-                    self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: -self.view.bounds.height)
-                }, completion: { (finished) in
-                    self.backButton.center.y = 75
-                    self.backButton.center.x = self.view.bounds.width/2
-                    self.stateLabel.center.x = self.view.bounds.width/2
-                    self.stateLabel.center.y = self.view.bounds.height/2 - 100
-                    self.backButton.isHidden=false
-                    self.stateLabel.isHidden=false
-                })
+                self.longBorder.backgroundColor = self.oneTwo
+                self.shortBorder.backgroundColor = self.twoThree
+               evenPositionSetup()
             }
         case DevicePosition.three:
-            stateLabel.transform = CGAffineTransform(rotationAngle: .pi)
-            self.longBorder.frame = CGRect(x: 0, y: self.view.bounds.height-50, width: 0, height: 50)
-            self.shortBorder.frame = CGRect(x: 0, y: self.view.bounds.height, width: 50, height: 0)
-            UIView.animate(withDuration: 2.0, animations: {
-                self.loadingCog.center.y=self.view.bounds.height
-                self.loadingCog.center.x=0
-                self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
-                self.longBorder.backgroundColor = self.threeFour
-                self.shortBorder.backgroundColor = self.twoThree
-                //self.longBorder.center.y = self.view.bounds.height-25
-                //self.shortBorder.center.x = 25
-                self.longBorder.frame = CGRect(x: 0, y: self.view.bounds.height-50, width: self.view.bounds.width, height: 50)
-                self.shortBorder.frame = CGRect(x: 0, y: self.view.bounds.height, width: 50, height: -self.view.bounds.height)
-            })
+            self.longBorder.backgroundColor = self.threeFour
+            self.shortBorder.backgroundColor = self.twoThree
+           oddPositionSetup()
         case DevicePosition.four:
-            self.longBorder.frame = CGRect(x: 0, y: 0, width: 0, height: 50)
-            self.shortBorder.frame = CGRect(x: 0, y: 0, width: 50, height: 0)
-            UIView.animate(withDuration: 2.0, animations: {
-                self.loadingCog.center.y=0
-                self.loadingCog.center.x=0
-                self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
-                self.longBorder.backgroundColor = self.threeFour
-                self.shortBorder.backgroundColor = self.oneFour
-                //self.shortBorder.center.x=25
-                self.longBorder.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 50)
-                self.shortBorder.frame = CGRect(x: 0, y: 0, width: 50, height: self.view.bounds.height)
-            })
+            self.longBorder.backgroundColor = self.threeFour
+            self.shortBorder.backgroundColor = self.oneFour
+            evenPositionSetup()
         default:
             break
         }
@@ -259,6 +216,39 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
 
     }
     
+    private func oddPositionSetup(){
+        self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 50)
+        self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: 0)
+        UIView.animate(withDuration: 2.0, animations: {
+            self.loadingCog.center.y=0
+            self.loadingCog.center.x=self.view.bounds.width
+            self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
+            self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: -self.view.bounds.width, height: 50)
+            self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: self.view.bounds.height)
+            //self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: self.view.bounds.width, height: 50)
+        })
+    }
+    
+    private func evenPositionSetup(){
+        stateLabel.transform = CGAffineTransform(rotationAngle: .pi)
+        self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: 0, height: 50)
+        self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: 0)
+        UIView.animate(withDuration: 2.0, animations: {
+            self.loadingCog.center.y=self.view.bounds.height
+            self.loadingCog.center.x=self.view.bounds.width
+            self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
+            //self.longBorder.center.y = self.view.bounds.height-25
+            self.longBorder.frame = CGRect(x: self.view.bounds.width, y: self.view.bounds.height-50, width: -self.view.bounds.width, height: 50)
+            self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: self.view.bounds.height, width: 50, height: -self.view.bounds.height)
+        }, completion: { (finished) in
+            self.backButton.center.y = 75
+            self.backButton.center.x = self.view.bounds.width/2
+            self.stateLabel.center.x = self.view.bounds.width/2
+            self.stateLabel.center.y = self.view.bounds.height/2 - 100
+            self.backButton.isHidden=false
+            self.stateLabel.isHidden=false
+        })
+    }
     
     
 }

@@ -140,6 +140,20 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
+    func armMoved(robot: Robot, angle: CGFloat){
+        robot.handleMovement(angle: angle)
+        /*
+        if shouldHandleInput(robot){
+            if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){
+                //extend requested function here
+            }
+            
+            else if (isWithdrawArm(movement: diff.y, pos: robot.devicePosition)){
+                //withdraw requested function here
+            }
+        }*/
+    }
+    
     // Decides whether a player is withdrawing the arm  or not, depending on movement direction
     func isWithdrawArm(movement: CGFloat, pos: DevicePosition) -> Bool {
         switch pos {

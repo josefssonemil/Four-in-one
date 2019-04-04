@@ -17,10 +17,20 @@ protocol GameSceneDelegate {
     
 }
 
+struct PhysicsCategory {
+    static let none      : UInt32 = 0
+    static let all       : UInt32 = UInt32.max
+    static let robot   : UInt32 = 0b1
+    static let cogwheel: UInt32 = 0b10
+    static let key: UInt32 = 0b11
+    static let lock: UInt32 = 0b111
+}
+
 private let handleOne = Handle.edgeCircle
 private let handleTwo = Handle.edgeSquare
 private let handleThree = Handle.edgeTrapezoid
 private let handleFour = Handle.edgeTriangle
+
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -30,6 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameScenDelegate : GameSceneDelegate?
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
+
 
     // Create robots and cogwheel properties
     private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "robot_1")
@@ -53,6 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // When scene is presented by view
     override func didMove(to view: SKView) {
         // setup the scene
+        initPhysics()
         self.layoutScene()
     }
     
@@ -60,6 +72,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
    
      }*/
     
+    private func initPhysics(){
+        physicsWorld.gravity = .zero
+        physicsWorld.contactDelegate = self
+        
+        //robot one
+        robotOne.physicsBody = SKPhysicsBody(texture: robotOne.texture!, size: robotOne.texture!.size())
+        robotOne.physicsBody?.isDynamic = true
+        robotOne.physicsBody?.categoryBitMask = PhysicsCategory.robot
+        robotOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
+        robotOne.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        robotTwo.physicsBody = SKPhysicsBody(texture: robotTwo.texture!, size: robotTwo.texture!.size())
+        robotTwo.physicsBody?.isDynamic = true
+        robotTwo.physicsBody?.categoryBitMask = PhysicsCategory.robot
+        robotTwo.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
+        robotTwo.physicsBody?.collisionBitMask = PhysicsCategory.none
+
+
+        robotThree.physicsBody = SKPhysicsBody(texture: robotThree.texture!, size: robotThree.texture!.size())
+        robotThree.physicsBody?.isDynamic = true
+        robotThree.physicsBody?.categoryBitMask = PhysicsCategory.robot
+        robotThree.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
+        robotThree.physicsBody?.collisionBitMask = PhysicsCategory.none
+
+        
+        robotFour.physicsBody = SKPhysicsBody(texture: robotFour.texture!, size: robotFour.texture!.size())
+        robotFour.physicsBody?.isDynamic = true
+        robotFour.physicsBody?.categoryBitMask = PhysicsCategory.robot
+        robotFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
+        robotFour.physicsBody?.collisionBitMask = PhysicsCategory.none
+
+        cogWheel.physicsBody = SKPhysicsBody(texture: cogWheel.texture!, size: cogWheel.texture!.size())
+        cogWheel.physicsBody?.isDynamic = true
+        cogWheel.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel
+        cogWheel.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
+        cogWheel.physicsBody?.collisionBitMask = PhysicsCategory.none
+
+
+
+        
+        
+
+    }
     
     // Setup the scene, add scenes and behaviours
     func layoutScene() {
@@ -232,6 +287,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGFloat(Double(degree) / 180.0 * .pi)
     }
 }
+
+
 
 
 

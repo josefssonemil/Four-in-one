@@ -109,11 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cogWheel.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
         cogWheel.physicsBody?.collisionBitMask = PhysicsCategory.none
 
-
-
-        
-        
-
     }
     
     // Setup the scene, add scenes and behaviours
@@ -261,19 +256,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
-        /*for t in touches { self.touchMoved(toPoint: t.location(in: self)) }*/
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*for t in touches { self.touchUp(atPoint: t.location(in: self)) }*/
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        /*for t in touches { self.touchUp(atPoint: t.location(in: self)) }*/
     }
     
     // MARK: contact begin between two bodies
     func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
         
     }
     
@@ -289,6 +284,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 }
 
 
+private func keyPickedUp(key: SKSpriteNode, robot: SKSpriteNode){
+    //handle in game manager here
+}
+
+private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
+    //handle in game manager here
+}
 
 
 

@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "robot_2")
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "robot_3")
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "robot_4")
-    private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 3.0, height: 3.0), color: UIColor.blue)
+    private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     
 
     
@@ -142,7 +142,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(robotTwo)
             robotOne.name = "robot_1"
             robotTwo.name = "robot_2"
-            //self.addChild(cogWheel)
+            self.addChild(cogWheel)
+            cogWheel.name = "cog_1"
 
         }
         
@@ -155,14 +156,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             robotTwo.name = "robot_2"
             robotThree.name = "robot_3"
             robotFour.name = "robot_4"
-            //self.addChild(cogWheel)
+            self.addChild(cogWheel)
+            cogWheel.name = "cog_1"
 
         }
         
         else {
             self.addChild(robotOne)
             robotOne.name = "robot_1"
-            //self.addChild(cogWheel)
+            self.addChild(cogWheel)
+            cogWheel.name = "cog_1"
         }
     
         self.gameManager.initialSetUp()
@@ -266,10 +269,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: contact begin between two bodies
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        // Arrange the two bodies for easier handling
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
         
+        
+        // Handle contact between handle and key
+        
+        if ((firstBody.categoryBitMask  & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
+            PhysicsCategory.key != 0) {
+            if let robot = firstBody.node as? SKSpriteNode,
+                let key = secondBody.node as? SKSpriteNode{
+                keyPickedUp(key: key, robot: robot)
+            }
+        }
+        
+        // Handle contact between handle and cogwheel
+        else if ((firstBody.categoryBitMask & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
+            PhysicsCategory.cogwheel != 0){
+            if let robot = firstBody.node as? SKSpriteNode,
+                let cogwheel = secondBody.node as? SKSpriteNode {
+                handleLockedIn(cogwheel: cogwheel, robot: robot)
+            }
+        }
+    
     }
     
     // contact end
@@ -286,10 +318,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 private func keyPickedUp(key: SKSpriteNode, robot: SKSpriteNode){
     //handle in game manager here
+    print("key picked up")
 }
 
 private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
     //handle in game manager here
+    print("handle locked in ")
 }
 
 

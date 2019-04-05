@@ -12,11 +12,14 @@ class Cogwheel: SKSpriteNode{
     
     //Creates a cogwheel
     init(handle: Handle, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
+        let texture = SKTexture(imageNamed: "purple cogwheel")
         self.handle = handle
         self.outerAlignmentAngle = outer
         self.innerAlignmentAngle = inner
         self.currentAngle = current
-        super.init(texture: nil, color: color, size: size)
+        super.init(texture: texture, color: color, size: size)
+        self.setScale(10)
+
     }
     
     required init?(coder aDecoder: NSCoder) {

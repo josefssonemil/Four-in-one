@@ -338,9 +338,9 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     private func twoPlayerSetup(){
         //settings for where the help images should be aligned in the speechbubble from the help robot
         twoPlayerTopImage.center.x=biggerHelpBubble.center.x
-        twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-5
+        twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-7.5
         twoPlayerBotImage.center.x=biggerHelpBubble.center.x
-        twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+5
+        twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+7.5
     }
     
     private func fourPlayerSetup(){
@@ -348,13 +348,13 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         shortBorder.alpha=1
         //settings for where the help images should be aligned in the speechbubble from the help robot
         twoPlayerTopImage.center.x=biggerHelpBubble.center.x - twoPlayerTopImage.bounds.width/2 - 5
-        twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-5
+        twoPlayerTopImage.center.y=(biggerHelpBubble.center.y-(twoPlayerTopImage.bounds.height/2))-7.5
         twoPlayerBotImage.center.x=biggerHelpBubble.center.x - twoPlayerBotImage.bounds.width/2 - 5
-        twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+5
+        twoPlayerBotImage.center.y=(biggerHelpBubble.center.y+(twoPlayerBotImage.bounds.height/2))+7.5
         fourPlayerTopImage.center.x=biggerHelpBubble.center.x + fourPlayerTopImage.bounds.width/2 + 5
-        fourPlayerTopImage.center.y=(biggerHelpBubble.center.y-(fourPlayerTopImage.bounds.height/2))-5
+        fourPlayerTopImage.center.y=(biggerHelpBubble.center.y-(fourPlayerTopImage.bounds.height/2))-7.5
         fourPlayerBotImage.center.x=biggerHelpBubble.center.x + fourPlayerBotImage.bounds.width/2 + 5
-        fourPlayerBotImage.center.y=(biggerHelpBubble.center.y+(fourPlayerBotImage.bounds.height/2))+5
+        fourPlayerBotImage.center.y=(biggerHelpBubble.center.y+(fourPlayerBotImage.bounds.height/2))+7.5
     }
     
     private func oddPositionSetup(positionOfCogX: CGFloat, positionOfCogY: CGFloat){

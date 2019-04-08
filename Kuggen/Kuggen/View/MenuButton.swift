@@ -30,7 +30,7 @@ import UIKit
     }
 
     private func sharedInit() {
-        backgroundColor = .darkPrimary
+        backgroundColor = .midPrimary
         setTitleColor(.lightText, for: .normal)
         titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         

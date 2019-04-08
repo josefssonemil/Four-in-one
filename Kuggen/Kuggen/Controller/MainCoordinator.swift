@@ -27,6 +27,11 @@ class MainCoordinator: Coordinator {
     }
     
     
+    func goToAbout(){
+        let vc = AboutViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
     func goToRobotSelection(){
         let vc = RobotConfigurationViewController.instantiate()
         vc.coordinator = self

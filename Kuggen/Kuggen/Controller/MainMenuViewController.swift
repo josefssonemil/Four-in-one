@@ -38,7 +38,7 @@ class MainMenuViewController: UIViewController, Storyboarded {
         })
     }
     override func viewDidLoad() {
-        aboutButton.isHidden=true
+        aboutButton.alpha=0
         speechLabel.alpha = 0
         speechBubble.alpha = 0
         super.viewDidLoad()
@@ -47,22 +47,27 @@ class MainMenuViewController: UIViewController, Storyboarded {
         
     }
     @IBAction func robotTapped(_ sender: Any) {
+        var about = CGFloat(0.0)
         if(!(helpCount < help.count)){
             helpCount=0
         }
         self.speechLabel.text = help[helpCount]
         if (helpCount == 3) {
-            aboutButton.isHidden=false
+            about=1.0
+            
         }
         helpCount+=1
         UIView.animate(withDuration: 0.5, animations: {
             self.speechLabel.alpha=1.0
             self.speechBubble.alpha=1.0
+            self.aboutButton.alpha=about
         }, completion: {
             (finished) in
             UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
+                about=0.0
                 self.speechLabel.alpha=0.0
                 self.speechBubble.alpha=0.0
+                self.aboutButton.alpha=about
             })
         })
       

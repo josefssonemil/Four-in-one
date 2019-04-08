@@ -18,7 +18,7 @@ class Cogwheel: SKSpriteNode{
         self.innerAlignmentAngle = inner
         self.currentAngle = current
         super.init(texture: texture, color: color, size: size)
-        self.setScale(10)
+        self.setScale(11)
 
     }
     

@@ -43,11 +43,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 
     // Create robots and cogwheel properties
-    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "robot_1")
-    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "robot_2")
-    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "robot_3")
-    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "robot_4")
+    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "arm")
+    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "arm")
+    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "arm")
+    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "arm")
     private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    
+
+    
+    
     
 
     
@@ -120,9 +124,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameManager.delegate = self as FourInOneSessionManagerDelegate
         
         // set the background color
-        self.backgroundColor = SKColor.white
+        self.backgroundColor = SKColor.gray
         
-   
+
+        
+        
         
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -167,6 +173,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(cogWheel)
             cogWheel.name = "cog_1"
         }
+        
+        // Robot heads (replace with graphics)
+        let r1head = SKShapeNode(circleOfRadius: 10)
+        let r2head = SKShapeNode(circleOfRadius: 10)
+        let r3head = SKShapeNode(circleOfRadius: 10)
+        let r4head = SKShapeNode(circleOfRadius: 10)
+        r1head.fillColor = SKColor.black
+        r2head.fillColor = SKColor.red
+        r3head.fillColor = SKColor.blue
+        r4head.fillColor = SKColor.brown
+        
+        r1head.position = robotOne.position
+        r2head.position = robotTwo.position
+        r3head.position = robotThree.position
+        r4head.position = robotFour.position
+        
+        self.addChild(r1head)
+        self.addChild(r2head)
+        self.addChild(r3head)
+        self.addChild(r4head)
+
     
         self.gameManager.initialSetUp()
         
@@ -195,7 +222,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-      
+        let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
+        spinAction.speed = 0.6
+        cogWheel.run(spinAction)
         
     }
     
@@ -285,16 +314,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Handle contact between handle and key
         
-        if ((firstBody.categoryBitMask  & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
+        /*if ((firstBody.categoryBitMask  & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
             PhysicsCategory.key != 0) {
             if let robot = firstBody.node as? SKSpriteNode,
                 let key = secondBody.node as? SKSpriteNode{
                 keyPickedUp(key: key, robot: robot)
             }
-        }
+        }*/
         
         // Handle contact between handle and cogwheel
-        else if ((firstBody.categoryBitMask & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
+         if ((firstBody.categoryBitMask & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
             PhysicsCategory.cogwheel != 0){
             if let robot = firstBody.node as? SKSpriteNode,
                 let cogwheel = secondBody.node as? SKSpriteNode {
@@ -323,6 +352,8 @@ private func keyPickedUp(key: SKSpriteNode, robot: SKSpriteNode){
 
 private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
     //handle in game manager here
+    //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
+    //cogwheel.run(spinAction)
     print("handle locked in ")
 }
 

@@ -32,8 +32,8 @@ class MainMenuViewController: UIViewController, Storyboarded {
         }, completion: {
             (finished) in
             UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
-                self.speechLabel.alpha=0.0
-                self.speechBubble.alpha=0.0
+                //self.speechLabel.alpha=0.0
+                //self.speechBubble.alpha=0.0
             })
         })
     }
@@ -65,9 +65,9 @@ class MainMenuViewController: UIViewController, Storyboarded {
             (finished) in
             UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
                 about=0.0
-                self.speechLabel.alpha=0.0
-                self.speechBubble.alpha=0.0
-                self.aboutButton.alpha=about
+               // self.speechLabel.alpha=0.0
+                //self.speechBubble.alpha=0.0
+                //self.aboutButton.alpha=about
             })
         })
       

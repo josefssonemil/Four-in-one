@@ -360,20 +360,18 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
 
 
 extension GameScene : KuggenSessionManagerDelegate {
-    
-    func gameManager(_ manager: KuggenSessionManagerDelegate, moveMid newCenter: CGPoint, deviceAt position:DevicePosition) {
+    func gameManager(_ manager: KuggenSessionManager, newLevel level: Level) {
         
+        self.addChild(robotOne)
+        self.addChild(robotTwo)
+        self.addChild(robotThree)
+        self.addChild(robotFour)
     }
     
-    /*func gameManager(_ manager: KuggenSessionManagerDelegate, newLevel:Level) {
-     
-     }*/
-    
-    /*func gameManager(_ manager: KuggenSessionManagerDelegate, endedLevel: Level?, success: Bool) {
-     
-     gameSceneDelegate?.gameScene(self, didEndLevelWithSuccess: success)
-     
-     }*/
+    func gameManager(_ manager: KuggenSessionManager, endedLevel: Level?, success: Bool) {
+        
+        gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: success)
+    }
     
     func gameManagerGameOver(_ manager: KuggenSessionManager) {
         

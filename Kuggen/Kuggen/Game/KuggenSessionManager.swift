@@ -15,7 +15,11 @@ import MultipeerConnectivity
 // Used in the GameScene as an extension
 protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
     
+    func gameManager(_ manager: KuggenSessionManager, newLevel level:Level)
     
+    func gameManager(_ manager: KuggenSessionManager, endedLevel:Level?, success:Bool)
+    
+    func gameManagerNextLevel(_ manager:KuggenSessionManager)
 }
 
 // This class handles the session itself and the events that are created while in the game, such
@@ -196,6 +200,20 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }
     
+    func readyForNextLevel() {
+        
+    }
+    
+    func cancelReadyForNextLevel() {
+        
+    }
+    
+    func startNextLevel() {
+        
+        // level += 1
+        
+    }
+    
     // TODO : make events
     
     // Event Factory
@@ -204,10 +222,13 @@ class KuggenSessionManager: FourInOneSessionManager {
     let levelEvent = "1"
     let endLevelEvent = "e"
     let nextLevelEvent = "n"
+    let holdingEvent = "h"
     
     let positionKey = "p"
     let levelKey = "v"
     let scoreKey = "s"
+    let boolKey = "o"
+    let intKey = "i"
     let oneKey = "1"
     let twoKey = "2"
     let threeKey = "3"
@@ -263,5 +284,16 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         return event
 
+    }
+    
+    func makeHoldingEvent(on:Bool) -> FourInOneEvent {
+        
+        var event = FourInOneEvent()
+        
+        event.type = holdingEvent
+        event.info = [boolKey:on.description]
+        
+        return event
+        
     }
 }

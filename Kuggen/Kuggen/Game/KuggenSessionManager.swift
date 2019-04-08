@@ -70,17 +70,23 @@ class KuggenSessionManager: FourInOneSessionManager {
          var robotThreePos: CGPoint
          var robotFourPos: CGPoint
         
+        var cogwheelPos: CGPoint
+        
         if mode == .twoplayer
         {
-            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y:globalSize.width))
-            
-            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 50))
-            
+            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 150))
+            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 150))
+
             robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             
-            robotOne.zRotation = 0
+            robotOne.zRotation = .pi
             robotTwo.zRotation = 0
+            
+            cogwheelPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogWheel.position.x = cogwheelPos.x
+            cogWheel.position.y = cogwheelPos.y
+            
         }
         
             // TODO
@@ -98,6 +104,10 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
             robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
+            
+            cogwheelPos = makeGlobal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogWheel.position.x = cogwheelPos.x
+            cogWheel.position.y = cogwheelPos.y
         }
         
     
@@ -144,6 +154,7 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
+
     func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
         /*

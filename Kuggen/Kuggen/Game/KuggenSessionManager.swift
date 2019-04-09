@@ -15,7 +15,11 @@ import MultipeerConnectivity
 // Used in the GameScene as an extension
 protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
     
+    func gameManager(_ manager: KuggenSessionManager, newLevel level:Level)
     
+    func gameManager(_ manager: KuggenSessionManager, endedLevel:Level?, success:Bool)
+    
+    func gameManagerNextLevel(_ manager:KuggenSessionManager)
 }
 
 // This class handles the session itself and the events that are created while in the game, such
@@ -66,17 +70,23 @@ class KuggenSessionManager: FourInOneSessionManager {
          var robotThreePos: CGPoint
          var robotFourPos: CGPoint
         
+        var cogwheelPos: CGPoint
+        
         if mode == .twoplayer
         {
-            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y:globalSize.width))
-            
-            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 50))
-            
+            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 150))
+            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 150))
+
             robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             
-            robotOne.zRotation = 0
+            robotOne.zRotation = .pi
             robotTwo.zRotation = 0
+            
+            cogwheelPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogWheel.position.x = cogwheelPos.x
+            cogWheel.position.y = cogwheelPos.y
+            
         }
         
             // TODO
@@ -94,6 +104,10 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
             robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
+            
+            cogwheelPos = makeGlobal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogWheel.position.x = cogwheelPos.x
+            cogWheel.position.y = cogwheelPos.y
         }
         
     
@@ -140,6 +154,7 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
+
     func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
         /*
@@ -196,6 +211,20 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }
     
+    func readyForNextLevel() {
+        
+    }
+    
+    func cancelReadyForNextLevel() {
+        
+    }
+    
+    func startNextLevel() {
+        
+        // level += 1
+        
+    }
+    
     // TODO : make events
     
     // Event Factory
@@ -204,10 +233,13 @@ class KuggenSessionManager: FourInOneSessionManager {
     let levelEvent = "1"
     let endLevelEvent = "e"
     let nextLevelEvent = "n"
+    let holdingEvent = "h"
     
     let positionKey = "p"
     let levelKey = "v"
     let scoreKey = "s"
+    let boolKey = "o"
+    let intKey = "i"
     let oneKey = "1"
     let twoKey = "2"
     let threeKey = "3"
@@ -263,5 +295,16 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         return event
 
+    }
+    
+    func makeHoldingEvent(on:Bool) -> FourInOneEvent {
+        
+        var event = FourInOneEvent()
+        
+        event.type = holdingEvent
+        event.info = [boolKey:on.description]
+        
+        return event
+        
     }
 }

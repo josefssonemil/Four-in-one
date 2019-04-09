@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Level{
+class Level {
+    
     var cogwheels: [Cogwheel]
     var key: Key?
     

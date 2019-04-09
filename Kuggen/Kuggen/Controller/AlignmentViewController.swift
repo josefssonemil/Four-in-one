@@ -176,6 +176,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     
     
     @IBAction func goBack(_ sender: Any) {
+        setupManager.cancelSetup()
         coordinator?.goToTeamSelection()
     }
     private func setupGame(){
@@ -215,7 +216,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         shortBorder.isHidden=false
         longBorder.isHidden=false
 
-        stateLabel.text = (inProgress ? connectingString : connectedString + position.rawValue.description)
+        stateLabel.text = (inProgress ? connectingString : connectedString)
             }
     
     private func setupStartView() {
@@ -284,9 +285,6 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                 if(mode == GameMode.twoplayer){
                     oddPositionSetup(positionOfCogX: self.view.bounds.width/2, positionOfCogY: 0)
                     twoPlayerSetup()
-                    UIView.animate(withDuration: 2.0, animations: {
-
-                    })
                 }
                 else{
                     self.longBorder.backgroundColor = self.oneTwo
@@ -360,6 +358,9 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     private func oddPositionSetup(positionOfCogX: CGFloat, positionOfCogY: CGFloat){
         self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 50)
         self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: 0)
+        stateLabel.isHidden=true
+        stateLabel.center.x = view.bounds.width/2
+        stateLabel.center.y = view.bounds.height/2 + 100
         //animations
         UIView.animate(withDuration: 2.0, animations: {
             self.loadingCog.center.y=positionOfCogY
@@ -367,8 +368,8 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
             self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: -self.view.bounds.width, height: 50)
             self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: self.view.bounds.height)
-            self.stateLabel.center.x = self.view.bounds.width/2
-            self.stateLabel.center.y = self.view.bounds.height/2 + 100
+        }, completion: { (finished) in
+            self.stateLabel.isHidden=false
         })
     }
     

@@ -42,6 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var limit : CGFloat = 6.0
 
 
+
     // Create robots and cogwheel properties
     private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "arm")
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "arm")
@@ -126,9 +127,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // set the background color
         self.backgroundColor = SKColor.gray
         
-
-        
-        
+        // Shadows
+        let lightNode = SKLightNode()
+        //lightNode.position = CGPoint(x: (self.size.width)/2, y: (self.size.width)/2)
+        lightNode.position = CGPoint(x: (self.size.width)/2, y: (self.size.width)/2)
+        lightNode.categoryBitMask = 1
+        lightNode.falloff = CGFloat(0.01)
+        lightNode.lightColor = UIColor.white
+        lightNode.shadowColor = UIColor.gray
+        self.addChild(lightNode)
         
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -150,6 +157,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             robotTwo.name = "robot_2"
             self.addChild(cogWheel)
             cogWheel.name = "cog_1"
+            robotOne.lightingBitMask = 1
+            robotOne.shadowedBitMask = 0b0001
+            
+            robotTwo.lightingBitMask = 1
+            robotTwo.shadowedBitMask = 0b0001
+            
+            cogWheel.lightingBitMask = 1
+            cogWheel.shadowedBitMask = 0b0001
 
         }
         

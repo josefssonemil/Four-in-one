@@ -197,6 +197,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     @IBOutlet weak var shortBorder: UIImageView!
     
     override func viewDidAppear(_ animated: Bool) {
+        self.helpButton.setImage(UIImage(named: "robotBlink"), for: .highlighted)
     }
     
     override func viewDidLoad() {

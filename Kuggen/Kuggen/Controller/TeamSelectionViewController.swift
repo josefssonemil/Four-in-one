@@ -62,8 +62,8 @@ class TeamSelectionViewController: UIViewController, Storyboarded {
         }, completion: {
             (finished) in
             UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
-                self.helpLabel.alpha=0.0
-                self.helpBubble.alpha=0.0
+                //self.helpLabel.alpha=0.0
+                //self.helpBubble.alpha=0.0
             })
         })
     }

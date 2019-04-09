@@ -41,6 +41,11 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     @IBOutlet weak var fourPlayerTopImage: UIImageView!
     @IBOutlet weak var fourPlayerBotImage: UIImageView!
     @IBOutlet weak var biggerHelpBubble: UIImageView!
+    @IBOutlet weak var handOne: UIImageView!
+    @IBOutlet weak var handTwo: UIImageView!
+    @IBOutlet weak var handThree: UIImageView!
+    @IBOutlet weak var handFour: UIImageView!
+    
     
 
     @IBAction func next(_ sender: Any) {
@@ -49,6 +54,18 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     @IBAction func helpButtonTapped(_ sender: Any) {
         if (!inProgress) {
+            handOne.image = UIImage(named: "handFlipped")
+            handTwo.image = UIImage(named: "hand")
+            handThree.image = UIImage(named: "handFlipped")
+            handFour.image = UIImage(named: "hand")
+            handOne.center.x=twoPlayerBotImage.center.x
+            handOne.center.y=twoPlayerBotImage.center.y+35
+            handTwo.center.x=twoPlayerTopImage.center.x
+            handTwo.center.y=twoPlayerTopImage.center.y-35
+            handThree.center.x=fourPlayerTopImage.center.x
+            handThree.center.y=fourPlayerTopImage.center.y-35
+            handFour.center.x=fourPlayerBotImage.center.x
+            handFour.center.y=fourPlayerBotImage.center.y+35
             if(mode==GameMode.fourplayer){
                 twoPlayerBotImage.image = UIImage(named: "4playerHelpOdd")
                 twoPlayerTopImage.image = UIImage(named: "4playerHelpEven")
@@ -71,7 +88,25 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                         self.fourPlayerBotImage.center.x -= 20
                     }, completion: {
                         (finished) in
+                        UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
+                            self.handOne.alpha=1
+                            self.handTwo.alpha=1
+                            self.handThree.alpha=1
+                            self.handFour.alpha=1
+                        }, completion: {
+                            (finished) in
+                            UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
+                                self.handOne.image = UIImage.init(named: "handClickedFlipped")
+                                self.handTwo.image = UIImage.init(named: "handClicked")
+                                self.handThree.image = UIImage.init(named: "handClickedFlipped")
+                                self.handFour.image = UIImage.init(named: "handClicked")
+                            }, completion: {
+                        (finished) in
                         UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
+                            self.handOne.alpha=0
+                            self.handTwo.alpha=0
+                            self.handThree.alpha=0
+                            self.handFour.alpha=0
                             self.twoPlayerTopImage.alpha=0.0
                             self.twoPlayerBotImage.alpha=0.0
                             self.fourPlayerTopImage.alpha=0.0
@@ -85,7 +120,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                             self.fourPlayerBotImage.center.y+=20
                             self.fourPlayerTopImage.center.x+=20
                             self.fourPlayerBotImage.center.x+=20
-                        })})
+                        })})})})
                 })
                 
             }
@@ -103,13 +138,25 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                         self.twoPlayerBotImage.center.y -= 20
                     }, completion: {
                         (finished) in
+                        UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
+                            self.handOne.alpha=1
+                            self.handTwo.alpha=1
+                        }, completion: {
+                            (finished) in
+                            UIView.animate(withDuration: 1.0, delay: 1.0, animations: {
+                                self.handOne.image = UIImage.init(named: "handClickedFlipped")
+                                self.handTwo.image = UIImage.init(named: "handClicked")
+                            }, completion: {
+                        (finished) in
                         UIView.animate(withDuration: 0.5, delay: 2.0, animations: {
+                            self.handOne.alpha=0
+                            self.handTwo.alpha=0
                             self.twoPlayerTopImage.alpha=0.0
                             self.twoPlayerBotImage.alpha=0.0
                             self.biggerHelpBubble.alpha=0.0
                             self.twoPlayerTopImage.center.y-=20
                             self.twoPlayerBotImage.center.y+=20
-                        })})
+                        })})})})
                 })
             }
         }
@@ -133,6 +180,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         }
     }
     
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         setupManager.readyAndWaitingForPeers()
@@ -149,6 +197,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     @IBOutlet weak var shortBorder: UIImageView!
     
     override func viewDidAppear(_ animated: Bool) {
+        self.helpButton.setImage(UIImage(named: "robotBlink"), for: .highlighted)
     }
     
     override func viewDidLoad() {
@@ -168,6 +217,8 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         super.viewDidLoad()
         twoPlayerBotImage.transform = CGAffineTransform(rotationAngle: .pi)
         fourPlayerBotImage.transform = CGAffineTransform(rotationAngle: .pi)
+        handTwo.transform = CGAffineTransform(rotationAngle: .pi)
+        handThree.transform = CGAffineTransform(rotationAngle: .pi)
         self.debugMode = true
        
         setupStartView()
@@ -176,6 +227,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     
     
     @IBAction func goBack(_ sender: Any) {
+        setupManager.cancelSetup()
         coordinator?.goToTeamSelection()
     }
     private func setupGame(){
@@ -211,14 +263,27 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         // All the visible stuff should be here
         self.inProgress=inProgress
         self.mode=mode
-        setView(position: position, mode: mode, inProgress: inProgress)
-        shortBorder.isHidden=false
-        longBorder.isHidden=false
+        if(!inProgress){
+        setViewToPosition(position: position, mode: mode)
+            } else { resetView()}
 
-        stateLabel.text = (inProgress ? connectingString : connectedString + position.rawValue.description)
+        stateLabel.text = (inProgress ? connectingString : connectedString)
             }
     
     private func setupStartView() {
+        //Sets all attributes that should not be visible at start to invisible
+        helpBubble.alpha = 0
+        helpLabel.alpha = 0
+        biggerHelpBubble.alpha=0
+        twoPlayerBotImage.alpha=0
+        twoPlayerTopImage.alpha=0
+        fourPlayerTopImage.alpha=0
+        fourPlayerBotImage.alpha=0
+        handOne.alpha=0
+        handTwo.alpha=0
+        handThree.alpha=0
+        handFour.alpha=0
+        
         showDebugInfo(type: .starting)
         teamLabel.isHidden = true
         idLabel.isHidden = true
@@ -235,14 +300,6 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     
     private func resetView(){
-        //Sets all attributes that should not be visible at start to invisible
-        helpBubble.alpha = 0
-        helpLabel.alpha = 0
-        biggerHelpBubble.alpha=0
-        twoPlayerBotImage.alpha=0
-        twoPlayerTopImage.alpha=0
-        fourPlayerTopImage.alpha=0
-        fourPlayerBotImage.alpha=0
         
         //placement of the helper robot
         helpButton.transform = CGAffineTransform.identity
@@ -275,8 +332,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             self.loadingCog.transform = CGAffineTransform(rotationAngle: (.pi))
         })
     }
-    private func setView(position : DevicePosition, mode : GameMode, inProgress: Bool) {
-        if(!inProgress){
+    private func setViewToPosition(position : DevicePosition, mode : GameMode) {
             loadingCog.transform = CGAffineTransform.identity
             stateLabel.transform = CGAffineTransform.identity
             switch position {
@@ -284,9 +340,6 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
                 if(mode == GameMode.twoplayer){
                     oddPositionSetup(positionOfCogX: self.view.bounds.width/2, positionOfCogY: 0)
                     twoPlayerSetup()
-                    UIView.animate(withDuration: 2.0, animations: {
-
-                    })
                 }
                 else{
                     self.longBorder.backgroundColor = self.oneTwo
@@ -320,8 +373,6 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             default:
                 break
             }
-            
-        }else {resetView() }
     }
     
     override func didStartMainActivity(_ manager: FourInOneSetupManager) {
@@ -358,8 +409,12 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
     }
     
     private func oddPositionSetup(positionOfCogX: CGFloat, positionOfCogY: CGFloat){
+        loadingCog.transform = CGAffineTransform.identity
         self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 50)
         self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: 0)
+        stateLabel.isHidden=true
+        stateLabel.center.x = view.bounds.width/2
+        stateLabel.center.y = view.bounds.height/2 + 100
         //animations
         UIView.animate(withDuration: 2.0, animations: {
             self.loadingCog.center.y=positionOfCogY
@@ -367,12 +422,13 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             self.loadingCog.transform = CGAffineTransform(scaleX: 3, y: 3)
             self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: -self.view.bounds.width, height: 50)
             self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: self.view.bounds.height)
-            self.stateLabel.center.x = self.view.bounds.width/2
-            self.stateLabel.center.y = self.view.bounds.height/2 + 100
+        }, completion: { (finished) in
+            self.stateLabel.isHidden=false
         })
     }
     
     private func evenPositionSetup(positionOfCogX: CGFloat, positionOfCogY: CGFloat){
+        loadingCog.transform = CGAffineTransform.identity
         //Settings for the state label
         stateLabel.isHidden=true
         stateLabel.transform = CGAffineTransform(rotationAngle: .pi)

@@ -119,6 +119,22 @@
                                 <rect key="frame" x="641" y="466" width="178" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hand" translatesAutoresizingMaskIntoConstraints="NO" id="fjN-0d-7Vp">
+                                <rect key="frame" x="179" y="59" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hand" translatesAutoresizingMaskIntoConstraints="NO" id="dpf-fW-vzg">
+                                <rect key="frame" x="213" y="177" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="handFlipped" translatesAutoresizingMaskIntoConstraints="NO" id="HNu-Yc-egh">
+                                <rect key="frame" x="366" y="54" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="handFlipped" translatesAutoresizingMaskIntoConstraints="NO" id="GXp-Ig-3Rl">
+                                <rect key="frame" x="44" y="187" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431372549016" green="0.84705882352941175" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="sCO-ig-iXY"/>
@@ -130,6 +146,10 @@
                         <outlet property="biggerHelpBubble" destination="dRB-9J-RKv" id="gEC-mg-pPu"/>
                         <outlet property="fourPlayerBotImage" destination="qtV-fo-EH4" id="d3v-hf-FBA"/>
                         <outlet property="fourPlayerTopImage" destination="Hbx-Zn-zju" id="Ikb-IN-oft"/>
+                        <outlet property="handFour" destination="dpf-fW-vzg" id="zWP-3t-8mw"/>
+                        <outlet property="handOne" destination="GXp-Ig-3Rl" id="Otz-tE-yIF"/>
+                        <outlet property="handThree" destination="HNu-Yc-egh" id="9SO-WN-ZRW"/>
+                        <outlet property="handTwo" destination="fjN-0d-7Vp" id="wyf-Pm-kg8"/>
                         <outlet property="helpBubble" destination="Ezt-JI-usm" id="aEn-cL-eY7"/>
                         <outlet property="helpButton" destination="ZSN-uu-ISL" id="wNh-xw-Usz"/>
                         <outlet property="helpLabel" destination="Lq1-jY-ihe" id="251-0B-RBH"/>
@@ -302,15 +322,6 @@
                                     <action selector="backButtonTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="6Bq-IF-Sn1"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4p-eb-Ffc">
-                                <rect key="frame" x="778" y="522" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="robotTest"/>
-                                <connections>
-                                    <action selector="helpButtonTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="Drm-FW-X7I"/>
-                                    <action selector="robotTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="DvC-vh-Dhm"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="talk2" translatesAutoresizingMaskIntoConstraints="NO" id="SOq-o7-RmH">
                                 <rect key="frame" x="243" y="600" width="577" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -333,6 +344,15 @@
                                 <color key="textColor" name="DarkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4p-eb-Ffc">
+                                <rect key="frame" x="774" y="518" width="250" height="250"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="robotTest"/>
+                                <connections>
+                                    <action selector="helpButtonTapped:" destination="ics-QM-IEP" eventType="touchUpInside" id="Drm-FW-X7I"/>
+                                    <action selector="robotTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="DvC-vh-Dhm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.76078431369999999" green="0.84705882349999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="jhp-ae-lh8"/>
@@ -625,6 +645,8 @@
         <image name="cogTeam3" width="1000" height="1000"/>
         <image name="cogTeam4" width="1000" height="1000"/>
         <image name="cogg" width="1000" height="1000"/>
+        <image name="hand" width="294" height="425"/>
+        <image name="handFlipped" width="294" height="425"/>
         <image name="robotTest" width="1000" height="1000"/>
         <image name="talk" width="1000" height="1000"/>
         <image name="talk2" width="1000" height="300"/>

@@ -48,8 +48,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "arm")
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "arm")
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "arm")
-    private let cogWheel = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-    
+    private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    private let cogwheelThree = Cogwheel(handle: handleThree, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    private let cogwheelFour = Cogwheel(handle: handleFour, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
 
     
     
@@ -108,11 +110,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
         robotFour.physicsBody?.collisionBitMask = PhysicsCategory.none
 
-        cogWheel.physicsBody = SKPhysicsBody(texture: cogWheel.texture!, size: cogWheel.texture!.size())
-        cogWheel.physicsBody?.isDynamic = true
-        cogWheel.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel
-        cogWheel.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
-        cogWheel.physicsBody?.collisionBitMask = PhysicsCategory.none
+        cogwheelOne.physicsBody = SKPhysicsBody(texture: cogwheelOne.texture!, size: cogwheelOne.texture!.size())
+        cogwheelOne.physicsBody?.isDynamic = true
+        cogwheelOne.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel
+        cogwheelOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
+        cogwheelOne.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        //TODO: add physics for three more cogwheel
 
     }
     
@@ -146,7 +150,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotTwo = robotTwo
         self.gameManager.robotThree = robotThree
         self.gameManager.robotFour = robotFour
-        self.gameManager.cogWheel = cogWheel
+        self.gameManager.cogwheelOne = cogwheelOne
+        self.gameManager.cogwheelTwo = cogwheelTwo
+        self.gameManager.cogwheelThree = cogwheelThree
+        self.gameManager.cogwheelFour = cogwheelFour
+
+        
         
         // add nodes to scene
         if gameManager.mode == .twoplayer
@@ -155,16 +164,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(robotTwo)
             robotOne.name = "robot_1"
             robotTwo.name = "robot_2"
-            self.addChild(cogWheel)
-            cogWheel.name = "cog_1"
+            self.addChild(cogwheelOne)
+            self.addChild(cogwheelTwo)
+            cogwheelOne.name = "cog_1"
+            cogwheelTwo.name = "cog_2"
             robotOne.lightingBitMask = 1
             robotOne.shadowedBitMask = 0b0001
             
             robotTwo.lightingBitMask = 1
             robotTwo.shadowedBitMask = 0b0001
             
-            cogWheel.lightingBitMask = 1
-            cogWheel.shadowedBitMask = 0b0001
+            cogwheelOne.lightingBitMask = 1
+            cogwheelOne.shadowedBitMask = 0b0001
+            
+            cogwheelTwo.lightingBitMask = 1
+            cogwheelTwo.shadowedBitMask = 0b0001
 
         }
         
@@ -177,16 +191,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             robotTwo.name = "robot_2"
             robotThree.name = "robot_3"
             robotFour.name = "robot_4"
-            self.addChild(cogWheel)
-            cogWheel.name = "cog_1"
+            self.addChild(cogwheelOne)
+            self.addChild(cogwheelTwo)
+            self.addChild(cogwheelThree)
+            self.addChild(cogwheelFour)
+            cogwheelOne.name = "cog_1"
+            cogwheelTwo.name = "cog_2"
+            cogwheelThree.name = "cog_3"
+            cogwheelFour.name = "cog_4"
 
         }
         
         else {
             self.addChild(robotOne)
             robotOne.name = "robot_1"
-            self.addChild(cogWheel)
-            cogWheel.name = "cog_1"
+            self.addChild(cogwheelOne)
+            cogwheelOne.name = "cog_1"
         }
         
         // Robot heads (replace with graphics)
@@ -239,7 +259,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
         spinAction.speed = 0.6
-        cogWheel.run(spinAction)
+        cogwheelOne.run(spinAction)
         
     }
     

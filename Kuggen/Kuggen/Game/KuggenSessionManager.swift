@@ -37,7 +37,10 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     var kuggenDelegate: KuggenSessionManagerDelegate?
 
-    var cogWheel: Cogwheel!
+    var cogwheelOne: Cogwheel!
+    var cogwheelTwo: Cogwheel!
+    var cogwheelThree: Cogwheel!
+    var cogwheelFour: Cogwheel!
     var robotOne: Robot!
     var robotTwo: Robot!
     var robotThree: Robot!
@@ -70,7 +73,10 @@ class KuggenSessionManager: FourInOneSessionManager {
          var robotThreePos: CGPoint
          var robotFourPos: CGPoint
         
-        var cogwheelPos: CGPoint
+        var cogwheelOnePos: CGPoint
+        var cogwheelTwoPos: CGPoint
+        var cogwheelThreePos: CGPoint
+        var cogwheelFourPos: CGPoint
         
         if mode == .twoplayer
         {
@@ -83,9 +89,13 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotOne.zRotation = .pi
             robotTwo.zRotation = 0
             
-            cogwheelPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
-            cogWheel.position.x = cogwheelPos.x
-            cogWheel.position.y = cogwheelPos.y
+            cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelOne.position.x = cogwheelOnePos.x
+            cogwheelOne.position.y = cogwheelOnePos.y
+            
+            cogwheelTwoPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelTwo.position.x = cogwheelTwoPos.x
+            cogwheelTwo.position.y = cogwheelTwoPos.y
             
         }
         
@@ -105,9 +115,21 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
             robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
             
-            cogwheelPos = makeGlobal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
-            cogWheel.position.x = cogwheelPos.x
-            cogWheel.position.y = cogwheelPos.y
+            cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelOne.position.x = cogwheelOnePos.x
+            cogwheelOne.position.y = cogwheelOnePos.y
+            
+            cogwheelTwoPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelTwo.position.x = cogwheelTwoPos.x
+            cogwheelTwo.position.y = cogwheelTwoPos.y
+            
+            cogwheelThreePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelThree.position.x = cogwheelThreePos.x
+            cogwheelThree.position.y = cogwheelThreePos.y
+            
+            cogwheelFourPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelFour.position.x = cogwheelFourPos.x
+            cogwheelFour.position.y = cogwheelFourPos.y
         }
         
     

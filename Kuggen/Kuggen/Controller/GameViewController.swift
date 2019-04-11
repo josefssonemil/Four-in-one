@@ -44,6 +44,8 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
             //gameScene.gameSceneDelegate = self
+            let skView = self.view! as! SKView
+            skView.showsPhysics = true
 
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)

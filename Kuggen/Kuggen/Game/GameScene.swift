@@ -268,7 +268,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
-    func rotateCogwheel(cogwheel: Cogwheel, impulse: CGFloat){
+   /* func rotateCogwheel(cogwheel: Cogwheel, impulse: CGFloat){
         let oldRotation = cogWheel.zRotation
         print("old rotation:" + oldRotation.description)
         cogWheel.physicsBody?.applyAngularImpulse(impulse)
@@ -276,7 +276,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("new rotation:" + newRotation.description)
         gameManager.updateCogRotations(cogwheel: cogwheel, rotation: newRotation)
         
-    }
+    }*/
     
 
     
@@ -416,7 +416,7 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
 extension GameScene : KuggenSessionManagerDelegate {
     func gameManager(_ manager: KuggenSessionManager, rotAngle: CGFloat, cogwheel: Cogwheel) {
             print("cog = cog")
-            self.cogWheel.zRotation = cogwheel.zRotation
+          //  self.cogWheel.zRotation = cogwheel.zRotation
             }
     
     

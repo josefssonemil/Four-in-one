@@ -20,12 +20,10 @@ protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
     func gameManager(_ manager: KuggenSessionManager, endedLevel:Level?, success:Bool)
     
     func gameManagerNextLevel(_ manager:KuggenSessionManager)
+    
+    func gameManager(_ manager: KuggenSessionManager, rotAngle: CGFloat, cogwheel: Cogwheel)
 }
 
-// This class handles the session itself and the events that are created while in the game, such
-// as Key spawns and other 4-in-1 events. However, it does not handle the actual logic of the core game
-// which instead handled in the model classes. Furthermore, no sprites are drawn here, they are handled
-// in the gamescene by spritekit
 
 class KuggenSessionManager: FourInOneSessionManager {
 
@@ -141,6 +139,10 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }*/
     
+    func cogRotated(cogwheel: Cogwheel, angle: CGFloat){
+        
+    }
+    
     
     // TODO - robot objects need to contain devicepositions
     
@@ -177,8 +179,10 @@ class KuggenSessionManager: FourInOneSessionManager {
     }
     
 
-    func armMoved(robot: Robot, angle: CGFloat){
+    func armMoved(robot: Robot, angle: CGFloat, location: CGPoint){
         robot.handleMovement(angle: angle)
+        robot.position.x = location.x
+        robot.position.y = location.y
         /*
         if shouldHandleInput(robot){
             if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){
@@ -233,6 +237,22 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }
     
+    func updateCogRotations(cogwheel: Cogwheel, rotation: CGFloat){
+        let move = makeCogRotation(angle: rotation)
+       
+        if self.isServer {
+            sendEventToClients(move)
+        }
+        
+        else {
+            sendEventToServer(move)
+        }
+        
+        OperationQueue.main.addOperation {
+            self.kuggenDelegate?.gameManager(self, rotAngle: rotation, cogwheel: cogwheel)
+        }
+    }
+    
     func readyForNextLevel() {
         
     }
@@ -247,7 +267,6 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }
     
-    // TODO : make events
     
     // Event Factory
     let moveEvent = "m"
@@ -256,7 +275,9 @@ class KuggenSessionManager: FourInOneSessionManager {
     let endLevelEvent = "e"
     let nextLevelEvent = "n"
     let holdingEvent = "h"
+    let cogRotationEvent = "c"
     
+    let rotationKey = "r"
     let positionKey = "p"
     let levelKey = "v"
     let scoreKey = "s"
@@ -273,6 +294,15 @@ class KuggenSessionManager: FourInOneSessionManager {
         event.type = moveOnlyEvent
         event.info = [positionKey:NSCoder.string(for: center)]
         
+        return event
+    }
+    
+    
+    
+    func makeCogRotation(angle: CGFloat) -> FourInOneEvent {
+        var event = FourInOneEvent()
+        event.type = cogRotationEvent
+        event.info = [rotationKey: angle.description]
         return event
     }
     

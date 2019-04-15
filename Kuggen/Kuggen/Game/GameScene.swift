@@ -257,9 +257,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
-        spinAction.speed = 0.6
-        cogwheelOne.run(spinAction)
+        //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
+        //spinAction.speed = 0.6
+       // cogwheelOne.run(spinAction)
+        
+        cogwheelOne.physicsBody?.applyAngularImpulse(10)
+        
+        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        
         //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
         //spinAction.speed = 0.6
         //cogWheel.run(spinAction)
@@ -408,13 +413,28 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
     //handle in game manager here
     //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
     //cogwheel.run(spinAction)
-    print("handle locked in ")
+   // print("handle locked in ")
 }
 
 
 
 extension GameScene : KuggenSessionManagerDelegate {
-    func gameManager(_ manager: KuggenSessionManager, rotAngle: CGFloat, cogwheel: Cogwheel) {
+    func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
+        if cogName == "cog_1" {
+            manager.cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+        }
+        
+        else if cogName == "cog_2" {
+            manager.cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+        }
+        
+        else if cogName == "cog_3" {
+            manager.cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+        }
+        
+        else if cogName == "cog_4" {
+            manager.cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+        }
             print("cog = cog")
           //  self.cogWheel.zRotation = cogwheel.zRotation
             }

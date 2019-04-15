@@ -34,7 +34,73 @@ class KuggenSessionClient : KuggenSessionManager {
         sendEventToServer(event)
     }
     
+    override func synchronizeRotation(impulse: CGFloat, cogName: String) {
+        /* Create the rotate event containing impulse and specified cogwheel */
+        let rotateEvent = makeCogRotation(impulse: impulse, cogName: cogName)
+        print("client sync rotation")
+        /* Sending the event to the server, which can redirect it to other clients */
+        sendEventToServer(rotateEvent)
+        
+        /* Local rotations for the specific client */
+        if cogName == "cog_1" {
+            cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+            
+        }
+            
+        else if cogName == "cog_2" {
+            cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+        }
+            
+        else if cogName == "cog_3" {
+            cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
+            
+        }
+            
+        else if cogName == "cog_4" {
+            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            
+        }
+        
+        OperationQueue.main.addOperation {
+            self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
+        }
+    }
     
+    private func handleRemoteRotateEvent(_ event: FourInOneEvent) {
+        /* Unwrapping the event info sent by the server*/
+        let impulseString = event.info[impulseKey]
+        let cogName = event.info[nameKey]
+        
+        //var impulse: CGFloat!
+        guard let impulse = NumberFormatter().number(from: impulseString!) else { return }
+        
+        //synchronizeRotation(impulse: CGFloat(truncating: impulse), cogName: cogName!)
+    
+        /* Synchronizes the rotation for the cogwheel */
+        if cogName == "cog_1" {
+            cogwheelOne.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+            
+        }
+        
+        else if cogName == "cog_2" {
+            cogwheelTwo.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+        }
+        
+        else if cogName == "cog_3" {
+            cogwheelThree.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+
+        }
+        
+        else if cogName == "cog_4" {
+            cogwheelFour.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+
+        }
+        
+        OperationQueue.main.addOperation {
+            self.kuggenDelegate?.gameManager(self, impulse: CGFloat(truncating: impulse), cogName: cogName!)
+        }
+     
+    }
     
     override public func clientHandleRemote(event: FourInOneEvent, from server:MCPeerID) {
         
@@ -43,6 +109,7 @@ class KuggenSessionClient : KuggenSessionManager {
         }
             
         else if event.type == cogRotationEvent{
+            handleRemoteRotateEvent(event)
         }
         
         else if event.type == moveOnlyEvent {

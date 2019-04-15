@@ -260,8 +260,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
         spinAction.speed = 0.6
         cogwheelOne.run(spinAction)
-        
+        //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
+        //spinAction.speed = 0.6
+        //cogWheel.run(spinAction)
+        //cogWheel.physicsBody?.applyAngularImpulse(50)
+        //rotateCogwheel(cogwheel: cogWheel, impulse: 10)
+
     }
+    
+   /* func rotateCogwheel(cogwheel: Cogwheel, impulse: CGFloat){
+        let oldRotation = cogWheel.zRotation
+        print("old rotation:" + oldRotation.description)
+        cogWheel.physicsBody?.applyAngularImpulse(impulse)
+        let newRotation = cogWheel.zRotation
+        print("new rotation:" + newRotation.description)
+        gameManager.updateCogRotations(cogwheel: cogwheel, rotation: newRotation)
+        
+    }*/
     
 
     
@@ -272,6 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
+            
             
             // Check that there's som significant move
             // or else do not care about touch at all
@@ -302,9 +318,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             
                             // When arm is rotated, there should be an angle limit in both directions
                             let angle = atan2(deltaY, deltaX) - (.pi / 2)
-
                             
-                            gameManager.armMoved(robot: touchedRobot, angle: angle)
+                            
+                            
+                            
+                            gameManager.armMoved(robot: touchedRobot, angle: angle, location: location)
                             
                         }
                         
@@ -362,6 +380,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             PhysicsCategory.cogwheel != 0){
             if let robot = firstBody.node as? SKSpriteNode,
                 let cogwheel = secondBody.node as? SKSpriteNode {
+               // cogwheel.physicsBody?.applyAngularImpulse(50)
                 handleLockedIn(cogwheel: cogwheel, robot: robot)
             }
         }
@@ -395,6 +414,12 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
 
 
 extension GameScene : KuggenSessionManagerDelegate {
+    func gameManager(_ manager: KuggenSessionManager, rotAngle: CGFloat, cogwheel: Cogwheel) {
+            print("cog = cog")
+          //  self.cogWheel.zRotation = cogwheel.zRotation
+            }
+    
+    
     func gameManager(_ manager: KuggenSessionManager, newLevel level: Level) {
         
         self.addChild(robotOne)

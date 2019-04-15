@@ -34,10 +34,15 @@ class KuggenSessionClient : KuggenSessionManager {
         sendEventToServer(event)
     }
     
+    
+    
     override public func clientHandleRemote(event: FourInOneEvent, from server:MCPeerID) {
         
         if event.type == moveEvent {
             
+        }
+            
+        else if event.type == cogRotationEvent{
         }
         
         else if event.type == moveOnlyEvent {

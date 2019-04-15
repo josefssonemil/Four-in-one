@@ -42,7 +42,7 @@ class KuggenSessionClient : KuggenSessionManager {
         sendEventToServer(rotateEvent)
         
         /* Local rotations for the specific client */
-        if cogName == "cog_1" {
+        /*if cogName == "cog_1" {
             cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
             
         }
@@ -59,7 +59,7 @@ class KuggenSessionClient : KuggenSessionManager {
         else if cogName == "cog_4" {
             cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
             
-        }
+        }*/
         
         OperationQueue.main.addOperation {
             self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
@@ -80,7 +80,7 @@ class KuggenSessionClient : KuggenSessionManager {
         //synchronizeRotation(impulse: CGFloat(truncating: impulse), cogName: cogName!)
     
         /* Synchronizes the rotation for the cogwheel */
-        if cogName == "cog_1" {
+       /* if cogName == "cog_1" {
             cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
             
         }
@@ -97,7 +97,7 @@ class KuggenSessionClient : KuggenSessionManager {
         else if cogName == "cog_4" {
             cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
 
-        }
+        }*/
         
         OperationQueue.main.addOperation {
             self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)

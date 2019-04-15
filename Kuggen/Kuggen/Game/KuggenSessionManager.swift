@@ -84,7 +84,7 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             
-            robotOne.zRotation = .pi
+            robotOne.zRotation = 0
             robotTwo.zRotation = 0
             
             cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
@@ -285,6 +285,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     let holdingEvent = "h"
     let cogRotationEvent = "c"
     
+    let peerKey = "a"
     let impulseKey = "x"
     let nameKey = "z"
     let positionKey = "p"
@@ -311,7 +312,8 @@ class KuggenSessionManager: FourInOneSessionManager {
     func makeCogRotation(impulse: CGFloat, cogName: String) -> FourInOneEvent {
         var event = FourInOneEvent()
         event.type = cogRotationEvent
-        event.info = [impulseKey: impulse.description, nameKey: cogName]
+        let peerInfo = self.peerId.description
+        event.info = [impulseKey: impulse.description, nameKey: cogName, peerKey: peerInfo]
         return event
     }
     

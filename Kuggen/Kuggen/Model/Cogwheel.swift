@@ -33,6 +33,16 @@ class Cogwheel: SKSpriteNode{
         }
     }
     
+    //Returns the angle of the alignment gap
+    public func getInner() -> Double{
+        return innerAlignmentAngle
+    }
+    
+    //Returns the angle of the alignment cog
+    public func getOuter() -> Double{
+        return outerAlignmentAngle
+    }
+    
     //Chacks if the rotation is possible
     private func canRotate(rotation: Double) -> Bool{
         return !(lock?.isLocked ?? false)

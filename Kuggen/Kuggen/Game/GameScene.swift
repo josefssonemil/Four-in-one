@@ -234,10 +234,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    // Update
+    // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
         // Initialize _lastUpdateTime if it has not already been
         /*if (self.lastUpdateTime == 0) {
          self.lastUpdateTime = currentTime
@@ -252,6 +250,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          }
          
          self.lastUpdateTime = currentTime*/
+        
+        //Checks if the goal is completed
+        if (gameManager.mode == .twoplayer){
+            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                gameManagerNextLevel(gameManager)
+            }
+        }else if (gameManager.mode == .fourplayer){
+            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                gameManagerNextLevel(gameManager)
+            }
+        }
+        
+        
     }
     
 
@@ -411,6 +424,16 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
     print("handle locked in ")
 }
 
+//Checks if two cogwheels are aligned with a 5 degree margin of error
+private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
+    if(abs(inner.getOuter() - outer.getInner()) < 10){
+        print("Aligned")
+        return true
+    }else{
+        return false
+    }
+    
+}
 
 
 extension GameScene : KuggenSessionManagerDelegate {

@@ -236,7 +236,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         r3head.position = robotThree.position
         r4head.position = robotFour.position
         
-        
         r1head.scale(to: CGSize(width: 50, height: 50))
         r1head.zPosition = -1
         self.addChild(r1head)
@@ -299,16 +298,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let location = aTouch.location(in: self)
             
-
-            
             let touchedNode = atPoint(location)
             
             if let nodeName = touchedNode.name {
                 
                 if nodeName.contains("robot") {
-                
+                    
                     if let touchedRobot = touchedNode as? Robot  {
-                        print(touchedRobot.anchorPoint)
                         let deltaX = location.x - touchedRobot.position.x
                         let deltaY = location.y - touchedRobot.position.y
                         if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {

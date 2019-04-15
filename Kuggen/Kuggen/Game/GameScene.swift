@@ -41,9 +41,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
 
-
-
-    // Create robots and cogwheel properties
+    
+    // Create robot arms and cogwheel properties
     private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "arm")
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "arm")
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "arm")
@@ -89,6 +88,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotOne.physicsBody?.categoryBitMask = PhysicsCategory.robot
         robotOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel
         robotOne.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        
+        //robotOne.anchorPoint = CGPoint(x: 0, y: 0)
+        robotTwo.anchorPoint = CGPoint(x: 0.5, y: 0.25)
+        //robotThree.anchorPoint = CGPoint(x: 0, y: 0)
+        //robotFour.anchorPoint = CGPoint(x: 0, y: 0)
         
         robotTwo.physicsBody = SKPhysicsBody(texture: robotTwo.texture!, size: robotTwo.texture!.size())
         robotTwo.physicsBody?.isDynamic = true
@@ -210,25 +215,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Robot heads (replace with graphics)
-        let r1head = SKShapeNode(circleOfRadius: 10)
+        let r1head = SKSpriteNode(imageNamed: "blueRobot")
+        //let r1head = SKShapeNode(circleOfRadius: 100)
         let r2head = SKShapeNode(circleOfRadius: 10)
         let r3head = SKShapeNode(circleOfRadius: 10)
         let r4head = SKShapeNode(circleOfRadius: 10)
-        r1head.fillColor = SKColor.black
+    
+        //r1head.fillColor = SKColor.green
         r2head.fillColor = SKColor.red
         r3head.fillColor = SKColor.blue
         r4head.fillColor = SKColor.brown
         
-        r1head.position = robotOne.position
+        r1head.position = CGPoint(x: self.frame.width/2, y: 0)
         r2head.position = robotTwo.position
         r3head.position = robotThree.position
         r4head.position = robotFour.position
         
+        
+        r1head.scale(to: CGSize(width: 400, height: 400))
+        r1head.zPosition = -1
         self.addChild(r1head)
         self.addChild(r2head)
         self.addChild(r3head)
         self.addChild(r4head)
 
+        
     
         self.gameManager.initialSetUp()
         
@@ -259,7 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
         spinAction.speed = 0.6
-        cogwheelOne.run(spinAction)
+        //cogwheelOne.run(spinAction)
         
     }
     
@@ -268,59 +279,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-     
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
             
-            // Check that there's som significant move
-            // or else do not care about touch at all
-            let diffX = abs(location.x-latestPoint.x)
-            let diffY = abs(location.y-latestPoint.y)
-          
             
-            if diffX+diffY > limit {
+            let touchedNode = atPoint(location)
+            
+            if let nodeName = touchedNode.name {
                 
-                // Remember this location
-                latestPoint = location
-                
-                let touchedNode = atPoint(location)
-                
-                if let nodeName = touchedNode.name {
+                if nodeName.contains("robot") {
                     
-                    if nodeName.contains("robot") {
+                    if let touchedRobot = touchedNode as? Robot  {
+                        let deltaX = location.x - touchedRobot.position.x
+                        let deltaY = location.y - touchedRobot.position.y
+                        if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
+                           
+                           // print("X: ", deltaX)
+                            //print("Y: ", deltaY)
+                            
+                            // When arm is rotated, the angle limit is set in the robot class.
+                            let angle = atan2(deltaY, deltaX) + (.pi / 2)
                         
-                        if let touchedRobot = touchedNode as? Robot  {
-                            let prevLoc = aTouch.previousLocation(in: self)
-                            // TODO, make arm stretch
-                            
-                            let dx = location.x - prevLoc.x
-                            let dy = location.y - prevLoc.y
-                            
-                            let deltaX = location.x - touchedRobot.position.x
-                            let deltaY = location.y - touchedRobot.position.y
-                            
-                            // When arm is rotated, there should be an angle limit in both directions
-                            let angle = atan2(deltaY, deltaX) - (.pi / 2)
-
-                            
                             gameManager.armMoved(robot: touchedRobot, angle: angle)
-                            
+                       
+                        }else {
+                            let diffY = abs(location.y-latestPoint.y)
+                            if(diffY < 2){
+                                if(location.y < latestPoint.y){
+                                    touchedRobot.size.height -= 5*diffY
+                                } else  if(location.y > latestPoint.y){
+                                    touchedRobot.size.height += 5*diffY
+                                }
+                                print(abs(location.y-latestPoint.y))
+                            } else {print("Too high value")}
                         }
-                        
                     }
                 }
-                
-                
-            }
-            else {
-                
-               // if kDebug {
-                  //  print("skipped, small limit value")
-             //   }
-                
             }
             
+            // Remember this location
+            latestPoint = location
         }
         
     }

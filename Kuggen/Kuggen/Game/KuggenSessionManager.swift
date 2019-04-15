@@ -176,7 +176,9 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
-
+    func armMoved(robot: Robot, stretch: CGFloat){
+        robot.handleMovement(stretch: stretch)
+    }
     func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
         /*

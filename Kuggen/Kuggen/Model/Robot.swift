@@ -51,13 +51,23 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-       self.zRotation = angle
+        var angleTmp = angle
+        if (angleTmp < -.pi/4){
+            angleTmp = -.pi/4
+        } else if(angleTmp > .pi/4){
+            angleTmp = .pi/4
+        }
+       self.zRotation = angleTmp
+    }
+    
+    public func handleMovement(stretch: CGFloat){
+        self.position.y = stretch
     }
     
     
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
-        self.setScale(0.3)
+        self.setScale(0.5)
 
        /*switch devicepos {
             //Lower left corner

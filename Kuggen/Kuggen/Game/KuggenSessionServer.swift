@@ -119,14 +119,67 @@ class KuggenSessionServer: KuggenSessionManager {
         
     }
     
+    override func synchronizeRotation(impulse: CGFloat, cogName: String) {
+    /* Create the rotate event containing impulse and specified cogwheel */
+    let rotation = makeCogRotation(impulse: impulse, cogName: cogName)
+ 
+    
+    print("server sync rotation")
+    //handleLocal(event: rotation)
+    /* Sending the rotate event to clients */
+    sendEventToClients(rotation)
+        
+    
+    if cogName == "cog_1" {
+        cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+        
+    }
+        
+    else if cogName == "cog_2" {
+        cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+    }
+        
+    else if cogName == "cog_3" {
+        cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
+        
+    }
+        
+    else if cogName == "cog_4" {
+        cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+        
+    }
+    OperationQueue.main.addOperation {
+        self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
+    }
+    
+    }
+    
+    
+    
     
     override public func handleLocal(event: FourInOneEvent, from sender: AnyObject? = nil) {
         
         sendEventToClients(event)
         
     }
+    // TODO - denna anropas aldrig?
     override public func serverHandleRemote(event: FourInOneEvent, from client:MCPeerID) {
+        let type = event.type
         
+        if type == cogRotationEvent {
+            
+            
+            let impulseString = event.info[impulseKey]
+            let cogName = event.info[nameKey]
+            
+            //var impulse: CGFloat!
+            print("impulse serverhandleremote:" + impulseString!)
+
+            guard let impulse = NumberFormatter().number(from: impulseString!) else { return }
+            
+            print("impulse serverhandleremote:" + impulse.description)
+            synchronizeRotation(impulse: CGFloat(truncating: impulse), cogName: cogName!)
+        }
         
     }
     

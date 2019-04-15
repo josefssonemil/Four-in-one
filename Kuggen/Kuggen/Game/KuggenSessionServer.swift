@@ -162,23 +162,22 @@ class KuggenSessionServer: KuggenSessionManager {
         sendEventToClients(event)
         
     }
-    // TODO - denna anropas aldrig?
     override public func serverHandleRemote(event: FourInOneEvent, from client:MCPeerID) {
         let type = event.type
         
         if type == cogRotationEvent {
             
-            
+            /* Unwrap event info*/
             let impulseString = event.info[impulseKey]
             let cogName = event.info[nameKey]
             
-            //var impulse: CGFloat!
             print("impulse serverhandleremote:" + impulseString!)
+            /* Transform the string back to a float */
+            let impulse = CGFloat((impulseString! as NSString).floatValue)
 
-            guard let impulse = NumberFormatter().number(from: impulseString!) else { return }
             
             print("impulse serverhandleremote:" + impulse.description)
-            synchronizeRotation(impulse: CGFloat(truncating: impulse), cogName: cogName!)
+            synchronizeRotation(impulse: impulse, cogName: cogName!)
         }
         
     }

@@ -72,32 +72,35 @@ class KuggenSessionClient : KuggenSessionManager {
         let cogName = event.info[nameKey]
         
         //var impulse: CGFloat!
-        guard let impulse = NumberFormatter().number(from: impulseString!) else { return }
+        let impulse = CGFloat((impulseString! as NSString).floatValue)
+        
+        //guard let impulse = NumberFormatter().number(from: impulseString!) else { return }
+        
         
         //synchronizeRotation(impulse: CGFloat(truncating: impulse), cogName: cogName!)
     
         /* Synchronizes the rotation for the cogwheel */
         if cogName == "cog_1" {
-            cogwheelOne.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+            cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
             
         }
         
         else if cogName == "cog_2" {
-            cogwheelTwo.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+            cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
         }
         
         else if cogName == "cog_3" {
-            cogwheelThree.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+            cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
 
         }
         
         else if cogName == "cog_4" {
-            cogwheelFour.physicsBody?.applyAngularImpulse(CGFloat(truncating: impulse))
+            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
 
         }
         
         OperationQueue.main.addOperation {
-            self.kuggenDelegate?.gameManager(self, impulse: CGFloat(truncating: impulse), cogName: cogName!)
+            self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)
         }
      
     }

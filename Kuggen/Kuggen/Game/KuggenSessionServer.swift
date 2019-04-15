@@ -121,8 +121,9 @@ class KuggenSessionServer: KuggenSessionManager {
     
     override func synchronizeRotation(impulse: CGFloat, cogName: String) {
     /* Create the rotate event containing impulse and specified cogwheel */
+    
     let rotation = makeCogRotation(impulse: impulse, cogName: cogName)
- 
+    
     
     print("server sync rotation")
     //handleLocal(event: rotation)
@@ -130,7 +131,7 @@ class KuggenSessionServer: KuggenSessionManager {
     sendEventToClients(rotation)
         
     
-    if cogName == "cog_1" {
+   /* if cogName == "cog_1" {
         cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
         
     }
@@ -147,7 +148,7 @@ class KuggenSessionServer: KuggenSessionManager {
     else if cogName == "cog_4" {
         cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
         
-    }
+    }*/
     OperationQueue.main.addOperation {
         self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
     }
@@ -171,13 +172,36 @@ class KuggenSessionServer: KuggenSessionManager {
             let impulseString = event.info[impulseKey]
             let cogName = event.info[nameKey]
             
-            print("impulse serverhandleremote:" + impulseString!)
             /* Transform the string back to a float */
             let impulse = CGFloat((impulseString! as NSString).floatValue)
-
+            let exclude = event.info[peerKey]
             
-            print("impulse serverhandleremote:" + impulse.description)
-            synchronizeRotation(impulse: impulse, cogName: cogName!)
+            let excludeID = MCPeerID(displayName: exclude!)
+            
+            sendEventToClients(event, exluding: excludeID)
+            
+            
+           /* if cogName == "cog_1" {
+                cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+                
+            }
+                
+            else if cogName == "cog_2" {
+                cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+            }
+                
+            else if cogName == "cog_3" {
+                cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
+                
+            }
+                
+            else if cogName == "cog_4" {
+                cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+                
+            }*/
+            OperationQueue.main.addOperation {
+                self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)
+            }
         }
         
     }

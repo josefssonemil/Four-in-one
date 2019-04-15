@@ -178,11 +178,8 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
-
-    func armMoved(robot: Robot, angle: CGFloat, location: CGPoint){
+    func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
-        robot.position.x = location.x
-        robot.position.y = location.y
         /*
         if shouldHandleInput(robot){
             if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){

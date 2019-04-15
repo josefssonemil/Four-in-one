@@ -421,22 +421,20 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
 extension GameScene : KuggenSessionManagerDelegate {
     func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
         if cogName == "cog_1" {
-            manager.cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
         }
         
         else if cogName == "cog_2" {
-            manager.cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
         }
         
         else if cogName == "cog_3" {
-            manager.cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
         }
         
         else if cogName == "cog_4" {
-            manager.cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
         }
-            print("cog = cog")
-          //  self.cogWheel.zRotation = cogwheel.zRotation
             }
     
     

@@ -14,6 +14,7 @@ class Robot: SKSpriteNode {
     var basePoint = CGPoint()
     private var anchorPosition = CGPoint(x: 0.5, y:0.5)
     private var rotation: CGFloat
+    private var arms : [Arm]
 
     
     init(matchingHandle: Handle, devicePosition: DevicePosition, textureName: String) {
@@ -23,6 +24,7 @@ class Robot: SKSpriteNode {
         self.devicePosition = devicePosition
         self.currentArmStretch = 0
         self.rotation = 0
+        self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
 
@@ -33,9 +35,16 @@ class Robot: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    public func getArms() -> [Arm]{
+        return self.arms
+    }
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
+        for arm in arms{
+            arm.setPosition(x: x, y: y)
+            print("x: ", x)
+            print("y: ", y)
+        }
     }
     
     public func getPosition() -> CGPoint {
@@ -51,17 +60,21 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        var angleTmp = angle
-        if (angleTmp < -.pi/4){
-            angleTmp = -.pi/4
-        } else if(angleTmp > .pi/4){
-            angleTmp = .pi/4
+        if (.pi/4 > angle  && angle > -.pi/4){
+            rotation=angle
+            self.zRotation = angle
+            for arm in arms{
+                arm.rotate(angle: angle)
+            }
         }
-       self.zRotation = angleTmp
     }
     
-    public func handleMovement(stretch: CGFloat){
-        self.position.y = stretch
+    public func extendArm(length: Int){
+        arms[2].extend(length: length)
+    }
+    
+    public func collapseArm(length: Int){
+        arms[2].collapse(length: length)
     }
     
     

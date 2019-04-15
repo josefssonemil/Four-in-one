@@ -54,9 +54,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     
-    
-
-    
     // Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -184,6 +181,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             cogwheelTwo.lightingBitMask = 1
             cogwheelTwo.shadowedBitMask = 0b0001
+            
+            //adding the arms to the screen
+            for arm in robotOne.getArms(){
+                self.addChild(arm)
+            }
+            for arm in robotTwo.getArms(){
+                self.addChild(arm)
+            }
 
         }
         
@@ -232,7 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         r4head.position = robotFour.position
         
         
-        r1head.scale(to: CGSize(width: 400, height: 400))
+        r1head.scale(to: CGSize(width: 50, height: 50))
         r1head.zPosition = -1
         self.addChild(r1head)
         self.addChild(r2head)
@@ -320,9 +325,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             let diffY = abs(location.y-latestPoint.y)
                             if(diffY < 2){
                                 if(location.y < latestPoint.y){
-                                    touchedRobot.size.height -= 5*diffY
+                                    touchedRobot.collapseArm(length: 5)
+                                    //touchedRobot.size.height -= 5*diffY
                                 } else  if(location.y > latestPoint.y){
-                                    touchedRobot.size.height += 5*diffY
+                                    touchedRobot.extendArm(length: 5)
+                                    //touchedRobot.size.height += 5*diffY
                                 }
                                 print(abs(location.y-latestPoint.y))
                             } else {print("Too high value")}

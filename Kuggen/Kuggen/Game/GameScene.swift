@@ -303,6 +303,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if nodeName.contains("robot") {
                 
                     if let touchedRobot = touchedNode as? Robot  {
+                        print(touchedRobot.anchorPoint)
                         let deltaX = location.x - touchedRobot.position.x
                         let deltaY = location.y - touchedRobot.position.y
                         if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {

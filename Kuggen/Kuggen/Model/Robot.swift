@@ -5,9 +5,9 @@ import SpriteKit
 import FourInOneCore
 
 class Robot: SKSpriteNode {
-    public var matchingHandle: Handle
+    public var matchingHandle: HandleType
     var devicePosition: DevicePosition
-    
+    var handle: Handle
     var currentArmStretch: Int
     
     //Depends on device pos
@@ -18,7 +18,7 @@ class Robot: SKSpriteNode {
    // private var arms : [Arm]
 
     
-    init(matchingHandle: Handle, devicePosition: DevicePosition, textureName: String) {
+    init(matchingHandle: HandleType, devicePosition: DevicePosition, textureName: String) {
         let texture = SKTexture(imageNamed: textureName)
        //super.init(texture: texture, color: nil, size: texture.size())
         self.matchingHandle = matchingHandle
@@ -26,6 +26,7 @@ class Robot: SKSpriteNode {
         self.currentArmStretch = 0
         self.rotation = 0
         self.arm = Arm.init(texture: SKTexture(imageNamed: "robotarm1"))
+        self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand0open"))
         //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
@@ -44,11 +45,16 @@ class Robot: SKSpriteNode {
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
+        handle.setPosition(x: x, y: y + arm.getHeight())
         /*for arm in arms{
             arm.setPosition(x: x, y: y)
             print("x: ", x)
             print("y: ", y)
         }*/
+    }
+    
+    public func getHandle() -> Handle{
+        return handle
     }
     
     public func getPosition() -> CGPoint {
@@ -80,11 +86,13 @@ class Robot: SKSpriteNode {
     
     public func extendArm(){
         arm.extend()
+        handle.extend()
         //arms[2].extend(length: length)
     }
     
     public func collapseArm(){
         arm.collapse()
+        handle.collapse()
         //arms[2].collapse(length: length)
     }
     

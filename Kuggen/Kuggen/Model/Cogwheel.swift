@@ -3,7 +3,7 @@ import Foundation
 import SpriteKit
 
 class Cogwheel: SKSpriteNode{
-    private var handle: Handle
+    private var handle: HandleType
     private var outerAlignmentAngle: Double
     private var innerAlignmentAngle: Double
     private var blocker: Double?
@@ -11,7 +11,7 @@ class Cogwheel: SKSpriteNode{
     private var currentAngle: Double
     
     //Creates a cogwheel
-    init(handle: Handle, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
+    init(handle: HandleType, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
         let texture = SKTexture(imageNamed: "purple cogwheel")
         self.handle = handle
         self.outerAlignmentAngle = outer

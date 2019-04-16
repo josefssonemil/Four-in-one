@@ -78,8 +78,8 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         if mode == .twoplayer
         {
-            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 150))
-            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 150))
+            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 100))
+            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2 + 150, y: 100))
 
             robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
@@ -201,11 +201,8 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
-
-    func armMoved(robot: Robot, angle: CGFloat, location: CGPoint){
+    func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
-        robot.position.x = location.x
-        robot.position.y = location.y
         /*
         if shouldHandleInput(robot){
             if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){

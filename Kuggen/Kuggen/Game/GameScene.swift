@@ -61,8 +61,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "fingerprint")
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "fingerprint")
   
-    /*private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-    private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+
+    private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 80.0, height: 80.0), color: SKColor.black)
     private let cogwheelThree = Cogwheel(handle: handleThree, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelFour = Cogwheel(handle: handleFour, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)*/
     
@@ -430,6 +431,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }*/
         
         
+
         // Handle contact between handle and cogwheel
         if((firstBody.categoryBitMask & PhysicsCategory.robot1 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel1 != 0) {
             if let robot = firstBody.node as? SKSpriteNode, let cogwheel = secondBody.node as? SKSpriteNode {

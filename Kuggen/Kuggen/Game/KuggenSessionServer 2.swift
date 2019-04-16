@@ -119,25 +119,6 @@ class KuggenSessionServer: KuggenSessionManager {
         
     }
     
-    override func synchronizeRotation(impulse: CGFloat, cogName: String) {
-    /* Create the rotate event containing impulse and specified cogwheel */
-    
-    let rotation = makeCogRotation(impulse: impulse, cogName: cogName)
-    
-    
-    print("server sync rotation")
-    //handleLocal(event: rotation)
-    /* Sending the rotate event to clients */
-    sendEventToClients(rotation)
-        
-    OperationQueue.main.addOperation {
-        self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
-    }
-    
-    }
-    
-    
-    
     
     override public func handleLocal(event: FourInOneEvent, from sender: AnyObject? = nil) {
         
@@ -145,27 +126,7 @@ class KuggenSessionServer: KuggenSessionManager {
         
     }
     override public func serverHandleRemote(event: FourInOneEvent, from client:MCPeerID) {
-        let type = event.type
         
-        if type == cogRotationEvent {
-            
-            /* Unwrap event info*/
-            let impulseString = event.info[impulseKey]
-            let cogName = event.info[nameKey]
-            
-            /* Transform the string back to a float */
-            let impulse = CGFloat((impulseString! as NSString).floatValue)
-            let exclude = event.info[peerKey]
-            
-            let excludeID = MCPeerID(displayName: exclude!)
-            sendEventToClients(event, exluding: excludeID)
-            
-            OperationQueue.main.addOperation {
-                    self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)
-                }
-                
-            
-        }
         
     }
     

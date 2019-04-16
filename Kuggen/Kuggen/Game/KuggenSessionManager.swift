@@ -312,7 +312,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     func makeCogRotation(impulse: CGFloat, cogName: String) -> FourInOneEvent {
         var event = FourInOneEvent()
         event.type = cogRotationEvent
-        let peerInfo = self.peerId.description
+        let peerInfo = self.peerId.displayName
         event.info = [impulseKey: impulse.description, nameKey: cogName, peerKey: peerInfo]
         return event
     }

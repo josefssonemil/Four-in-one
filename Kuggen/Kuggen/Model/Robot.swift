@@ -32,7 +32,6 @@ class Robot: SKSpriteNode {
        // super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
-    
 
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)

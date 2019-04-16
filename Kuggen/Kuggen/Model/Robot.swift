@@ -93,6 +93,7 @@ class Robot: SKSpriteNode {
         devicePosition = devicepos
         self.setScale(0.2)
 
+
        /*switch devicepos {
             //Lower left corner
             case .one:

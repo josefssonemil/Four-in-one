@@ -39,6 +39,11 @@ class Arm: SKSpriteNode {
     public func getX() -> Int {
         return Int(self.position.x)
     }
+    
+    public func getHeight() -> Int{
+        return Int(self.size.height)
+    }
+    
     public func rotate(angle: CGFloat){
         //let a = CGFloat(sqrt(2*pow(distanceFromOrigin,2)*Double(1-cos(angle))))
         self.zRotation=angle
@@ -71,4 +76,5 @@ class Arm: SKSpriteNode {
             extended -= 1
         }
     }
+    
 }

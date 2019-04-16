@@ -36,10 +36,10 @@ struct PhysicsCategory {
     static let robot4: UInt32 = 0b0001
 }
 
-private let handleOne = Handle.edgeCircle
-private let handleTwo = Handle.edgeSquare
-private let handleThree = Handle.edgeTrapezoid
-private let handleFour = Handle.edgeTriangle
+private let handleOne = HandleType.edgeCircle
+private let handleTwo = HandleType.edgeSquare
+private let handleThree = HandleType.edgeTrapezoid
+private let handleFour = HandleType.edgeTriangle
 
 
 
@@ -182,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameManager.delegate = self as FourInOneSessionManagerDelegate
         
         // set the background color
-        self.backgroundColor = SKColor.gray
+        self.backgroundColor = UIColor.background!
         
         // Shadows
         let lightNode = SKLightNode()
@@ -237,6 +237,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheelTwo.shadowedBitMask = 0b0001
             
             self.addChild(robotOne.getArm())
+            self.addChild(robotOne.getHandle())
+            self.addChild(robotTwo.getHandle())
             self.addChild(robotTwo.getArm())
             //adding the arms to the screen
             /*for arm in robotOne.getArms(){

@@ -41,6 +41,7 @@ class Robot: SKSpriteNode {
     /*public func getArms() -> [Arm]{
         return self.arms
     }*/
+
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)

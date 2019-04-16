@@ -160,11 +160,11 @@ class KuggenSessionServer: KuggenSessionManager {
             let excludeID = MCPeerID(displayName: exclude!)
             sendEventToClients(event, exluding: excludeID)
             
+       
             OperationQueue.main.addOperation {
-                    self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)
-                }
-                
-            
+                self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)
+            }
+
         }
         
     }

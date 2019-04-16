@@ -40,12 +40,13 @@ class KuggenSessionClient : KuggenSessionManager {
         print("client sync rotation")
         /* Sending the event to the server, which can redirect it to other clients */
         sendEventToServer(rotateEvent)
-        
+    
         
         OperationQueue.main.addOperation {
             self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
         }
     }
+
     
     private func handleRemoteRotateEvent(_ event: FourInOneEvent) {
         /* Unwrapping the event info sent by the server*/
@@ -56,7 +57,6 @@ class KuggenSessionClient : KuggenSessionManager {
         let impulse = CGFloat((impulseString! as NSString).floatValue)
         let peerID = event.info[peerKey]
         
-        //let peer = MCPeerID.init(displayName: peerID!)
         
         print("session id:" + self.peerId.displayName)
         print("event id:" + peerID!)
@@ -68,11 +68,8 @@ class KuggenSessionClient : KuggenSessionManager {
         }
         
             
-        
-    
-        
-     
     }
+    
     
     override public func clientHandleRemote(event: FourInOneEvent, from server:MCPeerID) {
         
@@ -144,4 +141,5 @@ class KuggenSessionClient : KuggenSessionManager {
         
     }
 }
+
 

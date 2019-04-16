@@ -34,41 +34,6 @@ class KuggenSessionClient : KuggenSessionManager {
         sendEventToServer(event)
     }
     
-    override func synchronizeRotation(impulse: CGFloat, cogName: String) {
-        /* Create the rotate event containing impulse and specified cogwheel */
-        let rotateEvent = makeCogRotation(impulse: impulse, cogName: cogName)
-        print("client sync rotation")
-        /* Sending the event to the server, which can redirect it to other clients */
-        sendEventToServer(rotateEvent)
-    
-        
-        OperationQueue.main.addOperation {
-            self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
-        }
-    }
-
-    
-    private func handleRemoteRotateEvent(_ event: FourInOneEvent) {
-        /* Unwrapping the event info sent by the server*/
-        let impulseString = event.info[impulseKey]
-        let cogName = event.info[nameKey]
-        
-        //var impulse: CGFloat!
-        let impulse = CGFloat((impulseString! as NSString).floatValue)
-        let peerID = event.info[peerKey]
-        
-        
-        print("session id:" + self.peerId.displayName)
-        print("event id:" + peerID!)
-        
-        if self.peerId.displayName != peerID!{
-            OperationQueue.main.addOperation {
-                self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName!)
-            }
-        }
-        
-            
-    }
     
     
     override public func clientHandleRemote(event: FourInOneEvent, from server:MCPeerID) {
@@ -78,7 +43,6 @@ class KuggenSessionClient : KuggenSessionManager {
         }
             
         else if event.type == cogRotationEvent{
-            handleRemoteRotateEvent(event)
         }
         
         else if event.type == moveOnlyEvent {
@@ -141,5 +105,4 @@ class KuggenSessionClient : KuggenSessionManager {
         
     }
 }
-
 

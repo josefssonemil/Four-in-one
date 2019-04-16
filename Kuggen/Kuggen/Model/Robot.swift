@@ -57,7 +57,7 @@ class Robot: SKSpriteNode {
     
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
-        self.setScale(0.3)
+        self.setScale(1)
 
        /*switch devicepos {
             //Lower left corner

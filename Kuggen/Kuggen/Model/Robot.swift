@@ -12,9 +12,10 @@ class Robot: SKSpriteNode {
     
     //Depends on device pos
     var basePoint = CGPoint()
-    private var anchorPosition = CGPoint(x: 0.5, y:0.5)
+    private var anchorPosition = CGPoint(x: 0.5, y:1)
     private var rotation: CGFloat
-    private var arms : [Arm]
+    private var arm: Arm
+   // private var arms : [Arm]
 
     
     init(matchingHandle: Handle, devicePosition: DevicePosition, textureName: String) {
@@ -24,9 +25,11 @@ class Robot: SKSpriteNode {
         self.devicePosition = devicePosition
         self.currentArmStretch = 0
         self.rotation = 0
-        self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
+        self.arm = Arm.init(texture: SKTexture(imageNamed: "robotarm1"))
+        //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
+        self.anchorPoint=anchorPosition
 
     }
     
@@ -35,16 +38,17 @@ class Robot: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func getArms() -> [Arm]{
+    /*public func getArms() -> [Arm]{
         return self.arms
-    }
+    }*/
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
-        for arm in arms{
+        arm.setPosition(x: x, y: y)
+        /*for arm in arms{
             arm.setPosition(x: x, y: y)
             print("x: ", x)
             print("y: ", y)
-        }
+        }*/
     }
     
     public func getPosition() -> CGPoint {
@@ -60,27 +64,34 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        if (.pi/4 > angle  && angle > -.pi/4){
+        if (.pi/3 > angle  && angle > -.pi/3){
             rotation=angle
             self.zRotation = angle
-            for arm in arms{
+            arm.rotate(angle: angle)
+            /*for arm in arms{
                 arm.rotate(angle: angle)
-            }
+            }*/
         }
     }
     
-    public func extendArm(length: Int){
-        arms[2].extend(length: length)
+    public func getArm() -> Arm{
+        return self.arm
     }
     
-    public func collapseArm(length: Int){
-        arms[2].collapse(length: length)
+    public func extendArm(){
+        arm.extend()
+        //arms[2].extend(length: length)
+    }
+    
+    public func collapseArm(){
+        arm.collapse()
+        //arms[2].collapse(length: length)
     }
     
     
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
-        self.setScale(0.5)
+        self.setScale(0.2)
 
        /*switch devicepos {
             //Lower left corner

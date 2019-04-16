@@ -43,10 +43,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     // Create robot arms and cogwheel properties
-    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "arm")
-    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "arm")
-    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "arm")
-    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "arm")
+    private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "fingerprint")
+    private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "fingerprint")
+    private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "fingerprint")
+    private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "fingerprint")
     private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelThree = Cogwheel(handle: handleThree, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
@@ -88,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         //robotOne.anchorPoint = CGPoint(x: 0, y: 0)
-        robotTwo.anchorPoint = CGPoint(x: 0.5, y: 0.25)
+        //robotTwo.anchorPoint = CGPoint(x: 0.5, y: 0.25)
         //robotThree.anchorPoint = CGPoint(x: 0, y: 0)
         //robotFour.anchorPoint = CGPoint(x: 0, y: 0)
         
@@ -182,13 +182,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheelTwo.lightingBitMask = 1
             cogwheelTwo.shadowedBitMask = 0b0001
             
+            self.addChild(robotOne.getArm())
+            self.addChild(robotTwo.getArm())
             //adding the arms to the screen
-            for arm in robotOne.getArms(){
+            /*for arm in robotOne.getArms(){
                 self.addChild(arm)
             }
             for arm in robotTwo.getArms(){
                 self.addChild(arm)
-            }
+            }*/
 
         }
         
@@ -236,7 +238,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         r3head.position = robotThree.position
         r4head.position = robotFour.position
         
-        r1head.scale(to: CGSize(width: 50, height: 50))
+        r1head.scale(to: CGSize(width: 300, height: 300))
         r1head.zPosition = -1
         self.addChild(r1head)
         self.addChild(r2head)
@@ -321,10 +323,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             let diffY = abs(location.y-latestPoint.y)
                             if(diffY < 2){
                                 if(location.y < latestPoint.y){
-                                    touchedRobot.collapseArm(length: 5)
+                                    touchedRobot.collapseArm()
                                     //touchedRobot.size.height -= 5*diffY
                                 } else  if(location.y > latestPoint.y){
-                                    touchedRobot.extendArm(length: 5)
+                                    touchedRobot.extendArm()
                                     //touchedRobot.size.height += 5*diffY
                                 }
                                 print(abs(location.y-latestPoint.y))

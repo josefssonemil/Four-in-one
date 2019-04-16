@@ -21,7 +21,7 @@ class Arm: SKSpriteNode {
         self.extended = 0
         self.distanceFromOrigin=0
         super.init(texture: texture, color: SKColor.white, size: texture.size())
-        self.anchorPoint = CGPoint(x: 0.5,y: 0.25)
+        self.anchorPoint = CGPoint(x: 0.5,y: 0.0)
         self.setScale(0.25)
     }
     
@@ -40,31 +40,34 @@ class Arm: SKSpriteNode {
         return Int(self.position.x)
     }
     public func rotate(angle: CGFloat){
-        let a = CGFloat(sqrt(2*pow(distanceFromOrigin,2)*Double(1-cos(angle))))
+        //let a = CGFloat(sqrt(2*pow(distanceFromOrigin,2)*Double(1-cos(angle))))
         self.zRotation=angle
-        if(rotation<angle) {
+        /*if(rotation<angle) {
             setPosition(x: getX() - Int(a*sin((.pi/2) - angle)), y: getY() + Int(a*sin(angle)))
         } else {
             setPosition(x: getX() + Int(a*sin((.pi/2) - angle)), y: getY() + Int(a*sin(angle)))
-        }
+        }*/
         self.rotation=angle
     }
     
-    public func extend(length: Int){
+    public func extend(){
         let speed = CGFloat(10)
-        if(extended<15){
-            self.setPosition(x: self.getX() - Int(speed * sin(rotation)), y: self.getY() + Int(speed * sin(.pi/2 - rotation)))
-            self.distanceFromOrigin += 10
+        
+        if(extended<30){
+         /*   self.setPosition(x: self.getX() - Int(speed * sin(rotation)), y: self.getY() + Int(speed * sin(.pi/2 - rotation)))
+            self.distanceFromOrigin += 10*/
+            self.size.height+=speed
             extended += 1
         }
         
     }
     
-    public func collapse(length: Int){
+    public func collapse(){
         let speed = CGFloat(10)
         if(extended>0){
-            self.setPosition(x: self.getX() + Int(speed * sin(rotation)), y: self.getY() - Int(speed * sin(.pi/2 - rotation)))
-            self.distanceFromOrigin -= 10
+            self.size.height-=speed
+            /*self.setPosition(x: self.getX() + Int(speed * sin(rotation)), y: self.getY() - Int(speed * sin(.pi/2 - rotation)))
+            self.distanceFromOrigin -= 10*/
             extended -= 1
         }
     }

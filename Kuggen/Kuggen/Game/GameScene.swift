@@ -277,7 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotTwoButton.fillColor = SKColor.yellow
         robotTwoButton.position = CGPoint(x: self.frame.width/2-200, y: 100)
         robotTwoButton.name = "robotTwoButton"
-        robotTwoButton.zPosition=100
+        robotTwoButton.zPosition=1
         
         // Robot heads (replace with graphics)
         let r1head = SKSpriteNode(imageNamed: "blueRobot")
@@ -302,6 +302,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(r2head)
         self.addChild(r3head)
         self.addChild(r4head)
+        
+        robotTwoButton.zPosition=2
         self.addChild(robotTwoButton)
 
         initPhysics()
@@ -357,7 +359,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if nodeName.contains("robotTwoButton") {
                     robotTwo.closeHandle()
-                    print("close")
                 }
             }
         }
@@ -397,7 +398,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 } else  if(location.y > latestPoint.y){
                                     touchedRobot.extendArm()
                                 }
-                                print(abs(location.y-latestPoint.y))
                             }
                         }
                     }
@@ -427,7 +427,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if nodeName.contains("robotTwoButton") {
                     robotTwo.openHandle()
-                    print("open")
                 }
             }
         }

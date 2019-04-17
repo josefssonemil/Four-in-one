@@ -40,33 +40,8 @@ class Handle: SKSpriteNode{
     }
     
     
-    public func extend(armLength: Double){
-        let speed = CGFloat(10)
-        if(extended<30){
-            self.position.y += speed
-            extended += 1
-            distanceFromOrigin=armLength
-        }
-    }
-    
-    public func collapse(armLength: Double){
-        let speed = CGFloat(10)
-        if(extended>0){
-            self.position.y -= speed
-            extended -= 1
-            distanceFromOrigin=armLength
-        }
-    }
-    
     public func rotate(angle : CGFloat){
-        //let a = CGFloat(sqrt(2*pow(distanceFromOrigin, 2)*Double(1-cos(angle))))
-        //let a = CGFloat(sqrt(2*pow(distanceFromOrigin,2)*Double(1-cos(angle))))
         self.zRotation=angle
-        if(rotation<angle) {
-        // setPosition(x: getX() - Int(a*sin((.pi-angle)/2)), y: getY() - Int(a*sin((.pi/2)-(.pi-angle)/2)))
-         } else {
-         //setPosition(x: getX() + Int(a*sin((.pi-angle)/2)), y: getY() - Int(a*sin((.pi/2)-(.pi-angle)/2)))
-         }
         self.rotation=angle
     }
     

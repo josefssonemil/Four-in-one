@@ -42,12 +42,7 @@ class Robot: SKSpriteNode {
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
-        handle.setPosition(x: x, y: y + arm.getHeight())
-        /*for arm in arms{
-            arm.setPosition(x: x, y: y)
-            print("x: ", x)
-            print("y: ", y)
-        }*/
+        handle.setPosition(x: x, y: y + arm.getHeight()-5)
     }
     
     public func getHandle() -> Handle{
@@ -72,13 +67,16 @@ class Robot: SKSpriteNode {
             self.zRotation = angle
             arm.rotate(angle: angle)
             if(angle<0){
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
-                handle.rotate(angle: -angle)
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+                
             }
             else{
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-                handle.rotate(angle: -angle/2)
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
             }
+            if (.pi/4 < angle && angle < -.pi/4){
+                handle.rotate(angle: -angle/4)
+            } else { handle.rotate(angle: 0)}
+            
             
             /*for arm in arms{
                 arm.rotate(angle: angle)

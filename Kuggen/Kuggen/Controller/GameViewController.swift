@@ -46,18 +46,18 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             //gameScene.gameSceneDelegate = self
             let skView = self.view! as! SKView
 
-            
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
             
-            
             sessionManager.startSession()
+
             skView.showsFPS = true;
             skView.showsNodeCount = true;
             skView.showsPhysics = true
             boardView.showsFPS = true;
             boardView.showsNodeCount = true;
             boardView.showsPhysics = true
+
         }
     }
 

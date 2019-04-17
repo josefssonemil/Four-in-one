@@ -42,6 +42,8 @@ class Robot: SKSpriteNode {
     /*public func getArms() -> [Arm]{
         return self.arms
     }*/
+
+
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
@@ -154,7 +156,25 @@ class Robot: SKSpriteNode {
         self.anchorPoint = anchorPosition*/
     }
     
+    /*private func setupPhysics(){
+        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        self.physicsBody?.categoryBitMask = Contact.robot
+        self.physicsBody?.collisionBitMask = 0x0
+        self.physicsBody?.contactTestBitMask = 0x0
+    }
     
-    
-
+    // MARK_ - Contact
+    func contact(body: String) {
+        if body == Spritename.robot1 {
+        }
+        
+        if body == Spritename.robot2 {
+        }
+        
+        if body == Spritename.robot3 {
+        }
+        
+        if body == Spritename.robot4 {
+        }
+    }*/
 }

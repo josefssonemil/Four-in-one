@@ -9,6 +9,8 @@ class Robot: SKSpriteNode {
     var devicePosition: DevicePosition
     var handle: Handle
     var currentArmStretch: Int
+    private var isLocked : Bool
+    private var cogwheel : Cogwheel?
     
     //Depends on device pos
     var basePoint = CGPoint()
@@ -25,6 +27,7 @@ class Robot: SKSpriteNode {
         self.devicePosition = devicePosition
         self.currentArmStretch = 0
         self.rotation = 0
+        self.isLocked = false
         self.arm = Arm.init(texture: SKTexture(imageNamed: "robotarm1"))
         self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand0open"), lengthOfArm: Double(arm.size.height))
         //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
@@ -62,25 +65,22 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        if (.pi/3 > angle  && angle > -.pi/3){
-            rotation=angle
-            self.zRotation = angle
-            arm.rotate(angle: angle)
-            if(angle<0){
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+        if(!isLocked){
+            if (.pi/3 > angle  && angle > -.pi/3){
+                rotation=angle
+                self.zRotation = angle
+                arm.rotate(angle: angle)
+                if(angle<0){
+                    handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+                }
+                else{
+                    handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
+                }
+                if (.pi/4 < angle && angle < -.pi/4){
+                    handle.rotate(angle: -angle/4)
+                } else { handle.rotate(angle: 0)}
                 
             }
-            else{
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
-            }
-            if (.pi/4 < angle && angle < -.pi/4){
-                handle.rotate(angle: -angle/4)
-            } else { handle.rotate(angle: 0)}
-            
-            
-            /*for arm in arms{
-                arm.rotate(angle: angle)
-            }*/
         }
     }
     
@@ -89,25 +89,27 @@ class Robot: SKSpriteNode {
     }
     
     public func extendArm(){
-        arm.extend()
-        if(rotation<0){
-            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+        if(!isLocked){
+            arm.extend()
+            if(rotation<0){
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+            }
+            else{
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+            }
         }
-        else{
-            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-        }
-        //arms[2].extend(length: length)
     }
     
     public func collapseArm(){
-        arm.collapse()
-        if(rotation<0){
-            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+        if(!isLocked){
+            arm.collapse()
+            if(rotation<0){
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+            }
+            else{
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+            }
         }
-        else{
-            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-        }
-        //arms[2].collapse(length: length)
     }
     
     public func closeHandle(){
@@ -118,6 +120,22 @@ class Robot: SKSpriteNode {
         handle.open()
     }
     
+    public func lockToCog(cogwheel: Cogwheel){
+        self.cogwheel = cogwheel
+        isLocked=true
+        
+    }
+    public func unLock(){
+        isLocked=false
+    }
+    
+    public func isLockedtoCog() -> Bool{
+        return isLocked
+    }
+    
+    public func getCogwheel() -> Cogwheel{
+        return self.cogwheel!
+    }
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
         self.setScale(0.2)

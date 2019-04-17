@@ -14,11 +14,13 @@ class Handle: SKSpriteNode{
     var extended : Int
     var rotation : CGFloat
     var distanceFromOrigin : Double
+    var isHandleClosed : Bool
     
     init(texture: SKTexture, lengthOfArm: Double) {
         rotation=0
         distanceFromOrigin=lengthOfArm
         extended=0
+        isHandleClosed = false
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         self.anchorPoint = anchorLocation
     }
@@ -47,9 +49,15 @@ class Handle: SKSpriteNode{
     
     public func close(){
         self.texture = SKTexture(imageNamed: "robothand1closed")
+        isHandleClosed=true
     }
     
     public func open(){
         self.texture = SKTexture(imageNamed: "robothand1open")
+        isHandleClosed=false
+    }
+    
+    public func isClosed() -> Bool {
+        return isHandleClosed
     }
 }

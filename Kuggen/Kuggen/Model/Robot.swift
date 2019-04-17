@@ -26,7 +26,7 @@ class Robot: SKSpriteNode {
         self.currentArmStretch = 0
         self.rotation = 0
         self.arm = Arm.init(texture: SKTexture(imageNamed: "robotarm1"))
-        self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand0open"))
+        self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand0open"), lengthOfArm: Double(arm.size.height))
         //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
@@ -71,6 +71,15 @@ class Robot: SKSpriteNode {
             rotation=angle
             self.zRotation = angle
             arm.rotate(angle: angle)
+            if(angle<0){
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+                handle.rotate(angle: -angle)
+            }
+            else{
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+                handle.rotate(angle: -angle/2)
+            }
+            
             /*for arm in arms{
                 arm.rotate(angle: angle)
             }*/
@@ -83,13 +92,23 @@ class Robot: SKSpriteNode {
     
     public func extendArm(){
         arm.extend()
-        handle.extend()
+        if(rotation<0){
+            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+        }
+        else{
+            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+        }
         //arms[2].extend(length: length)
     }
     
     public func collapseArm(){
         arm.collapse()
-        handle.collapse()
+        if(rotation<0){
+            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+        }
+        else{
+            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+        }
         //arms[2].collapse(length: length)
     }
     

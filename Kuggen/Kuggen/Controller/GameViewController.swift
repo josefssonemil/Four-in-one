@@ -38,14 +38,14 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
     }
 
     private func layoutGameScene() {
-        
+    
         if let boardView = self.boardView as! SKView? {
             gameScene = GameScene(size: UIScreen.main.bounds.size)
             gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
             //gameScene.gameSceneDelegate = self
             let skView = self.view! as! SKView
-        
+
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
             
@@ -57,7 +57,6 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             
             boardView.showsPhysics = true
             skView.showsPhysics = true
-
         }
     }
 

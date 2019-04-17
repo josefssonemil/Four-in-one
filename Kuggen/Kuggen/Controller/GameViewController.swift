@@ -50,6 +50,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             boardView.presentScene(gameScene)
             
             sessionManager.startSession()
+
             
            /* boardView.showsFPS = true
             boardView.showsNodeCount = true

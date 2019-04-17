@@ -112,6 +112,13 @@ class Robot: SKSpriteNode {
         //arms[2].collapse(length: length)
     }
     
+    public func closeHandle(){
+        handle.close()
+    }
+    
+    public func openHandle(){
+        handle.open()
+    }
     
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos

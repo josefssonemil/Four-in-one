@@ -60,6 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "fingerprint")
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "fingerprint")
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "fingerprint")
+    private let robotTwoButton = SKShapeNode(circleOfRadius: 50)
   
 
     private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
@@ -103,6 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // When scene is presented by view
     override func didMove(to view: SKView) {
         // setup the scene
+        self.view!.isMultipleTouchEnabled = true
         self.layoutScene()
     }
     
@@ -278,6 +280,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheelOne.name = "cog_1"
         }
         
+        robotTwoButton.fillColor = SKColor.yellow
+        robotTwoButton.position = CGPoint(x: self.frame.width/2-200, y: 100)
+        robotTwoButton.name = "robotTwoButton"
+        robotTwoButton.zPosition=100
+        
         // Robot heads (replace with graphics)
         let r1head = SKSpriteNode(imageNamed: "blueRobot")
         //let r1head = SKShapeNode(circleOfRadius: 100)
@@ -301,6 +308,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(r2head)
         self.addChild(r3head)
         self.addChild(r4head)
+        self.addChild(robotTwoButton)
 
         initPhysics()
         self.gameManager.initialSetUp()
@@ -344,7 +352,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        if let aTouch = touches.first {
+            
+            let location = aTouch.location(in: self)
+            
+            let touchedNode = atPoint(location)
+            
+            if let nodeName = touchedNode.name {
+                
+                if nodeName.contains("robotTwoButton") {
+                    robotTwo.closeHandle()
+                    print("close")
+                }
+            }
+        }
     }
     
     
@@ -362,14 +384,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let nodeName = touchedNode.name {
                 
                 if nodeName.contains("robot") {
-                    
+
                     if let touchedRobot = touchedNode as? Robot  {
                         let deltaX = location.x - touchedRobot.position.x
                         let deltaY = location.y - touchedRobot.position.y
                         if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
-                           
-                           // print("X: ", deltaX)
-                            //print("Y: ", deltaY)
                             
                             // When arm is rotated, the angle limit is set in the robot class.
                             let angle = atan2(deltaY, deltaX) + (.pi / 2)
@@ -381,13 +400,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             if(diffY < 2){
                                 if(location.y < latestPoint.y){
                                     touchedRobot.collapseArm()
-                                    //touchedRobot.size.height -= 5*diffY
                                 } else  if(location.y > latestPoint.y){
                                     touchedRobot.extendArm()
-                                    //touchedRobot.size.height += 5*diffY
                                 }
                                 print(abs(location.y-latestPoint.y))
-                            } else {print("Too high value")}
+                            }
                         }
                     }
                 }
@@ -400,7 +417,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+<<<<<<< HEAD
         
+=======
+        if let aTouch = touches.first {
+            
+            let location = aTouch.location(in: self)
+            
+            let touchedNode = atPoint(location)
+            
+            if let nodeName = touchedNode.name {
+                
+                if nodeName.contains("robotTwoButton") {
+                    robotTwo.openHandle()
+                    print("open")
+                }
+            }
+        }
+>>>>>>> handle can now be opened and closed
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

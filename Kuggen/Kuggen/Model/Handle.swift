@@ -69,4 +69,12 @@ class Handle: SKSpriteNode{
          }
         self.rotation=angle
     }
+    
+    public func close(){
+        self.texture = SKTexture(imageNamed: "robothand1closed")
+    }
+    
+    public func open(){
+        self.texture = SKTexture(imageNamed: "robothand1open")
+    }
 }

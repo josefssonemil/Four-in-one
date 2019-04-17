@@ -45,13 +45,19 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             gameScene.scaleMode = .aspectFill
             //gameScene.gameSceneDelegate = self
             let skView = self.view! as! SKView
-            skView.showsPhysics = true
-
+        
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
             
-            
             sessionManager.startSession()
+            
+           /* boardView.showsFPS = true
+            boardView.showsNodeCount = true
+            boardView.showsDrawCount = true*/
+            
+            boardView.showsPhysics = true
+            skView.showsPhysics = true
+
         }
     }
 

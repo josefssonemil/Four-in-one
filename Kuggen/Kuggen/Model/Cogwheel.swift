@@ -61,4 +61,16 @@ class Cogwheel: SKSpriteNode{
     private func canRotate(rotation: Double) -> Bool{
         return !(lock?.isLocked ?? false)
     }
+    
+    /*private func setupPhysics() {
+        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        self.physicsBody?.categoryBitMask = Contact.cogwheel
+        self.physicsBody?.collisionBitMask = 0x0
+        self.physicsBody?.contactTestBitMask = 0x0
+        
+    }
+    
+    func contact(body: String) {
+
+    }*/
 }

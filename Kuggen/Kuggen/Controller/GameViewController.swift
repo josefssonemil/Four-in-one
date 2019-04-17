@@ -58,6 +58,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             
             boardView.showsPhysics = true
             skView.showsPhysics = true
+
         }
     }
 

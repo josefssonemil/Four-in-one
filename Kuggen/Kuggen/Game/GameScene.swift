@@ -123,12 +123,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel1
         robotOne.physicsBody?.collisionBitMask = PhysicsCategory.none
         
-        
-        robotOne.anchorPoint = CGPoint(x: 0, y: 0)
-        robotTwo.anchorPoint = CGPoint(x: 0.5, y: 0.25)
-        robotThree.anchorPoint = CGPoint(x: 0, y: 0)
-        robotFour.anchorPoint = CGPoint(x: 0, y: 0)
-        
         robotTwo.physicsBody = SKPhysicsBody(texture: robotTwo.texture!, size: robotTwo.texture!.size())
         robotTwo.physicsBody?.isDynamic = true
         robotTwo.physicsBody?.categoryBitMask = PhysicsCategory.robot2
@@ -418,8 +412,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
+=======
+>>>>>>> fixing merge conflict
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
@@ -434,7 +431,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+<<<<<<< HEAD
 >>>>>>> handle can now be opened and closed
+=======
+>>>>>>> fixing merge conflict
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

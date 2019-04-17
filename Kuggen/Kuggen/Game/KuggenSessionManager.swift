@@ -21,7 +21,7 @@ protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
     
     func gameManagerNextLevel(_ manager:KuggenSessionManager)
     
-    func gameManager(_ manager: KuggenSessionManager, rotAngle: CGFloat, cogwheel: Cogwheel)
+    func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String)
 }
 
 
@@ -78,13 +78,13 @@ class KuggenSessionManager: FourInOneSessionManager {
         
         if mode == .twoplayer
         {
-            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 150))
-            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2, y: 150))
+            robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 100))
+            robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2 + 150, y: 100))
 
             robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             
-            robotOne.zRotation = .pi
+            robotOne.zRotation = 0
             robotTwo.zRotation = 0
             
             cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
@@ -139,9 +139,32 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }*/
     
-    func cogRotated(cogwheel: Cogwheel, angle: CGFloat){
+    func cogRotated(cogwheel: Cogwheel, impulse: CGFloat) {
+        
+        if cogwheel.name == "cog_1"{
+            synchronizeRotation(impulse: impulse, cogName: cogwheel.name!)
+        }
+        
+        else if cogwheel.name == "cog_2" {
+            synchronizeRotation(impulse: impulse, cogName: cogwheel.name!)
+        }
+        
+        else if cogwheel.name == "cog_3" {
+            synchronizeRotation(impulse: impulse, cogName: cogwheel.name!)
+        }
+        
+        else if cogwheel.name == "cog_4" {
+            synchronizeRotation(impulse: impulse, cogName: cogwheel.name!)
+        }
         
     }
+    
+    /* Overridden in SessionServer and SessionClient*/
+    func synchronizeRotation(impulse: CGFloat, cogName: String) {
+     
+    }
+    
+    
     
     
     // TODO - robot objects need to contain devicepositions
@@ -178,11 +201,8 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
-
-    func armMoved(robot: Robot, angle: CGFloat, location: CGPoint){
+    func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
-        robot.position.x = location.x
-        robot.position.y = location.y
         /*
         if shouldHandleInput(robot){
             if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){
@@ -237,22 +257,7 @@ class KuggenSessionManager: FourInOneSessionManager {
         
     }
     
-    func updateCogRotations(cogwheel: Cogwheel, rotation: CGFloat){
-        let move = makeCogRotation(angle: rotation)
-       
-        if self.isServer {
-            sendEventToClients(move)
-        }
-        
-        else {
-            sendEventToServer(move)
-        }
-        
-        OperationQueue.main.addOperation {
-            self.kuggenDelegate?.gameManager(self, rotAngle: rotation, cogwheel: cogwheel)
-        }
-    }
-    
+
     func readyForNextLevel() {
         
     }
@@ -277,7 +282,9 @@ class KuggenSessionManager: FourInOneSessionManager {
     let holdingEvent = "h"
     let cogRotationEvent = "c"
     
-    let rotationKey = "r"
+    let peerKey = "a"
+    let impulseKey = "x"
+    let nameKey = "z"
     let positionKey = "p"
     let levelKey = "v"
     let scoreKey = "s"
@@ -299,10 +306,11 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     
     
-    func makeCogRotation(angle: CGFloat) -> FourInOneEvent {
+    func makeCogRotation(impulse: CGFloat, cogName: String) -> FourInOneEvent {
         var event = FourInOneEvent()
         event.type = cogRotationEvent
-        event.info = [rotationKey: angle.description]
+        let peerInfo = self.peerId.displayName
+        event.info = [impulseKey: impulse.description, nameKey: cogName, peerKey: peerInfo]
         return event
     }
     

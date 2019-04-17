@@ -38,20 +38,26 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
     }
 
     private func layoutGameScene() {
-        
+    
         if let boardView = self.boardView as! SKView? {
             gameScene = GameScene(size: UIScreen.main.bounds.size)
             gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
             //gameScene.gameSceneDelegate = self
             let skView = self.view! as! SKView
-            skView.showsPhysics = true
 
+            
             boardView.ignoresSiblingOrder = false
             boardView.presentScene(gameScene)
             
             
             sessionManager.startSession()
+            skView.showsFPS = true;
+            skView.showsNodeCount = true;
+            skView.showsPhysics = true
+            boardView.showsFPS = true;
+            boardView.showsNodeCount = true;
+            boardView.showsPhysics = true
         }
     }
 

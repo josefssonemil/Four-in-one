@@ -187,6 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(robotOne.getHandle())
             self.addChild(robotTwo.getHandle())
             self.addChild(robotTwo.getArm())
+            
             //adding the arms to the screen
             /*for arm in robotOne.getArms(){
                 self.addChild(arm)

@@ -50,8 +50,8 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
 
     @IBAction func next(_ sender: Any) {
         //didStartMainActivity(self.setupManager)
-        
     }
+    
     @IBAction func helpButtonTapped(_ sender: Any) {
         if (!inProgress) {
             handOne.image = UIImage(named: "handFlipped")

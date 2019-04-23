@@ -20,7 +20,19 @@ class Cogwheel: SKSpriteNode{
     }
     
     init(handle: Handle, inner: Double, current: Double, scale: Double) {
-        let texture = SKTexture(imageNamed: "purple cogwheel")
+        let texture: SKTexture
+        switch handle {
+        case Handle.edgeCircle:
+            texture = SKTexture(imageNamed: "cogwheel4")
+        case Handle.edgeSquare:
+            texture = SKTexture(imageNamed: "cogwheel2")
+        case Handle.edgeTrapezoid:
+            texture = SKTexture(imageNamed: "cogwheel3")
+        case Handle.edgeTriangle:
+            texture = SKTexture(imageNamed: "cogwheel1")
+        default:
+            texture = SKTexture(imageNamed: "purple cogwheel")
+        }
         self.handle = handle
         self.innerAlignmentAngle = inner
         super.init(texture: texture, color: UIColor.black, size: CGSize(width: 100, height: 100))

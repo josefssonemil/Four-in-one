@@ -64,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var robotTwoArm : Arm
     private let robotTwoButton = SKShapeNode(circleOfRadius: 50)
     
-    private var joints : [SKPhysicsJointPin]
+    private var joints : [SKPhysicsJointFixed]
   
 
     private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
@@ -400,14 +400,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             let deltaX = location.x - touchedRobot.position.x
                             let deltaY = location.y - touchedRobot.position.y
                             if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
-                                let prevHandLocX = touchedRobot.getHandle().getX()
-                                // When arm is rotated, the angle limit is set in the robot class.
                                 let angle = atan2(deltaY, deltaX) + (.pi / 2)
-                            
-                                gameManager.armMoved(robot: touchedRobot, angle: angle)
+                               // let prevHandLocX = touchedRobot.getHandle().getX()
+                                // When arm is rotated, the angle limit is set in the robot class.
                                 if(touchedRobot.isLockedtoCog()){
-                                        //gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle)
+                                    if(!touchedRobot.getArm().isExtended){
+                                        gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle)
+                                    }
                                 }
+                                gameManager.armMoved(robot: touchedRobot, angle: angle)
                            
                             }else {
                                 let diffY = abs(location.y-latestPoint.y)
@@ -440,7 +441,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if nodeName.contains("robotTwoButton") {
                     robotTwo.openHandle()
-                    self.physicsWorld.removeAllJoints()
+                    //self.physicsWorld.removeAllJoints()
                     robotTwoHandle.physicsBody!.velocity = CGVector(dx: 0, dy: 0)
                     robotTwoHandle.physicsBody!.angularVelocity = 0
                     if(robotTwo.isLockedtoCog()){
@@ -589,7 +590,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //robot.getHandle().setPosition(x: Int(cogwheel.position.x), y: Int(cogwheel.position.y))
         robot.lockToCog(cogwheel: cogwheel)
         //gameManager.cogRotated(cogwheel: cogwheel, impulse: 10)
-        let robotTwoCogwheelTwo = SKPhysicsJointPin.joint(withBodyA: robot.getHandle().physicsBody!,
+        let robotTwoCogwheelTwo = SKPhysicsJointFixed.joint(withBodyA: robot.getHandle().physicsBody!,
                                                bodyB: cogwheel.physicsBody!,
                                                anchor: robot.getHandle().position)
         

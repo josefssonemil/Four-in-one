@@ -11,6 +11,7 @@ class Robot: SKSpriteNode {
     var currentArmStretch: Int
     private var isLocked : Bool
     private var cogwheel : Cogwheel?
+    private let isJoined = false
     
     //Depends on device pos
     var basePoint = CGPoint()
@@ -65,20 +66,43 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
+        if (isLocked){
+            let dx = abs(arm.getX() - handle.getX())
+            let dy = abs(arm.getY() - handle.getY())
+            
+            let length = sqrt(pow(Double(dx),2) + pow(Double(dy),2))
+            let angle2 = asin(Double(dy) / length)
+            
+            if (Int(arm.frame.maxY)<handle.getY()){
+                arm.extend(speed: CGFloat(abs(length - Double(arm.getHeight()))))
+
+            } else {
+                arm.collapse(speed: CGFloat(abs(length - Double(arm.getHeight()))))
+
+            }
+            if (handle.getX() > arm.getX()){
+                arm.rotate(angle: -CGFloat(.pi/2 - angle2))
+            } else {arm.rotate(angle: CGFloat(.pi/2 - angle2))}
+        }
+        else {
             if (.pi/3 > angle  && angle > -.pi/3){
                 rotation=angle
                 self.zRotation = angle
                 arm.rotate(angle: angle)
-                if(angle<0){
-                    handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+                if(!isJoined){
+                    if(angle<0){
+                        handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+                    }
+                    else{
+                        handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
+                    }
+                    if (.pi/4 < angle && angle < -.pi/4){
+                        handle.rotate(angle: -angle/4)
+                    } else { handle.rotate(angle: 0)}
                 }
-                else{
-                    handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
-                }
-                if (.pi/4 < angle && angle < -.pi/4){
-                    handle.rotate(angle: -angle/4)
-                } else { handle.rotate(angle: 0)}
             }
+        }
+       
     }
     
     public func getArm() -> Arm{
@@ -86,23 +110,37 @@ class Robot: SKSpriteNode {
     }
     
     public func extendArm(){
+        if (isLocked){
+            
+        }
+        else{
             arm.extend()
-            if (rotation<0){
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+            if(!isJoined){
+                if (rotation<0){
+                    handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+                }
+                else{
+                    handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+                }
             }
-            else{
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-            }
+        }
     }
     
     public func collapseArm(){
-            arm.collapse()
+        if (isLocked){
+        
+        }
+        else {
+        arm.collapse()
+        if(!isJoined){
             if(rotation<0){
                 handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
             }
             else{
                 handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
             }
+        }
+        }
     }
     
     public func closeHandle(){

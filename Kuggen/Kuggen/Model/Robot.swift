@@ -82,7 +82,13 @@ class Robot: SKSpriteNode {
             }
             if (handle.getX() > arm.getX()){
                 arm.rotate(angle: -CGFloat(.pi/2 - angle2))
-            } else {arm.rotate(angle: CGFloat(.pi/2 - angle2))}
+                rotation = -CGFloat(.pi/2 - angle2)
+                self.zRotation = -CGFloat(.pi/2 - angle2)
+            } else {
+                arm.rotate(angle: CGFloat(.pi/2 - angle2))
+                rotation = CGFloat(.pi/2 - angle2)
+                self.zRotation = CGFloat(.pi/2 - angle2)
+            }
         }
         else {
             if (.pi/3 > angle  && angle > -.pi/3){

@@ -61,7 +61,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "fingerprint")
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "fingerprint")
     private var robotTwoHandle : Handle
+    private var robotTwoArm : Arm
     private let robotTwoButton = SKShapeNode(circleOfRadius: 50)
+    
+    private var joints : [SKPhysicsJointPin]
   
 
     private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
@@ -76,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let cogwheelFour: Cogwheel
 
     
-    private var robotTwoCogwheelTwo: SKPhysicsJointPin?
+   // private var robotTwoCogwheelTwo: SKPhysicsJointPin?
     // Init
     required init?(coder aDecoder: NSCoder) {
         level = LevelReader.createLevel(nameOfLevel: "level1")
@@ -85,16 +88,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cogwheelThree = level.cogwheels[2]
         cogwheelFour = level.cogwheels[3]
 
+        robotTwoArm = robotTwo.getArm()
         robotTwoHandle=robotTwo.getHandle()
-
+        joints = []
         super.init(coder: aDecoder)
     }
     
     // Initalize new scene object
 
+
     convenience override init(size: CGSize) {
         self.init(size: size, levelNo: 1)
-    }
+
+
     
     //Creates a GameScene for a specific level
     init(size: CGSize, levelNo: Int){
@@ -105,7 +111,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cogwheelThree = level.cogwheels[2]
         cogwheelFour = level.cogwheels[3]
         
+        robotTwoArm = robotTwo.getArm()
         robotTwoHandle=robotTwo.getHandle()
+        joints = []
         super.init(size: size)
     
     // When scene is presented by view
@@ -122,6 +130,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func initPhysics(){
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
+        
+        let cogwheels = [cogwheelOne, cogwheelTwo, cogwheelThree, cogwheelFour]
+        
+        //Physics for the cogwheels
+        for cogwheel in cogwheels{
+            cogwheel.physicsBody = SKPhysicsBody(texture: cogwheel.texture!, size: cogwheel.texture!.size())
+            cogwheel.physicsBody?.isDynamic = true
+            cogwheel.physicsBody?.collisionBitMask = PhysicsCategory.none
+            cogwheel.physicsBody?.pinned = true
+            cogwheel.physicsBody?.angularDamping = 1.0
+        }
+        cogwheelOne.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel1
+        cogwheelOne.physicsBody?.contactTestBitMask = PhysicsCategory.robot1
+        cogwheelTwo.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel2
+        cogwheelTwo.physicsBody?.contactTestBitMask = PhysicsCategory.robot2
+        cogwheelThree.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel3
+        cogwheelThree.physicsBody?.contactTestBitMask = PhysicsCategory.robot3
+        cogwheelFour.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel4
+        cogwheelFour.physicsBody?.contactTestBitMask = PhysicsCategory.robot4
         
         //robot one
         robotOne.physicsBody = SKPhysicsBody(texture: robotOne.texture!, size: robotOne.texture!.size())
@@ -142,7 +169,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotTwoHandle.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
         robotTwoHandle.physicsBody?.collisionBitMask = PhysicsCategory.none
 
-
         robotThree.physicsBody = SKPhysicsBody(texture: robotThree.texture!, size: robotThree.texture!.size())
         robotThree.physicsBody?.isDynamic = true
         robotThree.physicsBody?.categoryBitMask = PhysicsCategory.robot3
@@ -154,32 +180,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotFour.physicsBody?.categoryBitMask = PhysicsCategory.robot4
         robotFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
         robotFour.physicsBody?.collisionBitMask = PhysicsCategory.none
-
-        cogwheelOne.physicsBody = SKPhysicsBody(texture: cogwheelOne.texture!, size: cogwheelOne.texture!.size())
-        cogwheelOne.physicsBody?.isDynamic = true
-        cogwheelOne.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel1
-        cogwheelOne.physicsBody?.contactTestBitMask = PhysicsCategory.robot1
-        cogwheelOne.physicsBody?.collisionBitMask = PhysicsCategory.none
-        
-        /*cogwheelTwo.physicsBody = SKPhysicsBody(texture: cogwheelTwo.texture!, size: cogwheelTwo.texture!.size())
-        cogwheelTwo.physicsBody?.isDynamic = true
-        cogwheelTwo.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel2
-        cogwheelTwo.physicsBody?.contactTestBitMask = PhysicsCategory.robot2
-        cogwheelTwo.physicsBody?.collisionBitMask = PhysicsCategory.none
-        
-        cogwheelThree.physicsBody = SKPhysicsBody(texture: cogwheelThree.texture!, size: cogwheelThree.texture!.size())
-        cogwheelThree.physicsBody?.isDynamic = true
-        cogwheelThree.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel3
-        cogwheelThree.physicsBody?.contactTestBitMask = PhysicsCategory.robot3
-        cogwheelThree.physicsBody?.collisionBitMask = PhysicsCategory.none
-        
-        cogwheelFour.physicsBody = SKPhysicsBody(texture: cogwheelFour.texture!, size: cogwheelFour.texture!.size())
-        cogwheelFour.physicsBody?.isDynamic = true
-        cogwheelFour.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel4
-        cogwheelFour.physicsBody?.contactTestBitMask = PhysicsCategory.robot4
-        cogwheelFour.physicsBody?.collisionBitMask = PhysicsCategory.none*/
-        
-
         //TODO: add physics for three more cogwheel
 
     }
@@ -374,7 +374,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let nodeName = touchedNode.name {
                 
                 if nodeName.contains("robotTwoButton") {
-                    robotTwo.closeHandle()
+                        robotTwo.closeHandle()
                 }
             }
         }
@@ -397,17 +397,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if nodeName.contains("robot") {
 
                     if let touchedRobot = touchedNode as? Robot  {
-                        if(touchedRobot.isLockedtoCog()){
-                            gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: 10)
-                        }else {
                             let deltaX = location.x - touchedRobot.position.x
                             let deltaY = location.y - touchedRobot.position.y
                             if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
-                                
+                                let prevHandLocX = touchedRobot.getHandle().getX()
                                 // When arm is rotated, the angle limit is set in the robot class.
                                 let angle = atan2(deltaY, deltaX) + (.pi / 2)
                             
                                 gameManager.armMoved(robot: touchedRobot, angle: angle)
+                                if(touchedRobot.isLockedtoCog()){
+                                        //gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle)
+                                }
                            
                             }else {
                                 let diffY = abs(location.y-latestPoint.y)
@@ -418,7 +418,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                         touchedRobot.extendArm()
                                     }
                                 }
-                            }
                         }
                     }
                 }
@@ -441,16 +440,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 if nodeName.contains("robotTwoButton") {
                     robotTwo.openHandle()
+                    self.physicsWorld.removeAllJoints()
+                    robotTwoHandle.physicsBody!.velocity = CGVector(dx: 0, dy: 0)
+                    robotTwoHandle.physicsBody!.angularVelocity = 0
                     if(robotTwo.isLockedtoCog()){
                         robotTwo.unLock()
-                        self.physicsWorld.removeAllJoints()
+                        robotTwo.getCogwheel().physicsBody?.angularVelocity=0
+                        //var index = 0
+                        for joint in joints {
+                            self.physicsWorld.remove(joint)
+                            //joints.remove(at: index)
+                            //index += 1
+                        }
+
                     }
                 }
-            }
         }
+    }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+       
     }
     
     // MARK: contact begin between two bodies
@@ -476,7 +486,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyA
             secondBody = contact.bodyB
             
-            print("Contact!!!")
+            //print("Contact!!!")
             
         } else {
             firstBody = contact.bodyB
@@ -512,7 +522,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let handle = secondBody.node as? Handle, let cogwheel = firstBody.node as? Cogwheel {
                 if let nodeName = secondBody.node?.name {
-                    print(nodeName)
+                    //print(nodeName)
                     if nodeName.contains("robot_2") {
                         if(handle.isClosed()){
                             gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
@@ -582,6 +592,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let robotTwoCogwheelTwo = SKPhysicsJointPin.joint(withBodyA: robot.getHandle().physicsBody!,
                                                bodyB: cogwheel.physicsBody!,
                                                anchor: robot.getHandle().position)
+        
+        joints.append(robotTwoCogwheelTwo)
         self.physicsWorld.add(robotTwoCogwheelTwo)
         //handle in game manager here
         //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
@@ -605,21 +617,44 @@ private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
 extension GameScene : KuggenSessionManagerDelegate {
     func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
         if cogName == "cog_1" {
-            cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelOne.zRotation = impulse
         }
         
         else if cogName == "cog_2" {
-            cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelTwo.zRotation = impulse
         }
         
         else if cogName == "cog_3" {
-            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelThree.zRotation = impulse
         }
         
         else if cogName == "cog_4" {
-            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelFour.zRotation = impulse
         }
-            }
+    }
+    
+   /* func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
+        if cogName == "cog_1" {
+            cogwheelOne.physicsBody?.angularVelocity(impulse)
+        }
+            
+        else if cogName == "cog_2" {
+            cogwheelTwo.rotate(rotation: Double(impulse))
+        }
+            
+        else if cogName == "cog_3" {
+            cogwheelFour.rotate(rotation: Double(impulse))
+        }
+            
+        else if cogName == "cog_4" {
+            cogwheelFour.rotate(rotation: Double(impulse))
+        }
+    }
+    */
     
     
     func gameManager(_ manager: KuggenSessionManager, newLevel level: Level) {

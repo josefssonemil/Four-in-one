@@ -158,7 +158,6 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
         
     }
-    
     /* Overridden in SessionServer and SessionClient*/
     func synchronizeRotation(impulse: CGFloat, cogName: String) {
      

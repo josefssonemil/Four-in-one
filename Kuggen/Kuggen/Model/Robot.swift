@@ -65,7 +65,6 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        if(!isLocked){
             if (.pi/3 > angle  && angle > -.pi/3){
                 rotation=angle
                 self.zRotation = angle
@@ -79,9 +78,7 @@ class Robot: SKSpriteNode {
                 if (.pi/4 < angle && angle < -.pi/4){
                     handle.rotate(angle: -angle/4)
                 } else { handle.rotate(angle: 0)}
-                
             }
-        }
     }
     
     public func getArm() -> Arm{
@@ -89,19 +86,16 @@ class Robot: SKSpriteNode {
     }
     
     public func extendArm(){
-        if(!isLocked){
             arm.extend()
-            if(rotation<0){
+            if (rotation<0){
                 handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
             }
             else{
                 handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
             }
-        }
     }
     
     public func collapseArm(){
-        if(!isLocked){
             arm.collapse()
             if(rotation<0){
                 handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
@@ -109,7 +103,6 @@ class Robot: SKSpriteNode {
             else{
                 handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
             }
-        }
     }
     
     public func closeHandle(){

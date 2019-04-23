@@ -3,14 +3,15 @@ import Foundation
 import SpriteKit
 
 class Cogwheel: SKSpriteNode{
-    private var handle: Handle
+
+    private var handle: HandleType
     private var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?
     //private var currentAngle: Double
     
     //Creates a cogwheel
-    init(handle: Handle, inner: Double, current: Double, size: CGSize, color: UIColor){
+    init(handle: HandleType, inner: Double, current: Double, size: CGSize, color: UIColor){
         let texture = SKTexture(imageNamed: "purple cogwheel")
         self.handle = handle
         self.innerAlignmentAngle = inner
@@ -19,16 +20,16 @@ class Cogwheel: SKSpriteNode{
         self.setScale(11)
     }
     
-    init(handle: Handle, inner: Double, current: Double, scale: Double) {
+    init(handle: HandleType, inner: Double, current: Double, scale: Double) {
         let texture: SKTexture
         switch handle {
-        case Handle.edgeCircle:
+        case HandleType.edgeCircle:
             texture = SKTexture(imageNamed: "cogwheel4")
-        case Handle.edgeSquare:
+        case HandleType.edgeSquare:
             texture = SKTexture(imageNamed: "cogwheel2")
-        case Handle.edgeTrapezoid:
+        case HandleType.edgeTrapezoid:
             texture = SKTexture(imageNamed: "cogwheel3")
-        case Handle.edgeTriangle:
+        case HandleType.edgeTriangle:
             texture = SKTexture(imageNamed: "cogwheel1")
         default:
             texture = SKTexture(imageNamed: "purple cogwheel")
@@ -80,4 +81,16 @@ class Cogwheel: SKSpriteNode{
     private func canRotate(rotation: Double) -> Bool{
         return !(lock?.isLocked ?? false)
     }
+    
+    /*private func setupPhysics() {
+        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
+        self.physicsBody?.categoryBitMask = Contact.cogwheel
+        self.physicsBody?.collisionBitMask = 0x0
+        self.physicsBody?.contactTestBitMask = 0x0
+        
+    }
+    
+    func contact(body: String) {
+
+    }*/
 }

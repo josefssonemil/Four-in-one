@@ -12,8 +12,10 @@ import SpriteKit
 
 class LevelReader {
     
+
     //The level that is returnded if there is an error in the LevelReader
-    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: Handle.edgeCircle, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeSquare, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeTrapezoid, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeTriangle, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)])
+    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: HandleType.edgeCircle, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeSquare, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeTrapezoid, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeTriangle, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)])
+
     
     //Creates a list of cogwheels from the raw data of the JSON file
     private static func readJSONObject(object: [String: AnyObject]) -> [Cogwheel] {
@@ -24,18 +26,23 @@ class LevelReader {
                 let inner = cogwheel["inner"] as? Double,
                 let current = cogwheel["current"] as? Double,
                 let scale = cogwheel["scale"] as? Double else { break }
-            var handle: Handle
-            switch handleString{
+          
+            var handle1: HandleType
+
+            switch handle{
             case "edgeSquare":
-                handle = Handle.edgeSquare
+                handle1 = HandleType.edgeSquare
             case "edgeTrapezoid":
-                handle = Handle.edgeTrapezoid
+                handle1 = HandleType.edgeTrapezoid
             case "edgeCircle":
-                handle = Handle.edgeCircle
+                handle1 = HandleType.edgeCircle
             case "edgeTriangle":
-                handle = Handle.edgeTriangle
+                handle1 = HandleType.edgeTriangle
             default:
-                handle = Handle.edgeSquare
+                handle1 = HandleType.edgeSquare
+                
+
+
             }
             objects.append(Cogwheel.init(handle: handle, inner: inner, current: current, scale: scale))
             //print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current))

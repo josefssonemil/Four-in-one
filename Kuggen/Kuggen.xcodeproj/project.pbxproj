@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1647DE8D2266F6A200247DBB /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1647DE8C2266F6A200247DBB /* Contact.swift */; };
+		1647DE902266F93600247DBB /* Spritename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1647DE8F2266F93600247DBB /* Spritename.swift */; };
 		25678795223154350072C094 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25678794223154350072C094 /* AppDelegate.swift */; };
 		25678797223154350072C094 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 25678796223154350072C094 /* GameScene.sks */; };
 		25678799223154350072C094 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 25678798223154350072C094 /* Actions.sks */; };
@@ -31,7 +33,7 @@
 		25A24E9E2237D53B00AE5559 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E9D2237D53B00AE5559 /* PairingView.swift */; };
 		25A24EA02237D54700AE5559 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24E9F2237D54700AE5559 /* DemoView.swift */; };
 		25A24EA22237D55500AE5559 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA12237D55500AE5559 /* Lock.swift */; };
-		25A24EA42237D56F00AE5559 /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA32237D56F00AE5559 /* Handle.swift */; };
+		25A24EA42237D56F00AE5559 /* HandleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA32237D56F00AE5559 /* HandleType.swift */; };
 		25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */; };
 		25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */; };
 		25A24EAB2237D90700AE5559 /* KuggenSessionServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */; };
@@ -41,6 +43,7 @@
 		3E0D78E1224B998700B50A17 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0D78E0224B998700B50A17 /* Level.swift */; };
 		3E0D78E5224B9F7700B50A17 /* level1.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E0D78E4224B9F7700B50A17 /* level1.json */; };
 		3E0D78E7224BA07200B50A17 /* level2.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E0D78E6224BA07200B50A17 /* level2.json */; };
+		3E2D88A02265F6290006BF42 /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D889F2265F6290006BF42 /* Handle.swift */; };
 		3E2E9FA8223A888B00AE4F15 /* AlignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */; };
 		3E4CE55322648D3B00E49C25 /* Arm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4CE55222648D3A00E49C25 /* Arm.swift */; };
 		3E6C420B2254D0CA001BA303 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6C420A2254D0CA001BA303 /* AboutViewController.swift */; };
@@ -91,6 +94,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1647DE8C2266F6A200247DBB /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		1647DE8F2266F93600247DBB /* Spritename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spritename.swift; sourceTree = "<group>"; };
 		25678791223154350072C094 /* Kuggen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kuggen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25678794223154350072C094 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25678796223154350072C094 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -116,7 +121,7 @@
 		25A24E9D2237D53B00AE5559 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
 		25A24E9F2237D54700AE5559 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		25A24EA12237D55500AE5559 /* Lock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lock.swift; sourceTree = "<group>"; };
-		25A24EA32237D56F00AE5559 /* Handle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
+		25A24EA32237D56F00AE5559 /* HandleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleType.swift; sourceTree = "<group>"; };
 		25A24EA62237D8D600AE5559 /* KuggenSessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionClient.swift; sourceTree = "<group>"; };
 		25A24EA82237D8E300AE5559 /* KuggenSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionManager.swift; sourceTree = "<group>"; };
 		25A24EAA2237D90700AE5559 /* KuggenSessionServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuggenSessionServer.swift; sourceTree = "<group>"; };
@@ -126,6 +131,7 @@
 		3E0D78E0224B998700B50A17 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		3E0D78E4224B9F7700B50A17 /* level1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level1.json; sourceTree = "<group>"; };
 		3E0D78E6224BA07200B50A17 /* level2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = level2.json; sourceTree = "<group>"; };
+		3E2D889F2265F6290006BF42 /* Handle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
 		3E2E9FA7223A888B00AE4F15 /* AlignmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentViewController.swift; sourceTree = "<group>"; };
 		3E4CE55222648D3A00E49C25 /* Arm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arm.swift; sourceTree = "<group>"; };
 		3E6C420A2254D0CA001BA303 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -212,9 +218,12 @@
 				25A24E852237CB8000AE5559 /* Cogwheel.swift */,
 				25A24E892237CBAA00AE5559 /* Key.swift */,
 				25A24EA12237D55500AE5559 /* Lock.swift */,
-				25A24EA32237D56F00AE5559 /* Handle.swift */,
+				25A24EA32237D56F00AE5559 /* HandleType.swift */,
 				3E0D78E0224B998700B50A17 /* Level.swift */,
 				3E4CE55222648D3A00E49C25 /* Arm.swift */,
+				3E2D889F2265F6290006BF42 /* Handle.swift */,
+				1647DE8C2266F6A200247DBB /* Contact.swift */,
+				1647DE8F2266F93600247DBB /* Spritename.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -396,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1647DE8D2266F6A200247DBB /* Contact.swift in Sources */,
 				25A24E9E2237D53B00AE5559 /* PairingView.swift in Sources */,
 				25A24EB22237E12600AE5559 /* MainCoordinator.swift in Sources */,
 				25A24EA92237D8E300AE5559 /* KuggenSessionManager.swift in Sources */,
@@ -407,9 +417,11 @@
 				25A24EAD2237DF1100AE5559 /* Coordinator.swift in Sources */,
 				841EC74F2245080500ECF52F /* LevelReader.swift in Sources */,
 				25A24EA72237D8D600AE5559 /* KuggenSessionClient.swift in Sources */,
+				3E2D88A02265F6290006BF42 /* Handle.swift in Sources */,
 				2567879B223154350072C094 /* GameScene.swift in Sources */,
 				25A24E982237D50F00AE5559 /* RobotSelectorView.swift in Sources */,
 				2567879D223154350072C094 /* GameViewController.swift in Sources */,
+				1647DE902266F93600247DBB /* Spritename.swift in Sources */,
 				3ECE120222574BF700AE7DFF /* HelpLabel.swift in Sources */,
 				3E2E9FA8223A888B00AE4F15 /* AlignmentViewController.swift in Sources */,
 				25A24E9C2237D52D00AE5559 /* GameView.swift in Sources */,
@@ -419,7 +431,7 @@
 				25A24EA22237D55500AE5559 /* Lock.swift in Sources */,
 				25A24EB02237E05A00AE5559 /* Storyboarded.swift in Sources */,
 				25A24EA02237D54700AE5559 /* DemoView.swift in Sources */,
-				25A24EA42237D56F00AE5559 /* Handle.swift in Sources */,
+				25A24EA42237D56F00AE5559 /* HandleType.swift in Sources */,
 				25678795223154350072C094 /* AppDelegate.swift in Sources */,
 				25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */,
 				3E6C420B2254D0CA001BA303 /* AboutViewController.swift in Sources */,

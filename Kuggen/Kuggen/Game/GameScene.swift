@@ -78,8 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Creates a GameScene for a specific level
     init(size: CGSize, levelNo: Int){
-        //level = LevelReader.createLevel(nameOfLevel: "level \(levelNo)")
-        level = LevelReader.createLevel(nameOfLevel: "level1")
+        level = LevelReader.createLevel(nameOfLevel: "level\(levelNo)")
         cogwheelOne = level.cogwheels[0]
         cogwheelTwo = level.cogwheels[1]
         cogwheelThree = level.cogwheels[2]

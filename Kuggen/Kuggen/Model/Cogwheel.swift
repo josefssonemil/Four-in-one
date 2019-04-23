@@ -8,7 +8,7 @@ class Cogwheel: SKSpriteNode{
     private var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?
-    private var currentAngle: Double
+    //private var currentAngle: Double
     
     //Creates a cogwheel
     init(handle: Handle, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
@@ -16,8 +16,8 @@ class Cogwheel: SKSpriteNode{
         self.handle = handle
         self.outerAlignmentAngle = outer
         self.innerAlignmentAngle = inner
-        self.currentAngle = current
         super.init(texture: texture, color: color, size: size)
+        self.zRotation = CGFloat((current*Double.pi)/180)
         self.setScale(11)
     }
     
@@ -26,8 +26,8 @@ class Cogwheel: SKSpriteNode{
         self.handle = handle
         self.outerAlignmentAngle = outer
         self.innerAlignmentAngle = inner
-        self.currentAngle = current
         super.init(texture: texture, color: UIColor.black, size: CGSize(width: 100, height: 100))
+        self.zRotation = CGFloat((current*Double.pi)/180)
         self.setScale(11)
     }
     
@@ -36,25 +36,35 @@ class Cogwheel: SKSpriteNode{
     }
     
     //Rotates the cogwheel a specified angle
-    public func rotate(rotation: Double){
+    /*public func rotate(rotation: Double){
         if(canRotate(rotation: rotation)){
             currentAngle += rotation
         }
-    }
+    }*/
     
     //Returns the angle of the alignment gap
     public func getInner() -> Double{
-        return innerAlignmentAngle
+        let tempAngle = getCurrent() + innerAlignmentAngle
+        if(tempAngle >= 360){
+            return (tempAngle - 360)
+        }else{
+            return tempAngle
+        }
     }
     
     //Returns the angle of the alignment cog
-    public func getOuter() -> Double{
-        return outerAlignmentAngle
-    }
+    /*public func getOuter() -> Double{
+        return
+    }*/
     
     //Returns the current angle
     public func getCurrent() -> Double{
-        return currentAngle
+        let tempAngle: Double = ((Double(self.zRotation)*180)/Double.pi)
+        if (tempAngle >= 0){
+            return tempAngle
+        }else{
+            return (180 + tempAngle)
+        }
     }
     
     //Chacks if the rotation is possible

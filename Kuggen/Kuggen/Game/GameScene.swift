@@ -67,8 +67,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var robotFourHandle : Handle
     
     private var robotTwoArm : Arm
-    private let robotTwoButton = SKShapeNode(circleOfRadius: 50)
-    
+    private let robotOneButton = SKSpriteNode(imageNamed: "robot0_button")
+    private let robotTwoButton = SKSpriteNode(imageNamed: "robot1_button")
+    private let robotThreeButton = SKSpriteNode(imageNamed: "robot2_button")
+    private let robotFourButton = SKSpriteNode(imageNamed: "robot3_button")
+
     private var joints : [SKPhysicsJointFixed]
   
 
@@ -246,8 +249,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             i+=1
         }
         
-        robotTwoButton.fillColor = SKColor.yellow
         robotTwoButton.position = CGPoint(x: self.frame.width/2-200, y: 100)
+        robotTwoButton.size = CGSize(width: 50, height: 50)
         robotTwoButton.name = "robotTwoButton"
         robotTwoButton.zPosition=1
         

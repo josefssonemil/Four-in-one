@@ -33,6 +33,7 @@ private let handleFour = Handle.edgeTriangle
 
 
 
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game manager, create and manage request objects
@@ -49,20 +50,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let robotThree = Robot(matchingHandle: handleThree, devicePosition: .three, textureName: "fingerprint")
     private let robotFour = Robot(matchingHandle: handleFour, devicePosition: .four, textureName: "fingerprint")
   
-    private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    /*private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelThree = Cogwheel(handle: handleThree, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-    private let cogwheelFour = Cogwheel(handle: handleFour, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-
+    private let cogwheelFour = Cogwheel(handle: handleFour, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)*/
+    
+    private let level: Level
+    private let cogwheelOne: Cogwheel
+    private let cogwheelTwo: Cogwheel
+    private let cogwheelThree: Cogwheel
+    private let cogwheelFour: Cogwheel
     
     // Init
     required init?(coder aDecoder: NSCoder) {
+        level = LevelReader.createLevel(nameOfLevel: "level1")
+        cogwheelOne = level.cogwheels[0]
+        cogwheelTwo = level.cogwheels[1]
+        cogwheelThree = level.cogwheels[2]
+        cogwheelFour = level.cogwheels[3]
         super.init(coder: aDecoder)
     }
     
     // Initalize new scene object
-    override init(size: CGSize) {
-        super.init(size : size)
+    convenience override init(size: CGSize) {
+        self.init(size: size, levelNo: 1)
+    }
+    
+    //Creates a GameScene for a specific level
+    init(size: CGSize, levelNo: Int){
+        //level = LevelReader.createLevel(nameOfLevel: "level \(levelNo)")
+        level = LevelReader.createLevel(nameOfLevel: "level1")
+        cogwheelOne = level.cogwheels[0]
+        cogwheelTwo = level.cogwheels[1]
+        cogwheelThree = level.cogwheels[2]
+        cogwheelFour = level.cogwheels[3]
+        super.init(size: size)
     }
     
     // When scene is presented by view
@@ -148,14 +170,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Game manager, set up the robot and cogwheel properties
         self.gameManager.robotOne = robotOne
         self.gameManager.robotTwo = robotTwo
-        self.gameManager.robotThree = robotThree
-        self.gameManager.robotFour = robotFour
         self.gameManager.cogwheelOne = cogwheelOne
         self.gameManager.cogwheelTwo = cogwheelTwo
-        self.gameManager.cogwheelThree = cogwheelThree
-        self.gameManager.cogwheelFour = cogwheelFour
-
-        
+        if(gameManager.mode == .fourplayer){
+            self.gameManager.robotThree = robotThree
+            self.gameManager.robotFour = robotFour
+            self.gameManager.cogwheelThree = cogwheelThree
+            self.gameManager.cogwheelFour = cogwheelFour
+        }
         
         // add nodes to scene
         if gameManager.mode == .twoplayer
@@ -250,10 +272,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     
-    // Update
+    // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-        
         // Initialize _lastUpdateTime if it has not already been
         /*if (self.lastUpdateTime == 0) {
          self.lastUpdateTime = currentTime
@@ -268,6 +288,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          }
          
          self.lastUpdateTime = currentTime*/
+        
+        //Checks if the goal is completed
+        if (gameManager.mode == .twoplayer){
+            print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
+            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                print("level completed")
+            }
+        }else if (gameManager.mode == .fourplayer){
+            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                print("level completed")
+            }
+        }
+        
+        
     }
     
 
@@ -396,6 +432,16 @@ private func handleLockedIn(cogwheel: SKSpriteNode, robot: SKSpriteNode){
    // print("handle locked in ")
 }
 
+//Checks if two cogwheels are aligned with a 5 degree margin of error
+private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
+    if(abs(inner.getCurrent() - outer.getInner()) < 10){
+        print("Aligned")
+        return true
+    }else{
+        return false
+    }
+    
+}
 
 
 extension GameScene : KuggenSessionManagerDelegate {

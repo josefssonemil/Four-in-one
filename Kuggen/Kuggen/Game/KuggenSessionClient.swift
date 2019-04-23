@@ -110,7 +110,7 @@ class KuggenSessionClient : KuggenSessionManager {
         
         if let levelString = event.info[levelKey] {
             
-            let localLevel = LevelReader.createLevel(nameOfLevel: "level1")
+            //let localLevel = LevelReader.createLevel(nameOfLevel: "level1")
             
             /*OperationQueue.main.addOperation {
                 self.kuggenDelegate?.gameManager(self, newLevel: localLevel)

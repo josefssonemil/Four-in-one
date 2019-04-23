@@ -12,16 +12,16 @@ import SpriteKit
 
 class LevelReader {
     
-    private static func readJSONObject(object: [String: AnyObject]) {
+    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: Handle.edgeCircle, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeSquare, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeTrapezoid, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeTriangle, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)])
+    
+    private static func readJSONObject(object: [String: AnyObject]) -> [Cogwheel] {
         let cogwheels = object["cogwheels"] as? [[String: AnyObject]]
         var objects: [Cogwheel] = []
         for cogwheel in cogwheels! {
             guard let handle = cogwheel["handle"] as? String,
                 let outer = cogwheel["outer"] as? Double,
                 let inner = cogwheel["inner"] as? Double,
-                let current = cogwheel["current"] as? Double,
-                let size = cogwheel["size"] as? CGSize,
-                let color = cogwheel["color"] as? UIColor else { break }
+                let current = cogwheel["current"] as? Double else { break }
             var handle1: Handle
             switch handle{
             case "edgeSquare":
@@ -35,25 +35,32 @@ class LevelReader {
             default:
                 handle1 = Handle.edgeSquare
             }
-            objects.append(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size, color: color))
-            //Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size)
-            print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current, size: size, color: color))
-            
+            objects.append(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current))
+            //print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current))
         }
-        print(Level.init(cogwheels: objects).getNumberOfCogwheels())
-        
+        //print(Level.init(cogwheels: objects).getNumberOfCogwheels())
+        return objects
     }
     
-    static func createLevel(nameOfLevel : String) {
+    static func createLevel(nameOfLevel : String) -> Level {
         if let path = Bundle.main.path(forResource: nameOfLevel, ofType: "json") {
             do {
+                print("Level - 1")
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                print("Level - 2")
                 let jsonResult = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
-                    readJSONObject(object: jsonResult as! [String : AnyObject])
+                print("LevelReader Succeded")
+                return Level.init(cogwheels: readJSONObject(object: jsonResult as! [String : AnyObject]))
             } catch {
                 // handle error
             }
+        }else {
+            print("Error in LevelReader-1")
+            return defaultLevel
+            
         }
+        print("Error in LevelReader-2")
+        return defaultLevel
     }
 }
 

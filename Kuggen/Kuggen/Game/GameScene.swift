@@ -250,7 +250,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         robotTwoButton.position = CGPoint(x: self.frame.width/2-200, y: 100)
-        robotTwoButton.size = CGSize(width: 50, height: 50)
+        robotTwoButton.size = CGSize(width: 100, height: 100)
         robotTwoButton.name = "robotTwoButton"
         robotTwoButton.zPosition=1
         

@@ -4,31 +4,28 @@ import SpriteKit
 
 class Cogwheel: SKSpriteNode{
     private var handle: Handle
-    private var outerAlignmentAngle: Double
     private var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?
     //private var currentAngle: Double
     
     //Creates a cogwheel
-    init(handle: Handle, outer: Double, inner: Double, current: Double, size: CGSize, color: UIColor){
+    init(handle: Handle, inner: Double, current: Double, size: CGSize, color: UIColor){
         let texture = SKTexture(imageNamed: "purple cogwheel")
         self.handle = handle
-        self.outerAlignmentAngle = outer
         self.innerAlignmentAngle = inner
         super.init(texture: texture, color: color, size: size)
         self.zRotation = CGFloat((current*Double.pi)/180)
         self.setScale(11)
     }
     
-    init(handle: Handle, outer: Double, inner: Double, current: Double) {
+    init(handle: Handle, inner: Double, current: Double, scale: Double) {
         let texture = SKTexture(imageNamed: "purple cogwheel")
         self.handle = handle
-        self.outerAlignmentAngle = outer
         self.innerAlignmentAngle = inner
         super.init(texture: texture, color: UIColor.black, size: CGSize(width: 100, height: 100))
         self.zRotation = CGFloat((current*Double.pi)/180)
-        self.setScale(11)
+        self.setScale(CGFloat(scale))
     }
     
     required init?(coder aDecoder: NSCoder) {

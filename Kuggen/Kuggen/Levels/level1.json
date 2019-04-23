@@ -2,27 +2,27 @@
     "cogwheels": [
         {
             "handle": "edgeSquare",
-            "outer": 45,
             "inner": 90,
             "current": 0,
+            "scale": 7,
         },
         {
             "handle": "edgeTrapezoid",
-            "outer": 60,
             "inner": 180,
             "current": 0,
+            "scale": 10,
         },
         {
             "handle": "edgeCircle",
-            "outer": 30,
-            "inner": 500,
+            "inner": 270,
             "current": 0,
+            "scale": 13,
         },
         {
             "handle": "edgeTriangle",
-            "outer": 90,
             "inner": 165,
-            "current": 0
+            "current": 0,
+            "scale": 16,
         }
     ]
 }

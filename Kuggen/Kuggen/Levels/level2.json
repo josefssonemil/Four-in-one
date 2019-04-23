@@ -2,38 +2,27 @@
     "cogwheels": [
         {
             "handle": "edgeSquare",
-            "outer": 45,
             "inner": 90,
             "current": 0,
-            "size": 100
+            "scale": 7,
         },
         {
             "handle": "edgeTrapezoid",
-            "outer": 60,
             "inner": 180,
             "current": 0,
-            "size": 70
-        },
-        {
-            "handle": "edgeTriangle",
-            "outer": 60,
-            "inner": 180,
-            "current": 0,
-            "size": 70
-        },
-        {
-            "handle": "edgeTrapezoid",
-            "outer": 60,
-            "inner": 180,
-            "current": 0,
-            "size": 500
+            "scale": 9,
         },
         {
             "handle": "edgeCircle",
-            "outer": 30,
-            "inner": 500,
+            "inner": 270,
             "current": 0,
-            "size": 150
+            "scale": 11,
+        },
+        {
+            "handle": "edgeTriangle",
+            "inner": 165,
+            "current": 0,
+            "scale": 13,
         }
     ]
 }

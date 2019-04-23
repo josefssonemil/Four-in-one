@@ -291,7 +291,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Checks if the goal is completed
         if (gameManager.mode == .twoplayer){
-            print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
+            //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
                 print("level completed")
             }

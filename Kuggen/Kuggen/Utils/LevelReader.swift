@@ -27,23 +27,21 @@ class LevelReader {
                 let current = cogwheel["current"] as? Double,
                 let scale = cogwheel["scale"] as? Double else { break }
           
-            var handle1: HandleType
+            var handle: HandleType
 
-            switch handle{
+            switch handleString{
             case "edgeSquare":
-                handle1 = HandleType.edgeSquare
+                handle = HandleType.edgeSquare
             case "edgeTrapezoid":
-                handle1 = HandleType.edgeTrapezoid
+                handle = HandleType.edgeTrapezoid
             case "edgeCircle":
-                handle1 = HandleType.edgeCircle
+                handle = HandleType.edgeCircle
             case "edgeTriangle":
-                handle1 = HandleType.edgeTriangle
+                handle = HandleType.edgeTriangle
             default:
-                handle1 = HandleType.edgeSquare
-                
-
-
+                handle = HandleType.edgeSquare
             }
+            
             objects.append(Cogwheel.init(handle: handle, inner: inner, current: current, scale: scale))
             //print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current))
         }

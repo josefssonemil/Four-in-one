@@ -67,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var joints : [SKPhysicsJointFixed]
   
 
-    private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
+    /*private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelThree = Cogwheel(handle: handleThree, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
     private let cogwheelFour = Cogwheel(handle: handleFour, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)*/
@@ -99,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     convenience override init(size: CGSize) {
         self.init(size: size, levelNo: 1)
+    }
 
 
     
@@ -115,6 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotTwoHandle=robotTwo.getHandle()
         joints = []
         super.init(size: size)
+    }
     
     // When scene is presented by view
     override func didMove(to view: SKView) {
@@ -612,6 +614,7 @@ private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
         return false
     }
 
+}
 }
 
 

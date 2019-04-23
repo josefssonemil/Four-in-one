@@ -21,7 +21,7 @@ class Cogwheel: SKSpriteNode{
         self.setScale(11)
     }
     
-    init(handle: Handle, outer: Double, inner: Double, current: Double) {
+    init(handle: HandleType, outer: Double, inner: Double, current: Double) {
         let texture = SKTexture(imageNamed: "purple cogwheel")
         self.handle = handle
         self.outerAlignmentAngle = outer

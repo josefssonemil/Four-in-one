@@ -12,7 +12,7 @@ import SpriteKit
 
 class LevelReader {
     
-    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: Handle.edgeCircle, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeSquare, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeTrapezoid, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: Handle.edgeTriangle, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)])
+    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: HandleType.edgeCircle, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeSquare, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeTrapezoid, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeTriangle, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)])
     
     private static func readJSONObject(object: [String: AnyObject]) -> [Cogwheel] {
         let cogwheels = object["cogwheels"] as? [[String: AnyObject]]
@@ -23,7 +23,7 @@ class LevelReader {
                 let inner = cogwheel["inner"] as? Double,
 
                 let current = cogwheel["current"] as? Double else { break }
-            var handle1: Handle
+            var handle1: HandleType
 
             switch handle{
             case "edgeSquare":

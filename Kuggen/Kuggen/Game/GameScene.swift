@@ -249,6 +249,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             i+=1
         }
         
+        var test = SKLabelNode(text: "devicepos \(gameManager.position)")
+        test.fontSize = 72
+        test.position = CGPoint(x: 300, y: 300)
+        self.addChild(test)
         robotTwoButton.position = CGPoint(x: self.frame.width/2-200, y: 100)
         robotTwoButton.size = CGSize(width: 100, height: 100)
         robotTwoButton.name = "robotTwoButton"
@@ -266,7 +270,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         r3head.fillColor = SKColor.blue
         r4head.fillColor = SKColor.brown
         
-        r1head.position = CGPoint(x: self.frame.width/2, y: 0)
+        //r1head.position = CGPoint(x: self.frame.width/2, y: 0)
+        r1head.position = robotOne.position
         r2head.position = robotTwo.position
         r3head.position = robotThree.position
         r4head.position = robotFour.position
@@ -323,7 +328,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
@@ -606,23 +611,23 @@ private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
 extension GameScene : KuggenSessionManagerDelegate {
     func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
         if cogName == "cog_1" {
-            //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelOne.zRotation = impulse
+            cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelOne.zRotation = impulse
         }
         
         else if cogName == "cog_2" {
-            //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelTwo.zRotation = impulse
+            cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelTwo.zRotation = impulse
         }
         
         else if cogName == "cog_3" {
-            //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelThree.zRotation = impulse
+            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelThree.zRotation = impulse
         }
         
         else if cogName == "cog_4" {
-            //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelFour.zRotation = impulse
+            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            //cogwheelFour.zRotation = impulse
         }
     }
     

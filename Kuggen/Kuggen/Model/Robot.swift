@@ -178,37 +178,33 @@ class Robot: SKSpriteNode {
         self.setScale(0.2)
 
 
-       /*switch devicepos {
+       switch devicepos {
             //Lower left corner
             case .one:
-                basePoint = CGPoint(x: 0, y: 0)
-                anchorPosition.y = 0
-                self.rotation = 45
+                basePoint = CGPoint(x: 100, y: 100)
+                self.rotation = 0.25 * .pi
                 self.zRotation = rotation
             // Upper left corner
             case .two:
-                basePoint = CGPoint(x: 0, y: totalScreenSize.height)
-                anchorPosition.y = 1
-                self.rotation = -45
+                basePoint = CGPoint(x: totalScreenSize.height, y: totalScreenSize.width)
+                self.rotation = 0.5 * .pi
                 self.zRotation = rotation
             // Upper right corner
         case .three:
-             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
-             anchorPosition.y = 1
-           self.rotation = 225
+            basePoint = CGPoint(x: 100, y: 100)
+             self.rotation = 0.25 * .pi
              self.zRotation = rotation
 
             // Lower right corner
         case .four:
-             basePoint = CGPoint(x: totalScreenSize.width, y: 0)
-            anchorPosition.y = 0
-            self.rotation = 315
+             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.width)
+            self.rotation = 0.5 * .pi
              self.zRotation = rotation
 
         }
         
         self.position = basePoint
-        self.anchorPoint = anchorPosition*/
+       
     }
     
     /*private func setupPhysics(){

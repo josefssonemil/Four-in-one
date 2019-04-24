@@ -20,8 +20,10 @@ class Robot: SKSpriteNode {
     private var rotation: CGFloat
     private var arm: Arm
    // private var arms : [Arm]
-
     
+    private var closedHandleTexture = SKTexture(imageNamed: "robothand0closed")
+    private var openHandleTexture = SKTexture(imageNamed: "robothand0open")
+
     init(matchingHandle: HandleType, devicePosition: DevicePosition, textureName: String) {
         let texture = SKTexture(imageNamed: textureName)
        //super.init(texture: texture, color: nil, size: texture.size())
@@ -205,10 +207,14 @@ class Robot: SKSpriteNode {
     
     public func closeHandle(){
         handle.close()
+        openHandleTexture = handle.texture!
+        handle.texture? = closedHandleTexture
     }
     
     public func openHandle(){
         handle.open()
+        closedHandleTexture = handle.texture!
+        handle.texture? = openHandleTexture
     }
     
     public func lockToCog(cogwheel: Cogwheel){
@@ -231,34 +237,30 @@ class Robot: SKSpriteNode {
         devicePosition = devicepos
         self.setScale(0.2)
 
-/*
-       switch devicepos {
+        switch devicepos {
             //Lower left corner
             case .one:
-                basePoint = CGPoint(x: 100, y: 100)
-                self.rotation = 0.25 * .pi
-                self.zRotation = rotation
+                self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand0open"), lengthOfArm: Double(arm.size.height))
+                self.closedHandleTexture = SKTexture(imageNamed: "robothand0closed")
             // Upper left corner
             case .two:
-                basePoint = CGPoint(x: totalScreenSize.height, y: totalScreenSize.width)
-                self.rotation = 0.5 * .pi
-                self.zRotation = rotation
+                self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand1open"), lengthOfArm: Double(arm.size.height))
+                self.closedHandleTexture = SKTexture(imageNamed: "robothand1closed")
+
             // Upper right corner
         case .three:
-            basePoint = CGPoint(x: 100, y: 100)
-             self.rotation = 0.25 * .pi
-             self.zRotation = rotation
+            self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand2open"), lengthOfArm: Double(arm.size.height))
+            self.closedHandleTexture = SKTexture(imageNamed: "robothand2closed")
 
             // Lower right corner
         case .four:
-             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.width)
-            self.rotation = 0.5 * .pi
-             self.zRotation = rotation
-
+            self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand3open"), lengthOfArm: Double(arm.size.height))
+            self.closedHandleTexture = SKTexture(imageNamed: "robothand3closed")
         }
-        */
-        //self.position = basePoint
-       
+        
+        self.openHandleTexture = handle.texture!
+
+               
     }
     
     /*private func setupPhysics(){

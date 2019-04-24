@@ -284,7 +284,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(r4head)
         
         robotTwoButton.zPosition=2
+        self.addChild(robotOneButton)
         self.addChild(robotTwoButton)
+        self.addChild(robotThreeButton)
+        self.addChild(robotFourButton)
+
 
         initPhysics()
         self.gameManager.initialSetUp()
@@ -337,8 +341,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let nodeName = touchedNode.name {
                 
+                if nodeName.contains("robotOneButton") {
+                        robotOne.closeHandle()
+                }
+                
                 if nodeName.contains("robotTwoButton") {
-                        robotTwo.closeHandle()
+                    robotTwo.closeHandle()
+                }
+                
+                if nodeName.contains("robotThreeButton") {
+                    robotThree.closeHandle()
+                }
+                
+                if nodeName.contains("robotFourButton") {
+                    robotFour.closeHandle()
                 }
             }
         }

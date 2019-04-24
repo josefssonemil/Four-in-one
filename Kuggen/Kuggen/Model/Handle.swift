@@ -48,12 +48,12 @@ class Handle: SKSpriteNode{
     }
     
     public func close(){
-        self.texture = SKTexture(imageNamed: "robothand1closed")
+        //self.texture = SKTexture(imageNamed: "robothand1closed")
         isHandleClosed=true
     }
     
     public func open(){
-        self.texture = SKTexture(imageNamed: "robothand1open")
+       // self.texture = SKTexture(imageNamed: "robothand1open")
         isHandleClosed=false
     }
     

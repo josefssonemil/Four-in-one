@@ -12,6 +12,7 @@ class Robot: SKSpriteNode {
     private var isLocked : Bool
     private var cogwheel : Cogwheel?
     private let isJoined = false
+    private var offsetAngle = CGFloat(0)
     
     //Depends on device pos
     var basePoint = CGPoint()
@@ -34,7 +35,7 @@ class Robot: SKSpriteNode {
         //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
-        setPosition(pos: devicePosition)
+        //setPosition(pos: devicePosition)
         self.anchorPoint=anchorPosition
 
     }
@@ -49,8 +50,31 @@ class Robot: SKSpriteNode {
         arm.setPosition(x: x, y: y)
         handle.setPosition(x: x, y: y + arm.getHeight()-5)
     }
+    public func setPosition(pos: CGPoint, devpos: DevicePosition){
+        //self.position = CGPoint(x: pos.x, y: pos.y)
+        arm.setPosition(x: Int(pos.x), y: Int(pos.y))
+        switch devpos {
+        case DevicePosition.one:
+            self.zRotation = -.pi/4
+            handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
+        case DevicePosition.two:
+            self.zRotation = -(.pi*3)/4
+            handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
+        case DevicePosition.three:
+            self.zRotation = (.pi*3)/4
+            handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
+        case DevicePosition.four:
+            self.zRotation = .pi/4
+            handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
+        default:
+            break
+        }
+        handle.zRotation = self.zRotation
+        arm.zRotation = self.zRotation
+        offsetAngle = self.zRotation
+    }
     
-    public func setPosition(pos: DevicePosition){
+   /* public func setPosition(pos: DevicePosition){
         switch pos {
         case DevicePosition.one:
             self.position = CGPoint(x: 100 ,y: 50)
@@ -78,7 +102,7 @@ class Robot: SKSpriteNode {
             break
         }
     }
-    
+    */
     public func getHandle() -> Handle{
         return handle
     }
@@ -121,7 +145,7 @@ class Robot: SKSpriteNode {
             }
         }
         else {
-            if (.pi/3 > angle  && angle > -.pi/3){
+            if (.pi/3-offsetAngle > angle  && angle > -.pi/3-offsetAngle){
                 rotation=angle
                 self.zRotation = angle
                 arm.rotate(angle: angle)
@@ -132,7 +156,7 @@ class Robot: SKSpriteNode {
                     else{
                         handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
                     }
-                    if (.pi/4 < angle && angle < -.pi/4){
+                    if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
                         handle.rotate(angle: -angle/4)
                     } else { handle.rotate(angle: 0)}
                 }

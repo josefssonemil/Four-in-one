@@ -100,7 +100,21 @@ class KuggenSessionManager: FourInOneSessionManager {
             // TODO
         else if mode == .fourplayer
         {
-            robotOnePos = makeLocal(CGPoint(x:0, y:0))
+            
+            globalSize = makeBoardSize()
+            
+            robotOne.position = makeLocal(CGPoint(x:150, y:100))
+            robotOne.setPosition(pos: robotOne.position, devpos: DevicePosition.one)
+            
+            robotTwo.position = makeLocal(CGPoint(x:150, y:globalSize.height-100))
+            robotTwo.setPosition(pos: robotTwo.position, devpos: DevicePosition.two)
+            
+            robotThree.position = makeLocal(CGPoint(x:globalSize.width-150, y:globalSize.height-100))
+            robotThree.setPosition(pos: robotThree.position, devpos: DevicePosition.three)
+            
+            robotFour.position = makeLocal(CGPoint(x:globalSize.width-150, y:100))
+            robotFour.setPosition(pos: robotFour.position, devpos: DevicePosition.four)
+            /*robotOnePos = makeLocal(CGPoint(x:0, y:0))
             /*robotOnePos = CGPoint(x:0, y:0)
             robotTwoPos = CGPoint(x: 0, y: globalSize.height)
             robotThreePos = CGPoint(x:globalSize.width, y:globalSize.height)
@@ -112,7 +126,7 @@ class KuggenSessionManager: FourInOneSessionManager {
            robotThreePos = makeLocal(CGPoint(x:globalSize.width, y:globalSize.height))
             
             robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
-            
+            */
            /* robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))

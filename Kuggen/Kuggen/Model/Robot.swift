@@ -34,6 +34,7 @@ class Robot: SKSpriteNode {
         //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
+        setPosition(pos: devicePosition)
         self.anchorPoint=anchorPosition
 
     }
@@ -47,6 +48,35 @@ class Robot: SKSpriteNode {
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
         handle.setPosition(x: x, y: y + arm.getHeight()-5)
+    }
+    
+    public func setPosition(pos: DevicePosition){
+        switch pos {
+        case DevicePosition.one:
+            self.position = CGPoint(x: 100 ,y: 50)
+            arm.position = self.position
+            handle.position = CGPoint(x: arm.position.x, y: arm.position.y + arm.frame.height)
+        case DevicePosition.two:
+            self.position = CGPoint(x: 100,y: totalScreenSize.height - 50)
+            arm.position = self.position
+            handle.position = CGPoint(x: arm.position.x, y: arm.position.y + arm.frame.height)
+            self.zRotation = .pi
+            arm.zRotation = .pi
+            handle.zRotation = .pi
+        case DevicePosition.three:
+            self.position = CGPoint(x: totalScreenSize.width - 100,y:  totalScreenSize.height - 50)
+            arm.position = self.position
+            handle.position = CGPoint(x: arm.position.x, y: arm.position.y + arm.frame.height)
+        case DevicePosition.four:
+            self.position = CGPoint(x: totalScreenSize.width - 100,y:  totalScreenSize.height - 50)
+            arm.position = self.position
+            handle.position = CGPoint(x: arm.position.x, y: arm.position.y + arm.frame.height)
+            self.zRotation = .pi
+            arm.zRotation = .pi
+            handle.zRotation = .pi
+        default:
+            break
+        }
     }
     
     public func getHandle() -> Handle{
@@ -177,7 +207,7 @@ class Robot: SKSpriteNode {
         devicePosition = devicepos
         self.setScale(0.2)
 
-
+/*
        switch devicepos {
             //Lower left corner
             case .one:
@@ -202,8 +232,8 @@ class Robot: SKSpriteNode {
              self.zRotation = rotation
 
         }
-        
-        self.position = basePoint
+        */
+        //self.position = basePoint
        
     }
     

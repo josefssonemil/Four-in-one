@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -319,10 +319,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Jv-cj-Anv"/>
                     </view>
-                    <connections>
-                        <outlet property="menuTapped" destination="imY-Rx-Rs4" id="Vqy-Qq-vhl"/>
-                        <outlet property="playAgainButton" destination="baY-im-Z0L" id="yfS-t2-E6Q"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iws-zy-g0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -565,6 +561,14 @@
                                 <color key="textColor" name="MidSecondComplementaryColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cA0-Ul-bRb">
+                                <rect key="frame" x="126" y="232" width="134" height="123"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="hGV-kY-B27"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="LightBackgroundColor"/>
                         <constraints>
@@ -577,6 +581,7 @@
                     </view>
                     <connections>
                         <outlet property="aboutButton" destination="0m5-Nv-HNt" id="0AG-LN-wqJ"/>
+                        <outlet property="button" destination="cA0-Ul-bRb" id="5Um-3s-4ce"/>
                         <outlet property="optionMenuButton" destination="9a8-fA-eRN" id="JVP-PP-6Cs"/>
                         <outlet property="playButton" destination="Qff-vR-Nvg" id="xlh-nQ-5N5"/>
                         <outlet property="robotButton" destination="D80-eF-ZRY" id="CQL-2z-UOM"/>

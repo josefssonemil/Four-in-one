@@ -26,6 +26,8 @@ protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
 
 
 class KuggenSessionManager: FourInOneSessionManager {
+    
+    weak var coordinator: MainCoordinator?
 
     // properties
     var level = 1
@@ -266,6 +268,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     }
     
     func startNextLevel() {
+        
         
         // level += 1
         

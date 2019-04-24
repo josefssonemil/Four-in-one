@@ -15,6 +15,9 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
     
     
     func gameScene(_ gameScene: GameScene, didEndLevelWithSuccess result: Bool) {
+        
+        coordinator?.goToWinView(gameManager: gameScene.gameManager)
+        
         fatalError("init(coder:) has not been implemented")
 
     }

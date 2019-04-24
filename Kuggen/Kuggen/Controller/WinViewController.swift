@@ -10,11 +10,12 @@ import UIKit
 
 class WinViewController: UIViewController, Storyboarded {
     weak var coordinator: MainCoordinator?
-    @IBOutlet weak var playAgainButton: MenuButton!
+    var gameManager : KuggenSessionManager!
+    //@IBOutlet weak var playAgainButton: MenuButton!
     
     
     @IBAction func playAgainTapped(_ sender: Any) {
-    coordinator?.goToGameScreen(gameManager: <#T##KuggenSessionManager#>)
+    coordinator?.goToGameScreen(gameManager: gameManager)
     }
     
     @IBAction func menuTapped(_ sender: Any) {

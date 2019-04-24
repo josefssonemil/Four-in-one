@@ -347,13 +347,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Checks if the goal is completed
         if (gameManager.mode == .twoplayer){
+            
             //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
                 print("level completed")
-                gameManager.startNextLevel()
+                gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: true)
+                //gameManager.startNextLevel()
                 
             }
-        }else if (gameManager.mode == .fourplayer){
+        } else if (gameManager.mode == .fourplayer){
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
                 && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
                 && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){

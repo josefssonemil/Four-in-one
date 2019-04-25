@@ -362,8 +362,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             case DevicePosition.three:
                 self.longBorder.backgroundColor = self.threeFour
                 self.shortBorder.backgroundColor = self.twoThree
-                self.helpButton.center.x = 125
-                oddPositionSetup(positionOfCogX: view.bounds.width, positionOfCogY: 0)
+                oddPositionSetup(positionOfCogX: view.bounds.width, positionOfCogY: view.bounds.height)
                 fourPlayerSetup()
             
             case DevicePosition.four:

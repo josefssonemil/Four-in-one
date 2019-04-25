@@ -86,39 +86,8 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             
-            robotOne.zRotation = .pi
+            robotOne.zRotation = 0
             robotTwo.zRotation = 0
-            
-            cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
-            cogwheelOne.position.x = cogwheelOnePos.x
-            cogwheelOne.position.y = cogwheelOnePos.y
-            
-            cogwheelTwoPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
-            cogwheelTwo.position.x = cogwheelTwoPos.x
-            cogwheelTwo.position.y = cogwheelTwoPos.y
-            
-        }
-        
-            // TODO
-        else if mode == .fourplayer
-        {
-            robotOnePos = makeLocal(CGPoint(x:0, y:0))
-            /*robotOnePos = CGPoint(x:0, y:0)
-            robotTwoPos = CGPoint(x: 0, y: globalSize.height)
-            robotThreePos = CGPoint(x:globalSize.width, y:globalSize.height)
-            robotFourPos = CGPoint(x:globalSize.width, y:0)*/
-            
-           
-            robotTwoPos = makeLocal(CGPoint(x:0, y:globalSize.height))
-            
-           robotThreePos = makeLocal(CGPoint(x:globalSize.width, y:globalSize.height))
-            
-            robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
-            
-           /* robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
-            robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
-            robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
-            robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))*/
             
             cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
             cogwheelOne.position.x = cogwheelOnePos.x
@@ -128,15 +97,39 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelTwo.position.x = cogwheelTwoPos.x
             cogwheelTwo.position.y = cogwheelTwoPos.y
             
-            cogwheelThreePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
+        }
+        
+            // TODO
+        else if mode == .fourplayer
+        {
+            robotOnePos = makeLocal(CGPoint(x:0, y:0))
+            
+            robotTwoPos = makeLocal(CGPoint(x:0, y:globalSize.height))
+            
+            robotThreePos = makeLocal(CGPoint(x:globalSize.width, y:globalSize.height))
+            
+            robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
+            
+            robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
+            robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
+            robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
+            robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))
+            
+            cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelOne.position.x = cogwheelOnePos.x
+            cogwheelOne.position.y = cogwheelOnePos.y
+            
+            cogwheelTwoPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
+            cogwheelTwo.position.x = cogwheelTwoPos.x
+            cogwheelTwo.position.y = cogwheelTwoPos.y
+            
+            cogwheelThreePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
             cogwheelThree.position.x = cogwheelThreePos.x
             cogwheelThree.position.y = cogwheelThreePos.y
             
-            cogwheelFourPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
+            cogwheelFourPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
-            
-         
         }
         
     

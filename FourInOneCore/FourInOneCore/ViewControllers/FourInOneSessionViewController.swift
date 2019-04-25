@@ -34,7 +34,7 @@ open class FourInOneSessionViewController: FourInOneViewController {
         // Do any additional setup after loading the view.
         let position = sessionManager.position
         
-        if  position == .four || position == .three {
+        if position == .two || position == .three {
             
             self.boardView.transform = self.boardView.transform.rotated(by:.pi)
             

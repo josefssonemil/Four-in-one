@@ -82,13 +82,7 @@ class Robot: SKSpriteNode {
             }
             if (handle.getX() > arm.getX()){
                 arm.rotate(angle: -CGFloat(.pi/2 - angle2))
-                rotation = -CGFloat(.pi/2 - angle2)
-                self.zRotation = -CGFloat(.pi/2 - angle2)
-            } else {
-                arm.rotate(angle: CGFloat(.pi/2 - angle2))
-                rotation = CGFloat(.pi/2 - angle2)
-                self.zRotation = CGFloat(.pi/2 - angle2)
-            }
+            } else {arm.rotate(angle: CGFloat(.pi/2 - angle2))}
         }
         else {
             if (.pi/3 > angle  && angle > -.pi/3){
@@ -178,33 +172,37 @@ class Robot: SKSpriteNode {
         self.setScale(0.2)
 
 
-       switch devicepos {
+       /*switch devicepos {
             //Lower left corner
             case .one:
-                basePoint = CGPoint(x: 100, y: 100)
-                self.rotation = 0.25 * .pi
+                basePoint = CGPoint(x: 0, y: 0)
+                anchorPosition.y = 0
+                self.rotation = 45
                 self.zRotation = rotation
             // Upper left corner
             case .two:
-                basePoint = CGPoint(x: totalScreenSize.height, y: totalScreenSize.width)
-                self.rotation = 0.5 * .pi
+                basePoint = CGPoint(x: 0, y: totalScreenSize.height)
+                anchorPosition.y = 1
+                self.rotation = -45
                 self.zRotation = rotation
             // Upper right corner
         case .three:
-            basePoint = CGPoint(x: 100, y: 100)
-             self.rotation = 0.25 * .pi
+             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
+             anchorPosition.y = 1
+           self.rotation = 225
              self.zRotation = rotation
 
             // Lower right corner
         case .four:
-             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.width)
-            self.rotation = 0.5 * .pi
+             basePoint = CGPoint(x: totalScreenSize.width, y: 0)
+            anchorPosition.y = 0
+            self.rotation = 315
              self.zRotation = rotation
 
         }
         
         self.position = basePoint
-       
+        self.anchorPoint = anchorPosition*/
     }
     
     /*private func setupPhysics(){

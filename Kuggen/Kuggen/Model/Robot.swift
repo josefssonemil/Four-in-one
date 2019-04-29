@@ -147,7 +147,7 @@ class Robot: SKSpriteNode {
             }
         }
         else {
-            if (.pi/3-offsetAngle > angle  && angle > -.pi/3-offsetAngle){
+            if (.pi/3-offsetAngle < angle && angle < -.pi/3-offsetAngle){
                 rotation=angle
                 self.zRotation = angle
                 arm.rotate(angle: angle)

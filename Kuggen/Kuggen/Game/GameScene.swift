@@ -220,16 +220,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var robots : [Robot]
         var cogwheels : [Cogwheel]
+        var buttons : [SKSpriteNode]
         // add nodes to scene
         if gameManager.mode == .twoplayer {
             robots = [robotOne, robotTwo]
             cogwheels = [cogwheelOne, cogwheelTwo]
+            buttons = [robotOneButton, robotTwoButton]
         } else if gameManager.mode == .fourplayer{
             robots = [robotOne, robotTwo, robotThree, robotFour]
             cogwheels = [cogwheelOne, cogwheelTwo, cogwheelThree, cogwheelFour]
+            buttons = [robotOneButton, robotTwoButton, robotThreeButton, robotFourButton]
         } else {
             robots = [robotOne]
             cogwheels = [cogwheelOne]
+            buttons = [robotOneButton]
         }
         
         var i = 1
@@ -248,16 +252,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheel.zPosition = -1
             i+=1
         }
+
+        
         
         var test = SKLabelNode(text: "devicepos \(gameManager.position)")
         test.fontSize = 72
         test.position = CGPoint(x: 300, y: 300)
         self.addChild(test)
-        robotTwoButton.position = CGPoint(x: self.frame.width/2-200, y: 100)
-        robotTwoButton.size = CGSize(width: 100, height: 100)
-        robotTwoButton.name = "robotTwoButton"
-        robotTwoButton.zPosition=1
-        
+
+ 
         // Robot heads (replace with graphics)
         let r1head = SKSpriteNode(imageNamed: "blueRobot")
         //let r1head = SKShapeNode(circleOfRadius: 100)
@@ -283,16 +286,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(r3head)
         self.addChild(r4head)
         
-        robotTwoButton.zPosition=2
-        self.addChild(robotOneButton)
-        self.addChild(robotTwoButton)
-        self.addChild(robotThreeButton)
-        self.addChild(robotFourButton)
-
-
+    
         initPhysics()
         self.gameManager.initialSetUp()
-        
+        i = 1
+        for button in buttons {
+            self.addChild(button)
+            button.name = "robot_\(i)_button"
+            button.size = CGSize(width: 100, height: 100)
+            switch i {
+            case 1:
+                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+            case 2:
+                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+            case 3:
+                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+            case 4:
+                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+            default:
+                print("something to print")
+                break
+            }
+            button.zPosition = 2
+            i+=1
+        }
     }
     
     // Update, called before each frame is rendered
@@ -341,19 +358,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let nodeName = touchedNode.name {
                 
-                if nodeName.contains("robotOneButton") {
+                if nodeName.contains("robot_1_button") {
                         robotOne.closeHandle()
                 }
                 
-                if nodeName.contains("robotTwoButton") {
+                if nodeName.contains("robot_2_button") {
                     robotTwo.closeHandle()
                 }
                 
-                if nodeName.contains("robotThreeButton") {
+                if nodeName.contains("robot_3_button") {
                     robotThree.closeHandle()
                 }
                 
-                if nodeName.contains("robotFourButton") {
+                if nodeName.contains("robot_4_button") {
                     robotFour.closeHandle()
                 }
             }

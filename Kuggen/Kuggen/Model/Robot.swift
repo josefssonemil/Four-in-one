@@ -175,12 +175,24 @@ class Robot: SKSpriteNode {
                     self.zRotation = angle
                     arm.rotate(angle: angle)
                     if(!isJoined){
-                        if(angle<0){
+                        switch devicePosition {
+                        case .one:
+                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+                        case .two:
+                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.minY))
+                        case .three:
+                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.minY))
+                        case .four:
+                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+                        default:
+                            break
+                        }
+                       /* if(angle<0){
                             handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
                         }
                         else{
                             handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
-                        }
+                        }*/
                         /*if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
                             handle.rotate(angle: -angle/4)
                         } else { handle.rotate(angle: 0)}*/

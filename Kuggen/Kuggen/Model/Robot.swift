@@ -59,7 +59,7 @@ class Robot: SKSpriteNode {
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
-        handle.setPosition(x: x, y: y + arm.getHeight()-5)
+        setHandlePosition()
     }
     public func setPosition(pos: CGPoint, devpos: DevicePosition){
         //self.position = CGPoint(x: pos.x, y: pos.y)
@@ -67,24 +67,20 @@ class Robot: SKSpriteNode {
         switch devpos {
         case DevicePosition.one:
             self.zRotation = -.pi/4
-            handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
             self.rotationInterval = (degToRad(degrees: -89), degToRad(degrees: -1))
         case DevicePosition.two:
             self.zRotation = -(.pi*3)/4
-            handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
             self.rotationInterval = (degToRad(degrees: 181), degToRad(degrees: 269))
         case DevicePosition.three:
             self.zRotation = (.pi*3)/4
-            handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
             self.rotationInterval = (degToRad(degrees: 91), degToRad(degrees: 179))
         case DevicePosition.four:
             self.zRotation = .pi/4
-            handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
             self.rotationInterval = (degToRad(degrees: 1), degToRad(degrees: 89))
-
         default:
             break
         }
+        setHandlePosition()
         handle.zRotation = self.zRotation
         arm.zRotation = self.zRotation
         offsetAngle = self.zRotation
@@ -175,17 +171,7 @@ class Robot: SKSpriteNode {
                     self.zRotation = angle
                     arm.rotate(angle: angle)
                     if(!isJoined){
-                        switch devicePosition {
-                        case .one:
-                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
-                        case .two:
-                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.minY))
-                        case .three:
-                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.minY))
-                        case .four:
-                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-                        default:
-                            break
+                       setHandlePosition()
                         }
                        /* if(angle<0){
                             handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
@@ -196,14 +182,27 @@ class Robot: SKSpriteNode {
                         /*if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
                             handle.rotate(angle: -angle/4)
                         } else { handle.rotate(angle: 0)}*/
-          
-                }
             }
        
         }
        
     }
     
+    private func setHandlePosition(){
+        switch devicePosition {
+            case .one:
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+            case .two:
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.minY))
+            case .three:
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.minY))
+            case .four:
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+            default:
+            break
+        }
+    }
+
     public func getArm() -> Arm{
         return self.arm
     }
@@ -215,12 +214,13 @@ class Robot: SKSpriteNode {
         else{
             arm.extend()
             if(!isJoined){
-                if (rotation<0){
+                setHandlePosition()
+                /*if (rotation<0){
                     handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
                 }
                 else{
                     handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-                }
+                }*/
             }
         }
     }
@@ -232,12 +232,13 @@ class Robot: SKSpriteNode {
         else {
         arm.collapse()
         if(!isJoined){
-            if(rotation<0){
+            setHandlePosition()
+            /*if(rotation<0){
                 handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
             }
             else{
                 handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-            }
+            }*/
         }
         }
     }

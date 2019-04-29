@@ -68,11 +68,11 @@ class Robot: SKSpriteNode {
         case DevicePosition.one:
             self.zRotation = -.pi/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
-            self.rotationInterval = (-1, degToRad(degrees: -89))
+            self.rotationInterval = (degToRad(degrees: -89), degToRad(degrees: -1))
         case DevicePosition.two:
             self.zRotation = -(.pi*3)/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
-            self.rotationInterval = (degToRad(degrees: -91), degToRad(degrees: -179))
+            self.rotationInterval = (degToRad(degrees: 181), degToRad(degrees: 269))
         case DevicePosition.three:
             self.zRotation = (.pi*3)/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)

@@ -20,6 +20,7 @@ class Robot: SKSpriteNode {
     private var rotation: CGFloat
     private var arm: Arm
    // private var arms : [Arm]
+    private var rotationInterval = (CGFloat(0), CGFloat(0))
     
     private var closedHandleTexture = SKTexture(imageNamed: "robothand0closed")
     private var openHandleTexture = SKTexture(imageNamed: "robothand0open")
@@ -46,6 +47,14 @@ class Robot: SKSpriteNode {
        // super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func degToRad(degrees: CGFloat) -> CGFloat{
+        return degrees * (.pi / 180)
+    }
+    
+    private func radToDeg(rads: CGFloat) -> CGFloat{
+        return rads * (180 / .pi)
+    }
 
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
@@ -59,15 +68,20 @@ class Robot: SKSpriteNode {
         case DevicePosition.one:
             self.zRotation = -.pi/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
+            self.rotationInterval = (-1, degToRad(degrees: -89))
         case DevicePosition.two:
             self.zRotation = -(.pi*3)/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
+            self.rotationInterval = (degToRad(degrees: -91), degToRad(degrees: -179))
         case DevicePosition.three:
             self.zRotation = (.pi*3)/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) - arm.getHeight()-5)
+            self.rotationInterval = (degToRad(degrees: 91), degToRad(degrees: 179))
         case DevicePosition.four:
             self.zRotation = .pi/4
             handle.setPosition(x: Int(pos.x), y: Int(pos.y) + arm.getHeight()-5)
+            self.rotationInterval = (degToRad(degrees: 1), degToRad(degrees: 89))
+
         default:
             break
         }
@@ -121,6 +135,15 @@ class Robot: SKSpriteNode {
         return Int(self.position.x)
     }
     
+    private func rotationAllowed(newAngle: CGFloat) -> Bool {
+        if newAngle < rotationInterval.0 || newAngle > rotationInterval.1 {
+            return false
+    }
+        else {
+            return true
+        }
+    }
+    
     public func handleMovement(angle: CGFloat){
         if (isLocked){
             let dx = abs(arm.getX() - handle.getX())
@@ -147,22 +170,24 @@ class Robot: SKSpriteNode {
             }
         }
         else {
-            if (.pi/3-offsetAngle > angle  && angle > -.pi/3-offsetAngle){
-                rotation=angle
-                self.zRotation = angle
-                arm.rotate(angle: angle)
-                if(!isJoined){
-                    if(angle<0){
-                        handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+            if rotationAllowed(newAngle: angle) {
+                    rotation=angle
+                    self.zRotation = angle
+                    arm.rotate(angle: angle)
+                    if(!isJoined){
+                        if(angle<0){
+                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+                        }
+                        else{
+                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
+                        }
+                        /*if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
+                            handle.rotate(angle: -angle/4)
+                        } else { handle.rotate(angle: 0)}*/
                     }
-                    else{
-                        handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
-                    }
-                    if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
-                        handle.rotate(angle: -angle/4)
-                    } else { handle.rotate(angle: 0)}
-                }
+                
             }
+       
         }
        
     }

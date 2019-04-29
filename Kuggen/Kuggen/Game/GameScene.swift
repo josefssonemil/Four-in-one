@@ -275,6 +275,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             heads[i-1].scale(to: CGSize(width: 300, height: 300))
             heads[i-1].zPosition = -1
             heads[i-1].anchorPoint = CGPoint(x: 0.0, y: 1.0)
+            heads[i-1].isUserInteractionEnabled = false
             button.anchorPoint = CGPoint(x: 0.5, y: 1.0)
             
             self.addChild(button)

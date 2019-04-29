@@ -184,8 +184,8 @@ class Robot: SKSpriteNode {
                         /*if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
                             handle.rotate(angle: -angle/4)
                         } else { handle.rotate(angle: 0)}*/
-                    }
-                
+          
+                }
             }
        
         }

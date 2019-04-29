@@ -406,27 +406,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     if let touchedRobot = touchedNode as? Robot  {
                             let deltaX = location.x - touchedRobot.position.x
                             let deltaY = location.y - touchedRobot.position.y
-                            if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
+                            //if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
                                 let angle = atan2(deltaY, deltaX) + (.pi / 2)
                                // let prevHandLocX = touchedRobot.getHandle().getX()
                                 // When arm is rotated, the angle limit is set in the robot class.
+                        
+                        if (touchedRobot.rotation - 10 * .pi/180 < angle && angle < touchedRobot.rotation + 10 * .pi/180){
+                    
+                            if (CGPointDistance(from: latestPoint, to: touchedRobot.position) < CGPointDistance(from: location, to: touchedRobot.position)){
+                                touchedRobot.collapseArm()
+                            } else{
+                                touchedRobot.extendArm()
+                            }
+                        }
                                 if(touchedRobot.isLockedtoCog()){
                                     if(!touchedRobot.getArm().isExtended){
                                         gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle)
                                     }
                                 }
                                 gameManager.armMoved(robot: touchedRobot, angle: angle)
-                           
-                            }else {
-                                let diffY = abs(location.y-latestPoint.y)
-                                if(diffY < 2){
-                                    if(location.y < latestPoint.y){
-                                        touchedRobot.collapseArm()
-                                    } else  if(location.y > latestPoint.y){
-                                        touchedRobot.extendArm()
-                                    }
-                                }
-                        }
                     }
                 }
             }
@@ -436,7 +434,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
-    
+    func CGPointDistanceSquared(from: CGPoint, to: CGPoint) -> CGFloat {
+        return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y)
+    }
+
+    func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
+        return sqrt(CGPointDistanceSquared(from: from, to: to))
+    }
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let aTouch = touches.first {
             

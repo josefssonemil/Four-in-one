@@ -17,7 +17,7 @@ class Robot: SKSpriteNode {
     //Depends on device pos
     var basePoint = CGPoint()
     private var anchorPosition = CGPoint(x: 0.5, y:1)
-    private var rotation: CGFloat
+    public var rotation: CGFloat
     private var arm: Arm
    // private var arms : [Arm]
     private var rotationInterval = (CGFloat(0), CGFloat(0))

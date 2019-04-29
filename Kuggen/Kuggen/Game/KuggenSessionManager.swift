@@ -103,16 +103,16 @@ class KuggenSessionManager: FourInOneSessionManager {
             
             globalSize = makeBoardSize()
             
-            robotOne.position = makeLocal(CGPoint(x:250, y:150))
+            robotOne.position = makeLocal(CGPoint(x:350, y:150))
             robotOne.setPosition(pos: robotOne.position, devpos: DevicePosition.one)
             
-            robotTwo.position = makeLocal(CGPoint(x:150, y:globalSize.height-250))
+            robotTwo.position = makeLocal(CGPoint(x:150, y:globalSize.height-350))
             robotTwo.setPosition(pos: robotTwo.position, devpos: DevicePosition.two)
             
-            robotThree.position = makeLocal(CGPoint(x:globalSize.width-250, y:globalSize.height-150))
+            robotThree.position = makeLocal(CGPoint(x:globalSize.width-350, y:globalSize.height-150))
             robotThree.setPosition(pos: robotThree.position, devpos: DevicePosition.three)
             
-            robotFour.position = makeLocal(CGPoint(x:globalSize.width-150, y:250))
+            robotFour.position = makeLocal(CGPoint(x:globalSize.width-150, y:350))
             robotFour.setPosition(pos: robotFour.position, devpos: DevicePosition.four)
             /*robotOnePos = makeLocal(CGPoint(x:0, y:0))
             /*robotOnePos = CGPoint(x:0, y:0)

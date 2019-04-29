@@ -262,51 +262,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
  
         // Robot heads (replace with graphics)
-        let r1head = SKSpriteNode(imageNamed: "blueRobot")
-        //let r1head = SKShapeNode(circleOfRadius: 100)
-        let r2head = SKShapeNode(circleOfRadius: 10)
-        let r3head = SKShapeNode(circleOfRadius: 10)
-        let r4head = SKShapeNode(circleOfRadius: 10)
-    
-        //r1head.fillColor = SKColor.green
-        r2head.fillColor = SKColor.red
-        r3head.fillColor = SKColor.blue
-        r4head.fillColor = SKColor.brown
-        
-        //r1head.position = CGPoint(x: self.frame.width/2, y: 0)
-        r1head.position = robotOne.position
-        r2head.position = robotTwo.position
-        r3head.position = robotThree.position
-        r4head.position = robotFour.position
-        
-        r1head.scale(to: CGSize(width: 300, height: 300))
-        r1head.zPosition = -1
-        self.addChild(r1head)
-        self.addChild(r2head)
-        self.addChild(r3head)
-        self.addChild(r4head)
-        
+        let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead1"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3")]
     
         initPhysics()
         self.gameManager.initialSetUp()
         i = 1
+        var deX = CGFloat(0)
+        var deY = CGFloat(0)
         for button in buttons {
+            //LAYOUT FOR THE ROBOT HEADS
+            self.addChild(heads[i-1])
+            heads[i-1].scale(to: CGSize(width: 300, height: 300))
+            heads[i-1].zPosition = -1
+            heads[i-1].anchorPoint = CGPoint(x: 0.0, y: 1.0)
+            button.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+            
             self.addChild(button)
             button.name = "robot_\(i)_button"
             button.size = CGSize(width: 100, height: 100)
+            print("delta X = \(deX)")
+            print("delta Y = \(deY)")
             switch i {
             case 1:
-                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+                button.position = CGPoint(x: robots[i-1].position.y, y: robots[i-1].position.x)
+                deX = abs(robots[i-1].position.x - button.position.x)
+                deY = abs(robots[i-1].position.y - button.position.y)
+                button.zRotation = -.pi/4
             case 2:
-                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+                button.position = CGPoint(x: robots[i-1].position.y - 100, y: totalScreenSize.height - robots[i-1].position.x)
+                button.zRotation = (-3 * .pi)/4
+                //print(button.position)
             case 3:
-                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+                button.position = CGPoint(x: robots[i-1].position.x + deX, y: robots[i-1].position.y - deY)
+                button.zRotation = (3 * .pi)/4
             case 4:
-                button.position = CGPoint(x: robots[i-1].position.x, y: robots[i-1].position.y)
+                button.position = CGPoint(x: (totalScreenSize.width - totalScreenSize.height) + robots[i-1].position.y + 100, y: totalScreenSize.width - robots[i-1].position.x)
+                button.zRotation = .pi/4
             default:
                 print("something to print")
                 break
             }
+            heads[i-1].position = button.position
+            heads[i-1].zRotation = button.zRotation
             button.zPosition = 2
             i+=1
         }
@@ -358,21 +355,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let nodeName = touchedNode.name {
                 
-                if nodeName.contains("robot_1_button") {
+                switch nodeName {
+                case "robot_1_button":
                         robotOne.closeHandle()
+                case "robot_2_button":
+                        robotTwo.closeHandle()
+                case "robot_3_button":
+                        robotThree.closeHandle()
+                case "robot_4_button":
+                        robotFour.closeHandle()
+                default:
+                    break
+                }
+               /* if nodeName.contains("robot_1_button") {
+                    
                 }
                 
                 if nodeName.contains("robot_2_button") {
-                    robotTwo.closeHandle()
+                    
                 }
                 
                 if nodeName.contains("robot_3_button") {
-                    robotThree.closeHandle()
+                    
                 }
                 
                 if nodeName.contains("robot_4_button") {
-                    robotFour.closeHandle()
-                }
+                    
+                }*/
             }
         }
     }
@@ -436,7 +445,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let nodeName = touchedNode.name {
                 
-                if nodeName.contains("robotTwoButton") {
+                switch nodeName {
+                case "robot_1_button":
+                    robotOne.openHandle()
+                    robotOne.unLock()
+                case "robot_2_button":
+                    robotTwo.openHandle()
+                    robotTwo.unLock()
+                case "robot_3_button":
+                    robotThree.openHandle()
+                    robotThree.unLock()
+                case "robot_4_button":
+                    robotFour.openHandle()
+                    robotFour.unLock()
+                default:
+                    break
+                }
+                /*if nodeName.contains("robotTwoButton") {
                     robotTwo.openHandle()
                     //self.physicsWorld.removeAllJoints()
                     robotTwoHandle.physicsBody!.velocity = CGVector(dx: 0, dy: 0)
@@ -449,10 +474,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             self.physicsWorld.remove(joint)
                             //joints.remove(at: index)
                             //index += 1
-                        }
+                        }*/
 
-                    }
-                }
+                    //}
+                //}
         }
     }
     }

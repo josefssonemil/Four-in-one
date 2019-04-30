@@ -239,6 +239,22 @@ class Robot: SKSpriteNode {
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
         self.setScale(0.2)
+        
+        switch matchingHandle{
+        case .edgeTriangle:
+            self.texture = SKTexture(imageNamed: "fingerprintPurple")
+            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+        case .edgeCircle:
+            self.texture = SKTexture(imageNamed: "fingerprintBlue")
+            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+        case .edgeSquare:
+            self.texture = SKTexture(imageNamed: "fingerprintGreen")
+            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+        case .edgeTrapezoid:
+            self.texture = SKTexture(imageNamed: "fingerprintPink")
+            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+        }
+        
     }
     
 }

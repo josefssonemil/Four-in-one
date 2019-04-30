@@ -229,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if gameManager.mode == .fourplayer{
             robots = [robotOne, robotTwo, robotThree, robotFour]
             cogwheels = [cogwheelOne, cogwheelTwo, cogwheelThree, cogwheelFour]
-            buttons = [robotOneButton, robotTwoButton, robotThreeButton, robotFourButton]
+            buttons = [robotOneButton, robotThreeButton, robotFourButton, robotTwoButton]
         } else {
             robots = [robotOne]
             cogwheels = [cogwheelOne]
@@ -254,7 +254,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
  
         // Robot heads (replace with graphics)
-        let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead1"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3")]
+        let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]
     
         initPhysics()
         self.gameManager.initialSetUp()

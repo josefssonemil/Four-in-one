@@ -303,9 +303,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("something to print")
                 break
             }
+            
+            
             heads[i-1].position = button.position
             heads[i-1].zRotation = button.zRotation
             button.zPosition = 2
+            hideOther(self.gameManager, heads: heads)
             i+=1
         }
     }
@@ -664,10 +667,35 @@ private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
     }
 
 }
+    
+   private func hideOther(_ manager: KuggenSessionManager, heads: [SKSpriteNode]){
+        let pos = manager.position
+        
+        switch pos {
+        case .one:
+            heads[1].isHidden = true
+            heads[2].isHidden = true
+            heads[3].isHidden = true
+        case .two:
+            heads[0].isHidden = true
+            heads[2].isHidden = true
+            heads[3].isHidden = true
+        case .three:
+            heads[0].isHidden = true
+            heads[1].isHidden = true
+            heads[3].isHidden = true
+        case .four:
+            heads[0].isHidden = true
+            heads[1].isHidden = true
+            heads[2].isHidden = true
+        }
+    }
 }
 
 
 extension GameScene : KuggenSessionManagerDelegate {
+
+    
     func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
         if cogName == "cog_1" {
             cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
@@ -699,6 +727,7 @@ extension GameScene : KuggenSessionManagerDelegate {
         self.addChild(robotThree)
         self.addChild(robotFour)
     }
+    
     
     func gameManager(_ manager: KuggenSessionManager, endedLevel: Level?, success: Bool) {
         

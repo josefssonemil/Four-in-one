@@ -535,7 +535,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 rob = firstBody.node! as! Handle
             }
             
-            if (cog.handle == rob.matchingHandle && rob.isClosed()){
+            if (cog.handle == rob.handle && rob.isClosed()){
                 switch rob.name{
                 case "robot_1_handle":
                     handleLockedIn(cogwheel: cogwheelOne, robot: robotOne)

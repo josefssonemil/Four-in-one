@@ -368,21 +368,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 default:
                     break
                 }
-               /* if nodeName.contains("robot_1_button") {
-                    
-                }
-                
-                if nodeName.contains("robot_2_button") {
-                    
-                }
-                
-                if nodeName.contains("robot_3_button") {
-                    
-                }
-                
-                if nodeName.contains("robot_4_button") {
-                    
-                }*/
             }
         }
     }
@@ -454,18 +439,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 case "robot_1_button":
                     robotOne.openHandle()
                     robotOne.unLock()
+                    if (robotOne.isLockedtoCog()){
+                        unlockFromCog(handle: robotOneHandle)
+                    }
                 case "robot_2_button":
                     robotTwo.openHandle()
                     robotTwo.unLock()
+                    if (robotTwo.isLockedtoCog()){
+                        unlockFromCog(handle: robotTwoHandle)
+                    }
                 case "robot_3_button":
                     robotThree.openHandle()
                     robotThree.unLock()
+                    if (robotThree.isLockedtoCog()){
+                        unlockFromCog(handle: robotThreeHandle)
+                    }
                 case "robot_4_button":
                     robotFour.openHandle()
                     robotFour.unLock()
+                    if (robotFour.isLockedtoCog()){
+                        unlockFromCog(handle: robotFourHandle)
+                    }
                 default:
                     break
                 }
+                
                 /*if nodeName.contains("robotTwoButton") {
                     robotTwo.openHandle()
                     //self.physicsWorld.removeAllJoints()
@@ -485,6 +483,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //}
         }
     }
+    }
+    
+    private func unlockFromCog(handle: Handle){
+        var i = 0
+        for joint in joints {
+            if (joint.bodyA.node!.name!.contains(handle.name!)){
+                physicsWorld.remove(joint)
+                joints.remove(at: i)
+            }else if (joint.bodyB.node!.name!.contains(handle.name!)){
+                physicsWorld.remove(joint)
+                joints.remove(at: i)
+            }
+            i += 1
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -553,74 +565,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // Handle contact between handle and key
         
-        /*if ((firstBody.categoryBitMask  & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
-            PhysicsCategory.key != 0) {
-            if let robot = firstBody.node as? SKSpriteNode,
-                let key = secondBody.node as? SKSpriteNode{
-                keyPickedUp(key: key, robot: robot)
-            }
-        }*/
-        
-        
-
-        // Handle contact between handle and cogwheel
-       /* if((firstBody.categoryBitMask & PhysicsCategory.robot1 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel1 != 0) {
-            if let handle = secondBody.node as? Handle, let cogwheel = firstBody.node as? Cogwheel {
-                if let nodeName = secondBody.node?.name {
-                    //print(nodeName)
-                    if nodeName.contains("robot_1") {
-                        if(handle.isClosed()){
-                            //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-                            handleLockedIn(cogwheel: cogwheel, robot: robotOne)
-                        }
-                    }
-                }
-                
-            }
-        }
-        
-        if((secondBody.categoryBitMask & PhysicsCategory.robot2 != 0) && firstBody.categoryBitMask & PhysicsCategory.cogwheel2 != 0) {
-            if let handle = secondBody.node as? Handle, let cogwheel = firstBody.node as? Cogwheel {
-                if let nodeName = secondBody.node?.name {
-                    //print(nodeName)
-                    if nodeName.contains("robot_2") {
-                        if(handle.isClosed()){
-                            //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
-                            handleLockedIn(cogwheel: cogwheel, robot: robotTwo)
-                        }
-                    }
-                }
-                
-            }
-        }
- */
+       
         print(firstBody.node?.name)
         print(secondBody.node?.name)
-       /* if((firstBody.categoryBitMask & PhysicsCategory.robot3 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel3 != 0) {
-            if let robot = firstBody.node as? SKSpriteNode, let cogwheel = secondBody.node as? SKSpriteNode {
-                gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-                handleLockedIn(cogwheel: cogwheel, robot: robot)
-            }
-        }
-        
-        if((firstBody.categoryBitMask & PhysicsCategory.robot4 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel4 != 0) {
-            if let robot = firstBody.node as? SKSpriteNode, let cogwheel = secondBody.node as? SKSpriteNode {
-                gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-                handleLockedIn(cogwheel: cogwheel, robot: robot)
-            }
-        }*/
-        
-
-        // Handle contact between handle and cogwheel
-         /*if ((firstBody.categoryBitMask & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
-            PhysicsCategory.cogwheel != 0){
-            if let robot = firstBody.node as? SKSpriteNode,
-                let cogwheel = secondBody.node as? SKSpriteNode {
-                
-               // cogwheel.physicsBody?.applyAngularImpulse(50)
-                handleLockedIn(cogwheel: cogwheel, robot: robot)
-            }
-        }*/
     
     }
     

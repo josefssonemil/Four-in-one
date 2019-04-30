@@ -76,10 +76,10 @@ class Robot: SKSpriteNode {
         default:
             break
         }
-        setHandlePosition()
         handle.zRotation = self.zRotation
         arm.zRotation = self.zRotation
         offsetAngle = self.zRotation
+        setHandlePosition()
     }
     
     public func getHandle() -> Handle{

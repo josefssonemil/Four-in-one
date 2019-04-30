@@ -491,9 +491,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (joint.bodyA.node!.name!.contains(handle.name!)){
                 physicsWorld.remove(joint)
                 joints.remove(at: i)
+                print("kuken")
             }else if (joint.bodyB.node!.name!.contains(handle.name!)){
                 physicsWorld.remove(joint)
                 joints.remove(at: i)
+                print("bajset")
             }
             i += 1
         }
@@ -523,52 +525,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let bodyOne = firstBody.node!.name, let bodyTwo = secondBody.node!.name {
             print("Hjälp mig !!!!!!!")
-            var cog : String
-            var rob : String
+            var cog : Cogwheel
+            var rob : Handle
             if (bodyOne.contains("cog")){
-                cog = bodyOne
-                rob = bodyTwo
+                cog = firstBody.node! as! Cogwheel
+                rob = secondBody.node! as! Handle
             } else {
-                cog = bodyTwo
-                rob = bodyOne
+                cog = secondBody.node! as! Cogwheel
+                rob = firstBody.node! as! Handle
             }
-            switch cog {
-            case "cog_1":
-                if (rob == "robot_1_handle"){
-                    if(robotOneHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelOne, robot: robotOne)
-                    }
+            
+            if (cog.handle == rob.matchingHandle && rob.isClosed()){
+                switch rob.name{
+                case "robot_1_handle":
+                    handleLockedIn(cogwheel: cogwheelOne, robot: robotOne)
+                case "robot_2_handle":
+                    handleLockedIn(cogwheel: cogwheelOne, robot: robotTwo)
+                case "robot_3_handle":
+                    handleLockedIn(cogwheel: cogwheelOne, robot: robotThree)
+                case "robot_4_handle":
+                    handleLockedIn(cogwheel: cogwheelOne, robot: robotFour)
+                default:
+                    break
                 }
-            case "cog_2":
-                if (rob == "robot_2_handle"){
-                    print("DET fungerar inte!!!!!!!!")
-                    if(robotTwoHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelTwo, robot: robotTwo)
-                    }
-                }
-            case "cog_3":
-                if (rob == "robot_3_handle"){
-                    if(robotThreeHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelThree, robot: robotThree)
-                    }
-                }
-            case "cog_4":
-                if (rob == "robot_4_handle"){
-                    if(robotFourHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelFour, robot: robotFour)
-                    }
-                }
-            default:
-                print("bajs")
-                break
             }
-        }
         // Handle contact between handle and key
         
        
         print(firstBody.node?.name)
         print(secondBody.node?.name)
     
+        }
     }
     
     // contact end

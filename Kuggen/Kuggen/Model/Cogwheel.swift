@@ -4,7 +4,7 @@ import SpriteKit
 
 class Cogwheel: SKSpriteNode{
 
-    private var handle: HandleType
+    public var handle: HandleType
     private var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?

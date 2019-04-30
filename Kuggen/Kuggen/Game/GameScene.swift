@@ -252,14 +252,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheel.zPosition = -1
             i+=1
         }
-
-        
-        
-        var test = SKLabelNode(text: "devicepos \(gameManager.position)")
-        test.fontSize = 72
-        test.position = CGPoint(x: 300, y: 300)
-        self.addChild(test)
-
  
         // Robot heads (replace with graphics)
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead1"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3")]
@@ -350,7 +342,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
@@ -371,21 +362,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 default:
                     break
                 }
-               /* if nodeName.contains("robot_1_button") {
-                    
-                }
-                
-                if nodeName.contains("robot_2_button") {
-                    
-                }
-                
-                if nodeName.contains("robot_3_button") {
-                    
-                }
-                
-                if nodeName.contains("robot_4_button") {
-                    
-                }*/
             }
         }
     }
@@ -407,27 +383,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if nodeName.contains("robot") {
 
                     if let touchedRobot = touchedNode as? Robot  {
-                            let deltaX = location.x - touchedRobot.position.x
-                            let deltaY = location.y - touchedRobot.position.y
-                            //if (abs(location.x-latestPoint.x) > abs(location.y-latestPoint.y)) {
-                                let angle = atan2(deltaY, deltaX) + (.pi / 2)
-                               // let prevHandLocX = touchedRobot.getHandle().getX()
-                                // When arm is rotated, the angle limit is set in the robot class.
+                        let deltaX = location.x - touchedRobot.position.x
+                        let deltaY = location.y - touchedRobot.position.y
+                        let angle = atan2(deltaY, deltaX) + (.pi / 2)
                         
                         if (touchedRobot.rotation - 10 * .pi/180 < angle && angle < touchedRobot.rotation + 10 * .pi/180){
-                    
                             if (CGPointDistance(from: latestPoint, to: touchedRobot.position) < CGPointDistance(from: location, to: touchedRobot.position)){
                                 touchedRobot.collapseArm()
                             } else{
                                 touchedRobot.extendArm()
                             }
                         }
-                                if(touchedRobot.isLockedtoCog()){
-                                    if(!touchedRobot.getArm().isExtended){
-                                        gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle)
-                                    }
-                                }
-                                gameManager.armMoved(robot: touchedRobot, angle: angle)
+                        if(touchedRobot.isLockedtoCog()){
+                            if(!touchedRobot.getArm().isExtended){
+                                gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/2)
+                            }
+                        }
+                        gameManager.armMoved(robot: touchedRobot, angle: angle)
                     }
                 }
             }
@@ -456,38 +428,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 switch nodeName {
                 case "robot_1_button":
                     robotOne.openHandle()
-                    robotOne.unLock()
+                    if (robotOne.isLockedtoCog()){
+                        unlockFromCog(handle: robotOneHandle)
+                        robotOne.unLock()
+                        robotOne.physicsBody?.angularVelocity = 0
+                    }
                 case "robot_2_button":
                     robotTwo.openHandle()
-                    robotTwo.unLock()
+                    if (robotTwo.isLockedtoCog()){
+                        unlockFromCog(handle: robotTwoHandle)
+                        robotTwo.unLock()
+                        robotTwo.physicsBody?.angularVelocity = 0
+                    }
                 case "robot_3_button":
                     robotThree.openHandle()
-                    robotThree.unLock()
+                    if (robotThree.isLockedtoCog()){
+                        unlockFromCog(handle: robotThreeHandle)
+                        robotThree.unLock()
+                        robotThree.physicsBody?.angularVelocity = 0
+                    }
                 case "robot_4_button":
                     robotFour.openHandle()
-                    robotFour.unLock()
+                    if (robotFour.isLockedtoCog()){
+                        unlockFromCog(handle: robotFourHandle)
+                        robotFour.unLock()
+                        robotFour.physicsBody?.angularVelocity = 0
+                    }
                 default:
                     break
                 }
-                /*if nodeName.contains("robotTwoButton") {
-                    robotTwo.openHandle()
-                    //self.physicsWorld.removeAllJoints()
-                    robotTwoHandle.physicsBody!.velocity = CGVector(dx: 0, dy: 0)
-                    robotTwoHandle.physicsBody!.angularVelocity = 0
-                    if(robotTwo.isLockedtoCog()){
-                        robotTwo.unLock()
-                        robotTwo.getCogwheel().physicsBody?.angularVelocity=0
-                        //var index = 0
-                        for joint in joints {
-                            self.physicsWorld.remove(joint)
-                            //joints.remove(at: index)
-                            //index += 1
-                        }*/
-
-                    //}
-                //}
         }
     }
+    }
+    
+    private func unlockFromCog(handle: Handle){
+        var i = 0
+        for joint in joints {
+            if (joint.bodyA.node!.name!.contains(handle.name!)){
+                physicsWorld.remove(joint)
+                if i < joints.count{
+                    joints.remove(at: i)
+                    print("kuken")
+                }
+            }else if (joint.bodyB.node!.name!.contains(handle.name!)){
+                physicsWorld.remove(joint)
+                if i < joints.count{
+                    joints.remove(at: i)
+                    print("bajset")
+                }
+            }
+            i += 1
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -513,118 +504,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         if let bodyOne = firstBody.node!.name, let bodyTwo = secondBody.node!.name {
-            print("Hjälp mig !!!!!!!")
-            var cog : String
-            var rob : String
-            if (bodyOne.contains("cog")){
-                cog = bodyOne
-                rob = bodyTwo
-            } else {
-                cog = bodyTwo
-                rob = bodyOne
+            if (bodyOne.contains("robot") || bodyTwo.contains("robot")){
+                print("Hjälp mig !!!!!!!")
+                var cog : Cogwheel
+                var rob : Handle
+                if (bodyOne.contains("cog") && bodyTwo.contains("robot")){
+                    cog = firstBody.node! as! Cogwheel
+                    rob = secondBody.node! as! Handle
+                } else{
+                    cog = secondBody.node! as! Cogwheel
+                    rob = firstBody.node! as! Handle
+                }
+                
+                if (cog.handle == rob.handle && rob.isClosed()){
+                    switch rob.name{
+                    case "robot_1_handle":
+                        handleLockedIn(cogwheel: cog, robot: robotOne)
+                    case "robot_2_handle":
+                        handleLockedIn(cogwheel: cog, robot: robotTwo)
+                    case "robot_3_handle":
+                        handleLockedIn(cogwheel: cog, robot: robotThree)
+                    case "robot_4_handle":
+                        handleLockedIn(cogwheel: cog, robot: robotFour)
+                    default:
+                        break
+                    }
+                }
             }
-            switch cog {
-            case "cog_1":
-                if (rob == "robot_1_handle"){
-                    if(robotOneHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelOne, robot: robotOne)
-                    }
-                }
-            case "cog_2":
-                if (rob == "robot_2_handle"){
-                    print("DET fungerar inte!!!!!!!!")
-                    if(robotTwoHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelTwo, robot: robotTwo)
-                    }
-                }
-            case "cog_3":
-                if (rob == "robot_3_handle"){
-                    if(robotThreeHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelThree, robot: robotThree)
-                    }
-                }
-            case "cog_4":
-                if (rob == "robot_4_handle"){
-                    if(robotFourHandle.isClosed()){
-                        handleLockedIn(cogwheel: cogwheelFour, robot: robotFour)
-                    }
-                }
-            default:
-                print("bajs")
-                break
-            }
-        }
         // Handle contact between handle and key
         
-        /*if ((firstBody.categoryBitMask  & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
-            PhysicsCategory.key != 0) {
-            if let robot = firstBody.node as? SKSpriteNode,
-                let key = secondBody.node as? SKSpriteNode{
-                keyPickedUp(key: key, robot: robot)
-            }
-        }*/
-        
-        
-
-        // Handle contact between handle and cogwheel
-       /* if((firstBody.categoryBitMask & PhysicsCategory.robot1 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel1 != 0) {
-            if let handle = secondBody.node as? Handle, let cogwheel = firstBody.node as? Cogwheel {
-                if let nodeName = secondBody.node?.name {
-                    //print(nodeName)
-                    if nodeName.contains("robot_1") {
-                        if(handle.isClosed()){
-                            //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-                            handleLockedIn(cogwheel: cogwheel, robot: robotOne)
-                        }
-                    }
-                }
-                
-            }
-        }
-        
-        if((secondBody.categoryBitMask & PhysicsCategory.robot2 != 0) && firstBody.categoryBitMask & PhysicsCategory.cogwheel2 != 0) {
-            if let handle = secondBody.node as? Handle, let cogwheel = firstBody.node as? Cogwheel {
-                if let nodeName = secondBody.node?.name {
-                    //print(nodeName)
-                    if nodeName.contains("robot_2") {
-                        if(handle.isClosed()){
-                            //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
-                            handleLockedIn(cogwheel: cogwheel, robot: robotTwo)
-                        }
-                    }
-                }
-                
-            }
-        }
- */
+       
         print(firstBody.node?.name)
         print(secondBody.node?.name)
-       /* if((firstBody.categoryBitMask & PhysicsCategory.robot3 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel3 != 0) {
-            if let robot = firstBody.node as? SKSpriteNode, let cogwheel = secondBody.node as? SKSpriteNode {
-                gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-                handleLockedIn(cogwheel: cogwheel, robot: robot)
-            }
-        }
-        
-        if((firstBody.categoryBitMask & PhysicsCategory.robot4 != 0) && secondBody.categoryBitMask & PhysicsCategory.cogwheel4 != 0) {
-            if let robot = firstBody.node as? SKSpriteNode, let cogwheel = secondBody.node as? SKSpriteNode {
-                gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-                handleLockedIn(cogwheel: cogwheel, robot: robot)
-            }
-        }*/
-        
-
-        // Handle contact between handle and cogwheel
-         /*if ((firstBody.categoryBitMask & PhysicsCategory.robot != 0) && secondBody.categoryBitMask &
-            PhysicsCategory.cogwheel != 0){
-            if let robot = firstBody.node as? SKSpriteNode,
-                let cogwheel = secondBody.node as? SKSpriteNode {
-                
-               // cogwheel.physicsBody?.applyAngularImpulse(50)
-                handleLockedIn(cogwheel: cogwheel, robot: robot)
-            }
-        }*/
     
+        }
     }
     
     // contact end
@@ -698,23 +611,23 @@ extension GameScene : KuggenSessionManagerDelegate {
     
     func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
         if cogName == "cog_1" {
-            cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
-            //cogwheelOne.zRotation = impulse
+            //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelOne.zRotation = impulse
         }
         
         else if cogName == "cog_2" {
-            cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
-            //cogwheelTwo.zRotation = impulse
+            //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelTwo.zRotation = impulse
         }
         
         else if cogName == "cog_3" {
-            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-            //cogwheelThree.zRotation = impulse
+            //cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelThree.zRotation = impulse
         }
         
         else if cogName == "cog_4" {
-            cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-            //cogwheelFour.zRotation = impulse
+            //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+            cogwheelFour.zRotation = impulse
         }
     }
     

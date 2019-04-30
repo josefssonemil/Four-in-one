@@ -641,20 +641,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     private func handleLockedIn(cogwheel: Cogwheel, robot: Robot){
-        //robot.getHandle().setPosition(x: Int(cogwheel.position.x), y: Int(cogwheel.position.y))
         print("Lockedin")
         robot.lockToCog(cogwheel: cogwheel)
-        //gameManager.cogRotated(cogwheel: cogwheel, impulse: 10)
-        let robotTwoCogwheelTwo = SKPhysicsJointFixed.joint(withBodyA: robot.getHandle().physicsBody!,
-                                               bodyB: cogwheel.physicsBody!,
-                                               anchor: robot.getHandle().position)
         
-        joints.append(robotTwoCogwheelTwo)
-        self.physicsWorld.add(robotTwoCogwheelTwo)
-        //handle in game manager here
-        //let spinAction = SKAction.rotate(byAngle: 90, duration: 50)
-        //cogwheel.run(spinAction)
-       // print("handle locked in ")
+        let jointBetweenObjects = SKPhysicsJointFixed.joint(withBodyA: robot.getHandle().physicsBody!,
+        bodyB: cogwheel.physicsBody!,
+        anchor: robot.getHandle().position)
+        
+        joints.append(jointBetweenObjects)
+        self.physicsWorld.add(jointBetweenObjects)
+       
     }
 
 

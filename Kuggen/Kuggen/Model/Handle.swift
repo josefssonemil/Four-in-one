@@ -15,13 +15,19 @@ class Handle: SKSpriteNode{
     var rotation : CGFloat
     var distanceFromOrigin : Double
     var isHandleClosed : Bool
+    var handle: HandleType
     
-    init(texture: SKTexture, lengthOfArm: Double) {
+    private var closedHandleTexture = SKTexture(imageNamed: "robothand0closed")
+    private var openHandleTexture = SKTexture(imageNamed: "robothand0open")
+    
+    init(lengthOfArm: Double, handle: HandleType) {
         rotation=0
         distanceFromOrigin=lengthOfArm
         extended=0
         isHandleClosed = false
-        super.init(texture: texture, color: SKColor.white, size: texture.size())
+        self.handle = handle
+        super.init(texture: openHandleTexture, color: SKColor.white, size: openHandleTexture.size())
+        setHandle(handle: handle)
         self.anchorPoint = anchorLocation
     }
     
@@ -31,6 +37,25 @@ class Handle: SKSpriteNode{
     
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
+    }
+    
+    private func setHandle(handle: HandleType) {
+        switch handle {
+        case .edgeCircle:
+            texture = SKTexture(imageNamed: "robothand0open")
+            closedHandleTexture = SKTexture(imageNamed:"robothand0closed")
+        case .edgeSquare:
+            texture = SKTexture(imageNamed: "robothand2open")
+            closedHandleTexture = SKTexture(imageNamed:"robothand2closed")
+        case .edgeTriangle:
+            texture = SKTexture(imageNamed: "robothand1open")
+            closedHandleTexture = SKTexture(imageNamed:"robothand1closed")
+        case .edgeTrapezoid:
+            texture = SKTexture(imageNamed: "robothand3open")
+            closedHandleTexture = SKTexture(imageNamed:"robothand3closed")
+        }
+        openHandleTexture = self.texture!
+
     }
     
     public func getY() -> Int {
@@ -48,12 +73,12 @@ class Handle: SKSpriteNode{
     }
     
     public func close(){
-        //self.texture = SKTexture(imageNamed: "robothand1closed")
+        self.texture = closedHandleTexture
         isHandleClosed=true
     }
     
     public func open(){
-       // self.texture = SKTexture(imageNamed: "robothand1open")
+        self.texture = openHandleTexture
         isHandleClosed=false
     }
     

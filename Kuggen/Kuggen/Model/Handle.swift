@@ -55,7 +55,7 @@ class Handle: SKSpriteNode{
             closedHandleTexture = SKTexture(imageNamed:"robothand3closed")
         }
         openHandleTexture = self.texture!
-
+        self.setScale(0.6)
     }
     
     public func getY() -> Int {

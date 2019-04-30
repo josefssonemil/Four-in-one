@@ -114,12 +114,13 @@ class Robot: SKSpriteNode {
             
             let length = sqrt(pow(Double(dx),2) + pow(Double(dy),2))
             let angle2 = asin(Double(dy) / length)
-            
+            print("should now check stuff")
             if (Int(arm.frame.maxY)<handle.getY()){
                 arm.extend(speed: CGFloat(abs(length - Double(arm.getHeight()))))
-
+                print("arm should extend")
             } else {
                 arm.collapse(speed: CGFloat(abs(length - Double(arm.getHeight()))))
+                print("arm should collapse")
 
             }
             if (handle.getX() > arm.getX()){
@@ -137,6 +138,7 @@ class Robot: SKSpriteNode {
                     rotation=angle
                     self.zRotation = angle
                     arm.rotate(angle: angle)
+                    handle.zRotation = angle
                     if(!isJoined){
                        setHandlePosition()
                         }

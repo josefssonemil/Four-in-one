@@ -362,7 +362,6 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             case DevicePosition.three:
                 self.longBorder.backgroundColor = self.threeFour
                 self.shortBorder.backgroundColor = self.twoThree
-                self.helpButton.center.x = 125
                 oddPositionSetup(positionOfCogX: view.bounds.width, positionOfCogY: 0)
                 fourPlayerSetup()
             
@@ -413,6 +412,9 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
         loadingCog.transform = CGAffineTransform.identity
         self.longBorder.frame = CGRect(x: self.view.bounds.width, y: 0, width: 0, height: 50)
         self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: 0)
+        self.helpButton.isHidden = true
+        self.helpButton.center.x = 125
+        helpButton.transform = CGAffineTransform(rotationAngle: .pi/2)
         stateLabel.isHidden=true
         stateLabel.center.x = view.bounds.width/2
         stateLabel.center.y = view.bounds.height/2 + 100
@@ -425,6 +427,7 @@ class AlignmentViewController: FourInOneConnectingViewController, Storyboarded {
             self.shortBorder.frame = CGRect(x: self.view.bounds.width-50, y: 0, width: 50, height: self.view.bounds.height)
         }, completion: { (finished) in
             self.stateLabel.isHidden=false
+            self.helpButton.isHidden = false
         })
     }
     

@@ -14,7 +14,7 @@ import MultipeerConnectivity
 
 // Used in the GameScene as an extension
 protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
-    
+        
     func gameManager(_ manager: KuggenSessionManager, newLevel level:Level)
     
     func gameManager(_ manager: KuggenSessionManager, endedLevel:Level?, success:Bool)
@@ -114,6 +114,7 @@ class KuggenSessionManager: FourInOneSessionManager {
             
             robotFour.position = makeLocal(CGPoint(x:globalSize.width-150, y:350))
             robotFour.setPosition(pos: robotFour.position, devpos: DevicePosition.four)
+            
             /*robotOnePos = makeLocal(CGPoint(x:0, y:0))
             /*robotOnePos = CGPoint(x:0, y:0)
             robotTwoPos = CGPoint(x: 0, y: globalSize.height)

@@ -12,15 +12,16 @@ class Robot: SKSpriteNode {
     private var isLocked : Bool
     private var cogwheel : Cogwheel?
     private let isJoined = false
+    private var offsetAngle = CGFloat(0)
     
     //Depends on device pos
     var basePoint = CGPoint()
     private var anchorPosition = CGPoint(x: 0.5, y:1)
-    private var rotation: CGFloat
+    public var rotation: CGFloat
     private var arm: Arm
-   // private var arms : [Arm]
-
+    private var rotationInterval = (CGFloat(0), CGFloat(0))
     
+
     init(matchingHandle: HandleType, devicePosition: DevicePosition, textureName: String) {
         let texture = SKTexture(imageNamed: textureName)
        //super.init(texture: texture, color: nil, size: texture.size())
@@ -30,8 +31,8 @@ class Robot: SKSpriteNode {
         self.rotation = 0
         self.isLocked = false
         self.arm = Arm.init(texture: SKTexture(imageNamed: "robotarm1"))
-        self.handle = Handle.init(texture:SKTexture(imageNamed: "robothand0open"), lengthOfArm: Double(arm.size.height))
-        //self.arms = [Arm.init(texture: SKTexture(imageNamed: "robotarm1")), Arm.init(texture: SKTexture(imageNamed: "robotarm2")), Arm.init(texture: SKTexture(imageNamed: "robotarm3"))]
+        self.handle = Handle(lengthOfArm: Double(arm.size.height), handle: matchingHandle)
+    
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
         self.anchorPoint=anchorPosition
@@ -42,11 +43,43 @@ class Robot: SKSpriteNode {
        // super.init(coder: aDecoder)
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private func degToRad(degrees: CGFloat) -> CGFloat{
+        return degrees * (.pi / 180)
+    }
+    
+    private func radToDeg(rads: CGFloat) -> CGFloat{
+        return rads * (180 / .pi)
+    }
 
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
-        handle.setPosition(x: x, y: y + arm.getHeight()-5)
+        setHandlePosition()
+    }
+    public func setPosition(pos: CGPoint, devpos: DevicePosition){
+        //self.position = CGPoint(x: pos.x, y: pos.y)
+        arm.setPosition(x: Int(pos.x), y: Int(pos.y))
+        switch devpos {
+        case DevicePosition.one:
+            self.zRotation = -.pi/4
+            self.rotationInterval = (degToRad(degrees: -89), degToRad(degrees: -1))
+        case DevicePosition.two:
+            self.zRotation = -(.pi*3)/4
+            self.rotationInterval = (degToRad(degrees: 181), degToRad(degrees: 269))
+        case DevicePosition.three:
+            self.zRotation = (.pi*3)/4
+            self.rotationInterval = (degToRad(degrees: 91), degToRad(degrees: 179))
+        case DevicePosition.four:
+            self.zRotation = .pi/4
+            self.rotationInterval = (degToRad(degrees: 1), degToRad(degrees: 89))
+        default:
+            break
+        }
+        handle.zRotation = self.zRotation
+        arm.zRotation = self.zRotation
+        offsetAngle = self.zRotation
+        setHandlePosition()
     }
     
     public func getHandle() -> Handle{
@@ -65,6 +98,15 @@ class Robot: SKSpriteNode {
         return Int(self.position.x)
     }
     
+    private func rotationAllowed(newAngle: CGFloat) -> Bool {
+        if newAngle < rotationInterval.0 || newAngle > rotationInterval.1 {
+            return false
+    }
+        else {
+            return true
+        }
+    }
+    
     public func handleMovement(angle: CGFloat){
         if (isLocked){
             let dx = abs(arm.getX() - handle.getX())
@@ -72,12 +114,13 @@ class Robot: SKSpriteNode {
             
             let length = sqrt(pow(Double(dx),2) + pow(Double(dy),2))
             let angle2 = asin(Double(dy) / length)
-            
+            print("should now check stuff")
             if (Int(arm.frame.maxY)<handle.getY()){
                 arm.extend(speed: CGFloat(abs(length - Double(arm.getHeight()))))
-
+                print("arm should extend")
             } else {
                 arm.collapse(speed: CGFloat(abs(length - Double(arm.getHeight()))))
+                print("arm should collapse")
 
             }
             if (handle.getX() > arm.getX()){
@@ -91,26 +134,44 @@ class Robot: SKSpriteNode {
             }
         }
         else {
-            if (.pi/3 > angle  && angle > -.pi/3){
-                rotation=angle
-                self.zRotation = angle
-                arm.rotate(angle: angle)
-                if(!isJoined){
-                    if(angle<0){
-                        handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
-                    }
-                    else{
-                        handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
-                    }
-                    if (.pi/4 < angle && angle < -.pi/4){
-                        handle.rotate(angle: -angle/4)
-                    } else { handle.rotate(angle: 0)}
-                }
+            if rotationAllowed(newAngle: angle) {
+                    rotation=angle
+                    self.zRotation = angle
+                    arm.rotate(angle: angle)
+                    handle.zRotation = angle
+                    if(!isJoined){
+                       setHandlePosition()
+                        }
+                       /* if(angle<0){
+                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
+                        }
+                        else{
+                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
+                        }*/
+                        /*if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
+                            handle.rotate(angle: -angle/4)
+                        } else { handle.rotate(angle: 0)}*/
             }
+       
         }
        
     }
     
+    private func setHandlePosition(){
+        switch devicePosition {
+            case .one:
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+            case .two:
+                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.minY))
+            case .three:
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.minY))
+            case .four:
+                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+            default:
+            break
+        }
+    }
+
     public func getArm() -> Arm{
         return self.arm
     }
@@ -122,12 +183,13 @@ class Robot: SKSpriteNode {
         else{
             arm.extend()
             if(!isJoined){
-                if (rotation<0){
+                setHandlePosition()
+                /*if (rotation<0){
                     handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
                 }
                 else{
                     handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-                }
+                }*/
             }
         }
     }
@@ -139,12 +201,13 @@ class Robot: SKSpriteNode {
         else {
         arm.collapse()
         if(!isJoined){
-            if(rotation<0){
+            setHandlePosition()
+            /*if(rotation<0){
                 handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
             }
             else{
                 handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
-            }
+            }*/
         }
         }
     }
@@ -176,56 +239,22 @@ class Robot: SKSpriteNode {
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
         self.setScale(0.2)
-
-
-       switch devicepos {
-            //Lower left corner
-            case .one:
-                basePoint = CGPoint(x: 100, y: 100)
-                self.rotation = 0.25 * .pi
-                self.zRotation = rotation
-            // Upper left corner
-            case .two:
-                basePoint = CGPoint(x: totalScreenSize.height, y: totalScreenSize.width)
-                self.rotation = 0.5 * .pi
-                self.zRotation = rotation
-            // Upper right corner
-        case .three:
-            basePoint = CGPoint(x: 100, y: 100)
-             self.rotation = 0.25 * .pi
-             self.zRotation = rotation
-
-            // Lower right corner
-        case .four:
-             basePoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.width)
-            self.rotation = 0.5 * .pi
-             self.zRotation = rotation
-
+        
+        switch matchingHandle{
+        case .edgeTriangle:
+            self.texture = SKTexture(imageNamed: "fingerprintPurple")
+            arm.texture = SKTexture(imageNamed: "robotarmpurple")
+        case .edgeCircle:
+            self.texture = SKTexture(imageNamed: "fingerprintBlue")
+            arm.texture = SKTexture(imageNamed: "robotarmblue")
+        case .edgeSquare:
+            self.texture = SKTexture(imageNamed: "fingerprintGreen")
+            arm.texture = SKTexture(imageNamed: "robotarmgreen")
+        case .edgeTrapezoid:
+            self.texture = SKTexture(imageNamed: "fingerprintPink")
+            arm.texture = SKTexture(imageNamed: "robotarmpink")
         }
         
-        self.position = basePoint
-       
     }
     
-    /*private func setupPhysics(){
-        self.physicsBody = SKPhysicsBody(texture: self.texture!, size: self.texture!.size())
-        self.physicsBody?.categoryBitMask = Contact.robot
-        self.physicsBody?.collisionBitMask = 0x0
-        self.physicsBody?.contactTestBitMask = 0x0
-    }
-    
-    // MARK_ - Contact
-    func contact(body: String) {
-        if body == Spritename.robot1 {
-        }
-        
-        if body == Spritename.robot2 {
-        }
-        
-        if body == Spritename.robot3 {
-        }
-        
-        if body == Spritename.robot4 {
-        }
-    }*/
 }

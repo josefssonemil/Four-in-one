@@ -70,7 +70,7 @@ class Arm: SKSpriteNode {
     }
     public func extend(speed : CGFloat){
         if(extended<450){
-            isExtended=false
+            //isExtended=false
             /*   self.setPosition(x: self.getX() - Int(speed * sin(rotation)), y: self.getY() + Int(speed * sin(.pi/2 - rotation)))
              self.distanceFromOrigin += 10*/
             self.size.height+=speed

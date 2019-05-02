@@ -243,16 +243,16 @@ class Robot: SKSpriteNode {
         switch matchingHandle{
         case .edgeTriangle:
             self.texture = SKTexture(imageNamed: "fingerprintPurple")
-            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+            arm.texture = SKTexture(imageNamed: "robotarmpurple")
         case .edgeCircle:
             self.texture = SKTexture(imageNamed: "fingerprintBlue")
-            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+            arm.texture = SKTexture(imageNamed: "robotarmblue")
         case .edgeSquare:
             self.texture = SKTexture(imageNamed: "fingerprintGreen")
-            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+            arm.texture = SKTexture(imageNamed: "robotarmgreen")
         case .edgeTrapezoid:
             self.texture = SKTexture(imageNamed: "fingerprintPink")
-            arm.texture = SKTexture(imageNamed: "fingerprintPurple")
+            arm.texture = SKTexture(imageNamed: "robotarmpink")
         }
         
     }

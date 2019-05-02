@@ -51,6 +51,7 @@
 		3ECE120222574BF700AE7DFF /* HelpLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECE120122574BF700AE7DFF /* HelpLabel.swift */; };
 		841EC74F2245080500ECF52F /* LevelReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841EC74E2245080500ECF52F /* LevelReader.swift */; };
 		848410F9223C1D8C007B55E1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848410F8223C1D8C007B55E1 /* UIColor.swift */; };
+		84D78FAA226F57960091332D /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D78FA9226F57960091332D /* WinViewController.swift */; };
 		84EF3239223BE4FE009A3C4A /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */; };
 		84EF323E223BE996009A3C4A /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF323D223BE996009A3C4A /* MenuButton.swift */; };
 /* End PBXBuildFile section */
@@ -139,6 +140,7 @@
 		3ECE120122574BF700AE7DFF /* HelpLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLabel.swift; sourceTree = "<group>"; };
 		841EC74E2245080500ECF52F /* LevelReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelReader.swift; sourceTree = "<group>"; };
 		848410F8223C1D8C007B55E1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		84D78FA9226F57960091332D /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		84EF323D223BE996009A3C4A /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -255,6 +257,7 @@
 				84EF3238223BE4FE009A3C4A /* MainMenuViewController.swift */,
 				25A24E912237D48F00AE5559 /* RobotConfigurationViewController.swift */,
 				3E6C420A2254D0CA001BA303 /* AboutViewController.swift */,
+				84D78FA9226F57960091332D /* WinViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				25A24EB02237E05A00AE5559 /* Storyboarded.swift in Sources */,
 				25A24EA02237D54700AE5559 /* DemoView.swift in Sources */,
 				25A24EA42237D56F00AE5559 /* HandleType.swift in Sources */,
+				84D78FAA226F57960091332D /* WinViewController.swift in Sources */,
 				25678795223154350072C094 /* AppDelegate.swift in Sources */,
 				25A24E862237CB8000AE5559 /* Cogwheel.swift in Sources */,
 				3E6C420B2254D0CA001BA303 /* AboutViewController.swift in Sources */,

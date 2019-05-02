@@ -14,7 +14,7 @@ class WinViewController: UIViewController, Storyboarded {
     
     
     @IBAction func playAgainTapped(_ sender: Any) {
-    coordinator?.goToGameScreen(gameManager: <#T##KuggenSessionManager#>)
+//    coordinator?.goToGameScreen(gameManager: <#T##KuggenSessionManager#>)
     }
     
     @IBAction func menuTapped(_ sender: Any) {

@@ -305,7 +305,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     }
     
     func startNextLevel() {
-        // level += 1
+
     }
     
     

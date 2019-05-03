@@ -400,8 +400,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
                 print("level completed")
-                gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: true)
-                //gameManager.startNextLevel()
+                gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)                
             }
         } else if (gameManager.mode == .fourplayer){
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)

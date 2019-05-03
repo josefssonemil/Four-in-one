@@ -13,9 +13,9 @@ import FourInOneCore
 
 class GameViewController: FourInOneSessionViewController, Storyboarded, GameSceneDelegate {
     
-    func gameScene(_ gameScene: GameScene, didEndLevelWithSuccess result: Bool) {
-        coordinator?.goToWinView(gameManager: gameScene.gameManager)
-        fatalError("init(coder:) has not been implemented")
+    func gameScene(gameManager: KuggenSessionManager, result: Bool) {
+        print("Delegation works")
+        coordinator?.goToWinView(gameManager: gameManager)
     }
     
     weak var coordinator: MainCoordinator?

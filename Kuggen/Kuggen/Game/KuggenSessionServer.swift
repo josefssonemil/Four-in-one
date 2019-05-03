@@ -52,12 +52,14 @@ class KuggenSessionServer: KuggenSessionManager {
     // start the next level
     override func startNextLevel() {
         super.startNextLevel()
-        
+
+
         sendEventToClients(makeNextLevelEvent())
         
         OperationQueue.main.addOperation {
             self.kuggenDelegate?.gameManagerNextLevel(self)
         }
+        
     }
     
     private func handleHolding(down:Bool, from peer:MCPeerID) {

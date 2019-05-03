@@ -81,6 +81,10 @@ class MainMenuViewController: UIViewController, Storyboarded {
         coordinator?.goToTeamSelection()
 
     }
+    /*@IBAction func buttonTapped(_ sender: Any) {
+        print("whyyyyyy")
+        coordinator?.goToWinView()
+    }*/
     
     @IBAction func selectRobotMenuTapped(_ sender: Any) {
         coordinator?.goToRobotSelection()
@@ -89,5 +93,6 @@ class MainMenuViewController: UIViewController, Storyboarded {
     @IBAction func optionMenuTapped(_ sender: Any) {
         coordinator?.goToOptionsView()
     }
+    @IBOutlet weak var button: UIButton!
     
 }

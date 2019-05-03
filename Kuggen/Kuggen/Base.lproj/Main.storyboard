@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -264,10 +264,10 @@
             </objects>
             <point key="canvasLocation" x="1387.5" y="-548.4375"/>
         </scene>
-        <!--Win View Controller-->
+        <!--WinViewController-->
         <scene sceneID="tCn-pF-5zA">
             <objects>
-                <viewController storyboardIdentifier="WinViewController" id="HsT-Y0-aOq" customClass="WinViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WinViewController" title="WinViewController" id="HsT-Y0-aOq" customClass="WinViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zof-pB-GHM">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,7 +320,7 @@
                         <viewLayoutGuide key="safeArea" id="9Jv-cj-Anv"/>
                     </view>
                     <connections>
-                        <outlet property="menuTapped" destination="imY-Rx-Rs4" id="Vqy-Qq-vhl"/>
+                        <outlet property="menuTapped" destination="baY-im-Z0L" id="c6k-XM-94g"/>
                         <outlet property="playAgainButton" destination="baY-im-Z0L" id="yfS-t2-E6Q"/>
                     </connections>
                 </viewController>

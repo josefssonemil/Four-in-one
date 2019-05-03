@@ -22,6 +22,7 @@ class Arm: SKSpriteNode {
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         self.anchorPoint = CGPoint(x: 0.5,y: 0.0)
         self.setScale(0.25)
+        size.height = shortest
     }
     
     required init?(coder aDecoder: NSCoder) {

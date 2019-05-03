@@ -12,15 +12,13 @@ import FourInOneCore
 
 class Arm: SKSpriteNode {
     var rotation : CGFloat
-    var distanceFromOrigin : Double
-    var extended : Int
     var isExtended = false
+    var shortest = CGFloat(100)
+    var longest = CGFloat(600)
 
 
     init(texture: SKTexture) {
         self.rotation=0
-        self.extended = 0
-        self.distanceFromOrigin=0
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         self.anchorPoint = CGPoint(x: 0.5,y: 0.0)
         self.setScale(0.25)
@@ -46,59 +44,39 @@ class Arm: SKSpriteNode {
     }
     
     public func rotate(angle: CGFloat){
-        //let a = CGFloat(sqrt(2*pow(distanceFromOrigin,2)*Double(1-cos(angle))))
-        self.zRotation=angle
-        /*if(rotation<angle) {
-            setPosition(x: getX() - Int(a*sin((.pi/2) - angle)), y: getY() + Int(a*sin(angle)))
-        } else {
-            setPosition(x: getX() + Int(a*sin((.pi/2) - angle)), y: getY() + Int(a*sin(angle)))
-        }*/
-        self.rotation=angle
+        zRotation=angle
+        rotation=angle
     }
     
     public func extend(){
         let speed = CGFloat(10)
         
-        if(extended<450){
+        if(size.height<longest){
             isExtended=false
-         /*   self.setPosition(x: self.getX() - Int(speed * sin(rotation)), y: self.getY() + Int(speed * sin(.pi/2 - rotation)))
-            self.distanceFromOrigin += 10*/
             self.size.height+=speed
-            extended += 10
-        } else { extended=450; isExtended = true}
+        } else {self.size.height = longest; isExtended=true}
         
     }
     public func extend(speed : CGFloat){
-        if(extended<450){
-            isExtended=false
-            /*   self.setPosition(x: self.getX() - Int(speed * sin(rotation)), y: self.getY() + Int(speed * sin(.pi/2 - rotation)))
-             self.distanceFromOrigin += 10*/
-            self.size.height+=speed
-            extended += Int(speed)
+        if(size.height<longest){
+            size.height+=speed
         }
-        else {extended = 450; isExtended=true}
+        else {size.height = longest; isExtended=true}
         
     }
     public func collapse(speed : CGFloat){
-        if(extended>0){
-            isExtended=false
-            /*   self.setPosition(x: self.getX() - Int(speed * sin(rotation)), y: self.getY() + Int(speed * sin(.pi/2 - rotation)))
-             self.distanceFromOrigin += 10*/
-            self.size.height-=speed
-            extended -= Int(speed)
-        } else { extended=0 }
-        
+        if(size.height>shortest){
+            size.height-=speed
+        } else {size.height = shortest}
+        isExtended=false
     }
     
     public func collapse(){
         let speed = CGFloat(10)
-        if(extended>0){
-            isExtended=false
-            self.size.height-=speed
-            /*self.setPosition(x: self.getX() + Int(speed * sin(rotation)), y: self.getY() - Int(speed * sin(.pi/2 - rotation)))
-            self.distanceFromOrigin -= 10*/
-            extended -= 10
-        } else { extended=0}
+        if(size.height>shortest){
+            size.height-=speed
+        } else {size.height = shortest}
+        isExtended=false
     }
     
 }

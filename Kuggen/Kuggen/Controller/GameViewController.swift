@@ -59,8 +59,8 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             boardView.showsNodeCount = true
             boardView.showsDrawCount = true*/
             
-            boardView.showsPhysics = true
-            skView.showsPhysics = true
+           // boardView.showsPhysics = true
+            //skView.showsPhysics = true
 
         }
     }

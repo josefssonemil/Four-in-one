@@ -5,7 +5,7 @@ import SpriteKit
 class Cogwheel: SKSpriteNode{
 
     public var handle: HandleType
-    private var innerAlignmentAngle: Double
+    var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?
     //private var currentAngle: Double
@@ -17,7 +17,7 @@ class Cogwheel: SKSpriteNode{
         self.innerAlignmentAngle = inner
         super.init(texture: texture, color: color, size: size)
         self.zRotation = CGFloat((current*Double.pi)/180)
-        self.setScale(11)
+        //self.setScale(11)
     }
     
     init(handle: HandleType, inner: Double, current: Double, scale: Double) {

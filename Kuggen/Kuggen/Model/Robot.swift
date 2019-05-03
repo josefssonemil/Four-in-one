@@ -139,7 +139,7 @@ class Robot: SKSpriteNode {
                     //let spinAction = SKAction.rotate(toAngle: angle, duration:0.3)
                     zRotation = angle
                     arm.rotate(angle: angle)
-                    //handle.rotate(angle: -angle)
+                    handle.rotate(angle: angle)
                     //run(spinAction)
                     //arm.run(spinAction)
                     //handle.run(spinAction)

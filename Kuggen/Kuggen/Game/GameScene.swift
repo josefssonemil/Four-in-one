@@ -12,8 +12,8 @@ import MultipeerConnectivity
 import GameplayKit
 
 // Protocol for game over
-protocol GameSceneDelegate {
-    func gameScene(_ gameScene:GameScene, didEndLevelWithSuccess result:Bool)
+protocol GameSceneDelegate: AnyObject {
+    func gameScene(gameManager: KuggenSessionManager, result:Bool)
     
 }
 
@@ -53,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game manager, create and manage request objects
     var gameManager : KuggenSessionManager!
-    var gameScenDelegate : GameSceneDelegate?
+    weak var gameScenDelegate : GameSceneDelegate?
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
 
@@ -402,14 +402,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("level completed")
                 gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: true)
                 //gameManager.startNextLevel()
-                
             }
         } else if (gameManager.mode == .fourplayer){
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
                 && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
                 && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
                 print("level completed")
-                gameManager.startNextLevel()
+                gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
 
             }
         }
@@ -735,7 +734,7 @@ extension GameScene : KuggenSessionManagerDelegate {
     
     func gameManager(_ manager: KuggenSessionManager, endedLevel: Level?, success: Bool) {
         
-        gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: success)
+        //gameScenDelegate?.gameScene(gameManager: self.gameManager, result: success)
     }
     
     func gameManagerGameOver(_ manager: KuggenSessionManager) {

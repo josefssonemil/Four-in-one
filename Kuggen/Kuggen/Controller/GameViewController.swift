@@ -13,12 +13,10 @@ import FourInOneCore
 
 class GameViewController: FourInOneSessionViewController, Storyboarded, GameSceneDelegate {
     
-    
-    func gameScene(_ gameScene: GameScene, didEndLevelWithSuccess result: Bool) {
-        fatalError("init(coder:) has not been implemented")
-
+    func gameScene(gameManager: KuggenSessionManager, result: Bool) {
+        print("Delegation works")
+        coordinator?.goToWinView()
     }
-    
     
     weak var coordinator: MainCoordinator?
 
@@ -43,6 +41,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             gameScene = GameScene(size: UIScreen.main.bounds.size)
             gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
+            gameScene.gameScenDelegate = self
             //gameScene.gameSceneDelegate = self
             let skView = self.view! as! SKView
 
@@ -61,7 +60,6 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
 
         }
     }
-
     
 
    /* override func viewDidLoad() {
@@ -110,3 +108,10 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
         return true
     }*/
 }
+/*
+extension GameViewController: GameSceneDelegate{
+    func gameScene(_ gameScene: GameScene, result: Bool) {
+        print("Delegation works")
+        coordinator?.goToWinView()
+    }
+}*/

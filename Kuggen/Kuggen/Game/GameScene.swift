@@ -34,6 +34,11 @@ struct PhysicsCategory {
     static let robot2: UInt32 = 0b1111
     static let robot3: UInt32 = 0b001
     static let robot4: UInt32 = 0b0001
+    
+    static let alignCog1: UInt32 = 0b0101
+    static let alignCog2: UInt32 = 0b0011
+    static let alignCog3: UInt32 = 0b0111
+    static let alignCog4: UInt32 = 0b0100
 }
 
 private let handleOne = HandleType.edgeCircle
@@ -66,13 +71,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var robotThreeHandle : Handle
     private var robotFourHandle : Handle
     
+
+    var alignmentCogOne : SKSpriteNode!
+    var alignmentCogTwo : SKSpriteNode!
+    var alignmentCogThree : SKSpriteNode!
+    var alignmentCogFour : SKSpriteNode!
+    
+
     private var robotTwoArm : Arm
     private let robotOneButton = SKSpriteNode(imageNamed: "robot0_button")
     private let robotTwoButton = SKSpriteNode(imageNamed: "robot1_button")
     private let robotThreeButton = SKSpriteNode(imageNamed: "robot2_button")
     private let robotFourButton = SKSpriteNode(imageNamed: "robot3_button")
 
+
     private var joints : [SKPhysicsJointFixed]
+  
+    
   
 
     /*private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
@@ -128,6 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotThreeHandle=robotThree.getHandle()
         robotFourHandle=robotFour.getHandle()
         joints = []
+
         super.init(size: size)
     }
     
@@ -146,6 +162,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
         let cogwheels = [cogwheelOne, cogwheelTwo, cogwheelThree, cogwheelFour]
+
+        //let alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
+
         let robots = [robotOneHandle, robotTwoHandle, robotThreeHandle, robotFourHandle]
         
         //Physics for robots
@@ -162,7 +181,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         robotThreeHandle.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel3
         robotFourHandle.physicsBody?.categoryBitMask = PhysicsCategory.robot4
         robotFourHandle.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
-        
+
         //Physics for the cogwheels
         for cogwheel in cogwheels{
             cogwheel.physicsBody = SKPhysicsBody(texture: cogwheel.texture!, size: cogwheel.frame.size)
@@ -179,6 +198,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cogwheelThree.physicsBody?.contactTestBitMask = PhysicsCategory.robot3
         cogwheelFour.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel4
         cogwheelFour.physicsBody?.contactTestBitMask = PhysicsCategory.robot4
+
+        
+        /*for alignCog in alignCogs {
+            alignCog?.physicsBody = SKPhysicsBody(texture: (alignCog?.texture!)!, size: (alignCog?.texture!.size())!)
+            alignCog?.physicsBody?.isDynamic = true
+            alignCog?.physicsBody?.pinned = true
+            alignCog?.physicsBody?.collisionBitMask = PhysicsCategory.none
+        }*/
+        
+        alignmentCogOne.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100.0, height: 150.0))
+        alignmentCogOne.physicsBody?.isDynamic = true
+        alignmentCogOne.physicsBody?.categoryBitMask = PhysicsCategory.alignCog1
+        alignmentCogOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel1
+        alignmentCogOne.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        alignmentCogTwo.physicsBody = SKPhysicsBody(texture: alignmentCogTwo.texture!, size: alignmentCogTwo.texture!.size())
+        alignmentCogTwo.physicsBody?.isDynamic = true
+        alignmentCogTwo.physicsBody?.categoryBitMask = PhysicsCategory.alignCog2
+        alignmentCogTwo.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
+        alignmentCogTwo.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        alignmentCogThree.physicsBody = SKPhysicsBody(texture: alignmentCogThree.texture!, size: alignmentCogThree.texture!.size())
+        alignmentCogThree.physicsBody?.isDynamic = true
+        alignmentCogThree.physicsBody?.categoryBitMask = PhysicsCategory.alignCog3
+        alignmentCogThree.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel3
+        alignmentCogThree.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        alignmentCogFour.physicsBody = SKPhysicsBody(texture: alignmentCogFour.texture!, size: alignmentCogFour.texture!.size())
+        alignmentCogFour.physicsBody?.isDynamic = true
+        alignmentCogFour.physicsBody?.categoryBitMask = PhysicsCategory.alignCog4
+        alignmentCogFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
+        alignmentCogFour.physicsBody?.collisionBitMask = PhysicsCategory.none
+
     }
     
     // Setup the scene, add scenes and behaviours
@@ -193,7 +245,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = UIColor.background!
         
         // Shadows
-        let lightNode = SKLightNode()
+        /*let lightNode = SKLightNode()
         //lightNode.position = CGPoint(x: (self.size.width)/2, y: (self.size.width)/2)
         lightNode.position = CGPoint(x: (self.size.width)/3, y: (self.size.width)/3)
         lightNode.categoryBitMask = 0b0001
@@ -201,7 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lightNode.lightColor = UIColor.white
         //lightNode.shadowColor = UIColor.gray
         self.addChild(lightNode)
-
+*/
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -211,6 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotTwo = robotTwo
         self.gameManager.cogwheelOne = cogwheelOne
         self.gameManager.cogwheelTwo = cogwheelTwo
+        //self.gameManager.alignmentCogOne = alignmentCogOne
         if(gameManager.mode == .fourplayer){
             self.gameManager.robotThree = robotThree
             self.gameManager.robotFour = robotFour
@@ -254,6 +307,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
  
         // Robot heads (replace with graphics)
+
+        //attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
+        //attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        self.gameManager.initialSetUp()
+        
+        alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogBlue")
+        alignmentCogOne.size = CGSize(width: 80.0, height: 120.0)
+        alignmentCogOne.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+        alignmentCogOne.position = CGPoint(x: cogwheelOne.frame.maxX, y: cogwheelOne.frame.maxY)
+        alignmentCogOne.zRotation = -45.0
+        
+        
+        alignmentCogTwo = SKSpriteNode(imageNamed: "alignmentCogBlue")
+        alignmentCogTwo.size = CGSize(width: 100.0, height: 150.0)
+        alignmentCogTwo.anchorPoint = CGPoint(x: 0.5, y: 1.0)
+        alignmentCogTwo.position = CGPoint(x: cogwheelTwo.frame.maxX, y: cogwheelTwo.frame.maxY)
+        alignmentCogTwo.zRotation = -45.0
+        
+        alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogBlue")
+        alignmentCogThree.size = CGSize(width: 150.0, height: 200.0)
+        alignmentCogThree.position = CGPoint(x: cogwheelThree.frame.maxX, y: cogwheelThree.frame.maxY)
+        
+        alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogBlue")
+        alignmentCogFour.size = CGSize(width: 200.0, height: 300.0)
+        alignmentCogFour.position = CGPoint(x: cogwheelFour.frame.maxX, y: cogwheelFour.frame.maxY)
+        
+        self.addChild(alignmentCogOne)
+        self.addChild(alignmentCogTwo)
+        self.addChild(alignmentCogThree)
+        self.addChild(alignmentCogFour)
+        
+        initPhysics()
+        
+        attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
+        attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
+        
+        //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
+        //attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
+        //attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
+        //attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]
     
         initPhysics()
@@ -294,9 +388,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             default:
                 print("something to print")
                 break
-            }
-            
-            
+            }    
             heads[i-1].position = button.position
             heads[i-1].zRotation = button.zRotation
             button.zPosition = 2
@@ -324,15 +416,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Checks if the goal is completed
         if (gameManager.mode == .twoplayer){
+            
             //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
                 print("level completed")
+                gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: true)
+                //gameManager.startNextLevel()
+                
             }
-        }else if (gameManager.mode == .fourplayer){
+        } else if (gameManager.mode == .fourplayer){
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
                 && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
                 && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
                 print("level completed")
+                gameManager.startNextLevel()
+
             }
         }
         
@@ -342,6 +440,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
+        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
+        //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
+
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
@@ -567,6 +670,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         joints.append(jointBetweenObjects)
         self.physicsWorld.add(jointBetweenObjects)
        
+    }
+    
+    private func attachAlignCogs(cogwheel: Cogwheel, cog: SKSpriteNode) {
+        let cogToCogwheel = SKPhysicsJointFixed.joint(withBodyA: cogwheel.physicsBody!, bodyB: cog.physicsBody!, anchor: cog.position)
+
+        self.physicsWorld.add(cogToCogwheel)
+        
+        print("ALIGNMENT COG ATTACHED")
     }
 
 

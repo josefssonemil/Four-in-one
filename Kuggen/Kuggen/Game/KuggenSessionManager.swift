@@ -9,6 +9,7 @@
 import UIKit
 import FourInOneCore
 import MultipeerConnectivity
+import SpriteKit
 
 
 
@@ -26,6 +27,8 @@ protocol KuggenSessionManagerDelegate : FourInOneSessionManagerDelegate {
 
 
 class KuggenSessionManager: FourInOneSessionManager {
+    
+    weak var coordinator: MainCoordinator?
 
     // properties
     var level = 1
@@ -43,6 +46,10 @@ class KuggenSessionManager: FourInOneSessionManager {
     var robotTwo: Robot!
     var robotThree: Robot!
     var robotFour: Robot!
+    var alignmentCogOne : SKSpriteNode!
+    var alignmentCogTwo : SKSpriteNode!
+    var alignmentCogThree : SKSpriteNode!
+    var alignmentCogFour : SKSpriteNode!
     
 
     
@@ -76,6 +83,11 @@ class KuggenSessionManager: FourInOneSessionManager {
         var cogwheelThreePos: CGPoint
         var cogwheelFourPos: CGPoint
         
+        var alignmentCogOnePos: CGPoint
+        //var alignmentCogTwoPos: CGPoint
+        //var alignmentCogThreePos: CGPoint
+        //var alignmentCogFourPos: CGPoint
+        
         if mode == .twoplayer
         {
             robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 100))
@@ -95,6 +107,11 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelTwo.position.x = cogwheelTwoPos.x
             cogwheelTwo.position.y = cogwheelTwoPos.y
             
+            //alignmentCogOnePos = makeLocal(CGPoint(x: cogwheelOne.frame.maxX, y: cogwheelOne.frame.maxY ))
+            //alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogBlue")
+            //alignmentCogOne.size = CGSize(width: 100.0, height: 150.0)
+            //alignmentCogOne.position.x = alignmentCogOnePos.x
+            //talignmentCogOne.position.y = alignmentCogOnePos.y
         }
         
             // TODO
@@ -288,6 +305,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     }
     
     func startNextLevel() {
+        
         
         // level += 1
         

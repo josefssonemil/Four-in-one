@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -264,6 +264,66 @@
             </objects>
             <point key="canvasLocation" x="1387.5" y="-548.4375"/>
         </scene>
+        <!--Win View Controller-->
+        <scene sceneID="tCn-pF-5zA">
+            <objects>
+                <viewController storyboardIdentifier="WinViewController" id="HsT-Y0-aOq" customClass="WinViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zof-pB-GHM">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grattis! Ni klarade det! :) " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP1-UX-290">
+                                <rect key="frame" x="345.5" y="127" width="333" height="35"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" name="DarkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="63" translatesAutoresizingMaskIntoConstraints="NO" id="v5t-cn-zVB">
+                                <rect key="frame" x="412" y="268.5" width="200" height="231"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="baY-im-Z0L" customClass="MenuButton" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="7F8-JY-bRB"/>
+                                            <constraint firstAttribute="width" constant="200" id="bbj-A3-i7O"/>
+                                        </constraints>
+                                        <state key="normal" title="Spela igen"/>
+                                        <connections>
+                                            <action selector="playAgainTapped:" destination="HsT-Y0-aOq" eventType="touchUpInside" id="OjX-dE-9IM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imY-Rx-Rs4" customClass="MenuButton" customModule="Kuggen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="147" width="200" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="irJ-Xm-vvu"/>
+                                        </constraints>
+                                        <state key="normal" title="Avsluta"/>
+                                        <connections>
+                                            <action selector="menuTapped:" destination="HsT-Y0-aOq" eventType="touchUpInside" id="DTz-I4-dbe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="robotBlink" translatesAutoresizingMaskIntoConstraints="NO" id="rbv-f2-naq">
+                                <rect key="frame" x="784" y="553" width="240" height="215"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="LightBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mP1-UX-290" firstAttribute="top" secondItem="9Jv-cj-Anv" secondAttribute="top" constant="107" id="7b8-aF-7IW"/>
+                            <constraint firstItem="v5t-cn-zVB" firstAttribute="centerY" secondItem="zof-pB-GHM" secondAttribute="centerY" id="HWa-4r-KD5"/>
+                            <constraint firstItem="mP1-UX-290" firstAttribute="centerX" secondItem="zof-pB-GHM" secondAttribute="centerX" id="P0D-o2-DjB"/>
+                            <constraint firstItem="mP1-UX-290" firstAttribute="centerX" secondItem="zof-pB-GHM" secondAttribute="centerX" id="fv7-cr-2zY"/>
+                            <constraint firstItem="v5t-cn-zVB" firstAttribute="centerX" secondItem="zof-pB-GHM" secondAttribute="centerX" id="rI1-aU-GZ2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Jv-cj-Anv"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Iws-zy-g0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1390.4296875" y="154.6875"/>
+        </scene>
         <!--PairingViewController-->
         <scene sceneID="9xT-cG-IXN">
             <objects>
@@ -501,6 +561,14 @@
                                 <color key="textColor" name="MidSecondComplementaryColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cA0-Ul-bRb">
+                                <rect key="frame" x="126" y="232" width="134" height="123"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="V7D-5h-zZy" eventType="touchUpInside" id="hGV-kY-B27"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" name="LightBackgroundColor"/>
                         <constraints>
@@ -513,6 +581,7 @@
                     </view>
                     <connections>
                         <outlet property="aboutButton" destination="0m5-Nv-HNt" id="0AG-LN-wqJ"/>
+                        <outlet property="button" destination="cA0-Ul-bRb" id="5Um-3s-4ce"/>
                         <outlet property="optionMenuButton" destination="9a8-fA-eRN" id="JVP-PP-6Cs"/>
                         <outlet property="playButton" destination="Qff-vR-Nvg" id="xlh-nQ-5N5"/>
                         <outlet property="robotButton" destination="D80-eF-ZRY" id="CQL-2z-UOM"/>
@@ -702,6 +771,7 @@
         <image name="cogg" width="1000" height="1000"/>
         <image name="hand" width="294" height="425"/>
         <image name="handFlipped" width="294" height="425"/>
+        <image name="robotBlink" width="1000" height="1000"/>
         <image name="robotTest" width="1000" height="1000"/>
         <image name="talk" width="1000" height="1000"/>
         <image name="talk2" width="1000" height="300"/>

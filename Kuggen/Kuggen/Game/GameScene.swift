@@ -56,8 +56,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameScenDelegate : GameSceneDelegate?
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
-
-
+    
+    var readyToPlay = false
 
     
     // Create robot arms and cogwheel properties
@@ -328,6 +328,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
         attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
         attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        
 
         
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]
@@ -375,56 +376,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hideOther(self.gameManager, heads: heads)
             i+=1
         }
+        if (self.gameManager.isServer) {
+            initStartingRotations(cogs: cogwheels)
+        }
+    }
+    
+    private func initStartingRotations(cogs: [Cogwheel]){
+        
+        
+        let delayInSeconds = 3.0
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
+            
+            for cog in cogs {
+                self.gameManager.cogRotated(cogwheel: cog, impulse: cog.startingAngle!)
+            }
+            self.readyToPlay = true
+        }
     }
     
     // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        // Initialize _lastUpdateTime if it has not already been
-        /*if (self.lastUpdateTime == 0) {
-         self.lastUpdateTime = currentTime
-         }
-         
-         // Calculate time since last update
-         let dt = currentTime - self.lastUpdateTime
-         
-         // Update entities
-         for entity in self.entities {
-         entity.update(deltaTime: dt)
-         }
-         
-         self.lastUpdateTime = currentTime*/
         
-        //Checks if the goal is completed
-        if (gameManager.mode == .twoplayer){
+        if readyToPlay {
             
-            //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
-            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
-                print("level completed")
-                gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: true)
-                //gameManager.startNextLevel()
+            //Checks if the goal is completed
+            if (gameManager.mode == .twoplayer){
                 
+                //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                    print("level completed")
+                    gameScenDelegate?.gameScene(self, didEndLevelWithSuccess: true)
+                    //gameManager.startNextLevel()
+                    
+                }
+            } else if (gameManager.mode == .fourplayer){
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                    && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                    && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                    print("level completed")
+                    gameManager.startNextLevel()
+                    
+                }
             }
-        } else if (gameManager.mode == .fourplayer){
-            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
-                && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
-                && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
-                print("level completed")
-                gameManager.startNextLevel()
-
-            }
+            
         }
         
+      
         
     }
     
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-        gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
-        //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
-
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
@@ -698,29 +702,61 @@ private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
 
 
 extension GameScene : KuggenSessionManagerDelegate {
-
     
     func gameManager(_ manager: KuggenSessionManager, impulse: CGFloat, cogName: String) {
+        if (manager.rotationCount < 4 )
+        {
+        let rotateAction = SKAction.rotate(toAngle: impulse
+            , duration: 2)
         if cogName == "cog_1" {
             //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelOne.zRotation = impulse
+           //cogwheelOne.zRotation = impulse
+            cogwheelOne.run(rotateAction)
         }
         
         else if cogName == "cog_2" {
             //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelTwo.zRotation = impulse
+            //cogwheelTwo.zRotation = impulse
+            cogwheelTwo.run(rotateAction)
         }
         
         else if cogName == "cog_3" {
             //cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelThree.zRotation = impulse
+            //cogwheelThree.zRotation = impulse
+            cogwheelThree.run(rotateAction)
         }
         
         else if cogName == "cog_4" {
             //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-            cogwheelFour.zRotation = impulse
+          //  cogwheelFour.zRotation = impulse
+            cogwheelFour.run(rotateAction)
+        }
+            gameManager.rotationCount += 1
+        }else {
+            if cogName == "cog_1" {
+                //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
+                cogwheelOne.zRotation = impulse
+                
+            }
+                
+            else if cogName == "cog_2" {
+                //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
+                cogwheelTwo.zRotation = impulse
+            }
+                
+            else if cogName == "cog_3" {
+                //cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
+                cogwheelThree.zRotation = impulse
+            }
+                
+            else if cogName == "cog_4" {
+                //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
+                cogwheelFour.zRotation = impulse
+            }
         }
     }
+    
+
     
     
     

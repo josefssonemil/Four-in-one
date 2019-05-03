@@ -34,7 +34,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     var level = 1
     var levelCount = 0
     var score = 0
-    
+    var rotationCount = 0
     
     var kuggenDelegate: KuggenSessionManagerDelegate?
 
@@ -166,10 +166,14 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
             
-         
+            
         }
         
     
+        
+    }
+    
+    private func randomizeStartingAngles() {
         
     }
 

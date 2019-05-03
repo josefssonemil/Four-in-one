@@ -334,10 +334,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheelThree.name = "cog_3"
             cogwheelFour.name = "cog_4"
             
-            self.addChild(alignmentCogOne)
+            /*self.addChild(alignmentCogOne)
             self.addChild(alignmentCogTwo)
             self.addChild(alignmentCogThree)
-            self.addChild(alignmentCogFour)
+            self.addChild(alignmentCogFour)*/
         }
         
         else {
@@ -408,6 +408,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(alignmentCogOne)
         self.addChild(alignmentCogTwo)
+        self.addChild(alignmentCogThree)
+        self.addChild(alignmentCogFour)
         
         initPhysics()
         

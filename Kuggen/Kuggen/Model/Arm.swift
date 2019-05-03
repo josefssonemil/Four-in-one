@@ -14,7 +14,7 @@ class Arm: SKSpriteNode {
     var rotation : CGFloat
     var isExtended = false
     var shortest = CGFloat(100)
-    var longest = CGFloat(600)
+    var longest = CGFloat(800)
 
 
     init(texture: SKTexture) {

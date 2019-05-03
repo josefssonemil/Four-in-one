@@ -233,7 +233,7 @@ class Robot: SKSpriteNode {
     }
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
-        self.setScale(0.2)
+        self.setScale(0.7)
         
         switch matchingHandle{
         case .edgeTriangle:

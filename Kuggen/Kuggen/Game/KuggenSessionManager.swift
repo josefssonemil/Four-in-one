@@ -306,9 +306,12 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     func startNextLevel() {
         
+<<<<<<< HEAD
         
         // level += 1
         
+=======
+>>>>>>> Delegation works but its not connected properly in storyboard
     }
     
     

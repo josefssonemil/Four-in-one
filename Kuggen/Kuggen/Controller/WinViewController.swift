@@ -16,7 +16,8 @@ class WinViewController: UIViewController, Storyboarded {
     @IBOutlet weak var menuTapped: MenuButton!
     
     @IBAction func playAgainTapped(_ sender: Any) {
-//    coordinator?.goToGameScreen(gameManager: <#T##KuggenSessionManager#>)
+        gameManager?.level += 1
+        coordinator?.goToGameScreen(gameManager: gameManager!)
     }
     
     @IBAction func menuTapped(_ sender: Any) {

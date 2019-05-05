@@ -328,6 +328,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
                 print("level completed")
                 gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
+                self.isPaused = true
                 
             }
         }else if (gameManager.mode == .fourplayer){
@@ -336,6 +337,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
                 print("level completed")
                 gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
+                self.isPaused = true
 
             }
         }

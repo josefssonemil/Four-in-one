@@ -14,8 +14,7 @@ import FourInOneCore
 class GameViewController: FourInOneSessionViewController, Storyboarded, GameSceneDelegate {
     
     func gameScene(gameManager: KuggenSessionManager, result: Bool) {
-        print("Delegation works")
-        coordinator?.goToWinView()
+        coordinator?.goToWinView(gameManager: gameManager)
     }
     
     weak var coordinator: MainCoordinator?
@@ -108,10 +107,3 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
         return true
     }*/
 }
-/*
-extension GameViewController: GameSceneDelegate{
-    func gameScene(_ gameScene: GameScene, result: Bool) {
-        print("Delegation works")
-        coordinator?.goToWinView()
-    }
-}*/

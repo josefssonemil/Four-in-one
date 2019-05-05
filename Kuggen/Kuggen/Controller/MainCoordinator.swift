@@ -67,6 +67,7 @@ class MainCoordinator: Coordinator {
     func goToWinView(gameManager: KuggenSessionManager) {
         let vc = WinViewController.instantiate()
         vc.coordinator = self
+        vc.gameManager = gameManager
         navigationController.pushViewController(vc, animated: false)
     }
     

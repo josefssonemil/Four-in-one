@@ -320,7 +320,7 @@
                         <viewLayoutGuide key="safeArea" id="9Jv-cj-Anv"/>
                     </view>
                     <connections>
-                        <outlet property="menuTapped" destination="baY-im-Z0L" id="c6k-XM-94g"/>
+                        <outlet property="menuTapped" destination="imY-Rx-Rs4" id="9gK-7Y-bed"/>
                         <outlet property="playAgainButton" destination="baY-im-Z0L" id="yfS-t2-E6Q"/>
                     </connections>
                 </viewController>

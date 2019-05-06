@@ -38,8 +38,9 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
 
     private func layoutGameScene() {
     
+        let tmp = sessionManager as? KuggenSessionManager
         if let boardView = self.boardView as! SKView? {
-            gameScene = GameScene(size: UIScreen.main.bounds.size)
+            gameScene = GameScene(size: UIScreen.main.bounds.size, levelNo: tmp!.level)
             gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
             gameScene.gameScenDelegate = self

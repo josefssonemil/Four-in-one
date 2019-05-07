@@ -2,12 +2,13 @@
 import Foundation
 import SpriteKit
 
-class Cogwheel: SKSpriteNode{
+class Cogwheel: SKSpriteNode {
 
     public var handle: HandleType
     var innerAlignmentAngle: Double
     private var blocker: Double?
     private var lock: Lock?
+    var startingAngle: CGFloat?
     //private var currentAngle: Double
     
     //Creates a cogwheel
@@ -16,7 +17,8 @@ class Cogwheel: SKSpriteNode{
         self.handle = handle
         self.innerAlignmentAngle = inner
         super.init(texture: texture, color: color, size: size)
-        self.zRotation = CGFloat((current*Double.pi)/180)
+        self.zRotation = 0
+        self.startingAngle = CGFloat((current*Double.pi)/180)
         //self.setScale(11)
     }
     
@@ -37,7 +39,8 @@ class Cogwheel: SKSpriteNode{
         self.handle = handle
         self.innerAlignmentAngle = inner
         super.init(texture: texture, color: UIColor.black, size: CGSize(width: 100, height: 100))
-        self.zRotation = CGFloat((current*Double.pi)/180)
+        self.zRotation = 0
+        self.startingAngle = CGFloat((current*Double.pi)/180)
         self.setScale(CGFloat(scale))
     }
     

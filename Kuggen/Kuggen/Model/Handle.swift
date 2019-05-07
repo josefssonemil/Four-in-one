@@ -39,6 +39,10 @@ class Handle: SKSpriteNode{
         self.position = CGPoint(x: x, y: y)
     }
     
+    public func setPosition(x: CGFloat, y: CGFloat){
+        self.position = CGPoint(x: x, y: y)
+    }
+    
     private func setHandle(handle: HandleType) {
         switch handle {
         case .edgeCircle:

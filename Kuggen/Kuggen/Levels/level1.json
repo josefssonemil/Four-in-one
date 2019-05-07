@@ -3,25 +3,25 @@
         {
             "handle": "edgeSquare",
             "inner": 0,
-            "current": 0,
+            "current": 160,
             "scale": 7,
         },
         {
             "handle": "edgeTrapezoid",
             "inner": 0,
-            "current": 0,
+            "current": 125,
             "scale": 10,
         },
         {
             "handle": "edgeCircle",
             "inner": 0,
-            "current": 0,
+            "current": 277,
             "scale": 13,
         },
         {
             "handle": "edgeTriangle",
             "inner": 0,
-            "current": 0,
+            "current": 45,
             "scale": 16,
         }
     ]

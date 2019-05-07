@@ -34,7 +34,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     var level = 1
     var levelCount = 0
     var score = 0
-    
+    var rotationCount = 0
     
     var kuggenDelegate: KuggenSessionManagerDelegate?
 
@@ -166,10 +166,14 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
             
-         
+            
         }
         
     
+        
+    }
+    
+    private func randomizeStartingAngles() {
         
     }
 
@@ -241,60 +245,9 @@ class KuggenSessionManager: FourInOneSessionManager {
     
     func armMoved(robot: Robot, angle: CGFloat){
         robot.handleMovement(angle: angle)
-        /*
-        if shouldHandleInput(robot){
-            if (isExtendArm(movement: diff.y, pos: robot.devicePosition)){
-                //extend requested function here
-            }
-            
-            else if (isWithdrawArm(movement: diff.y, pos: robot.devicePosition)){
-                //withdraw requested function here
-            }
-        }*/
     }
     
-    // Decides whether a player is withdrawing the arm  or not, depending on movement direction
-    func isWithdrawArm(movement: CGFloat, pos: DevicePosition) -> Bool {
-        switch pos {
-        case .one:
-            return movement < 0
-        case .two:
-            return movement > 0
-        case .three:
-            return movement > 0
-        case .four:
-            return movement < 0
-        }
-    }
-    
-    // Defines whether an input should be handled or not depending on device position
 
-    
-    func shouldHandleInput(_ robot: Robot) -> Bool {
-        
-        if mode == .twoplayer {
-            
-            switch position {
-            case .one:
-                
-                return robot.devicePosition == .one || robot.devicePosition == .four
-                
-            case .two:
-                
-                return robot.devicePosition == .two || robot.devicePosition == .three
-                
-            default:
-                
-                return false
-            }
-        }
-        else {
-            return robot.devicePosition == self.position
-            
-        }
-        
-    }
-    
 
     func readyForNextLevel() {
         
@@ -305,7 +258,6 @@ class KuggenSessionManager: FourInOneSessionManager {
     }
     
     func startNextLevel() {
-        
         
         // level += 1
         

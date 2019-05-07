@@ -73,8 +73,6 @@ class Robot: SKSpriteNode {
         case DevicePosition.four:
             self.zRotation = .pi/4
             self.rotationInterval = (degToRad(degrees: 1), degToRad(degrees: 89))
-        default:
-            break
         }
         handle.zRotation = self.zRotation
         arm.zRotation = self.zRotation
@@ -108,13 +106,15 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        if (isLocked){
+        if (isLocked && rotationAllowed(newAngle: angle)){
             let dx = abs(arm.getX() - handle.getX())
             let dy = abs(arm.getY() - handle.getY())
             
             let length = sqrt(pow(Double(dx),2) + pow(Double(dy),2))
             let angle2 = asin(Double(dy) / length)
             print("should now check stuff")
+            
+            if (rotationAllowed(newAngle:CGFloat(angle2))) {
             if (Int(arm.frame.maxY)<handle.getY()){
                 arm.extend(speed: CGFloat(abs(length - Double(arm.getHeight()))))
                 print("arm should extend")
@@ -123,15 +123,21 @@ class Robot: SKSpriteNode {
                 print("arm should collapse")
 
             }
-            if (handle.getX() > arm.getX()){
+            }
+           // setHandlePosition()
+
+            if (handle.getX() > arm.getX() && rotationAllowed(newAngle: -CGFloat(.pi/2 - angle2))){
                 arm.rotate(angle: -CGFloat(.pi/2 - angle2))
                 rotation = -CGFloat(.pi/2 - angle2)
                 self.zRotation = -CGFloat(.pi/2 - angle2)
-            } else {
+            } else if (rotationAllowed(newAngle: CGFloat(.pi/2 - angle2))){
                 arm.rotate(angle: CGFloat(.pi/2 - angle2))
                 rotation = CGFloat(.pi/2 - angle2)
                 self.zRotation = CGFloat(.pi/2 - angle2)
             }
+            
+            setHandlePosition()
+
         }
         else {
             if rotationAllowed(newAngle: angle) {
@@ -155,13 +161,13 @@ class Robot: SKSpriteNode {
     private func setHandlePosition(){
         switch devicePosition {
             case .one:
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+                handle.setPosition(x: arm.frame.maxX,  y: arm.frame.maxY)
             case .two:
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.minY))
+                handle.setPosition(x: arm.frame.maxX, y: arm.frame.minY)
             case .three:
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.minY))
+                handle.setPosition(x: arm.frame.minX, y: arm.frame.minY)
             case .four:
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+                handle.setPosition(x: arm.frame.minX, y: arm.frame.maxY)
             default:
             break
         }

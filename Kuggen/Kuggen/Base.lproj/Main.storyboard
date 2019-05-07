@@ -264,10 +264,10 @@
             </objects>
             <point key="canvasLocation" x="1387.5" y="-548.4375"/>
         </scene>
-        <!--Win View Controller-->
+        <!--WinViewController-->
         <scene sceneID="tCn-pF-5zA">
             <objects>
-                <viewController storyboardIdentifier="WinViewController" id="HsT-Y0-aOq" customClass="WinViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WinViewController" title="WinViewController" id="HsT-Y0-aOq" customClass="WinViewController" customModule="Kuggen" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zof-pB-GHM">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,6 +319,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Jv-cj-Anv"/>
                     </view>
+                    <connections>
+                        <outlet property="menuTapped" destination="imY-Rx-Rs4" id="9gK-7Y-bed"/>
+                        <outlet property="playAgainButton" destination="baY-im-Z0L" id="kcV-Kj-9EW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iws-zy-g0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

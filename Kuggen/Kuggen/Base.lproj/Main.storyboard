@@ -321,7 +321,7 @@
                     </view>
                     <connections>
                         <outlet property="menuTapped" destination="imY-Rx-Rs4" id="9gK-7Y-bed"/>
-                        <outlet property="playAgainButton" destination="baY-im-Z0L" id="yfS-t2-E6Q"/>
+                        <outlet property="playAgainButton" destination="baY-im-Z0L" id="kcV-Kj-9EW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iws-zy-g0D" userLabel="First Responder" sceneMemberID="firstResponder"/>

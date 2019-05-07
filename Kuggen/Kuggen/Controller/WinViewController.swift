@@ -14,6 +14,7 @@ class WinViewController: UIViewController, Storyboarded {
     //@IBOutlet weak var playAgainButton: MenuButton!
     
     @IBOutlet weak var menuTapped: MenuButton!
+    @IBOutlet weak var playAgainButton: MenuButton!
     
     @IBAction func playAgainTapped(_ sender: Any) {
         gameManager?.level += 1

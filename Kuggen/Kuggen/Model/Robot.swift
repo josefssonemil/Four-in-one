@@ -13,6 +13,7 @@ class Robot: SKSpriteNode {
     private var cogwheel : Cogwheel?
     private let isJoined = false
     private var offsetAngle = CGFloat(0)
+    var isRotationAllowed = true
     
     //Depends on device pos
     var basePoint = CGPoint()
@@ -98,10 +99,12 @@ class Robot: SKSpriteNode {
     
     private func rotationAllowed(newAngle: CGFloat) -> Bool {
         if newAngle < rotationInterval.0 || newAngle > rotationInterval.1 {
-            return false
+            isRotationAllowed = false
+            return isRotationAllowed
     }
         else {
-            return true
+            isRotationAllowed = true
+            return isRotationAllowed
         }
     }
     

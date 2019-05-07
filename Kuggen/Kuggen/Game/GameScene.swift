@@ -478,7 +478,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             }
                         }
                         if(touchedRobot.isLockedtoCog()){
-                            if(!touchedRobot.getArm().isExtended){
+                            if(!touchedRobot.getArm().isExtended && touchedRobot.isRotationAllowed){
                                 gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
                             }
                         }
@@ -722,23 +722,23 @@ extension GameScene : KuggenSessionManagerDelegate {
         }else {
             if cogName == "cog_1" {
                 //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelOne.zRotation = impulse
+                cogwheelOne.zRotation += impulse
                 
             }
                 
             else if cogName == "cog_2" {
                 //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelTwo.zRotation = impulse
+                cogwheelTwo.zRotation += impulse
             }
                 
             else if cogName == "cog_3" {
                 //cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelThree.zRotation = impulse
+                cogwheelThree.zRotation += impulse
             }
                 
             else if cogName == "cog_4" {
                 //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelFour.zRotation = impulse
+                cogwheelFour.zRotation += impulse
             }
         }
     }

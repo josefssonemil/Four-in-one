@@ -421,8 +421,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
-        gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
+        //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
         //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
 
         if let aTouch = touches.first {

@@ -77,6 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogPink")
     var alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogPurple")
     
+    var block = SKShapeNode(rectOf: CGSize(width: 100.0, height: 70.0))
+    
 
     private var robotTwoArm : Arm
     private let robotOneButton = SKSpriteNode(imageNamed: "robot0_button")
@@ -315,6 +317,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             i+=1
         }
         
+        block.fillColor = UIColor.blue
+        block.position = CGPoint(x: cogwheelTwo.position.x + cogwheelTwo.size.height/2, y: cogwheelTwo.position.y)
+        
+        addChild(block)
         
         initPhysics()
         

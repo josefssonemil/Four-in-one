@@ -359,7 +359,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             case 2:
                 button.position = CGPoint(x: robots[i-1].position.y - 100, y: totalScreenSize.height - robots[i-1].position.x)
                 button.zRotation = (-3 * .pi)/4
-                //print(button.position)
             case 3:
                 button.position = CGPoint(x: robots[i-1].position.x + deX, y: robots[i-1].position.y - deY)
                 button.zRotation = (3 * .pi)/4
@@ -367,7 +366,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 button.position = CGPoint(x: (totalScreenSize.width - totalScreenSize.height) + robots[i-1].position.y + 100, y: totalScreenSize.width - robots[i-1].position.x)
                 button.zRotation = .pi/4
             default:
-                print("something to print")
                 break
             }    
             heads[i-1].position = button.position
@@ -429,6 +427,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
+        //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
+        //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
         if let aTouch = touches.first {
             
             let location = aTouch.location(in: self)
@@ -483,7 +485,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         if(touchedRobot.isLockedtoCog()){
                             if(!touchedRobot.getArm().isExtended){
-                                gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/3)
+                                gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
                             }
                         }
                         gameManager.armMoved(robot: touchedRobot, angle: angle)
@@ -555,13 +557,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 physicsWorld.remove(joint)
                 if i < joints.count{
                     joints.remove(at: i)
-                    print("kuken")
                 }
             }else if (joint.bodyB.node!.name!.contains(handle.name!)){
                 physicsWorld.remove(joint)
                 if i < joints.count{
                     joints.remove(at: i)
-                    print("bajset")
                 }
             }
             i += 1
@@ -582,8 +582,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyA
             secondBody = contact.bodyB
             
-            print("Contact!!!")
-            
         } else {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
@@ -592,7 +590,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let bodyOne = firstBody.node!.name, let bodyTwo = secondBody.node!.name {
             if (bodyOne.contains("robot") || bodyTwo.contains("robot")){
-                print("Hjälp mig !!!!!!!")
                 var cog : Cogwheel
                 var rob : Handle
                 if (bodyOne.contains("cog") && bodyTwo.contains("robot")){
@@ -620,9 +617,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         // Handle contact between handle and key
         
-       
-        print(firstBody.node?.name)
-        print(secondBody.node?.name)
+ 
     
         }
     }
@@ -640,11 +635,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private func keyPickedUp(key: SKSpriteNode, robot: SKSpriteNode){
         //handle in game manager here
-        print("key picked up")
+
     }
 
     private func handleLockedIn(cogwheel: Cogwheel, robot: Robot){
-        print("Lockedin")
         robot.lockToCog(cogwheel: cogwheel)
         
         let jointBetweenObjects = SKPhysicsJointFixed.joint(withBodyA: robot.getHandle().physicsBody!,
@@ -661,7 +655,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.physicsWorld.add(cogToCogwheel)
         
-        print("ALIGNMENT COG ATTACHED")
     }
 
 

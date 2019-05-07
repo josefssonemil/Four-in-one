@@ -136,21 +136,16 @@ class Robot: SKSpriteNode {
         else {
             if rotationAllowed(newAngle: angle) {
                     rotation=angle
-                    self.zRotation = angle
+                    //let spinAction = SKAction.rotate(toAngle: angle, duration:0.3)
+                    zRotation = angle
                     arm.rotate(angle: angle)
-                    handle.zRotation = angle
+                    handle.rotate(angle: angle)
+                    //run(spinAction)
+                    //arm.run(spinAction)
+                    //handle.run(spinAction)
                     if(!isJoined){
                        setHandlePosition()
-                        }
-                       /* if(angle<0){
-                            handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY)-5)
-                        }
-                        else{
-                            handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY)-5)
-                        }*/
-                        /*if (.pi/4-offsetAngle < angle && angle < -.pi/4-offsetAngle){
-                            handle.rotate(angle: -angle/4)
-                        } else { handle.rotate(angle: 0)}*/
+                    }
             }
        
         }
@@ -238,7 +233,7 @@ class Robot: SKSpriteNode {
     }
     private func setup(_ devicepos: DevicePosition){
         devicePosition = devicepos
-        self.setScale(0.2)
+        self.setScale(0.7)
         
         switch matchingHandle{
         case .edgeTriangle:

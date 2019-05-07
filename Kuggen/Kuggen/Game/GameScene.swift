@@ -403,7 +403,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
                 self.isPaused = true
->>>>>>> Everything except changing level should work
                 
             }
         } else if (gameManager.mode == .fourplayer){

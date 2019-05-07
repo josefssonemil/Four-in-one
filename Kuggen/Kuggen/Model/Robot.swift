@@ -73,8 +73,6 @@ class Robot: SKSpriteNode {
         case DevicePosition.four:
             self.zRotation = .pi/4
             self.rotationInterval = (degToRad(degrees: 1), degToRad(degrees: 89))
-        default:
-            break
         }
         handle.zRotation = self.zRotation
         arm.zRotation = self.zRotation
@@ -126,7 +124,7 @@ class Robot: SKSpriteNode {
 
             }
             }
-            setHandlePosition()
+           // setHandlePosition()
 
             if (handle.getX() > arm.getX() && rotationAllowed(newAngle: -CGFloat(.pi/2 - angle2))){
                 arm.rotate(angle: -CGFloat(.pi/2 - angle2))
@@ -163,13 +161,13 @@ class Robot: SKSpriteNode {
     private func setHandlePosition(){
         switch devicePosition {
             case .one:
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
+                handle.setPosition(x: arm.frame.maxX,  y: arm.frame.maxY)
             case .two:
-                handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.minY))
+                handle.setPosition(x: arm.frame.maxX, y: arm.frame.minY)
             case .three:
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.minY))
+                handle.setPosition(x: arm.frame.minX, y: arm.frame.minY)
             case .four:
-                handle.setPosition(x: Int(arm.frame.minX), y: Int(arm.frame.maxY))
+                handle.setPosition(x: arm.frame.minX, y: arm.frame.maxY)
             default:
             break
         }

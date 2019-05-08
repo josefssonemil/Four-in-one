@@ -485,15 +485,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             }
                         }
                         if(touchedRobot.isLockedtoCog()){
+                            
+                            let normalizedAngle = angle + .pi/4
+                            let armLength = touchedRobot.getArm().size.height
+                            
+                            let aAngle = (.pi - normalizedAngle) / 2
+                            
+                            let distance = (sin(normalizedAngle) * armLength) / sin(aAngle)
+                            
+                            let cogRadius = touchedRobot.getCogwheel().size.height / 2
+                            
+                            let rotationAngle = (distance / 2) / cogRadius
+                            
                             if(!touchedRobot.getArm().isExtended && touchedRobot.isRotationAllowed){
-                                if angle > 0 {
-                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: angle/5)
-                                }
-                                else {
-                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
+                                
+                                print("swipe angle: \(angle.description)")
+                                print("rotation angle: \(rotationAngle.description)")
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 10)
+                                
 
                                 }
-                            }
                         }
                         gameManager.armMoved(robot: touchedRobot, angle: angle)
                     }
@@ -733,26 +744,33 @@ extension GameScene : KuggenSessionManagerDelegate {
         }
             gameManager.rotationCount += 1
         }else {
+            
+            var cog : Cogwheel
+            cog = cogwheelOne
             if cogName == "cog_1" {
                 //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelOne.zRotation += impulse
+                cog = cogwheelOne
                 
             }
                 
             else if cogName == "cog_2" {
                 //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelTwo.zRotation += impulse
+                cog = cogwheelTwo
+
             }
                 
             else if cogName == "cog_3" {
                 //cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelThree.zRotation += impulse
+                cog = cogwheelThree
+
             }
                 
             else if cogName == "cog_4" {
                 //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-                cogwheelFour.zRotation += impulse
+                cog = cogwheelFour
             }
+    
+                cog.zRotation += impulse
         }
     }
     

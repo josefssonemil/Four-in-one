@@ -37,7 +37,8 @@ class Robot: SKSpriteNode {
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
         self.anchorPoint=anchorPosition
-
+        
+        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -52,6 +53,8 @@ class Robot: SKSpriteNode {
     private func radToDeg(rads: CGFloat) -> CGFloat{
         return rads * (180 / .pi)
     }
+    
+
 
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)

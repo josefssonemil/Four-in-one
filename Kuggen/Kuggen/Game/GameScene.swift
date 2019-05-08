@@ -39,6 +39,8 @@ struct PhysicsCategory {
     static let alignCog2: UInt32 = 0b0011
     static let alignCog3: UInt32 = 0b0111
     static let alignCog4: UInt32 = 0b0100
+    
+    static let block: UInt32 = 0b101
 }
 
 private let handleOne = HandleType.edgeCircle
@@ -221,6 +223,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         alignmentCogFour.physicsBody?.categoryBitMask = PhysicsCategory.alignCog4
         alignmentCogFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
+        
+        block.physicsBody = SKPhysicsBody(texture: block.fillTexture!, size: block.frame.size)
+        block.physicsBody?.isDynamic = true
+        block.physicsBody?.collisionBitMask = PhysicsCategory.none
+        block.physicsBody?.categoryBitMask = PhysicsCategory.block
+        block.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
     }
     
     // Setup the scene, add scenes and behaviours
@@ -335,7 +343,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         
-
+        addBlocker(cogwheel: cogwheelTwo, block: block)
         
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]
         
@@ -653,7 +661,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let cogToCogwheel = SKPhysicsJointFixed.joint(withBodyA: cogwheel.physicsBody!, bodyB: cog.physicsBody!, anchor: cog.position)
 
         self.physicsWorld.add(cogToCogwheel)
+    }
+    
+    private func addBlocker(cogwheel: Cogwheel, block: SKShapeNode){
+        let blockerToCog = SKPhysicsJointFixed.joint(withBodyA: cogwheel.physicsBody!, bodyB: block.physicsBody!, anchor: block.position)
         
+        self.physicsWorld.add(blockerToCog)
     }
 
 

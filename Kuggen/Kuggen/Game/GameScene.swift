@@ -479,7 +479,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         if(touchedRobot.isLockedtoCog()){
                             if(!touchedRobot.getArm().isExtended && touchedRobot.isRotationAllowed){
-                                gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
+                                if angle > 0 {
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: angle/5)
+                                }
+                                else {
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
+
+                                }
                             }
                         }
                         gameManager.armMoved(robot: touchedRobot, angle: angle)

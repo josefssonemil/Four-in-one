@@ -306,8 +306,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
         //attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
         self.gameManager.initialSetUp()
-        
-        let alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
+        let alignCogs: [SKSpriteNode]
+        if(gameManager.mode == .twoplayer){
+            alignCogs = [alignmentCogOne, alignmentCogTwo]
+        }else {
+            alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
+        }
         i = 0
         for aligncog in alignCogs {
             aligncog.size = CGSize(width: 80.0, height: 120.0)
@@ -326,8 +330,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
         attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
-        attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
-        attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        if(gameManager.mode == .fourplayer){
+            attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
+            attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        }
+
         
 
         
@@ -478,7 +485,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         if(touchedRobot.isLockedtoCog()){
                             if(!touchedRobot.getArm().isExtended && touchedRobot.isRotationAllowed){
-                                gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
+                                if angle > 0 {
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: angle/5)
+                                }
+                                else {
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -angle/5)
+
+                                }
                             }
                         }
                         gameManager.armMoved(robot: touchedRobot, angle: angle)

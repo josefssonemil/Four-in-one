@@ -420,7 +420,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("level completed")
                 gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
                 self.isPaused = true
-
             }
         }    
     }

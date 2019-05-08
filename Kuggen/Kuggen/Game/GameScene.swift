@@ -70,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var robotTwoHandle : Handle
     private var robotThreeHandle : Handle
     private var robotFourHandle : Handle
-    
+        
 
     var alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogBlue")
     var alignmentCogTwo = SKSpriteNode(imageNamed: "alignmentCogGreen")
@@ -384,6 +384,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (self.gameManager.isServer) {
             initStartingRotations(cogs: cogwheels)
         }
+        
+        initConstraints()
+    }
+    
+    
+    private func initConstraints(){
+        
+        let pos = self.gameManager.position
+        var xRange: SKRange
+        var yRange: SKRange
+        let hHeight = robotOne.handle.size.height
+        switch pos {
+        case .one:
+            xRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
+            yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.height / 2) - hHeight)
+            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
+            robotOne.getArm().constraints = [regionConstraint]
+            robotOne.handle.constraints = [regionConstraint]
+            robotOne.rotationRanges = [xRange, yRange]
+        case .two:
+            xRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
+            yRange = SKRange(lowerLimit: gameManager.globalSize.height / 2 , upperLimit: gameManager.globalSize.height - hHeight)
+            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
+            robotTwo.getArm().constraints = [regionConstraint]
+            robotTwo.handle.constraints = [regionConstraint]
+            robotTwo.rotationRanges = [xRange, yRange]
+        case .three:
+            xRange = SKRange(lowerLimit: gameManager.globalSize.width / 2, upperLimit: gameManager.globalSize.width - hHeight)
+            yRange = SKRange(lowerLimit: gameManager.globalSize.height / 2, upperLimit: gameManager.globalSize.height - hHeight)
+            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
+            robotThree.getArm().constraints = [regionConstraint]
+            robotThree.handle.constraints = [regionConstraint]
+            robotThree.rotationRanges = [xRange, yRange]
+
+        case .four:
+            xRange = SKRange(lowerLimit: gameManager.globalSize.width / 2, upperLimit: gameManager.globalSize.width - hHeight)
+            yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
+            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
+            robotFour.getArm().constraints = [regionConstraint]
+            robotFour.handle.constraints = [regionConstraint]
+            robotFour.rotationRanges = [xRange, yRange]
+
+        }
+      
+        
+        
     }
     
     private func initStartingRotations(cogs: [Cogwheel]){
@@ -500,7 +546,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 
                                 print("swipe angle: \(angle.description)")
                                 print("rotation angle: \(rotationAngle.description)")
-                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 10)
+                                
+                                if !(touchedRobot.handle.position.x >= touchedRobot.rotationRanges![0].upperLimit || touchedRobot.handle.position.y >= touchedRobot.rotationRanges![1].upperLimit) {
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 20 )
+                                }
                                 
 
                                 }

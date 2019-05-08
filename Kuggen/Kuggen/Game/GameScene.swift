@@ -385,51 +385,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             initStartingRotations(cogs: cogwheels)
         }
         
-        initConstraints()
+        initConstraints(robots: robots)
     }
     
     
-    private func initConstraints(){
-        
-        let pos = self.gameManager.position
-        var xRange: SKRange
-        var yRange: SKRange
+    private func initConstraints(robots: [Robot]){
+       
         let hHeight = robotOne.handle.size.height
-        switch pos {
-        case .one:
-            xRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
-            yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.height / 2) - hHeight)
-            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
-            robotOne.getArm().constraints = [regionConstraint]
-            robotOne.handle.constraints = [regionConstraint]
-            robotOne.rotationRanges = [xRange, yRange]
-        case .two:
-            xRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
-            yRange = SKRange(lowerLimit: gameManager.globalSize.height / 2 , upperLimit: gameManager.globalSize.height - hHeight)
-            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
-            robotTwo.getArm().constraints = [regionConstraint]
-            robotTwo.handle.constraints = [regionConstraint]
-            robotTwo.rotationRanges = [xRange, yRange]
-        case .three:
-            xRange = SKRange(lowerLimit: gameManager.globalSize.width / 2, upperLimit: gameManager.globalSize.width - hHeight)
-            yRange = SKRange(lowerLimit: gameManager.globalSize.height / 2, upperLimit: gameManager.globalSize.height - hHeight)
-            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
-            robotThree.getArm().constraints = [regionConstraint]
-            robotThree.handle.constraints = [regionConstraint]
-            robotThree.rotationRanges = [xRange, yRange]
-
-        case .four:
-            xRange = SKRange(lowerLimit: gameManager.globalSize.width / 2, upperLimit: gameManager.globalSize.width - hHeight)
-            yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
-            let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
-            robotFour.getArm().constraints = [regionConstraint]
-            robotFour.handle.constraints = [regionConstraint]
-            robotFour.rotationRanges = [xRange, yRange]
-
-        }
+        let xRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
+        let yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.height / 2) - hHeight)
+        let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
+        for robot in robots {
       
+            robot.getArm().constraints = [regionConstraint]
+            robot.handle.constraints = [regionConstraint]
+            robot.rotationRanges = [xRange, yRange]
+        }
         
-        
+
     }
     
     private func initStartingRotations(cogs: [Cogwheel]){

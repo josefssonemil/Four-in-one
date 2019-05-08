@@ -21,6 +21,10 @@ class Cogwheel: SKSpriteNode {
         self.startingAngle = CGFloat((current*Double.pi)/180)
         //self.setScale(11)
     }
+    convenience init(handle: HandleType, inner: Double, current: Double, scale: Double, blocker: Double){
+        self.init(handle: handle, inner: inner, current: current, scale: scale)
+        self.blocker = blocker
+    }
     
     init(handle: HandleType, inner: Double, current: Double, scale: Double) {
         let texture: SKTexture

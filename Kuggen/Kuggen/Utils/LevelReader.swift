@@ -42,10 +42,14 @@ class LevelReader {
                 handle = HandleType.edgeSquare
             }
             
-            objects.append(Cogwheel.init(handle: handle, inner: inner, current: current, scale: scale))
-            //print(Cogwheel.init(handle: handle1, outer: outer, inner: inner, current: current))
+            if let blocker = cogwheel["blocker"] as? Double{
+                objects.append(Cogwheel.init(handle: handle, inner: inner, current: current, scale: scale, blocker: blocker))
+            } else{
+                objects.append(Cogwheel.init(handle: handle, inner: inner, current: current, scale: scale))
+            }
+            
+            
         }
-        //print(Level.init(cogwheels: objects).getNumberOfCogwheels())
         return objects
     }
     

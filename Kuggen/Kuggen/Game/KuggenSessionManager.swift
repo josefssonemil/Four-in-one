@@ -50,7 +50,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     var alignmentCogTwo : SKSpriteNode!
     var alignmentCogThree : SKSpriteNode!
     var alignmentCogFour : SKSpriteNode!
-    var block: SKShapeNode!
+    var blocks: [SKShapeNode] = []
     
 
     
@@ -110,10 +110,12 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelTwo.position.x = cogwheelTwoPos.x
             cogwheelTwo.position.y = cogwheelTwoPos.y
             
-            blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
-            block.position.x = blockPos.x
-            block.position.y = blockPos.y
-            block.zRotation = .pi/2
+            for block in blocks {
+                blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
+                block.position.x = blockPos.x
+                block.position.y = blockPos.y
+                block.zRotation = .pi/2
+            }
             
             //alignmentCogOnePos = makeLocal(CGPoint(x: cogwheelOne.frame.maxX, y: cogwheelOne.frame.maxY ))
             //alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogBlue")
@@ -174,10 +176,12 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
             
-            blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
-            block.position.x = blockPos.x
-            block.position.y = blockPos.y
-            block.zRotation = .pi/2
+            for block in blocks {
+                blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
+                block.position.x = blockPos.x
+                block.position.y = blockPos.y
+                block.zRotation = .pi/2
+            }
         }
     }
     

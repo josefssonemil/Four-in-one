@@ -5,24 +5,30 @@
             "inner": 0,
             "current":0,
             "scale": 7,
+            "blocker": 30
         },
         {
             "handle": "edgeTrapezoid",
             "inner": 0,
             "current": 0,
             "scale": 10,
+            "blocker": 90
         },
         {
             "handle": "edgeCircle",
             "inner": 0,
             "current": 0,
             "scale": 13,
+            "blocker": 0
         },
         {
             "handle": "edgeTriangle",
             "inner": 0,
             "current": 0,
             "scale": 16,
+            "blocker": 90
         }
     ]
+    
+    
 }

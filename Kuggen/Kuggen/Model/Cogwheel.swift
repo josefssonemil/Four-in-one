@@ -6,7 +6,7 @@ class Cogwheel: SKSpriteNode {
 
     public var handle: HandleType
     var innerAlignmentAngle: Double
-    private var blocker: Double?
+    var blocker: Double?
     private var lock: Lock?
     var startingAngle: CGFloat?
     //private var currentAngle: Double

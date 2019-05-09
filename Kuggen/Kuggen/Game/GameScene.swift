@@ -79,7 +79,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogPink")
     var alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogPurple")
     
-    var block = SKShapeNode(rectOf: CGSize(width: 70.0, height: 70.0))
+    var blocks: [SKShapeNode]
+    var block : SKShapeNode
     
 
     private var robotTwoArm : Arm
@@ -114,12 +115,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cogwheelTwo = level.cogwheels[1]
         cogwheelThree = level.cogwheels[2]
         cogwheelFour = level.cogwheels[3]
+        
 
         robotTwoArm = robotTwo.getArm()
         robotOneHandle=robotOne.getHandle()
         robotTwoHandle=robotTwo.getHandle()
         robotThreeHandle=robotThree.getHandle()
         robotFourHandle=robotFour.getHandle()
+        block = SKShapeNode(rectOf: CGSize(width: 70, height: 70))
+        blocks = []
         joints = []
         super.init(coder: aDecoder)
     }
@@ -135,17 +139,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Creates a GameScene for a specific level
     init(size: CGSize, levelNo: Int){
+        //var count = 0
         level = LevelReader.createLevel(nameOfLevel: "level\(levelNo)")
         cogwheelOne = level.cogwheels[0]
         cogwheelTwo = level.cogwheels[1]
         cogwheelThree = level.cogwheels[2]
         cogwheelFour = level.cogwheels[3]
+        block = SKShapeNode(rectOf: CGSize(width: 70, height: 70))
+        blocks = []
+        
+        for cogwheel in level.cogwheels{
+            if let tempBlockAngle = cogwheel.blocker{
+                block = SKShapeNode(rectOf: CGSize(width: 70.0, height: 70.0))
+                block.name = "block"
+                block.fillColor = UIColor.black
+                block.zRotation = -.pi/2 //CGFloat(tempBlockAngle)
+                blocks.append(block)
+            }
+        }
         
         robotTwoArm = robotTwo.getArm()
         robotOneHandle=robotOne.getHandle()
         robotTwoHandle=robotTwo.getHandle()
         robotThreeHandle=robotThree.getHandle()
         robotFourHandle=robotFour.getHandle()
+
         joints = []
 
         super.init(size: size)
@@ -233,11 +251,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         alignmentCogFour.physicsBody?.categoryBitMask = PhysicsCategory.alignCog4
         alignmentCogFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
         
-        block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 70))
-        block.physicsBody?.isDynamic = true
-        block.physicsBody?.collisionBitMask = PhysicsCategory.none
-        block.physicsBody?.categoryBitMask = PhysicsCategory.block
-        block.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
+        for block in blocks {
+            block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 70))
+            block.physicsBody?.isDynamic = true
+            block.physicsBody?.collisionBitMask = PhysicsCategory.none
+            block.physicsBody?.categoryBitMask = PhysicsCategory.block
+            block.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
+        }
+        
     }
     
     // Setup the scene, add scenes and behaviours
@@ -270,13 +291,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotTwo = robotTwo
         self.gameManager.cogwheelOne = cogwheelOne
         self.gameManager.cogwheelTwo = cogwheelTwo
-        self.gameManager.block = block
+        self.gameManager.blocks = blocks
         //self.gameManager.alignmentCogOne = alignmentCogOne
         if(gameManager.mode == .fourplayer){
             self.gameManager.robotThree = robotThree
             self.gameManager.robotFour = robotFour
             self.gameManager.cogwheelThree = cogwheelThree
             self.gameManager.cogwheelFour = cogwheelFour
+            self.gameManager.blocks = blocks
         }
         
         var robots : [Robot]
@@ -337,9 +359,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //block.position = CGPoint(x: 100.0, y: 100.0)
         //block.zRotation = -.pi/2
-        block.name = "block"
-        block.fillColor = UIColor.black
-        addChild(block)
+        //block.name = "block"
+        //block.fillColor = UIColor.black
+        for block in blocks {
+            self.addChild(block)
+            print("add blockers")
+        }
+        
         
         initPhysics()
         

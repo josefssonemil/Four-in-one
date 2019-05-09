@@ -482,7 +482,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         if(touchedRobot.isLockedtoCog()){
                             
-                            let normalizedAngle = angle + .pi/4
+                            let normalizedAngle = angle - touchedRobot.offsetAngle
                             let armLength = touchedRobot.getArm().size.height
                             
                             let aAngle = (.pi - normalizedAngle) / 2
@@ -806,8 +806,6 @@ extension GameScene : KuggenSessionManagerDelegate {
                 //cog = cogwheelFour
                 cogwheelFour.zRotation += impulse
             }
-    
-            
         }
     }
     

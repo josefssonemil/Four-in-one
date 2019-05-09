@@ -79,7 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogPink")
     var alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogPurple")
     
-    var block = SKShapeNode(rectOf: CGSize(width: 100.0, height: 70.0))
+    var block = SKShapeNode(rectOf: CGSize(width: 70.0, height: 70.0))
     
 
     private var robotTwoArm : Arm
@@ -188,6 +188,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheel.physicsBody?.collisionBitMask = PhysicsCategory.none
             cogwheel.physicsBody?.pinned = true
             cogwheel.physicsBody?.angularDamping = 1.0
+            cogwheel.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: 0, upperLimit: 90))]
+            
         }
         cogwheelOne.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel1
         cogwheelOne.physicsBody?.contactTestBitMask = PhysicsCategory.robot1
@@ -224,7 +226,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         alignmentCogFour.physicsBody?.categoryBitMask = PhysicsCategory.alignCog4
         alignmentCogFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
         
-        block.physicsBody = SKPhysicsBody(texture: block.fillTexture!, size: block.frame.size)
+        block.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 70))
         block.physicsBody?.isDynamic = true
         block.physicsBody?.collisionBitMask = PhysicsCategory.none
         block.physicsBody?.categoryBitMask = PhysicsCategory.block
@@ -261,6 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotTwo = robotTwo
         self.gameManager.cogwheelOne = cogwheelOne
         self.gameManager.cogwheelTwo = cogwheelTwo
+        self.gameManager.block = block
         //self.gameManager.alignmentCogOne = alignmentCogOne
         if(gameManager.mode == .fourplayer){
             self.gameManager.robotThree = robotThree
@@ -325,9 +328,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             i+=1
         }
         
-        block.fillColor = UIColor.blue
-        block.position = CGPoint(x: cogwheelTwo.position.x + cogwheelTwo.size.height/2, y: cogwheelTwo.position.y)
-        
+        //block.position = CGPoint(x: 100.0, y: 100.0)
+        //block.zRotation = -.pi/2
+        block.name = "block"
+        block.fillColor = UIColor.black
         addChild(block)
         
         initPhysics()
@@ -341,9 +345,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
             attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
         }
-
-        
-        addBlocker(cogwheel: cogwheelTwo, block: block)
         
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]
         
@@ -435,7 +436,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        //gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
+        gameManager.cogRotated(cogwheel: cogwheelOne, impulse: 10)
         //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
         //gameManager.cogRotated(cogwheel: cogwheelTwo, impulse: 10)
         if let aTouch = touches.first {
@@ -596,7 +597,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         if let bodyOne = firstBody.node!.name, let bodyTwo = secondBody.node!.name {
-            if (bodyOne.contains("robot") || bodyTwo.contains("robot")){
+            if (bodyOne.contains("robot") || bodyTwo.contains("robot")) {
                 var cog : Cogwheel
                 var rob : Handle
                 if (bodyOne.contains("cog") && bodyTwo.contains("robot")){
@@ -622,7 +623,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
             }
+            
         // Handle contact between handle and key
+            if(bodyOne.contains("block")) || bodyTwo.contains("block"){
+                if(bodyOne.contains("alignmentCog")) && bodyTwo.contains("block") {
+                    print("made contact!!!!!")
+                } else {
+                    print("made contact!!!!!")
+                }
+                
+            }
         
  
     
@@ -663,13 +673,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.add(cogToCogwheel)
     }
     
-    private func addBlocker(cogwheel: Cogwheel, block: SKShapeNode){
-        let blockerToCog = SKPhysicsJointFixed.joint(withBodyA: cogwheel.physicsBody!, bodyB: block.physicsBody!, anchor: block.position)
-        
-        self.physicsWorld.add(blockerToCog)
-    }
-
-
 //Checks if two cogwheels are aligned with a 5 degree margin of error
 private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
     if(abs(inner.getCurrent() - outer.getInner()) < 5){

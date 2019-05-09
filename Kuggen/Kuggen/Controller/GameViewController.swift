@@ -13,8 +13,10 @@ import FourInOneCore
 
 class GameViewController: FourInOneSessionViewController, Storyboarded, GameSceneDelegate {
 
+
     func changeLevel(gameManager: KuggenSessionManager, result: Bool) {
         coordinator?.goToWinView(gameManager: gameManager)
+
 
     }
     

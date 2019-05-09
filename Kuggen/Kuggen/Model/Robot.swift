@@ -114,7 +114,7 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        if (isLocked){
+        /*if (isLocked){
             let dx = abs(arm.getX() - handle.getX())
             let dy = abs(arm.getY() - handle.getY())
             
@@ -145,8 +145,8 @@ class Robot: SKSpriteNode {
             
             setHandlePosition()
 
-        }
-        else {
+        }*/
+     
             if rotationAllowed(newAngle: angle) {
                     rotation=angle
                     //let spinAction = SKAction.rotate(toAngle: angle, duration:0.3)
@@ -161,7 +161,7 @@ class Robot: SKSpriteNode {
                     }
             }
        
-        }
+        
        
     }
     

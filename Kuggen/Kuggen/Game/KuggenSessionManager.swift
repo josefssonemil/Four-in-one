@@ -132,23 +132,6 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotFour.position = makeLocal(CGPoint(x:globalSize.width-150, y:350))
             robotFour.setPosition(pos: robotFour.position, devpos: DevicePosition.four)
             
-            /*robotOnePos = makeLocal(CGPoint(x:0, y:0))
-            /*robotOnePos = CGPoint(x:0, y:0)
-            robotTwoPos = CGPoint(x: 0, y: globalSize.height)
-            robotThreePos = CGPoint(x:globalSize.width, y:globalSize.height)
-            robotFourPos = CGPoint(x:globalSize.width, y:0)*/
-            
-           
-            robotTwoPos = makeLocal(CGPoint(x:0, y:globalSize.height))
-            
-           robotThreePos = makeLocal(CGPoint(x:globalSize.width, y:globalSize.height))
-            
-            robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
-            */
-           /* robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
-            robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
-            robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
-            robotFour.setPosition(x: Int(robotFourPos.x), y: Int(robotFourPos.y))*/
             
             cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
             cogwheelOne.position.x = cogwheelOnePos.x

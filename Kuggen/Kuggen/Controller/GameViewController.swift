@@ -15,7 +15,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
 
     
     func gameScene(gameManager: KuggenSessionManager, result: Bool) {
-        coordinator?.goToWinView(gameManager: gameManager)
+        //coordinator?.goToWinView(gameManager: gameManager)
 
     }
     

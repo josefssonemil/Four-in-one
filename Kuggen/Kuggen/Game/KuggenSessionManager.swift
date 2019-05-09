@@ -50,6 +50,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     var alignmentCogTwo : SKSpriteNode!
     var alignmentCogThree : SKSpriteNode!
     var alignmentCogFour : SKSpriteNode!
+    var block: SKShapeNode!
     
 
     
@@ -88,6 +89,8 @@ class KuggenSessionManager: FourInOneSessionManager {
         //var alignmentCogThreePos: CGPoint
         //var alignmentCogFourPos: CGPoint
         
+        var blockPos: CGPoint
+        
         if mode == .twoplayer
         {
             robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 100))
@@ -106,6 +109,11 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelTwoPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
             cogwheelTwo.position.x = cogwheelTwoPos.x
             cogwheelTwo.position.y = cogwheelTwoPos.y
+            
+            blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
+            block.position.x = blockPos.x
+            block.position.y = blockPos.y
+            block.zRotation = .pi/2
             
             //alignmentCogOnePos = makeLocal(CGPoint(x: cogwheelOne.frame.maxX, y: cogwheelOne.frame.maxY ))
             //alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogBlue")
@@ -166,11 +174,11 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
             
-            
+            blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
+            block.position.x = blockPos.x
+            block.position.y = blockPos.y
+            block.zRotation = .pi/2
         }
-        
-    
-        
     }
     
     private func randomizeStartingAngles() {

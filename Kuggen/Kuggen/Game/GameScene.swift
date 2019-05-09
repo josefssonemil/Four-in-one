@@ -371,22 +371,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
         
         // Always rotate handle to center
-        
-  /*      var orientPoint: CGPoint
-        switch gameManager.position {
-        case .one:
-        case .two:
-        case .three:
-        case .four:
-        }*/
-        
-        //let orientPoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
-        
-        let rotateConstraint = SKConstraint.orient(to: cogwheelFour, offset: SKRange(constantValue: 0))
-        //let offset = SKRange(value: 0, variance: 0)
-        //let rotateConstraint = SKConstraint.orient(to: orientPoint, offset: offset)
-        
-        
+        let point = CGPoint(x:gameManager.globalSize.width, y: gameManager.globalSize.height)
+        let normalizedPoint = gameManager.makeLocal(point)
+        let rotateConstraint = SKConstraint.orient(to: normalizedPoint, offset: SKRange(constantValue: 0))
+
         for robot in robots {
             robot.getArm().constraints = [regionConstraint]
             robot.handle.constraints = [regionConstraint, rotateConstraint]
@@ -492,7 +480,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                         if(touchedRobot.isLockedtoCog()){
                             
-                            let normalizedAngle = angle - touchedRobot.offsetAngle
+                            let normalizedAngle = angle + .pi/4
                             let armLength = touchedRobot.getArm().size.height
                             
                             let aAngle = (.pi - normalizedAngle) / 2
@@ -816,6 +804,8 @@ extension GameScene : KuggenSessionManagerDelegate {
                 //cog = cogwheelFour
                 cogwheelFour.zRotation += impulse
             }
+    
+            
         }
     }
     

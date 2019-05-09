@@ -12,7 +12,7 @@ class Robot: SKSpriteNode {
     private var isLocked : Bool
     private var cogwheel : Cogwheel?
     private let isJoined = false
-    private var offsetAngle = CGFloat(0)
+    var offsetAngle = CGFloat(0)
     var isRotationAllowed = true
     
     var rotationRanges: [SKRange]?

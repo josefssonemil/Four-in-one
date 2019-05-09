@@ -770,32 +770,36 @@ extension GameScene : KuggenSessionManagerDelegate {
             gameManager.rotationCount += 1
         }else {
             
-            var cog : Cogwheel
-            cog = cogwheelOne
+            //var cog : Cogwheel
+            //cog = cogwheelOne
             if cogName == "cog_1" {
                 //cogwheelOne.physicsBody?.applyAngularImpulse(impulse)
-                cog = cogwheelOne
+                //cog = cogwheelOne
+                cogwheelOne.zRotation += impulse
                 
             }
                 
             else if cogName == "cog_2" {
                 //cogwheelTwo.physicsBody?.applyAngularImpulse(impulse)
-                cog = cogwheelTwo
+                //cog = cogwheelTwo
+                cogwheelTwo.zRotation += impulse
 
             }
                 
             else if cogName == "cog_3" {
                 //cogwheelThree.physicsBody?.applyAngularImpulse(impulse)
-                cog = cogwheelThree
+                //cog = cogwheelThree
+                cogwheelThree.zRotation += impulse
 
             }
                 
             else if cogName == "cog_4" {
                 //cogwheelFour.physicsBody?.applyAngularImpulse(impulse)
-                cog = cogwheelFour
+                //cog = cogwheelFour
+                cogwheelFour.zRotation += impulse
             }
     
-                cog.zRotation += impulse
+            
         }
     }
     

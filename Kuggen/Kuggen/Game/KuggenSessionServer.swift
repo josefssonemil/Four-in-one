@@ -127,7 +127,6 @@ class KuggenSessionServer: KuggenSessionManager {
     let rotation = makeCogRotation(impulse: impulse, cogName: cogName)
     
     
-    print("server sync rotation")
     //handleLocal(event: rotation)
     /* Sending the rotate event to clients */
     sendEventToClients(rotation)

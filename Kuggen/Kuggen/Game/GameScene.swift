@@ -371,9 +371,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
      
         // Always rotate handle to center
-        let point = CGPoint(x:gameManager.globalSize.width / 2, y: gameManager.globalSize.height / 2)
+        print("width: \(gameManager.globalSize.width), height: \(gameManager.globalSize.height / 2)")
+       let point = CGPoint(x:gameManager.globalSize.width/2, y: 0)
+    //let point = CGPoint(
+        print("global size point / 2 : \(point.debugDescription)")
         let normalizedPoint = gameManager.makeLocal(point)
-        let rotateConstraint = SKConstraint.orient(to: normalizedPoint, offset: SKRange(constantValue: 0))
+        print("normalized point: \(normalizedPoint.debugDescription)")
+        let rotateConstraint = SKConstraint.orient(to: point, offset: SKRange(constantValue: 0))
 
         for robot in robots {
             robot.getArm().constraints = [regionConstraint]
@@ -494,8 +498,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             
                             if(!touchedRobot.getArm().isExtended && touchedRobot.isRotationAllowed){
                                 
-                                print("swipe angle: \(angle.description)")
-                                print("rotation angle: \(rotationAngle.description)")
+
                                 
                                 if !(touchedRobot.handle.position.x >= touchedRobot.rotationRanges![0].upperLimit || touchedRobot.handle.position.y >= touchedRobot.rotationRanges![1].upperLimit) {
                                     gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 10 )

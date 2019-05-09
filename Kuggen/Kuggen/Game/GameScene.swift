@@ -231,7 +231,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotTwo = robotTwo
         self.gameManager.cogwheelOne = cogwheelOne
         self.gameManager.cogwheelTwo = cogwheelTwo
-        //self.gameManager.alignmentCogOne = alignmentCogOne
         if(gameManager.mode == .fourplayer){
             self.gameManager.robotThree = robotThree
             self.gameManager.robotFour = robotFour
@@ -370,8 +369,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.height / 2) - hHeight)
         let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
         
+     
         // Always rotate handle to center
-        let point = CGPoint(x:gameManager.globalSize.width, y: gameManager.globalSize.height)
+        let point = CGPoint(x:gameManager.globalSize.width / 2, y: gameManager.globalSize.height / 2)
         let normalizedPoint = gameManager.makeLocal(point)
         let rotateConstraint = SKConstraint.orient(to: normalizedPoint, offset: SKRange(constantValue: 0))
 
@@ -478,6 +478,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 touchedRobot.extendArm()
                             }
                         }
+                        
                         if(touchedRobot.isLockedtoCog()){
                             
                             let normalizedAngle = angle + .pi/4
@@ -499,11 +500,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                 if !(touchedRobot.handle.position.x >= touchedRobot.rotationRanges![0].upperLimit || touchedRobot.handle.position.y >= touchedRobot.rotationRanges![1].upperLimit) {
                                     gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 10 )
                                 }
-                                
+
 
                                 }
                         }
                         gameManager.armMoved(robot: touchedRobot, angle: angle)
+
                     }
                 }
             }

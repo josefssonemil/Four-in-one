@@ -148,14 +148,14 @@ class Robot: SKSpriteNode {
         }*/
      
             if rotationAllowed(newAngle: angle) {
-                    rotation=angle
-                    //let spinAction = SKAction.rotate(toAngle: angle, duration:0.3)
-                    zRotation = angle
-                    arm.rotate(angle: angle)
-                    //handle.rotate(angle: angle)
-                    //run(spinAction)
-                    //arm.run(spinAction)
-                    //handle.run(spinAction)
+                rotation = angle
+                let direction = SKAction.rotate(toAngle: angle, duration: 0.2)
+                self.run(direction)
+                self.arm.run(direction) {
+                    self.setHandlePosition()
+                }
+                
+                
                     if(!isJoined){
                        setHandlePosition()
                     }

@@ -372,9 +372,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Always rotate handle to center
         
-        let orientPoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
-        let offset = SKRange(value: 0, variance: 0)
-        let rotateConstraint = SKConstraint.orient(to: orientPoint, offset: offset)
+  /*      var orientPoint: CGPoint
+        switch gameManager.position {
+        case .one:
+        case .two:
+        case .three:
+        case .four:
+        }*/
+        
+        //let orientPoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
+        
+        let rotateConstraint = SKConstraint.orient(to: cogwheelFour, offset: SKRange(constantValue: 0))
+        //let offset = SKRange(value: 0, variance: 0)
+        //let rotateConstraint = SKConstraint.orient(to: orientPoint, offset: offset)
         
         
         for robot in robots {

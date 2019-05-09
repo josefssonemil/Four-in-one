@@ -61,12 +61,7 @@ class Cogwheel: SKSpriteNode {
     
     //Returns the angle of the alignment gap
     public func getInner() -> Double{
-        let tempAngle = getCurrent() + innerAlignmentAngle
-        if(tempAngle >= 360){
-            return (tempAngle - 360)
-        }else{
-            return tempAngle
-        }
+        return getCurrent()
     }
     
     //Returns the angle of the alignment cog
@@ -77,11 +72,12 @@ class Cogwheel: SKSpriteNode {
     //Returns the current angle
     public func getCurrent() -> Double{
         let tempAngle: Double = ((Double(self.zRotation)*180)/Double.pi)
-        if (tempAngle >= 0){
+        return tempAngle
+        /*if (tempAngle >= 0){
             return tempAngle
         }else{
             return (180 + tempAngle)
-        }
+        }*/
     }
     
     //Chacks if the rotation is possible

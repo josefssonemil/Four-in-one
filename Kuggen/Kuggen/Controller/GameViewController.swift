@@ -13,8 +13,7 @@ import FourInOneCore
 
 class GameViewController: FourInOneSessionViewController, Storyboarded, GameSceneDelegate {
 
-    
-    func gameScene(gameManager: KuggenSessionManager, result: Bool) {
+    func changeLevel(gameManager: KuggenSessionManager, result: Bool) {
         coordinator?.goToWinView(gameManager: gameManager)
 
     }
@@ -43,7 +42,7 @@ class GameViewController: FourInOneSessionViewController, Storyboarded, GameScen
             gameScene = GameScene(size: UIScreen.main.bounds.size, levelNo: tmp!.level)
             gameScene.gameManager = sessionManager as? KuggenSessionManager
             gameScene.scaleMode = .aspectFill
-            gameScene.gameScenDelegate = self
+            gameScene.gameSceneDelegate = self
             //gameScene.gameSceneDelegate = self
             let skView = self.view! as! SKView
 

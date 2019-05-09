@@ -13,7 +13,7 @@ import GameplayKit
 
 // Protocol for game over
 protocol GameSceneDelegate: AnyObject {
-    func gameScene(gameManager: KuggenSessionManager, result:Bool)
+    func changeLevel(gameManager: KuggenSessionManager, result:Bool)
     
 }
 
@@ -53,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game manager, create and manage request objects
     var gameManager : KuggenSessionManager!
-    weak var gameScenDelegate : GameSceneDelegate?
+    weak var gameSceneDelegate : GameSceneDelegate?
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
     
@@ -87,13 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private var joints : [SKPhysicsJointFixed]
   
-    
-  
-
-    /*private let cogwheelOne = Cogwheel(handle: handleOne, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-    private let cogwheelTwo = Cogwheel(handle: handleTwo, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-    private let cogwheelThree = Cogwheel(handle: handleThree, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)
-    private let cogwheelFour = Cogwheel(handle: handleFour, outer: 1.0, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)*/
     
     private let level: Level
     private let cogwheelOne: Cogwheel
@@ -397,6 +390,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.gameManager.cogRotated(cogwheel: cog, impulse: cog.startingAngle!)
             }
             self.readyToPlay = true
+            print("ready to play")
         }
     }
     
@@ -404,26 +398,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         
         if readyToPlay {
-            
             //Checks if the goal is completed
             if (gameManager.mode == .twoplayer){
-            //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
-              if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
-                 print("level completed")
-                 gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
-                  self.isPaused = true
+                //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                    print("level completed")
+                    gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
+                    self.isPaused = true
+                }
+            } else if (gameManager.mode == .fourplayer){
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                    && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                    && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                    print("level completed")
+                    gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
+                    self.isPaused = true
+                }
             }
-        } else if (gameManager.mode == .fourplayer){
-            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
-                && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
-                && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
-                print("level completed")
-                gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
-                self.isPaused = true
-
-            }
-        }    
-    }
+        }
     }
 
     
@@ -661,7 +653,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 //Checks if two cogwheels are aligned with a 5 degree margin of error
 private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
-    if(abs(inner.getCurrent() - outer.getInner()) < 10){
+    if(abs(inner.getCurrent() - outer.getInner()) < 5){
         print("Aligned")
         return true
     }else{

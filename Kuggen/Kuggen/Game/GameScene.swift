@@ -364,14 +364,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func initConstraints(robots: [Robot]){
        
+        // Bind handles and arms in screen size
         let hHeight = robotOne.handle.size.height
         let xRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.width / 2) - hHeight)
         let yRange = SKRange(lowerLimit: 0, upperLimit: (gameManager.globalSize.height / 2) - hHeight)
         let regionConstraint = SKConstraint.positionX(xRange, y: yRange)
+        
+        // Always rotate handle to center
+        
+        let orientPoint = CGPoint(x: totalScreenSize.width, y: totalScreenSize.height)
+        let offset = SKRange(value: 0, variance: 0)
+        let rotateConstraint = SKConstraint.orient(to: orientPoint, offset: offset)
+        
+        
         for robot in robots {
-      
             robot.getArm().constraints = [regionConstraint]
-            robot.handle.constraints = [regionConstraint]
+            robot.handle.constraints = [regionConstraint, rotateConstraint]
             robot.rotationRanges = [xRange, yRange]
         }
         

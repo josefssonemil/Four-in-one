@@ -37,7 +37,6 @@ class KuggenSessionClient : KuggenSessionManager {
     override func synchronizeRotation(impulse: CGFloat, cogName: String) {
         /* Create the rotate event containing impulse and specified cogwheel */
         let rotateEvent = makeCogRotation(impulse: impulse, cogName: cogName)
-        print("client sync rotation")
         /* Sending the event to the server, which can redirect it to other clients */
         sendEventToServer(rotateEvent)
     
@@ -58,8 +57,6 @@ class KuggenSessionClient : KuggenSessionManager {
         let peerID = event.info[peerKey]
         
         
-        print("session id:" + self.peerId.displayName)
-        print("event id:" + peerID!)
         
         if self.peerId.displayName != peerID!{
             OperationQueue.main.addOperation {

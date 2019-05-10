@@ -12,7 +12,10 @@ class Robot: SKSpriteNode {
     private var isLocked : Bool
     private var cogwheel : Cogwheel?
     private let isJoined = false
-    private var offsetAngle = CGFloat(0)
+    var offsetAngle = CGFloat(0)
+    var isRotationAllowed = true
+    
+    var rotationRanges: [SKRange]?
     
     //Depends on device pos
     var basePoint = CGPoint()
@@ -36,7 +39,8 @@ class Robot: SKSpriteNode {
         super.init(texture: texture, color: SKColor.white, size: texture.size())
         setup(devicePosition)
         self.anchorPoint=anchorPosition
-
+        
+        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -51,6 +55,8 @@ class Robot: SKSpriteNode {
     private func radToDeg(rads: CGFloat) -> CGFloat{
         return rads * (180 / .pi)
     }
+    
+
 
     public func setPosition(x: Int, y: Int){
         self.position = CGPoint(x: x, y: y)
@@ -98,15 +104,17 @@ class Robot: SKSpriteNode {
     
     private func rotationAllowed(newAngle: CGFloat) -> Bool {
         if newAngle < rotationInterval.0 || newAngle > rotationInterval.1 {
-            return false
+            isRotationAllowed = false
+            return isRotationAllowed
     }
         else {
-            return true
+            isRotationAllowed = true
+            return isRotationAllowed
         }
     }
     
     public func handleMovement(angle: CGFloat){
-        if (isLocked && rotationAllowed(newAngle: angle)){
+        /*if (isLocked){
             let dx = abs(arm.getX() - handle.getX())
             let dy = abs(arm.getY() - handle.getY())
             
@@ -114,7 +122,6 @@ class Robot: SKSpriteNode {
             let angle2 = asin(Double(dy) / length)
             print("should now check stuff")
             
-            if (rotationAllowed(newAngle:CGFloat(angle2))) {
             if (Int(arm.frame.maxY)<handle.getY()){
                 arm.extend(speed: CGFloat(abs(length - Double(arm.getHeight()))))
                 print("arm should extend")
@@ -123,14 +130,14 @@ class Robot: SKSpriteNode {
                 print("arm should collapse")
 
             }
-            }
+            
            // setHandlePosition()
 
-            if (handle.getX() > arm.getX() && rotationAllowed(newAngle: -CGFloat(.pi/2 - angle2))){
+            if (handle.getX() > arm.getX()){
                 arm.rotate(angle: -CGFloat(.pi/2 - angle2))
                 rotation = -CGFloat(.pi/2 - angle2)
                 self.zRotation = -CGFloat(.pi/2 - angle2)
-            } else if (rotationAllowed(newAngle: CGFloat(.pi/2 - angle2))){
+            } else {
                 arm.rotate(angle: CGFloat(.pi/2 - angle2))
                 rotation = CGFloat(.pi/2 - angle2)
                 self.zRotation = CGFloat(.pi/2 - angle2)
@@ -138,23 +145,23 @@ class Robot: SKSpriteNode {
             
             setHandlePosition()
 
-        }
-        else {
+        }*/
+     
             if rotationAllowed(newAngle: angle) {
-                    rotation=angle
-                    //let spinAction = SKAction.rotate(toAngle: angle, duration:0.3)
-                    zRotation = angle
-                    arm.rotate(angle: angle)
-                    handle.rotate(angle: angle)
-                    //run(spinAction)
-                    //arm.run(spinAction)
-                    //handle.run(spinAction)
+                rotation = angle
+                let direction = SKAction.rotate(toAngle: angle, duration: 0.2)
+                self.run(direction)
+                self.arm.run(direction) {
+                    self.setHandlePosition()
+                }
+                
+                
                     if(!isJoined){
                        setHandlePosition()
                     }
             }
        
-        }
+        
        
     }
     

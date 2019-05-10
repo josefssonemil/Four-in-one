@@ -141,12 +141,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         block = SKShapeNode(rectOf: CGSize(width: 70, height: 70))
         blocks = []
         
+        //var count = 0
         for cogwheel in level.cogwheels{
             if let tempBlockAngle = cogwheel.blocker{
                 block = SKShapeNode(rectOf: CGSize(width: 70.0, height: 70.0))
                 block.name = "block"
                 block.fillColor = UIColor.black
-                block.zRotation = -.pi/2 //CGFloat(tempBlockAngle)
+                //block.position = CGPoint(x: level.cogwheels[count].position.x, y: level.cogwheels[count].position.y + level.cogwheels[count].size.height/2)
+                block.zRotation = -.pi/2
                 blocks.append(block)
             }
         }
@@ -206,7 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheel.physicsBody?.collisionBitMask = PhysicsCategory.none
             cogwheel.physicsBody?.pinned = true
             cogwheel.physicsBody?.angularDamping = 1.0
-            cogwheel.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: 0, upperLimit: 90))]
+            //cogwheel.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: 0, upperLimit: 90))]
             
         }
         cogwheelOne.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel1
@@ -284,6 +286,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.gameManager.robotTwo = robotTwo
         self.gameManager.cogwheelOne = cogwheelOne
         self.gameManager.cogwheelTwo = cogwheelTwo
+        self.gameManager.cogwheels = level.cogwheels
         self.gameManager.blocks = blocks
         //self.gameManager.alignmentCogOne = alignmentCogOne
         if(gameManager.mode == .fourplayer){
@@ -291,6 +294,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.gameManager.robotFour = robotFour
             self.gameManager.cogwheelThree = cogwheelThree
             self.gameManager.cogwheelFour = cogwheelFour
+            self.gameManager.cogwheels = level.cogwheels
             self.gameManager.blocks = blocks
         }
         
@@ -650,18 +654,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
             
-        // Handle contact between handle and key
+        // Handle contact between blocker and alignCog
             if(bodyOne.contains("block")) || bodyTwo.contains("block"){
+                var alignCog : SKSpriteNode
+                var blocker : SKShapeNode
                 if(bodyOne.contains("alignmentCog")) && bodyTwo.contains("block") {
+                    alignCog = firstBody.node! as! SKSpriteNode
+                    blocker = secondBody.node! as! SKShapeNode
                     print("made contact!!!!!")
+                    alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 } else {
+                    alignCog = secondBody.node! as! SKSpriteNode
+                    blocker = firstBody.node! as! SKShapeNode
                     print("made contact!!!!!")
+                    alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 }
-                
             }
-        
- 
-    
         }
     }
     

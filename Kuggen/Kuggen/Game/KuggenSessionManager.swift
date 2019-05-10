@@ -168,30 +168,33 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelOnePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
             cogwheelOne.position.x = cogwheelOnePos.x
             cogwheelOne.position.y = cogwheelOnePos.y
+            cogwheels.append(cogwheelOne)
             
             cogwheelTwoPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2 ))
             cogwheelTwo.position.x = cogwheelTwoPos.x
             cogwheelTwo.position.y = cogwheelTwoPos.y
+            cogwheels.append(cogwheelTwo)
             
             cogwheelThreePos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
             cogwheelThree.position.x = cogwheelThreePos.x
             cogwheelThree.position.y = cogwheelThreePos.y
+            cogwheels.append(cogwheelThree)
             
             cogwheelFourPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
+            cogwheels.append(cogwheelFour)
             
-            var count = 0
+            //var count = 0
             for block in blocks {
-                blockPos = makeLocal(CGPoint(x: cogwheels[count].position.x + cogwheels[count].size.height/2, y: cogwheels[count].position.y + cogwheels[count].size.width/2))
+                blockPos = makeLocal(CGPoint(x: cogwheelTwo.position.x + cogwheelTwo.size.height/2, y: cogwheelTwo.position.y))
                 
-                print("position x: \(cogwheels[count].position.x + cogwheels[count].size.height/2)")
-                print("position y: \(cogwheels[count].position.y + cogwheels[count].size.width/2)")
+                //print("position x: \(cogwheels[count].position.x + cogwheels[count].size.height/2)")
+                //print("position y: \(cogwheels[count].position.y + cogwheels[count].size.width/2)")
                 //blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
                 block.position.x = blockPos.x
                 block.position.y = blockPos.y
                 block.zRotation = .pi/2
-                count = count + 1
             }
         }
     }

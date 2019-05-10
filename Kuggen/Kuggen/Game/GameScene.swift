@@ -78,10 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var alignmentCogTwo = SKSpriteNode(imageNamed: "alignmentCogGreen")
     var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogPink")
     var alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogPurple")
-    
-    var blocks: [SKShapeNode]
-    var block : SKShapeNode
-    
+  
 
     private var robotTwoArm : Arm
     private let robotOneButton = SKSpriteNode(imageNamed: "robot0_button")
@@ -98,6 +95,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let cogwheelTwo: Cogwheel
     private let cogwheelThree: Cogwheel
     private let cogwheelFour: Cogwheel
+    
+    
+    var blocks: [SKShapeNode]
+    var block : SKShapeNode
 
     
    // private var robotTwoCogwheelTwo: SKPhysicsJointPin?
@@ -146,10 +147,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let tempBlockAngle = cogwheel.blocker{
                 block = SKShapeNode(rectOf: CGSize(width: 70.0, height: 70.0))
                 block.name = "block"
-                block.fillColor = UIColor.black
+
+                //block.zPosition = 1
                 //block.position = CGPoint(x: level.cogwheels[count].position.x, y: level.cogwheels[count].position.y + level.cogwheels[count].size.height/2)
                 block.zRotation = -.pi/2
                 blocks.append(block)
+                print("position x: \(block.position.x)")
+                print("position y: \(block.position.y)")
             }
         }
         
@@ -359,6 +363,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //block.name = "block"
         //block.fillColor = UIColor.black
         for block in blocks {
+            block.fillColor = UIColor.black
+            block.position = CGPoint(x: cogwheelTwo.position.x, y: cogwheelTwo.position.y + cogwheelTwo.size.width/2 - 120)
             self.addChild(block)
             print("add blockers")
         }
@@ -662,11 +668,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //alignCog = firstBody.node! as! SKSpriteNode
                     //blocker = secondBody.node! as! SKShapeNode
                     print("made contact!!!!!")
+
                     //alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 } else {
                     //alignCog = secondBody.node! as! SKSpriteNode
                     //blocker = firstBody.node! as! SKShapeNode
                     print("made contact!!!!!")
+
                     //alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 }
             }

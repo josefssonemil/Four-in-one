@@ -265,6 +265,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(robot.getHandle())
             robot.name = "robot_\(i)"
             robot.handle.name = "robot_\(i)_handle"
+            robot.handle.zPosition = 2
             i+=1
         }
         i = 1
@@ -283,6 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             aligncog.anchorPoint = CGPoint(x: 0.5, y: 1.0)
             aligncog.position = CGPoint(x: cogwheels[i].position.x + cogwheels[i].size.height/2, y: cogwheels[i].position.y)
             aligncog.zRotation = -.pi/2
+            aligncog.zPosition = 1
             addChild(aligncog)
             i+=1
         }

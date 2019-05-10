@@ -195,18 +195,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             alignCog.physicsBody?.isDynamic = true
             alignCog.physicsBody?.collisionBitMask = PhysicsCategory.none
         }
-
-        alignmentCogOne.physicsBody?.categoryBitMask = PhysicsCategory.alignCog1
-        alignmentCogOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel1
-        
-        alignmentCogTwo.physicsBody?.categoryBitMask = PhysicsCategory.alignCog2
-        alignmentCogTwo.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
-        
-        alignmentCogThree.physicsBody?.categoryBitMask = PhysicsCategory.alignCog3
-        alignmentCogThree.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel3
-        
-        alignmentCogFour.physicsBody?.categoryBitMask = PhysicsCategory.alignCog4
-        alignmentCogFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
     }
     
     // Setup the scene, add scenes and behaviours

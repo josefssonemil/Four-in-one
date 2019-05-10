@@ -150,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                 //block.zPosition = 1
                 //block.position = CGPoint(x: level.cogwheels[count].position.x, y: level.cogwheels[count].position.y + level.cogwheels[count].size.height/2)
-                block.zRotation = -.pi/2
+                block.zRotation = -135
                 blocks.append(block)
                 print("position x: \(block.position.x)")
                 print("position y: \(block.position.y)")
@@ -661,23 +661,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         // Handle contact between blocker and alignCog
-            if(bodyOne.contains("block")) || bodyTwo.contains("block"){
+            /*if(bodyOne.contains("block")) || bodyTwo.contains("block"){
                 var alignCog : SKSpriteNode
                 var blocker : SKShapeNode
                 if(bodyOne.contains("alignmentCog")) && bodyTwo.contains("block") {
-                    //alignCog = firstBody.node! as! SKSpriteNode
-                    //blocker = secondBody.node! as! SKShapeNode
+                    alignCog = firstBody.node! as! SKSpriteNode
+                    blocker = secondBody.node! as! SKShapeNode
                     print("made contact!!!!!")
+                    blocking(alignCog: alignCog, block: blocker)
 
                     //alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 } else {
-                    //alignCog = secondBody.node! as! SKSpriteNode
-                    //blocker = firstBody.node! as! SKShapeNode
+                    alignCog = secondBody.node! as! SKSpriteNode
+                    blocker = firstBody.node! as! SKShapeNode
                     print("made contact!!!!!")
+                    blocking(alignCog: alignCog, block: blocker)
 
                     //alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 }
-            }
+            }*/
         }
     }
     
@@ -714,6 +716,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         self.physicsWorld.add(cogToCogwheel)
     }
+    
+    /*private func blocking(alignCog: SKSpriteNode, block: SKShapeNode) {
+        if(alignCog.position.x - 35 == block.position.x && alignCog.position.y - 35 == block.position.y
+            || alignCog.position.x + 35 == block.position.x && alignCog.position.y + 35 == block.position.y) {
+            
+            alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: block.zRotation - 30, upperLimit: block.zRotation + 30))]
+        }
+    }*/
     
 //Checks if two cogwheels are aligned with a 5 degree margin of error
 private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{

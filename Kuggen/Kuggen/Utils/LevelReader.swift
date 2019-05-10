@@ -14,7 +14,7 @@ class LevelReader {
     
 
     //The level that is returnded if there is an error in the LevelReader
-    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: HandleType.edgeCircle, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeSquare, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeTrapezoid, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black), Cogwheel(handle: HandleType.edgeTriangle, inner: 1.0, current: 1.0, size: CGSize.init(width: 100.0, height: 100.0), color: SKColor.black)])
+    private static let defaultLevel: Level = Level.init(cogwheels: [Cogwheel(handle: HandleType.edgeCircle, inner: 1.0, current: 1.0, scale: 7), Cogwheel(handle: HandleType.edgeSquare, inner: 1.0, current: 1.0, scale: 10), Cogwheel(handle: HandleType.edgeTrapezoid, inner: 1.0, current: 1.0, scale: 13), Cogwheel(handle: HandleType.edgeTriangle, inner: 1.0, current: 1.0, scale: 16)])
 
     
     //Creates a list of cogwheels from the raw data of the JSON file

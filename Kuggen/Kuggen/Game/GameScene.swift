@@ -270,11 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for aligncog in alignCogs {
             aligncog.size = CGSize(width: 80.0, height: 120.0)
             aligncog.anchorPoint = CGPoint(x: 0.5, y: 1.0)
-            if (i == 1 || i == 2){
-                aligncog.position = CGPoint(x: cogwheels[i].position.x - cogwheels[i].size.height/2 - 15, y: cogwheels[i].position.y)
-            } else {
-                aligncog.position = CGPoint(x: cogwheels[i].position.x + cogwheels[i].size.height/2 - 15, y: cogwheels[i].position.y)
-            }
+            aligncog.position = CGPoint(x: cogwheels[i].position.x + cogwheels[i].size.height/2, y: cogwheels[i].position.y)
             aligncog.zRotation = -.pi/2
             aligncog.zPosition = 1
             addChild(aligncog)
@@ -483,7 +479,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                                 
                                 if !(touchedRobot.handle.position.x >= touchedRobot.rotationRanges![0].upperLimit || touchedRobot.handle.position.y >= touchedRobot.rotationRanges![1].upperLimit) {
-                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle)
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 2)
                                 }
 
 

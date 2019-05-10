@@ -4,13 +4,13 @@
             "handle": "edgeSquare",
             "inner": 0,
             "current": 45,
-            "scale": 7,
+            "scale": 8,
         },
         {
             "handle": "edgeTrapezoid",
             "inner": 0,
             "current": 135,
-            "scale": 10,
+            "scale": 10.5,
         },
         {
             "handle": "edgeCircle",
@@ -22,7 +22,7 @@
             "handle": "edgeTriangle",
             "inner": 0,
             "current": 315,
-            "scale": 16,
+            "scale": 15.5,
         }
     ]
 }

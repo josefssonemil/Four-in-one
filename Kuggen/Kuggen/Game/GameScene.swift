@@ -274,16 +274,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheel.zPosition = -1
             i+=1
         }
- 
-        // Robot heads (replace with graphics)
-
-        //attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
-        //attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        
         self.gameManager.initialSetUp()
         
- 
-        
- 
         i = 0
         for aligncog in alignCogs {
             aligncog.size = CGSize(width: 80.0, height: 120.0)
@@ -294,20 +287,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             i+=1
         }
         
-        
+
         initPhysics()
         
-        //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        //attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
-        
-        attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
-        if(gameManager.mode == .fourplayer){
-            attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
-            attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        i=0
+        for aligncog in alignCogs {
+            attachAlignCogs(cogwheel: cogwheels[i], cog: aligncog)
+            i+=1
         }
-
-        
 
         
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]

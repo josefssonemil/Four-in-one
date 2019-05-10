@@ -13,7 +13,7 @@ import GameplayKit
 
 // Protocol for game over
 protocol GameSceneDelegate: AnyObject {
-    func gameScene(gameManager: KuggenSessionManager, result:Bool)
+    func changeLevel(gameManager: KuggenSessionManager, result:Bool)
     
 }
 
@@ -53,11 +53,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game manager, create and manage request objects
     var gameManager : KuggenSessionManager!
-    weak var gameScenDelegate : GameSceneDelegate?
+    weak var gameSceneDelegate : GameSceneDelegate?
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
-    
-    var readyToPlay = false
 
     
     // Create robot arms and cogwheel properties
@@ -221,7 +219,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameManager.sendDataMode = .reliable
         // set the background color
         self.backgroundColor = UIColor.background!
-    
+
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -394,37 +392,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let delayInSeconds = 3.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
-            
             for cog in cogs {
                 self.gameManager.cogRotated(cogwheel: cog, impulse: cog.startingAngle!)
+                //Vänta tills kugghjulen roterat klart
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds){
+                    let serverManager = self.gameManager as? KuggenSessionServer
+                    serverManager?.readyToPlay(bool: true)
+                    self.gameManager.readyToPlay = true
+                    print("ready to play")
+                }
             }
-            self.readyToPlay = true
         }
     }
     
     // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        
-        if readyToPlay {
-            
+        if (gameManager.readyToPlay) {
             //Checks if the goal is completed
             if (gameManager.mode == .twoplayer){
-            //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
-              if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
-                 print("level completed")
-                 gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
-                  self.isPaused = true
+                //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                    print("level completed")
+                    gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
+                    self.isPaused = true
+                }
+            } else if (gameManager.mode == .fourplayer){
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                    && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                    && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                    print("level completed")
+                    gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
+                    self.isPaused = true
+                }
+
             }
-        } else if (gameManager.mode == .fourplayer){
-            if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
-                && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
-                && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
-                print("level completed")
-                gameScenDelegate?.gameScene(gameManager: self.gameManager, result: true)
-                self.isPaused = true
-            }
-        }    
-    }
+        }
     }
 
     
@@ -675,14 +677,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-//Checks if two cogwheels are aligned with a 5 degree margin of error
-private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
-    if(abs(inner.getCurrent() - outer.getInner()) < 10){
-        print("Aligned")
-        return true
-    }else{
-        return false
-    }
+    //Checks if two cogwheels are aligned with a 5 degree margin of error
+    private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
+        if(abs(inner.getCurrent() - outer.getInner()) < 5){
+            print("Aligned \(inner.getCurrent()), \(outer.getCurrent())")
+            return true
+        }else{
+            return false
+        }
 
 }
     

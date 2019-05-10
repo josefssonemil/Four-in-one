@@ -30,7 +30,9 @@ class KuggenSessionServer: KuggenSessionManager {
         levelCount = levels.count
     }
     
-
+    func readyToPlay(bool: Bool){
+        sendEventToClients(makeReadyToPlayEvent(bool: bool))
+    }
     
     // Moving on to the next level
     override func readyForNextLevel() {
@@ -124,16 +126,18 @@ class KuggenSessionServer: KuggenSessionManager {
     override func synchronizeRotation(impulse: CGFloat, cogName: String) {
     /* Create the rotate event containing impulse and specified cogwheel */
     
-    let rotation = makeCogRotation(impulse: impulse, cogName: cogName)
+        let rotation = makeCogRotation(impulse: impulse, cogName: cogName)
     
     
-    //handleLocal(event: rotation)
-    /* Sending the rotate event to clients */
-    sendEventToClients(rotation)
+
+        print("server sync rotation")
+        //handleLocal(event: rotation)
+        /* Sending the rotate event to clients */
+        sendEventToClients(rotation)
         
-    OperationQueue.main.addOperation {
-        self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
-    }
+        OperationQueue.main.addOperation {
+            self.kuggenDelegate?.gameManager(self, impulse: impulse, cogName: cogName)
+        }
     
     }
     

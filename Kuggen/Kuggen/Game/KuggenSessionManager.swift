@@ -35,6 +35,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     var levelCount = 0
     var score = 0
     var rotationCount = 0
+    var readyToPlay = false
     
     var kuggenDelegate: KuggenSessionManagerDelegate?
 
@@ -71,6 +72,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     func initialSetUp(){
         // The entire board including all devices
         globalSize = makeBoardSize()
+        readyToPlay = false
     
         // Starting points for each robot
         var robotOnePos: CGPoint
@@ -255,6 +257,7 @@ class KuggenSessionManager: FourInOneSessionManager {
     let nextLevelEvent = "n"
     let holdingEvent = "h"
     let cogRotationEvent = "c"
+    let readyToPlayEvent = "r"
     
     let peerKey = "a"
     let impulseKey = "x"
@@ -278,7 +281,16 @@ class KuggenSessionManager: FourInOneSessionManager {
         return event
     }
     
-    
+    func makeReadyToPlayEvent(bool: Bool) -> FourInOneEvent{
+        var event = FourInOneEvent()
+        event.type = readyToPlayEvent
+        if(bool){
+            event.info = [boolKey: "true"]
+        }else{
+            event.info = [boolKey: "false"]
+        }
+        return event
+    }
     
     func makeCogRotation(impulse: CGFloat, cogName: String) -> FourInOneEvent {
         var event = FourInOneEvent()

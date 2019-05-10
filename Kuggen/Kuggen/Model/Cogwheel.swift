@@ -21,6 +21,10 @@ class Cogwheel: SKSpriteNode {
         self.startingAngle = CGFloat((current*Double.pi)/180)
         //self.setScale(11)
     }
+    convenience init(handle: HandleType, inner: Double, current: Double, scale: Double, blocker: Double){
+        self.init(handle: handle, inner: inner, current: current, scale: scale)
+        self.blocker = blocker
+    }
     
     init(handle: HandleType, inner: Double, current: Double, scale: Double) {
         let texture: SKTexture
@@ -57,12 +61,7 @@ class Cogwheel: SKSpriteNode {
     
     //Returns the angle of the alignment gap
     public func getInner() -> Double{
-        let tempAngle = getCurrent() + innerAlignmentAngle
-        if(tempAngle >= 360){
-            return (tempAngle - 360)
-        }else{
-            return tempAngle
-        }
+        return getCurrent()
     }
     
     //Returns the angle of the alignment cog
@@ -73,11 +72,12 @@ class Cogwheel: SKSpriteNode {
     //Returns the current angle
     public func getCurrent() -> Double{
         let tempAngle: Double = ((Double(self.zRotation)*180)/Double.pi)
-        if (tempAngle >= 0){
+        return tempAngle
+        /*if (tempAngle >= 0){
             return tempAngle
         }else{
             return (180 + tempAngle)
-        }
+        }*/
     }
     
     //Chacks if the rotation is possible

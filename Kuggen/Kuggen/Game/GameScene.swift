@@ -239,19 +239,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var robots : [Robot]
         var cogwheels : [Cogwheel]
         var buttons : [SKSpriteNode]
+        let alignCogs: [SKSpriteNode]
         // add nodes to scene
         if gameManager.mode == .twoplayer {
             robots = [robotOne, robotTwo]
             cogwheels = [cogwheelOne, cogwheelTwo]
             buttons = [robotOneButton, robotTwoButton]
+            alignCogs = [alignmentCogOne, alignmentCogTwo]
         } else if gameManager.mode == .fourplayer{
             robots = [robotOne, robotTwo, robotThree, robotFour]
             cogwheels = [cogwheelOne, cogwheelTwo, cogwheelThree, cogwheelFour]
             buttons = [robotOneButton, robotThreeButton, robotFourButton, robotTwoButton]
+            alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
         } else {
             robots = [robotOne]
             cogwheels = [cogwheelOne]
             buttons = [robotOneButton]
+            alignCogs = [alignmentCogOne]
         }
         
         var i = 1
@@ -276,12 +280,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
         //attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
         self.gameManager.initialSetUp()
-        let alignCogs: [SKSpriteNode]
-        if(gameManager.mode == .twoplayer){
-            alignCogs = [alignmentCogOne, alignmentCogTwo]
-        }else {
-            alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
-        }
+        
+ 
+        
+ 
         i = 0
         for aligncog in alignCogs {
             aligncog.size = CGSize(width: 80.0, height: 120.0)

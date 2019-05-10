@@ -9,19 +9,19 @@
         {
             "handle": "edgeTrapezoid",
             "inner": 0,
-            "current": 0,
+            "current": 90,
             "scale": 10,
         },
         {
             "handle": "edgeCircle",
             "inner": 0,
-            "current": 0,
+            "current": 180,
             "scale": 13,
         },
         {
             "handle": "edgeTriangle",
             "inner": 0,
-            "current": 0,
+            "current": 270,
             "scale": 16,
         }
     ]

@@ -96,6 +96,13 @@ class KuggenSessionClient : KuggenSessionManager {
         
         else if event.type == nextLevelEvent {
             startNextLevel()
+            
+        }else if event.type == readyToPlayEvent{
+            if(event.info == [boolKey: "true"]){
+                self.readyToPlay = true
+            }else{
+                self.readyToPlay = false
+            }
         }
         
     

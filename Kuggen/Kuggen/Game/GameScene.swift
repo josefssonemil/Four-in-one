@@ -56,8 +56,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     weak var gameSceneDelegate : GameSceneDelegate?
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
-    
-    var readyToPlay = false
 
     
     // Create robot arms and cogwheel properties
@@ -232,16 +230,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // set the background color
         self.backgroundColor = UIColor.background!
         
-        // Shadows
-        /*let lightNode = SKLightNode()
-        //lightNode.position = CGPoint(x: (self.size.width)/2, y: (self.size.width)/2)
-        lightNode.position = CGPoint(x: (self.size.width)/3, y: (self.size.width)/3)
-        lightNode.categoryBitMask = 0b0001
-        lightNode.falloff = 0.5
-        lightNode.lightColor = UIColor.white
-        //lightNode.shadowColor = UIColor.gray
-        self.addChild(lightNode)
-*/
         // Physics - Setup physics here
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -385,19 +373,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let delayInSeconds = 3.0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) {
-            
             for cog in cogs {
                 self.gameManager.cogRotated(cogwheel: cog, impulse: cog.startingAngle!)
+                //Vänta tills kugghjulen roterat klart
+                DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds){
+                    let serverManager = self.gameManager as? KuggenSessionServer
+                    serverManager?.readyToPlay(bool: true)
+                    self.gameManager.readyToPlay = true
+                    print("ready to play")
+                }
             }
-            self.readyToPlay = true
-            print("ready to play")
         }
     }
     
     // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        
-        if readyToPlay {
+        if (gameManager.readyToPlay) {
             //Checks if the goal is completed
             if (gameManager.mode == .twoplayer){
                 //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
@@ -651,14 +642,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-//Checks if two cogwheels are aligned with a 5 degree margin of error
-private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
-    if(abs(inner.getCurrent() - outer.getInner()) < 5){
-        print("Aligned")
-        return true
-    }else{
-        return false
-    }
+    //Checks if two cogwheels are aligned with a 5 degree margin of error
+    private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
+        if(abs(inner.getCurrent() - outer.getInner()) < 5){
+            print("Aligned \(inner.getCurrent()), \(outer.getCurrent())")
+            return true
+        }else{
+            return false
+        }
 
 }
     

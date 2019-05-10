@@ -659,15 +659,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 var alignCog : SKSpriteNode
                 var blocker : SKShapeNode
                 if(bodyOne.contains("alignmentCog")) && bodyTwo.contains("block") {
-                    alignCog = firstBody.node! as! SKSpriteNode
-                    blocker = secondBody.node! as! SKShapeNode
+                    //alignCog = firstBody.node! as! SKSpriteNode
+                    //blocker = secondBody.node! as! SKShapeNode
                     print("made contact!!!!!")
-                    alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
+                    //alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 } else {
-                    alignCog = secondBody.node! as! SKSpriteNode
-                    blocker = firstBody.node! as! SKShapeNode
+                    //alignCog = secondBody.node! as! SKSpriteNode
+                    //blocker = firstBody.node! as! SKShapeNode
                     print("made contact!!!!!")
-                    alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
+                    //alignCog.constraints = [SKConstraint.zRotation(SKRange(lowerLimit: blocker.zRotation - 30, upperLimit: blocker.zRotation + 30))]
                 }
             }
         }

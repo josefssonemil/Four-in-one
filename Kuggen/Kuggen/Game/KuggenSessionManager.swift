@@ -118,6 +118,7 @@ class KuggenSessionManager: FourInOneSessionManager {
                 block.position.x = blockPos.x
                 block.position.y = blockPos.y
                 //block.zRotation = .pi/2
+                count = count + 1
             }
             
             //alignmentCogOnePos = makeLocal(CGPoint(x: cogwheelOne.frame.maxX, y: cogwheelOne.frame.maxY ))
@@ -158,6 +159,7 @@ class KuggenSessionManager: FourInOneSessionManager {
             
             robotFourPos = makeLocal(CGPoint(x:globalSize.width, y:0))
             */
+            
            /* robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
             robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
             robotThree.setPosition(x: Int(robotThreePos.x), y: Int(robotThreePos.y))
@@ -181,7 +183,10 @@ class KuggenSessionManager: FourInOneSessionManager {
             
             var count = 0
             for block in blocks {
-                blockPos = makeLocal(CGPoint(x: cogwheels[count].position.x, y: cogwheels[count].position.y + cogwheels[count].size.width/2))
+                blockPos = makeLocal(CGPoint(x: cogwheels[count].position.x + cogwheels[count].size.height/2, y: cogwheels[count].position.y + cogwheels[count].size.width/2))
+                
+                print("position x: \(cogwheels[count].position.x + cogwheels[count].size.height/2)")
+                print("position y: \(cogwheels[count].position.y + cogwheels[count].size.width/2)")
                 //blockPos = makeLocal(CGPoint(x: 500.0, y: 450.0))
                 block.position.x = blockPos.x
                 block.position.y = blockPos.y

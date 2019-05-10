@@ -93,6 +93,5 @@ class MainMenuViewController: UIViewController, Storyboarded {
     @IBAction func optionMenuTapped(_ sender: Any) {
         coordinator?.goToOptionsView()
     }
-    @IBOutlet weak var button: UIButton!
     
 }

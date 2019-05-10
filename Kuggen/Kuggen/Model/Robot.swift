@@ -154,7 +154,7 @@ class Robot: SKSpriteNode {
                 self.arm.run(direction) {
                     self.setHandlePosition()
                 }
-                
+                handle.zRotation = self.zRotation
                 
                     if(!isJoined){
                        setHandlePosition()

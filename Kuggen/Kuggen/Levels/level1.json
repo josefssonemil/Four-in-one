@@ -3,26 +3,26 @@
         {
             "handle": "edgeSquare",
             "inner": 0,
-            "current": 0,
-            "scale": 7,
+            "current": 45,
+            "scale": 8,
         },
         {
             "handle": "edgeTrapezoid",
             "inner": 0,
-            "current": 90,
-            "scale": 10,
+            "current": 135,
+            "scale": 10.5,
         },
         {
             "handle": "edgeCircle",
             "inner": 0,
-            "current": 180,
+            "current": 225,
             "scale": 13,
         },
         {
             "handle": "edgeTriangle",
             "inner": 0,
-            "current": 270,
-            "scale": 16,
+            "current": 315,
+            "scale": 15.5,
         }
     ]
 }

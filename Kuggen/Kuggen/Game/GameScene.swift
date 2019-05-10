@@ -70,9 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var robotFourHandle : Handle
         
 
-    var alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogBlue")
-    var alignmentCogTwo = SKSpriteNode(imageNamed: "alignmentCogGreen")
-    var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogPink")
+    var alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogGreen")
+    var alignmentCogTwo = SKSpriteNode(imageNamed: "alignmentCogPink")
+    var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogBlue")
     var alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogPurple")
     
 
@@ -195,18 +195,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             alignCog.physicsBody?.isDynamic = true
             alignCog.physicsBody?.collisionBitMask = PhysicsCategory.none
         }
-
-        alignmentCogOne.physicsBody?.categoryBitMask = PhysicsCategory.alignCog1
-        alignmentCogOne.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel1
-        
-        alignmentCogTwo.physicsBody?.categoryBitMask = PhysicsCategory.alignCog2
-        alignmentCogTwo.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel2
-        
-        alignmentCogThree.physicsBody?.categoryBitMask = PhysicsCategory.alignCog3
-        alignmentCogThree.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel3
-        
-        alignmentCogFour.physicsBody?.categoryBitMask = PhysicsCategory.alignCog4
-        alignmentCogFour.physicsBody?.contactTestBitMask = PhysicsCategory.cogwheel4
     }
     
     // Setup the scene, add scenes and behaviours
@@ -239,19 +227,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var robots : [Robot]
         var cogwheels : [Cogwheel]
         var buttons : [SKSpriteNode]
+        let alignCogs: [SKSpriteNode]
         // add nodes to scene
         if gameManager.mode == .twoplayer {
             robots = [robotOne, robotTwo]
             cogwheels = [cogwheelOne, cogwheelTwo]
             buttons = [robotOneButton, robotTwoButton]
+            alignCogs = [alignmentCogOne, alignmentCogTwo]
         } else if gameManager.mode == .fourplayer{
             robots = [robotOne, robotTwo, robotThree, robotFour]
             cogwheels = [cogwheelOne, cogwheelTwo, cogwheelThree, cogwheelFour]
             buttons = [robotOneButton, robotThreeButton, robotFourButton, robotTwoButton]
+            alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
         } else {
             robots = [robotOne]
             cogwheels = [cogwheelOne]
             buttons = [robotOneButton]
+            alignCogs = [alignmentCogOne]
         }
         
         var i = 1
@@ -261,6 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(robot.getHandle())
             robot.name = "robot_\(i)"
             robot.handle.name = "robot_\(i)_handle"
+            robot.handle.zPosition = 2
             i+=1
         }
         i = 1
@@ -270,42 +263,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             cogwheel.zPosition = -1
             i+=1
         }
- 
-        // Robot heads (replace with graphics)
-
-        //attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
-        //attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        
         self.gameManager.initialSetUp()
-        let alignCogs: [SKSpriteNode]
-        if(gameManager.mode == .twoplayer){
-            alignCogs = [alignmentCogOne, alignmentCogTwo]
-        }else {
-            alignCogs = [alignmentCogOne, alignmentCogTwo, alignmentCogThree, alignmentCogFour]
-        }
+        
         i = 0
         for aligncog in alignCogs {
             aligncog.size = CGSize(width: 80.0, height: 120.0)
             aligncog.anchorPoint = CGPoint(x: 0.5, y: 1.0)
             aligncog.position = CGPoint(x: cogwheels[i].position.x + cogwheels[i].size.height/2, y: cogwheels[i].position.y)
             aligncog.zRotation = -.pi/2
+            aligncog.zPosition = 1
             addChild(aligncog)
             i+=1
         }
         
-        
+
         initPhysics()
         
-        //attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        //attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
-        
-        attachAlignCogs(cogwheel: cogwheelOne, cog: alignmentCogOne)
-        attachAlignCogs(cogwheel: cogwheelTwo, cog: alignmentCogTwo)
-        if(gameManager.mode == .fourplayer){
-            attachAlignCogs(cogwheel: cogwheelThree, cog: alignmentCogThree)
-            attachAlignCogs(cogwheel: cogwheelFour, cog: alignmentCogFour)
+        i=0
+        for aligncog in alignCogs {
+            attachAlignCogs(cogwheel: cogwheels[i], cog: aligncog)
+            i+=1
         }
-
-        
 
         
         let heads = [SKSpriteNode(imageNamed: "robothead0"),SKSpriteNode(imageNamed: "robothead2"),SKSpriteNode(imageNamed: "robothead3"),SKSpriteNode(imageNamed: "robothead1")]
@@ -372,14 +351,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("width: \(gameManager.globalSize.width), height: \(gameManager.globalSize.height / 2)")
        let point = CGPoint(x:gameManager.globalSize.width/2, y: 0)
     //let point = CGPoint(
-        print("global size point / 2 : \(point.debugDescription)")
         let normalizedPoint = gameManager.makeLocal(point)
-        print("normalized point: \(normalizedPoint.debugDescription)")
-        let rotateConstraint = SKConstraint.orient(to: point, offset: SKRange(constantValue: 0))
 
         for robot in robots {
             robot.getArm().constraints = [regionConstraint]
-            robot.handle.constraints = [regionConstraint, rotateConstraint]
+            robot.handle.constraints = [regionConstraint]
             robot.rotationRanges = [xRange, yRange]
         }
         
@@ -487,7 +463,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         
                         if(touchedRobot.isLockedtoCog()){
                             
-                            let normalizedAngle = angle + .pi/4
+                            let normalizedAngle = angle - touchedRobot.zRotation
                             let armLength = touchedRobot.getArm().size.height
                             
                             let aAngle = (.pi - normalizedAngle) / 2
@@ -503,7 +479,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
                                 
                                 if !(touchedRobot.handle.position.x >= touchedRobot.rotationRanges![0].upperLimit || touchedRobot.handle.position.y >= touchedRobot.rotationRanges![1].upperLimit) {
-                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 10 )
+                                    gameManager.cogRotated(cogwheel: touchedRobot.getCogwheel(), impulse: -rotationAngle / 2)
                                 }
 
 

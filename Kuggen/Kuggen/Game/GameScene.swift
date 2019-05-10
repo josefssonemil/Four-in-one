@@ -364,7 +364,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //block.fillColor = UIColor.black
         for block in blocks {
             block.fillColor = UIColor.black
-            block.position = CGPoint(x: cogwheelTwo.position.x, y: cogwheelTwo.position.y + cogwheelTwo.size.width/2 - 120)
+            let offset = sin(.pi/4) * cogwheelTwo.size.width/2
+            block.position = CGPoint(x: cogwheelTwo.position.x - offset, y: cogwheelTwo.position.y - offset)
             self.addChild(block)
             print("add blockers")
         }

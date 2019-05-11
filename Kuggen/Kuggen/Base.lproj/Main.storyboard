@@ -596,13 +596,34 @@
                     <view key="view" contentMode="scaleToFill" id="79k-ub-44s">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="R6n-Vq-4Ie">
+                                <rect key="frame" x="465" y="399" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stepper>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xvy-qu-mQC">
+                                <rect key="frame" x="419" y="529" width="110" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69z-d2-FV5">
+                                <rect key="frame" x="50" y="70" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="backbutton"/>
+                                <connections>
+                                    <action selector="backButtonTapped:" destination="X2b-E8-jlR" eventType="touchUpInside" id="4HN-zf-drH"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" name="LightBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="Yrx-Ng-Hqc"/>
                     </view>
+                    <connections>
+                        <outlet property="backButton" destination="69z-d2-FV5" id="zJq-Ez-ihS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v41-7r-cpN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-680" y="138"/>
+            <point key="canvasLocation" x="-680.2734375" y="137.5"/>
         </scene>
         <!--RobotConfigurationViewController-->
         <scene sceneID="Imm-7z-aWj">

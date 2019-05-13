@@ -26,6 +26,8 @@ class MainMenuViewController: UIViewController, Storyboarded {
     
     override func viewDidAppear(_ animated: Bool) {
         self.speechLabel.text = "Hej, peka på mig för att få hjälp"
+        selectRobotMenuButton.isHidden=true
+        optionMenuButton.isHidden=true
         UIView.animate(withDuration: 0.5, delay: 1, animations: {
             self.speechLabel.alpha=1.0
             self.speechBubble.alpha=1.0

@@ -175,7 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //Physics for the cogwheels
         for cogwheel in cogwheels{
             cogwheel.physicsBody = SKPhysicsBody(texture: cogwheel.texture!, size: cogwheel.frame.size)
-            cogwheel.physicsBody?.isDynamic = true
+            cogwheel.physicsBody?.isDynamic = false
             cogwheel.physicsBody?.collisionBitMask = PhysicsCategory.none
             cogwheel.physicsBody?.pinned = true
             cogwheel.physicsBody?.angularDamping = 1.0
@@ -195,6 +195,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             alignCog.physicsBody?.isDynamic = true
             alignCog.physicsBody?.collisionBitMask = PhysicsCategory.none
         }
+    }
+    
+    private func initArmPhysics(robot: Robot){
+        robot.arm.physicsBody = SKPhysicsBody(texture: robot.arm.texture!, size: robot.arm.frame.size)
+        
+        robot.arm.physicsBody!.isDynamic = true
+        robot.arm.physicsBody!.pinned = true
+
+        robot.arm.physicsBody!.categoryBitMask = PhysicsCategory.none
+        robot.arm.physicsBody!.contactTestBitMask = PhysicsCategory.none
+
     }
     
     // Setup the scene, add scenes and behaviours
@@ -277,8 +288,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             i+=1
         }
         
-
+ 
         initPhysics()
+        
+        for robot in robots {
+            initArmPhysics(robot: robot)
+        }
+
         
         i=0
         for aligncog in alignCogs {
@@ -633,16 +649,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     private func handleLockedIn(cogwheel: Cogwheel, robot: Robot){
         robot.lockToCog(cogwheel: cogwheel)
-        
-        
-        
-       /* let jointBetweenObjects = SKPhysicsJointFixed.joint(withBodyA: robot.getHandle().physicsBody!,
+
+       let jointBetweenObjects = SKPhysicsJointFixed.joint(withBodyA: robot.getHandle().physicsBody!,
         bodyB: cogwheel.physicsBody!,
         anchor: robot.getHandle().position)
         
         joints.append(jointBetweenObjects)
-        self.physicsWorld.add(jointBetweenObjects)*/
-       
+        self.physicsWorld.add(jointBetweenObjects)
+
     }
     
     private func attachAlignCogs(cogwheel: Cogwheel, cog: SKSpriteNode) {

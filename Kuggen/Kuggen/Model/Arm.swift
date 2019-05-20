@@ -29,19 +29,19 @@ class Arm: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setPosition(x: Int, y: Int){
+    public func setPosition(x: CGFloat, y: CGFloat){
         self.position = CGPoint(x: x, y: y)
     }
-    public func getY() -> Int {
-        return Int(self.position.y)
+    public func getY() -> CGFloat {
+        return self.position.y
     }
     
-    public func getX() -> Int {
-        return Int(self.position.x)
+    public func getX() -> CGFloat {
+        return self.position.x
     }
     
-    public func getHeight() -> Int{
-        return Int(self.size.height)
+    public func getHeight() -> CGFloat {
+        return self.size.height
     }
     
     public func rotate(angle: CGFloat){
@@ -60,6 +60,8 @@ class Arm: SKSpriteNode {
         
     }
     public func extend(speed : CGFloat){
+        
+        
         if(size.height<longest){
             size.height+=speed
         }

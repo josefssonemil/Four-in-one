@@ -21,7 +21,7 @@ class Robot: SKSpriteNode {
     var basePoint = CGPoint()
     private var anchorPosition = CGPoint(x: 0.5, y:1)
     public var rotation: CGFloat
-    private var arm: Arm
+    public var arm: Arm
     private var rotationInterval = (CGFloat(0), CGFloat(0))
     
 
@@ -58,14 +58,14 @@ class Robot: SKSpriteNode {
     
 
 
-    public func setPosition(x: Int, y: Int){
+    public func setPosition(x: CGFloat, y: CGFloat){
         self.position = CGPoint(x: x, y: y)
         arm.setPosition(x: x, y: y)
         setHandlePosition()
     }
     public func setPosition(pos: CGPoint, devpos: DevicePosition){
         //self.position = CGPoint(x: pos.x, y: pos.y)
-        arm.setPosition(x: Int(pos.x), y: Int(pos.y))
+        arm.setPosition(x: pos.x, y: pos.y)
         switch devpos {
         case DevicePosition.one:
             self.zRotation = -.pi/4
@@ -114,15 +114,16 @@ class Robot: SKSpriteNode {
     }
     
     public func handleMovement(angle: CGFloat){
-        /*if (isLocked){
-            let dx = abs(arm.getX() - handle.getX())
-            let dy = abs(arm.getY() - handle.getY())
-            
-            let length = sqrt(pow(Double(dx),2) + pow(Double(dy),2))
-            let angle2 = asin(Double(dy) / length)
+        let dx = abs(arm.getX() - handle.getX())
+        let dy = abs(arm.getY() - handle.getY())
+        
+        let length = sqrt(pow(Double(dx),2) + pow(Double(dy),2))
+        let angle2 = asin(Double(dy) / length)
+        if (isLocked){
             print("should now check stuff")
             
-            if (Int(arm.frame.maxY)<handle.getY()){
+            
+            if (arm.frame.maxY < handle.getY()){
                 arm.extend(speed: CGFloat(abs(length - Double(arm.getHeight()))))
                 print("arm should extend")
             } else {
@@ -131,7 +132,9 @@ class Robot: SKSpriteNode {
 
             }
             
-           // setHandlePosition()
+            let action = SKAction.reach(to: self.handle, rootNode: self, velocity: CGFloat(abs(length - Double(arm.getHeight()))))
+            arm.run(action)
+            //setHandlePosition()
 
             if (handle.getX() > arm.getX()){
                 arm.rotate(angle: -CGFloat(.pi/2 - angle2))
@@ -143,10 +146,11 @@ class Robot: SKSpriteNode {
                 self.zRotation = CGFloat(.pi/2 - angle2)
             }
             
-            setHandlePosition()
+            //setHandlePosition()
 
-        }*/
-     
+        }
+        else {
+        
             if rotationAllowed(newAngle: angle) {
                 rotation = angle
                 let direction = SKAction.rotate(toAngle: angle, duration: 0.2)
@@ -154,12 +158,16 @@ class Robot: SKSpriteNode {
                 self.arm.run(direction) {
                     self.setHandlePosition()
                 }
+                
+                let action = SKAction.reach(to: self.handle, rootNode: self, velocity: CGFloat(abs(length - Double(arm.getHeight()))))
+                arm.run(action)
                 handle.zRotation = self.zRotation
                 
                     if(!isJoined){
-                       setHandlePosition()
+                     // setHandlePosition()
                     }
             }
+        }
        
         
        
@@ -191,7 +199,7 @@ class Robot: SKSpriteNode {
         else{
             arm.extend()
             if(!isJoined){
-                setHandlePosition()
+                //setHandlePosition()
                 /*if (rotation<0){
                     handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
                 }
@@ -209,7 +217,7 @@ class Robot: SKSpriteNode {
         else {
         arm.collapse()
         if(!isJoined){
-            setHandlePosition()
+           // setHandlePosition()
             /*if(rotation<0){
                 handle.setPosition(x: Int(arm.frame.maxX), y: Int(arm.frame.maxY))
             }

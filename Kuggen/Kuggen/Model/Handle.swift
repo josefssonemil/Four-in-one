@@ -35,10 +35,6 @@ class Handle: SKSpriteNode{
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setPosition(x: Int, y: Int){
-        self.position = CGPoint(x: x, y: y)
-    }
-    
     public func setPosition(x: CGFloat, y: CGFloat){
         self.position = CGPoint(x: x, y: y)
     }
@@ -62,12 +58,12 @@ class Handle: SKSpriteNode{
         self.setScale(0.6)
     }
     
-    public func getY() -> Int {
-        return Int(self.position.y)
+    public func getY() -> CGFloat {
+        return self.position.y
     }
     
-    public func getX() -> Int {
-        return Int(self.position.x)
+    public func getX() -> CGFloat {
+        return self.position.x
     }
     
     

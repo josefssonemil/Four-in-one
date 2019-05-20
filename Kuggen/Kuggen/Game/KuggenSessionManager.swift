@@ -95,8 +95,8 @@ class KuggenSessionManager: FourInOneSessionManager {
             robotOnePos = makeLocal(CGPoint(x:globalSize.width / 2, y: globalSize.height - 100))
             robotTwoPos = makeLocal(CGPoint(x:globalSize.width / 2 + 150, y: 100))
 
-            robotOne.setPosition(x: Int(robotOnePos.x), y: Int(robotOnePos.y))
-            robotTwo.setPosition(x: Int(robotTwoPos.x), y: Int(robotTwoPos.y))
+            robotOne.setPosition(x: robotOnePos.x, y: robotOnePos.y)
+            robotTwo.setPosition(x: robotTwoPos.x, y: robotTwoPos.y)
             
             robotOne.zRotation = .pi
             robotTwo.zRotation = 0

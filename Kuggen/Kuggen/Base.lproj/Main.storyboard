@@ -600,6 +600,9 @@
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="R6n-Vq-4Ie">
                                 <rect key="frame" x="465" y="399" width="94" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="stepperChangedValue:" destination="X2b-E8-jlR" eventType="valueChanged" id="Cph-aa-xVc"/>
+                                </connections>
                             </stepper>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xvy-qu-mQC">
                                 <rect key="frame" x="419" y="529" width="110" height="200"/>
@@ -613,11 +616,23 @@
                                     <action selector="backButtonTapped:" destination="X2b-E8-jlR" eventType="touchUpInside" id="4HN-zf-drH"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MO-eg-CwF">
+                                <rect key="frame" x="491" y="319" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="LightBackgroundColor"/>
                         <viewLayoutGuide key="safeArea" id="Yrx-Ng-Hqc"/>
                     </view>
                     <connections>
+                        <outlet property="angleEpsLabel" destination="8MO-eg-CwF" id="vSW-gl-gAk"/>
+                        <outlet property="angleEpsStepper" destination="R6n-Vq-4Ie" id="mXI-Bl-jwS"/>
                         <outlet property="backButton" destination="69z-d2-FV5" id="zJq-Ez-ihS"/>
                     </connections>
                 </viewController>

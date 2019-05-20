@@ -7,6 +7,11 @@
 //
 import SpriteKit
 
-let totalScreenSize = UIScreen.main.bounds.size
-let minArmStretch = 0
-let maxArmStretch = 100
+struct Constants {
+    static let totalScreenSize = UIScreen.main.bounds.size
+    static let minArmStretch = 0
+    static let maxArmStretch = 100
+    static var angleEps = 5
+}
+
+

@@ -313,13 +313,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 deY = abs(robots[i-1].position.y - button.position.y)
                 button.zRotation = -.pi/4
             case 2:
-                button.position = CGPoint(x: robots[i-1].position.y - 100, y: totalScreenSize.height - robots[i-1].position.x)
+                button.position = CGPoint(x: robots[i-1].position.y - 100, y: Constants.totalScreenSize.height - robots[i-1].position.x)
                 button.zRotation = (-3 * .pi)/4
             case 3:
                 button.position = CGPoint(x: robots[i-1].position.x + deX, y: robots[i-1].position.y - deY)
                 button.zRotation = (3 * .pi)/4
             case 4:
-                button.position = CGPoint(x: (totalScreenSize.width - totalScreenSize.height) + robots[i-1].position.y + 100, y: totalScreenSize.width - robots[i-1].position.x)
+                button.position = CGPoint(x: (Constants.totalScreenSize.width - Constants.totalScreenSize.height) + robots[i-1].position.y + 100, y: Constants.totalScreenSize.width - robots[i-1].position.x)
                 button.zRotation = .pi/4
             default:
                 break
@@ -383,26 +383,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        if (gameManager.readyToPlay) {
-            //Checks if the goal is completed
-            if (gameManager.mode == .twoplayer){
-                //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
-                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
-                    print("level completed")
-                    gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
-                    self.isPaused = true
+        if(gameManager.isServer ){
+            if (gameManager.readyToPlay) {
+                //Checks if the goal is completed
+                if (gameManager.mode == .twoplayer){
+                    //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
+                    if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                        print("level completed")
+                        gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
+                        self.isPaused = true
+                    }
+                } else if (gameManager.mode == .fourplayer){
+                    if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                        && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                        && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                        print("level completed")
+                        gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
+                        self.isPaused = true
+                    }
+                    
                 }
-            } else if (gameManager.mode == .fourplayer){
-                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
-                    && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
-                    && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
-                    print("level completed")
-                    gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
-                    self.isPaused = true
-                }
-
             }
         }
+        
     }
 
     
@@ -655,7 +658,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     //Checks if two cogwheels are aligned with a 5 degree margin of error
     private func checkAlignment(inner: Cogwheel, outer: Cogwheel) -> Bool{
-        if(abs(inner.getCurrent() - outer.getInner()) < 5){
+        if(abs(inner.getCurrent() - outer.getInner()) < Double(Constants.angleEps)){
             print("Aligned \(inner.getCurrent()), \(outer.getCurrent())")
             return true
         }else{

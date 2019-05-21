@@ -58,6 +58,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var limit : CGFloat = 6.0
 
     
+    var currentlyActiveRobot: Robot?
+    
     // Create robot arms and cogwheel properties
     private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "fingerprint")
     private let robotTwo = Robot(matchingHandle: handleTwo, devicePosition: .two, textureName: "fingerprint")
@@ -416,6 +418,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if let nodeName = touchedNode.name {
                 
+                print("touchednode")
+                print(touchedNode)
+                if let robot = touchedNode as? Robot {
+                    currentlyActiveRobot = robot
+                    print(currentlyActiveRobot)
+                }
+                
                 switch nodeName {
                 case "robot_1_button":
                         robotOne.closeHandle()
@@ -444,16 +453,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let touchedNode = atPoint(location)
             
-            if let nodeName = touchedNode.name {
+            let isMovingRobot = currentlyActiveRobot != nil
+            print("ismoving")
+            print(isMovingRobot)
+            if let nodeName = Optional("n") {
                 
-                if nodeName.contains("robot") {
-
-                    if let touchedRobot = touchedNode as? Robot  {
+                if nodeName.contains("robot") || isMovingRobot {
+            print("halfwayin")
+//                    if let touchedRobot = touchedNode as? Robot  {
+                    if isMovingRobot {
+                        print("in")
+                        let touchedRobot = currentlyActiveRobot!
+                        
                         let deltaX = location.x - touchedRobot.position.x
                         let deltaY = location.y - touchedRobot.position.y
                         let angle = atan2(deltaY, deltaX) + (.pi / 2)
                         
                         if (touchedRobot.rotation - 10 * .pi/180 < angle && angle < touchedRobot.rotation + 10 * .pi/180){
+                            print("sanctum")
+
                             if (CGPointDistance(from: latestPoint, to: touchedRobot.position) < CGPointDistance(from: location, to: touchedRobot.position)){
                                 touchedRobot.collapseArm()
                             } else{
@@ -509,6 +527,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = aTouch.location(in: self)
             
             let touchedNode = atPoint(location)
+            
+            print("touchend")
+            print(currentlyActiveRobot)
+            if currentlyActiveRobot != nil {
+                currentlyActiveRobot = nil
+            }
             
             if let nodeName = touchedNode.name {
                 

@@ -16,7 +16,6 @@ class Arm: SKSpriteNode {
     var shortest = CGFloat(100)
     var longest = CGFloat(800)
 
-
     init(texture: SKTexture) {
         self.rotation=0
         super.init(texture: texture, color: SKColor.white, size: texture.size())
@@ -49,21 +48,30 @@ class Arm: SKSpriteNode {
         rotation=angle
     }
     
-    
     public func extend(){
         let speed = CGFloat(10)
         
         if(size.height<longest){
             isExtended=false
             self.size.height+=speed
+            //if new length is longer than max, sets new length to max
+            if (size.height>longest || size.height==longest) {
+                size.height=longest
+                isExtended=true
+            }
         } else {self.size.height = longest; isExtended=true}
         
     }
     public func extend(speed : CGFloat){
         
-        
         if(size.height<longest){
+            isExtended=false
             size.height+=speed
+            //if new length is longer than max, sets new length to max
+            if (size.height>longest || size.height==longest) {
+                size.height=longest
+                isExtended=true
+            }
         }
         else {size.height = longest; isExtended=true}
         
@@ -71,6 +79,10 @@ class Arm: SKSpriteNode {
     public func collapse(speed : CGFloat){
         if(size.height>shortest){
             size.height-=speed
+            isExtended = false
+            if (size.height<shortest || size.height == shortest) {
+                size.height = shortest
+            }
         } else {size.height = shortest}
         isExtended=false
     }
@@ -79,8 +91,11 @@ class Arm: SKSpriteNode {
         let speed = CGFloat(10)
         if(size.height>shortest){
             size.height-=speed
+            if (size.height<shortest || size.height == shortest) {
+                size.height = shortest
+                isExtended = false
+            }
         } else {size.height = shortest}
         isExtended=false
     }
-    
 }

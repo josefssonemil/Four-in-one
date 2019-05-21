@@ -169,8 +169,6 @@ class Robot: SKSpriteNode {
             }
         }
        
-        
-       
     }
     
     private func setHandlePosition(){
@@ -183,7 +181,6 @@ class Robot: SKSpriteNode {
                 handle.setPosition(x: arm.frame.minX, y: arm.frame.minY)
             case .four:
                 handle.setPosition(x: arm.frame.minX, y: arm.frame.maxY)
-            default:
             break
         }
     }

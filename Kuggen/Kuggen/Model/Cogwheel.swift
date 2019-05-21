@@ -9,6 +9,7 @@ class Cogwheel: SKSpriteNode {
     private var blocker: Double?
     private var lock: Lock?
     var startingAngle: CGFloat?
+    public var attachAngle: Double?
     //private var currentAngle: Double
     
     //Creates a cogwheel

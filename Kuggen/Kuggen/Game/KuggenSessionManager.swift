@@ -150,12 +150,7 @@ class KuggenSessionManager: FourInOneSessionManager {
             cogwheelFourPos = makeLocal(CGPoint(x: globalSize.width / 2, y: globalSize.height / 2))
             cogwheelFour.position.x = cogwheelFourPos.x
             cogwheelFour.position.y = cogwheelFourPos.y
-            
-            
         }
-        
-    
-        
     }
     
     private func randomizeStartingAngles() {
@@ -191,9 +186,6 @@ class KuggenSessionManager: FourInOneSessionManager {
      
     }
     
-    
-    
-    
     // TODO - robot objects need to contain devicepositions
     
     func getRobot(atPos: DevicePosition) -> Robot {
@@ -209,10 +201,6 @@ class KuggenSessionManager: FourInOneSessionManager {
         }
     }
     
-    
-    
-    
-    
     // Decides whether a player is dragging the arm out or not, depending on movement direction
     func isExtendArm(movement: CGFloat, pos: DevicePosition) -> Bool{
         switch pos {
@@ -224,7 +212,6 @@ class KuggenSessionManager: FourInOneSessionManager {
             return movement < 0
         case .four:
             return movement > 0
-            
         }
     }
     
@@ -232,8 +219,6 @@ class KuggenSessionManager: FourInOneSessionManager {
         robot.handleMovement(angle: angle)
     }
     
-
-
     func readyForNextLevel() {
         
     }
@@ -243,11 +228,8 @@ class KuggenSessionManager: FourInOneSessionManager {
     }
     
     func startNextLevel() {
-        
         // level += 1
-        
     }
-    
     
     // Event Factory
     let moveEvent = "m"
@@ -351,6 +333,5 @@ class KuggenSessionManager: FourInOneSessionManager {
         event.info = [boolKey:on.description]
         
         return event
-        
     }
 }

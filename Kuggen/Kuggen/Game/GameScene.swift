@@ -383,29 +383,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Update, called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
-        if(gameManager.isServer ){
-            if (gameManager.readyToPlay) {
+        if (gameManager.readyToPlay) {
                 //Checks if the goal is completed
-                if (gameManager.mode == .twoplayer){
+            if (gameManager.mode == .twoplayer){
                     //print("inner: \(cogwheelOne.getCurrent()), outer: \(cogwheelTwo.getInner())")
-                    if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
-                        print("level completed")
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)){
+                    print("level completed")
+                    if(gameManager.isServer){
                         gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
                         self.isPaused = true
                     }
-                } else if (gameManager.mode == .fourplayer){
-                    if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
-                        && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
-                        && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
-                        print("level completed")
+                }
+            } else if (gameManager.mode == .fourplayer){
+                if(checkAlignment(inner: cogwheelOne, outer: cogwheelTwo)
+                    && checkAlignment(inner: cogwheelTwo, outer: cogwheelThree)
+                    && checkAlignment(inner: cogwheelThree, outer: cogwheelFour)){
+                    print("level completed")
+                    if(gameManager.isServer){
                         gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
                         self.isPaused = true
                     }
-                    
                 }
             }
         }
-        
     }
 
     

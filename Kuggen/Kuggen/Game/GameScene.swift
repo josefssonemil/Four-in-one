@@ -670,57 +670,70 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch pos {
         case .one:
             heads[1].isHidden = true
-            heads[2].isHidden = true
-            heads[3].isHidden = true
             
             robots[1].getArm().isHidden = true
             robots[1].getHandle().isHidden = true
             
-            robots[2].getArm().isHidden = true
-            robots[2].getHandle().isHidden = true
-            
-            robots[3].getArm().isHidden = true
-            robots[3].getHandle().isHidden = true
+            if(gameManager.mode == .fourplayer){
+                heads[2].isHidden = true
+                heads[3].isHidden = true
+                
+                robots[2].getArm().isHidden = true
+                robots[2].getHandle().isHidden = true
+                
+                robots[3].getArm().isHidden = true
+                robots[3].getHandle().isHidden = true
+            }
 
         case .two:
             heads[0].isHidden = true
-            heads[2].isHidden = true
-            heads[3].isHidden = true
             
             robots[0].getArm().isHidden = true
             robots[0].getHandle().isHidden = true
             
-            robots[2].getArm().isHidden = true
-            robots[2].getHandle().isHidden = true
-            
-            robots[3].getArm().isHidden = true
-            robots[3].getHandle().isHidden = true
+            if(gameManager.mode == .fourplayer){
+                heads[2].isHidden = true
+                heads[3].isHidden = true
+                
+                robots[2].getArm().isHidden = true
+                robots[2].getHandle().isHidden = true
+                
+                robots[3].getArm().isHidden = true
+                robots[3].getHandle().isHidden = true
+            }
         case .three:
             heads[0].isHidden = true
             heads[1].isHidden = true
-            heads[3].isHidden = true
             
             robots[0].getArm().isHidden = true
             robots[0].getHandle().isHidden = true
             
             robots[1].getArm().isHidden = true
             robots[1].getHandle().isHidden = true
-            
-            robots[3].getArm().isHidden = true
-            robots[3].getHandle().isHidden = true
+
+            if(gameManager.mode == .fourplayer){
+                heads[3].isHidden = true
+                
+                robots[3].getArm().isHidden = true
+                robots[3].getHandle().isHidden = true
+            }
         case .four:
             heads[0].isHidden = true
             heads[1].isHidden = true
-            heads[2].isHidden = true
             
             robots[0].getArm().isHidden = true
             robots[0].getHandle().isHidden = true
             
             robots[1].getArm().isHidden = true
             robots[1].getHandle().isHidden = true
+
+            if(gameManager.mode == .fourplayer){
+                heads[2].isHidden = true
+                
+                robots[2].getArm().isHidden = true
+                robots[2].getHandle().isHidden = true
+            }
             
-            robots[2].getArm().isHidden = true
-            robots[2].getHandle().isHidden = true
         }
     }
 }

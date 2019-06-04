@@ -663,7 +663,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
 }
-    
+   
+    //hides the the other robotss
     private func hideOther(_ manager: KuggenSessionManager, heads: [SKSpriteNode], robots: [Robot]){
         let pos = manager.position
         

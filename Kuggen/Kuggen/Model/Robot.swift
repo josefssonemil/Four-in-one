@@ -189,7 +189,7 @@ class Robot: SKSpriteNode {
             
         }
         else{
-            arm.extend()
+            arm.extend(speed: 5)
             if(!isJoined){
                 setHandlePosition()
                 /*if (rotation<0){
@@ -207,7 +207,7 @@ class Robot: SKSpriteNode {
         
         }
         else {
-        arm.collapse()
+            arm.collapse(speed: 5)
         if(!isJoined){
             setHandlePosition()
             /*if(rotation<0){

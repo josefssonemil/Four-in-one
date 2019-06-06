@@ -50,35 +50,18 @@ class Arm: SKSpriteNode {
     }
     
     
-    public func extend(){
-        let speed = CGFloat(10)
-        
+    public func extend(speed : CGFloat = 10){        
         if(size.height<longest){
             isExtended=false
             self.size.height+=speed
         } else {self.size.height = longest; isExtended=true}
         
     }
-    public func extend(speed : CGFloat){
-        if(size.height<longest){
-            size.height+=speed
-        }
-        else {size.height = longest; isExtended=true}
-        
-    }
-    public func collapse(speed : CGFloat){
+
+    public func collapse(speed : CGFloat = 10){
         if(size.height>shortest){
             size.height-=speed
         } else {size.height = shortest}
         isExtended=false
     }
-    
-    public func collapse(){
-        let speed = CGFloat(10)
-        if(size.height>shortest){
-            size.height-=speed
-        } else {size.height = shortest}
-        isExtended=false
-    }
-    
 }

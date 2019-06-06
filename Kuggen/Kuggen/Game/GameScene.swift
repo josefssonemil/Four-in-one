@@ -454,6 +454,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if nodeName.contains("robot") {
 
                     if let touchedRobot = touchedNode as? Robot  {
+
                         let deltaX = location.x - touchedRobot.position.x
                         let deltaY = location.y - touchedRobot.position.y
                         let angle = atan2(deltaY, deltaX) + (.pi / 2)

@@ -106,8 +106,7 @@ class Robot: SKSpriteNode {
         if newAngle < rotationInterval.0 || newAngle > rotationInterval.1 {
             isRotationAllowed = false
             return isRotationAllowed
-    }
-        else {
+        } else {
             isRotationAllowed = true
             return isRotationAllowed
         }
@@ -147,7 +146,8 @@ class Robot: SKSpriteNode {
 
         }*/
      
-            if rotationAllowed(newAngle: angle) {
+            //if rotationAllowed(newAngle: angle) {
+        if true {
                 rotation = angle
                 let direction = SKAction.rotate(toAngle: angle, duration: 0.2)
                 self.run(direction)

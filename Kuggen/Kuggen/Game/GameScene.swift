@@ -14,7 +14,6 @@ import GameplayKit
 // Protocol for game over
 protocol GameSceneDelegate: AnyObject {
     func changeLevel(gameManager: KuggenSessionManager, result:Bool)
-    
 }
 
 struct PhysicsCategory {
@@ -46,9 +45,6 @@ private let handleTwo = HandleType.edgeSquare
 private let handleThree = HandleType.edgeTrapezoid
 private let handleFour = HandleType.edgeTriangle
 
-
-
-
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Game manager, create and manage request objects
@@ -57,8 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var latestPoint = CGPoint()
     var limit : CGFloat = 6.0
     
-    
-    var currentlyActiveRobot: Robot?
+    var currentlyActiveRobotTouches = [UITouch: Robot]()
     
     // Create robot arms and cogwheel properties
     private let robotOne = Robot(matchingHandle: handleOne, devicePosition: .one, textureName: "fingerprint")
@@ -71,19 +66,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var robotThreeHandle : Handle
     private var robotFourHandle : Handle
     
-    
     var alignmentCogOne = SKSpriteNode(imageNamed: "alignmentCogGreen")
     var alignmentCogTwo = SKSpriteNode(imageNamed: "alignmentCogPink")
     var alignmentCogThree = SKSpriteNode(imageNamed: "alignmentCogBlue")
     var alignmentCogFour = SKSpriteNode(imageNamed: "alignmentCogPurple")
-    
     
     private var robotTwoArm : Arm
     private let robotOneButton = SKSpriteNode(imageNamed: "robot0_button")
     private let robotTwoButton = SKSpriteNode(imageNamed: "robot1_button")
     private let robotThreeButton = SKSpriteNode(imageNamed: "robot2_button")
     private let robotFourButton = SKSpriteNode(imageNamed: "robot3_button")
-    
     
     private var joints : [SKPhysicsJointFixed]
     
@@ -92,7 +84,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private let cogwheelTwo: Cogwheel
     private let cogwheelThree: Cogwheel
     private let cogwheelFour: Cogwheel
-    
     
     // private var robotTwoCogwheelTwo: SKPhysicsJointPin?
     // Init
@@ -113,13 +104,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // Initalize new scene object
-    
-    
+
     convenience override init(size: CGSize) {
         self.init(size: size, levelNo: 1)
     }
-    
-    
     
     //Creates a GameScene for a specific level
     init(size: CGSize, levelNo: Int){
@@ -190,7 +178,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cogwheelThree.physicsBody?.contactTestBitMask = PhysicsCategory.robot3
         cogwheelFour.physicsBody?.categoryBitMask = PhysicsCategory.cogwheel4
         cogwheelFour.physicsBody?.contactTestBitMask = PhysicsCategory.robot4
-        
         
         for alignCog in alignCogs{
             alignCog.physicsBody = SKPhysicsBody(texture: alignCog.texture!, size: alignCog.frame.size)
@@ -402,7 +389,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     gameSceneDelegate?.changeLevel(gameManager: self.gameManager, result: true)
                     self.isPaused = true
                 }
-                
             }
         }
     }
@@ -421,8 +407,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("touchednode")
                 print(touchedNode)
                 if let robot = touchedNode as? Robot {
-                    currentlyActiveRobot = robot
-                    print(currentlyActiveRobot)
+                    currentlyActiveRobotTouches[aTouch] = robot
+                    print(currentlyActiveRobotTouches)
                 }
                 
                 switch nodeName {
@@ -447,14 +433,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let location = aTouch.location(in: self)
             
-            let touchedNode = atPoint(location)
+            var activeRobot: Robot?
+            if let event = event {
+                let matchingTouches = currentlyActiveRobotTouches.filter { touch in
+                    return (event.allTouches ?? []).contains(touch.key)
+                }
+                if let touch = matchingTouches.first {
+                    activeRobot = touch.value
+                }
+            }
             
-            if let nodeName = touchedNode.name {
-    
-                if nodeName.contains("robot") {
-
-                    if let touchedRobot = touchedNode as? Robot  {
-
+            let isMovingAnActiveRobot = activeRobot != nil
+            
+            if let nodeName = Optional("n") {
+                if nodeName.contains("robot") || isMovingAnActiveRobot {
+                    if isMovingAnActiveRobot {
+                        let touchedRobot = activeRobot!
+                        
                         let deltaX = location.x - touchedRobot.position.x
                         let deltaY = location.y - touchedRobot.position.y
                         let angle = atan2(deltaY, deltaX) + (.pi / 2)
@@ -512,10 +507,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let touchedNode = atPoint(location)
             
-            print("touchend")
-            print(currentlyActiveRobot)
-            if currentlyActiveRobot != nil {
-                currentlyActiveRobot = nil
+            if let event = event {
+                let matchingTouches = currentlyActiveRobotTouches.filter { touch in
+                    return (event.allTouches ?? []).contains(touch.key)
+                }
+                if let touch = matchingTouches.first {
+                    currentlyActiveRobotTouches.removeValue(forKey: touch.key)
+                }
             }
             
             if let nodeName = touchedNode.name {
